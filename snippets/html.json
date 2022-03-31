@@ -1,0 +1,74 @@
+{
+  "jQuery import": {
+    "prefix": "$",
+    "body": [
+      "<script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js'></script>"
+    ],
+    "description": "快速引入 jQuery"
+  },
+  "bootstrap import": {
+    "prefix": "bootstrap",
+    "body": [
+      "<link href='https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css' rel='stylesheet'>",
+      "<script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js' defer></script>",
+      "<script src='https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js' defer></script>"
+    ],
+    "description": "快速引入 bootstrap 前端 UI 库"
+  },
+  "vue3": {
+    "prefix": "vue3",
+    "body": [
+      "<script src='https://cdn.bootcdn.net/ajax/libs/vue/3.1.5/vue.global.js'></script>"
+    ],
+    "description": "快速引入 Vue3"
+  },
+  "vue2": {
+    "prefix": "vue2",
+    "body": [
+      "<script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>"
+    ],
+    "description": "快速引入 Vue2"
+  },
+  "axios": {
+    "prefix": "axios",
+    "body": [
+      "<script src='https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js'></script>"
+    ],
+    "description": "快速引入 axios"
+  },
+  "aliyunfonticon": {
+    "prefix": "aliyunfonticon",
+    "body": [
+      "<link rel=\"stylesheet\" href=\"//at.alicdn.com/t/font_2682721_1t0h06j4m0bi.css\">"
+    ],
+    "description": "快速引入阿里云在线图标库"
+  },
+  "layui": {
+    "prefix": "layui",
+    "body": [
+      "<link rel=\"stylesheet\" href=\"//unpkg.com/layui@2.6.8/dist/css/layui.css\">",
+      "<script src=\"//unpkg.com/layui@2.6.8/dist/layui.js\" defer></script>"
+    ],
+    "description": "layui 前端 UI 库"
+  },
+  "demo": {
+    "prefix": "demo",
+    "body": [
+      "<style>",
+      "",
+      "</style>",
+      "",
+      "<body>",
+      "",
+      "</body>",
+      "",
+      "<script src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js'></script>",
+      "<script>",
+      "",
+      "    \"use strict\";",
+      "",
+      "</script>"
+    ],
+    "description": "demo"
+  }
+}
