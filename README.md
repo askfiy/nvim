@@ -78,7 +78,7 @@ $ pip3 install autopep8
 $ pip3 install sqlformat
 
 -- Translate
-$ yay -S translate-shell
+$ yay -S trans
 
 -- markdown preview
 $ yay -S pandoc
@@ -86,11 +86,9 @@ $ npm install -g live-server
 
 -- Golang debug
 $ yay -S delve
-or
-$ python3 -m pip install debugpy
 
 -- Python debug
-$ pip3 install pylint
+$ python3 -m pip install debugpy
 
 -- Python diagnostics
 $ pip3 install pylint
@@ -137,16 +135,16 @@ Directory listing:
 
 Directory Description：
 
-- core: core directory
+- core: Core directory
 - configure: LSP、DAP、Plugins configuration
 - utils: Some wrapped API functions
-- after: last loaded configuration
+- after: Last loaded configuration
 
 File Description:
 
-- mapping: key binding
-- options: user settings
-- settings: system settings
+- mapping: Key binding
+- options: User settings
+- settings: System settings
 
 ## key bindings
 
@@ -170,7 +168,7 @@ $ ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 If the icon shows an error, you should install [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/)，And the font of the terminal needs to be changed.
 
-## Some commands
+## some commands
 
 ```
 PackerStatus: View plug-in running status
@@ -181,10 +179,10 @@ LspInfo: View LSP running status
 LSPInstallInfo: View LSP download status
 ```
 
-## Some resource links
+## some resource links
 
 - [Code formatter download](https://github.com/sbdchd/neoformat#supported-filetypes)
-- [configure new lint](https://github.com/mfussenegger/nvim-lint)
+- [Configure new lint](https://github.com/mfussenegger/nvim-lint)
 - [Configure new DAP debugger](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation)
 - [Configure new LSP file (1)](https://github.com/williamboman/nvim-lsp-installer#available-lsps)
 - [Configure new LSP file (2)](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
