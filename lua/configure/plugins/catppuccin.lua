@@ -87,6 +87,7 @@ catppuccin.after_loading = function()
     --  bufferline
     utils.hi.set("Directory", {fg = colors.blue, gui = "bold"})
     -- lspsaga
+    utils.hi.set("LspFloatWinNormal", {bg = colors.black2})
     utils.hi.set("LspSagaRenameBorder", {fg = colors.blue})
     utils.hi.set("LspSagaHoverBorder", {fg = colors.blue})
     utils.hi.set("LspSagaDocTruncateLine", {fg = colors.blue})

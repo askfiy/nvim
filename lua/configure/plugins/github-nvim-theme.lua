@@ -35,6 +35,7 @@ if style == "dimmed" then
     utils.hi.set("NvimTreeOpenedFile", {fg = colors.red})
     utils.hi.set("NvimTreeRootFolder", {fg = colors.syntax.html_arg, gui = "bold"})
     -- lspsaga
+    utils.hi.set("LspFloatWinNormal", {bg = colors.bg})
     utils.hi.set("LspSagaRenameBorder", {fg = colors.syntax.string})
     utils.hi.set("LspSagaHoverBorder", {fg = colors.syntax.string})
     utils.hi.set("LspSagaDocTruncateLine", {fg = colors.syntax.string})

@@ -66,9 +66,9 @@ mapping.global = {
         {{"i", "s"}, "<tab>", "vsnip#jumpable(1)? '<Plug>(vsnip-jump-next)':'<tab>'", "expr|silent"}
     },
     hop = {
-        {{"n"}, "ss", "<cmd>HopWord<cr>", "noremap|silent"},
-        {{"n"}, "sl", "<cmd>HopLine<cr>", "noremap|silent"},
-        {{"n"}, "sc", "<cmd>HopChar1<cr>", "noremap|silent"}
+        {{"n", "v"}, "ss", "<cmd>HopWord<cr>", "noremap|silent"},
+        {{"n", "v"}, "sl", "<cmd>HopLine<cr>", "noremap|silent"},
+        {{"n", "v"}, "sc", "<cmd>HopChar1<cr>", "noremap|silent"}
     },
     persisted = {
         {{"n"}, "<leader>sl", "<cmd>SessionLoad<cr>", "noremap|silent"},
