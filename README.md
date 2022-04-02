@@ -186,3 +186,13 @@ LSPInstallInfo: View LSP download status
 - [Configure new DAP debugger](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation)
 - [Configure new LSP file (1)](https://github.com/williamboman/nvim-lsp-installer#available-lsps)
 - [Configure new LSP file (2)](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
+
+
+## Known bugs
+
+In my daily use, I will encounter some bugs from the plug-in itself. I hereby appeal to everyone to help me go to the original plug-in address and submit ISSUES, so that they can be repaired faster:
+
+- 1. [lspsaga](https://github.com/tami5/lspsaga.nvim): rename &lt;c-w&gt; not working.
+- 2. [todo-comments](https://github.com/folke/todo-comments.nvim): An exception will be thrown after pressing q:, only for neovim 7.0
+- 3. [nvim-lint](https://github.com/mfussenegger/nvim-lint): throws an exception when used in the [Telescope](https://github.com/nvim-telescope/telescope.nvim) integration with [nvim-neoclip](https://github.com/AckslD/nvim-neoclip.lua)
+- 4. [friendly-snippets](https://github.com/rafamadriz/friendly-snippets): Can't add Django filetypes, so I used Django snippets from vscode
