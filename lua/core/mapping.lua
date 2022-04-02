@@ -239,7 +239,7 @@ mapping.global = {
             "<leader>f:",
             "<cmd>lua require('telescope.builtin').command_history(require('telescope.themes').get_dropdown({}))<cr>",
             "noremap|silent"
-        },
+        }
     }
 }
 
@@ -310,6 +310,15 @@ mapping.plugin = {
     lspsaga = {
         quit = "<esc>",
         exec = "<cr>"
+    },
+    telescope = {
+        insert_delete_buf = "<c-d>",
+        noremal_delete_buf = "dd"
+    },
+    nvim_neoclip = {
+        confirm_select = "<cr>",
+        insert_delete_yank = "<c-d>",
+        noremal_delete_yank = "dd"
     },
     nvim_cmp = {
         prev_item = "<c-p>",

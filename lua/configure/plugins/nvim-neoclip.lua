@@ -1,5 +1,7 @@
 -- https://github.com/AckslD/nvim-neoclip.lua
 
+mapping = require("core.mapping")
+
 local function is_whitespace(line)
     return vim.fn.match(line, [[^\s*$]]) ~= -1
 end
@@ -22,18 +24,18 @@ require("neoclip").setup(
             telescope = {
                 i = {
                     select = "<nop>",
-                    paste = "<cr>",
+                    paste = mapping.plugin.nvim_neoclip.confirm_select,
                     paste_behind = "<nop>",
                     replay = "<nop>", -- replay a macro
-                    delete = "<c-d>", -- delete an entry
+                    delete = mapping.plugin.nvim_neoclip.insert_delete_yank,
                     custom = {}
                 },
                 n = {
                     select = "<nop>",
-                    paste = "<cr>",
+                    paste = mapping.plugin.nvim_neoclip.confirm_select,
                     paste_behind = "<nop>",
                     replay = "<nop>",
-                    delete = "dd",
+                    delete = mapping.plugin.nvim_neoclip.noremal_delete_yank,
                     custom = {}
                 }
             }

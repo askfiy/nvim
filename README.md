@@ -188,7 +188,7 @@ LSPInstallInfo: View LSP download status
 - [Configure new LSP file (2)](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
 
 
-## Known bugs
+## known bugs
 
 In my daily use, I will encounter some bugs from the plug-in itself. I hereby appeal to everyone to help me go to the original plug-in address and submit ISSUES, so that they can be repaired faster:
 
