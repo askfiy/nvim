@@ -9,7 +9,9 @@ vim.g.VM_maps = {
     ["Switch Mode"] = mapping.plugin.vim_visual_multi.switch_mode,
     ["Find Under"] = mapping.plugin.vim_visual_multi.find_under,
     ["Skip Region"] = mapping.plugin.vim_visual_multi.skip_region,
-    ["Remove Region"] = mapping.plugin.vim_visual_multi.remove_region
+    ["Remove Region"] = mapping.plugin.vim_visual_multi.remove_region,
+    ["Add Cursor Up"] = mapping.plugin.vim_visual_multi.add_cursor_to_up,
+    ["Add Cursor Down"] = mapping.plugin.vim_visual_multi.add_cursor_to_down
 }
 
 utils.hi.set("VM_red", {fg = "White", bg = "Red", gui = "bold"})

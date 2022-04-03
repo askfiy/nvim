@@ -19,6 +19,25 @@ local mapping = require("core.mapping")
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
+local lspkind_comparator = function(conf)
+    local lsp_types = require("cmp.types").lsp
+    return function(entry1, entry2)
+        local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+        local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+
+        local priority1 = conf.kind_priority[kind1] or 0
+        local priority2 = conf.kind_priority[kind2] or 0
+        if priority1 == priority2 then
+            return nil
+        end
+        return priority2 < priority1
+    end
+end
+
+local label_comparator = function(entry1, entry2)
+    return entry1.completion_item.label < entry2.completion_item.label
+end
+
 cmp.setup(
     ---@diagnostic disable-next-line: redundant-parameter
     {
@@ -111,14 +130,38 @@ cmp.setup(
         sorting = {
             priority_weight = 2,
             comparators = {
-                cmp.config.compare.offset,
-                cmp.config.compare.sort_text,
-                cmp.config.compare.exact,
-                cmp.config.compare.score,
-                cmp.config.compare.recently_used,
-                cmp.config.compare.kind,
-                cmp.config.compare.length,
-                cmp.config.compare.order
+                lspkind_comparator(
+                    {
+                        kind_priority = {
+                            Snippet = 25,
+                            Keyword = 24,
+                            Text = 23,
+                            Module = 22,
+                            Class = 21,
+                            Function = 20,
+                            Field = 19,
+                            Method = 18,
+                            Property = 17,
+                            Variable = 16,
+                            Constant = 15,
+                            Enum = 14,
+                            EnumMember = 13,
+                            Event = 12,
+                            Operator = 11,
+                            Reference = 10,
+                            Struct = 9,
+                            File = 8,
+                            Folder = 7,
+                            Color = 6,
+                            Constructor = 5,
+                            Interface = 4,
+                            TypeParameter = 3,
+                            Unit = 2,
+                            Value = 1
+                        }
+                    }
+                ),
+                label_comparator
             }
         }
     }
@@ -155,40 +198,3 @@ cmp.setup.cmdline(
         )
     }
 )
-
--- enabled = function()
---     -- if vim.fn["vsnip#available"](1) == 1 or vim.b.visual_multi then
---     if vim.b.visual_multi then
---         return false
---     end
---     return true
--- end,
--- vim.api.nvim_create_autocmd(
---     {"TextChanged", "TextChangedI", "TextChangedP"},
---     {
---         pattern = {"*"},
---         callback = function()
---             if not cmp.visible() then
---                 if vim.fn["vsnip#available"](1) == 1 or vim.b.visual_multi then
---                     require("cmp.config").set_onetime(
---                         {
---                             completion = {
---                                 autocomplete = false
---                             }
---                         }
---                     )
---                     print(vim.inspect(require("cmp.config").set_onetime()))
---                 else
---                     require("cmp.config").set_onetime(
---                         {
---                             completion = {
---                                 autocomplete = true
---                             }
---                         }
---                     )
---                 end
---             else
---             end
---         end
---     }
--- )

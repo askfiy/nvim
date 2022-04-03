@@ -29,12 +29,42 @@ mapping.global = {
         {{"n"}, "<m-h>", "<c-w><", "noremap|silent"},
         {{"n"}, "<m-l>", "<c-w>>", "noremap|silent"},
         {{"n"}, "<leader>cs", "<cmd>set spell!<cr>", "noremap|silent"},
-        {{"n", "v"}, "H", "^", "noremap|silent"},
-        {{"n", "v"}, "L", "$", "noremap|silent"},
         {{"i", "c", "t"}, "<m-k>", "<up>", "noremap"},
         {{"i", "c", "t"}, "<m-j>", "<down>", "noremap"},
         {{"i", "c", "t"}, "<m-h>", "<left>", "noremap"},
-        {{"i", "c", "t"}, "<m-l>", "<right>", "noremap"}
+        {{"i", "c", "t"}, "<m-l>", "<right>", "noremap"},
+        {
+            {"n", "x"},
+            "j",
+            function()
+                return vim.v.count > 0 and "j" or "gj"
+            end,
+            "noremap|silent|expr"
+        },
+        {
+            {"n", "x"},
+            "k",
+            function()
+                return vim.v.count > 0 and "k" or "gk"
+            end,
+            "noremap|silent|expr"
+        },
+        {
+            {"n", "x"},
+            "H",
+            function()
+                return vim.v.count > 0 and "^" or "g^"
+            end,
+            "noremap|silent|expr"
+        },
+        {
+            {"n", "x"},
+            "L",
+            function()
+                return vim.v.count > 0 and "$" or "g$"
+            end,
+            "noremap|silent|expr"
+        }
     },
     nvim_tree = {
         {{"n"}, "<leader>1", "<cmd>NvimTreeToggle<cr>", "noremap|silent"},
@@ -362,7 +392,9 @@ mapping.plugin = {
         switch_mode = "<tab>",
         find_under = "<c-n>",
         skip_region = "<c-s>",
-        remove_region = "<c-p>"
+        remove_region = "<c-p>",
+        add_cursor_to_up = "<c-k>",
+        add_cursor_to_down = "<c-j>"
     }
 }
 
