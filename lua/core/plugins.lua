@@ -67,22 +67,26 @@ local packer_install_plugins = {
     -------------
     --- theme ---
     -------------
-    ["catppuccin/nvim"] = {
-        as = "catppuccin",
+    ["petertriho/nvim-scrollbar"] = {
         load_file = true,
         disable = false,
         after = {"impatient.nvim"}
+    },
+    ["catppuccin/nvim"] = {
+        as = "catppuccin",
+        load_file = true,
+        disable = true,
+        after = {"nvim-scrollbar"}
     },
     ["projekt0n/github-nvim-theme"] = {
         load_file = true,
         disable = true,
-        after = {"impatient.nvim"}
+        after = {"nvim-scrollbar"}
     },
-    ["petertriho/nvim-scrollbar"] = {
+    ["Mofiqul/vscode.nvim"] = {
         load_file = true,
         disable = false,
-        after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        after = {"nvim-scrollbar"}
     },
     ["RRethy/vim-illuminate"] = {
         load_file = true,

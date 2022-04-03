@@ -2,8 +2,8 @@
 
 local utils = require("utils")
 
--- local style = "dimmed"
-local style = "light_default"
+local style = "dimmed"
+-- local style = "light_default"
 
 require("github-theme").setup(
     {
@@ -82,4 +82,6 @@ if style == "dimmed" then
     utils.hi.set("HopNextKey1", {fg = colors.yellow, bg = colors.bg, gui = "bold"})
     utils.hi.set("HopNextKey2", {fg = colors.red, bg = colors.bg, gui = "bold,italic"})
     utils.hi.set("HopUnmatched", {fg = colors.syntax.comment, bg = colors.bg})
+    -- scrollbar
+    utils.hi.set("ScrollbarHandle", {bg = colors.border})
 end
