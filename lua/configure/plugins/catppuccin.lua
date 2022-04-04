@@ -86,7 +86,7 @@ end
 utils.hi.set("FidgetTitle", {fg = colors.blue, gui = "bold"})
 utils.hi.set("FidgetTask", {fg = colors.blue})
 --  bufferline
-utils.hi.set("Directory", {fg = colors.blue, gui = "bold"})
+utils.hi.set("Directory", {fg = colors.blue, bg = colors.black0, gui = "bold"})
 -- lspsaga
 utils.hi.set("LspFloatWinNormal", {bg = colors.black2})
 utils.hi.set("LspSagaRenameBorder", {fg = colors.blue})

@@ -8,8 +8,8 @@ require("lspsaga").setup(
         border_style = "round",
         error_sign = " ",
         warn_sign = " ",
-        hint_sign = " ",
         infor_sign = " ",
+        hint_sign = " ",
         diagnostic_header_icon = " ",
         -- show current write line icons
         code_action_icon = " ",
