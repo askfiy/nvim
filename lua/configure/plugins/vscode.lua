@@ -35,6 +35,9 @@ end
 -- vim-illuminate
 utils.hi.set("illuminatedWord", {bg = colors.vscSplitThumb})
 
+-- nvim-tree
+utils.hi.set("NvimTreeOpenedFolderName", {bg = "NONE", gui="bold"})
+
 -- scrollbar
 utils.hi.set("ScrollbarHandle", {bg = colors.vscSplitThumb})
 

@@ -25,7 +25,7 @@ require("lint.linters.pylint").args = {
 }
 
 vim.api.nvim_create_autocmd(
-    {"BufEnter", "BufWritePost"},
+    {"BufWritePost", "BufNew"},
     {
         pattern = "*",
         callback = function()
@@ -33,4 +33,3 @@ vim.api.nvim_create_autocmd(
         end
     }
 )
-

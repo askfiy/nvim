@@ -201,5 +201,4 @@ LSPInstallInfo: View LSP download status
 In my daily use, I will encounter some bugs from the plug-in itself. I hereby appeal to everyone to help me go to the original plug-in address and submit ISSUES, so that they can be repaired faster:
 
 - 1. [todo-comments](https://github.com/folke/todo-comments.nvim): An exception will be thrown after pressing q:, only for neovim 7.0
-- 2. [nvim-lint](https://github.com/mfussenegger/nvim-lint): throws an exception when used in the [Telescope](https://github.com/nvim-telescope/telescope.nvim) integration with [nvim-neoclip](https://github.com/AckslD/nvim-neoclip.lua)
 - 3. [friendly-snippets](https://github.com/rafamadriz/friendly-snippets): Can't add Django filetypes, so I used Django snippets from vscode
