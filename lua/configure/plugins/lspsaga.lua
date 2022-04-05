@@ -1,14 +1,16 @@
 -- https://github.com/tami5/lspsaga.nvim
 
+local icons = require("utils.icons")
 local mapping = require("core.mapping")
+
 require("lspsaga").setup(
     {
         -- round、single、double
         border_style = "round",
-        error_sign = " ",
-        warn_sign = " ",
-        infor_sign = " ",
-        hint_sign = " ",
+        error_sign = icons.diagnostics.error,
+        warn_sign = icons.diagnostics.warning,
+        infor_sign = icons.diagnostics.info,
+        hint_sign = icons.diagnostics.hint,
         diagnostic_header_icon = " ",
         -- show current write line icons
         code_action_icon = " ",

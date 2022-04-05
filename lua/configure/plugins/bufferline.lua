@@ -1,12 +1,12 @@
 -- https://github.com/akinsho/bufferline.nvim
 
+local icons = require("utils.icons")
+
 require("bufferline").setup(
     {
         options = {
             -- diagnostics source
             diagnostics = "nvim_lsp",
-            -- built-in icons
-            -- indicator_icon = " ",
             indicator_icon = "▎",
             buffer_close_icon = "",
             modified_icon = "●",
@@ -20,13 +20,13 @@ require("bufferline").setup(
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
                 local c = ""
                 if diagnostics_dict.error then
-                    c = c .. " " .. diagnostics_dict.error
+                    c = c .. icons.diagnostics.error .. diagnostics_dict.error
                 elseif diagnostics_dict.warning then
-                    c = c .. " " .. diagnostics_dict.warning
+                    c = c .. icons.diagnostics.warning .. diagnostics_dict.warning
                 elseif diagnostics_dict.info then
-                    c = c .. " " .. diagnostics_dict.info
+                    c = c .. icons.diagnostics.hint .. diagnostics_dict.info
                 elseif diagnostics_dict.hint then
-                    c = c .. " " .. diagnostics_dict.hint
+                    c = c .. icons.diagnostics.hint .. diagnostics_dict.hint
                 end
                 return c
             end,

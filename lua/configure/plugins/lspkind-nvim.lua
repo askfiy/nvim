@@ -1,10 +1,10 @@
 -- https://github.com/onsails/lspkind-nvim
 
-local utils = require("utils")
+local icons = require("utils.icons")
 local options = require("core.options")
 
 require("lspkind").init(
     {
-        symbol_map = utils.icons[options.icons]
+        symbol_map = icons[options.icons]
     }
 )
