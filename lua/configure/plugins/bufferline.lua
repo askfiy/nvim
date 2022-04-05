@@ -107,12 +107,21 @@ require("bufferline").setup(
                 guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
-            -- indicator
+            -- split small vertical line on the left
             indicator_selected = {
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
-            -- modify
+            -- How to distinguish styles after opening a file with the same name
+            duplicate = {
+                guifg = {attribute = "fg", highlight = "Normal"},
+                guibg = {attribute = "bg", highlight = "StatusLine"}
+            },
+            duplicate_selected = {
+                guifg = {attribute = "fg", highlight = "Normal"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            -- the small dot when it is not saved
             modified = {
                 guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "StatusLine"}
@@ -140,6 +149,7 @@ require("bufferline").setup(
             },
             -- hint
             hint = {
+                -- If you want to keep the diagnostic color when switching other windows, use the following comment configuration
                 -- guifg = {attribute = "fg", highlight = "DiagnosticHint"},
                 guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
