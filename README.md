@@ -168,13 +168,13 @@ $ ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 If the icon shows an error, you should install [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/)，And the font of the terminal needs to be changed.
 
-I use the [vscode](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf) icon by default, you may need to download this icon.
+I have defined a set of [vscode](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf) icon schemes that you need to install to use.
 
-If you find it troublesome, you can also directly use the icons supported by nerd font, you need to set the icons option in the [options.lua](./lua/core/options.lua) file.
+Set in [options.lua](./lua/core/options.lua) file:
 
 ```
--- options.icons = "vscode"
-options.icons = "kind"
+-- options.icons = "kind"
+options.icons = "vscode"
 ```
 
 ## some commands
