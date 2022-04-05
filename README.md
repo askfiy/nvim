@@ -168,6 +168,15 @@ $ ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 If the icon shows an error, you should install [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/)，And the font of the terminal needs to be changed.
 
+I use the [vscode](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf) icon by default, you may need to download this icon.
+
+If you find it troublesome, you can also directly use the icons supported by nerd font, you need to set the icons option in the [options.lua](./lua/core/options.lua) file.
+
+```
+-- options.icons = "vscode"
+options.icons = "kind"
+```
+
 ## some commands
 
 ```
@@ -186,7 +195,6 @@ LSPInstallInfo: View LSP download status
 - [Configure new DAP debugger](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation)
 - [Configure new LSP file (1)](https://github.com/williamboman/nvim-lsp-installer#available-lsps)
 - [Configure new LSP file (2)](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
-
 
 ## known bugs
 

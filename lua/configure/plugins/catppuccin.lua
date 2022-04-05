@@ -82,11 +82,20 @@ else
     utils.hi.set("FloatBorder", {bg = colors.black2})
 end
 
+--  bufferline
+utils.hi.set("Directory", {fg = colors.blue, bg = colors.black0, gui = "bold"})
+
+-- scrollbar
+utils.hi.set("ScrollbarHandle", {bg = colors.black4})
+
+-- vim visual multi
+utils.hi.set("VM_mode1", {fg = colors.black2, bg = colors.mauve})
+utils.hi.set("VM_mode2", {fg = colors.black2, bg = colors.blue})
+
 -- fidget
 utils.hi.set("FidgetTitle", {fg = colors.blue, gui = "bold"})
 utils.hi.set("FidgetTask", {fg = colors.blue})
---  bufferline
-utils.hi.set("Directory", {fg = colors.blue, bg = colors.black0, gui = "bold"})
+
 -- lspsaga
 utils.hi.set("LspFloatWinNormal", {bg = colors.black2})
 utils.hi.set("LspSagaRenameBorder", {fg = colors.blue})
@@ -94,19 +103,18 @@ utils.hi.set("LspSagaHoverBorder", {fg = colors.blue})
 utils.hi.set("LspSagaDocTruncateLine", {fg = colors.blue})
 utils.hi.set("LspSagaDiagnosticBorder", {fg = colors.blue})
 utils.hi.set("LspSagaDiagnosticTruncateLine", {fg = colors.blue})
+
 -- telescope
 utils.hi.set("TelescopeBorder", {fg = colors.blue})
 utils.hi.set("TelescopeMatching", {fg = colors.blue, gui = "bold"})
+
+-- cmp selection
+utils.hi.set("PmenuSel", {bg = colors.green, fg = colors.black0, gui = "NONE"})
+
 -- cmp match
 utils.hi.set("CmpItemAbbrMatch", {fg = colors.blue, bg = "NONE"})
 utils.hi.set("CmpItemAbbrMatchFuzzy", {bg = "NONE", fg = colors.blue})
--- cmp selection
-utils.hi.set("PmenuSel", {bg = colors.green, fg = colors.black0, gui = "NONE"})
+
 -- indent_blankline
 utils.hi.set("IndentBlanklineContextChar", {fg = colors.blue})
 utils.hi.set("IndentBlanklineChar", {fg = colors.black4})
--- scrollbar
-utils.hi.set("ScrollbarHandle", {bg = colors.black4})
--- vim visual multi
-utils.hi.set("VM_mode1", {fg = colors.black2, bg = colors.mauve})
-utils.hi.set("VM_mode2", {fg = colors.black2, bg = colors.blue})
