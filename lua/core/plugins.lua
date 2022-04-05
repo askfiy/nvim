@@ -469,7 +469,11 @@ packer.startup(
                     if utils.path.exists(config_path) then
                         plugin.config = "require('" .. require_path .. "')"
                     else
-                        vim.notify("Missing config file for " .. name .. ": " .. config_path)
+                        vim.notify(
+                            "Missing config file for " .. name .. ": " .. config_path,
+                            "error",
+                            {title = "packer"}
+                        )
                     end
                 end
                 use(plugin)
