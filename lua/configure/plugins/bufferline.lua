@@ -107,10 +107,22 @@ require("bufferline").setup(
                 guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
-
             -- indicator
             indicator_selected = {
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            -- modify
+            modified = {
+                guifg = {attribute = "fg", highlight = "Normal"},
+                guibg = {attribute = "bg", highlight = "StatusLine"}
+            },
+            modified_visible = {
+                guifg = {attribute = "fg", highlight = "Normal"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            modified_selected = {
+                guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
             -- diagnotics

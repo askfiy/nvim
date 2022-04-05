@@ -96,7 +96,6 @@ utils.hi.set("LspSagaDiagnosticBorder", {fg = colors.blue})
 utils.hi.set("LspSagaDiagnosticTruncateLine", {fg = colors.blue})
 -- telescope
 utils.hi.set("TelescopeBorder", {fg = colors.blue})
--- utils.hi.set("TelescopeSelection", {bg = colors.green, fg = colors.black0, gui = "NONE"})
 utils.hi.set("TelescopeMatching", {fg = colors.blue, gui = "bold"})
 -- cmp match
 utils.hi.set("CmpItemAbbrMatch", {fg = colors.blue, bg = "NONE"})
@@ -106,6 +105,8 @@ utils.hi.set("PmenuSel", {bg = colors.green, fg = colors.black0, gui = "NONE"})
 -- indent_blankline
 utils.hi.set("IndentBlanklineContextChar", {fg = colors.blue})
 utils.hi.set("IndentBlanklineChar", {fg = colors.black4})
-
 -- scrollbar
 utils.hi.set("ScrollbarHandle", {bg = colors.black4})
+-- vim visual multi
+utils.hi.set("VM_mode1", {fg = colors.black2, bg = colors.mauve})
+utils.hi.set("VM_mode2", {fg = colors.black2, bg = colors.blue})

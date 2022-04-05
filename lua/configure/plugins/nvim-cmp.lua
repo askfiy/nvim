@@ -15,18 +15,21 @@
 --    ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 local mapping = require("core.mapping")
+local options = require("core.options")
 
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
 local lspkind_comparator = function(conf)
     local lsp_types = require("cmp.types").lsp
+
     return function(entry1, entry2)
         local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
         local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
 
         local priority1 = conf.kind_priority[kind1] or 0
         local priority2 = conf.kind_priority[kind2] or 0
+
         if priority1 == priority2 then
             return nil
         end
@@ -135,14 +138,14 @@ cmp.setup(
                         kind_priority = {
                             Snippet = 25,
                             Keyword = 24,
-                            Text = 23,
-                            Module = 22,
-                            Class = 21,
-                            Function = 20,
-                            Field = 19,
-                            Method = 18,
-                            Property = 17,
-                            Variable = 16,
+                            Variable = 23,
+                            Text = 22,
+                            Module = 21,
+                            Class = 20,
+                            Function = 19,
+                            Field = 18,
+                            Method = 17,
+                            Property = 16,
                             Constant = 15,
                             Enum = 14,
                             EnumMember = 13,

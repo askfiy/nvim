@@ -25,6 +25,11 @@ local packer_install_plugins = {
         disable = false,
         after = {"impatient.nvim"}
     },
+    ["onsails/lspkind-nvim"] = {
+        load_file = true,
+        disable = false,
+        after = {"impatient.nvim"}
+    },
     ["rcarriga/nvim-notify"] = {
         load_file = true,
         disable = false,
@@ -75,12 +80,12 @@ local packer_install_plugins = {
     ["catppuccin/nvim"] = {
         as = "catppuccin",
         load_file = true,
-        disable = false,
+        disable = true,
         after = {"nvim-scrollbar"}
     },
     ["Mofiqul/vscode.nvim"] = {
         load_file = true,
-        disable = true,
+        disable = false,
         after = {"nvim-scrollbar"}
     },
     ["RRethy/vim-illuminate"] = {
@@ -128,7 +133,7 @@ local packer_install_plugins = {
     ["stevearc/aerial.nvim"] = {
         load_file = true,
         disable = false,
-        after = {"nvim-lspconfig", "nvim-web-devicons"}
+        after = {"nvim-lspconfig", "nvim-web-devicons", "lspkind-nvim"}
     },
     ["hrsh7th/cmp-nvim-lsp"] = {
         load_file = false,
@@ -168,11 +173,6 @@ local packer_install_plugins = {
         disable = false,
         event = {"InsertEnter", "CmdlineEnter"},
         after = {"impatient.nvim"}
-    },
-    ["onsails/lspkind-nvim"] = {
-        load_file = false,
-        disable = false,
-        after = {"friendly-snippets"}
     },
     ["hrsh7th/vim-vsnip"] = {
         load_file = false,

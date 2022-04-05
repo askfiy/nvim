@@ -21,10 +21,7 @@ if vim.g.vscode_style == "dark" then
     local rainbow_level_1 = "#FFD700"
     local rainbow_level_2 = "#DA70BF"
     local rainbow_level_3 = "#87CEFA"
-
     local select_blue = "#094771"
-    local border_blue = "#0A7ACA"
-
     local nvim_tree_bg = "#242526"
 
     -- vim-illuminate
@@ -46,21 +43,21 @@ if vim.g.vscode_style == "dark" then
 
     -- lsp_signature and translate
     utils.hi.set("NormalFloat", {bg = colors.vscBack})
-    utils.hi.set("FloatBorder", {fg = border_blue, bg = colors.vscBack})
+    utils.hi.set("FloatBorder", {fg = colors.vscUiBlue, bg = colors.vscBack})
 
     -- lspsaga
     utils.hi.set("LspFloatWinNormal", {bg = colors.vscBack})
-    utils.hi.set("LspSagaRenameBorder", {fg = border_blue})
-    utils.hi.set("LspSagaHoverBorder", {fg = border_blue})
-    utils.hi.set("LspSagaDocTruncateLine", {fg = border_blue})
-    utils.hi.set("LspSagaDiagnosticBorder", {fg = border_blue})
-    utils.hi.set("LspSagaDiagnosticTruncateLine", {fg = border_blue})
+    utils.hi.set("LspSagaRenameBorder", {fg = colors.vscUiBlue})
+    utils.hi.set("LspSagaHoverBorder", {fg = colors.vscUiBlue})
+    utils.hi.set("LspSagaDocTruncateLine", {fg = colors.vscUiBlue})
+    utils.hi.set("LspSagaDiagnosticBorder", {fg = colors.vscUiBlue})
+    utils.hi.set("LspSagaDiagnosticTruncateLine", {fg = colors.vscUiBlue})
 
     -- telescope
-    utils.hi.set("TelescopeBorder", {fg = border_blue})
-    utils.hi.set("TelescopePreviewBorder", {fg = border_blue})
-    utils.hi.set("TelescopePromptBorder", {fg = border_blue})
-    utils.hi.set("TelescopeResultsBorder", {fg = border_blue})
+    utils.hi.set("TelescopeBorder", {fg = colors.vscUiBlue})
+    utils.hi.set("TelescopePreviewBorder", {fg = colors.vscUiBlue})
+    utils.hi.set("TelescopePromptBorder", {fg = colors.vscUiBlue})
+    utils.hi.set("TelescopeResultsBorder", {fg = colors.vscUiBlue})
 
     -- cmp match
     utils.hi.set("CmpItemAbbrMatch", {fg = colors.vscMediumBlue, bg = "NONE"})
@@ -99,4 +96,8 @@ if vim.g.vscode_style == "dark" then
 
     -- scrollbar
     utils.hi.set("ScrollbarHandle", {bg = colors.vscSplitThumb})
+
+    -- vim visual multi
+    utils.hi.set("VM_mode1", {fg = colors.vscBack, bg = colors.vscPopupHighlightLightBlue})
+    utils.hi.set("VM_mode2", {fg = colors.vscBack, bg = colors.vscUiOrange})
 end

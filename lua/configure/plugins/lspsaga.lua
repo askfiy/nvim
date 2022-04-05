@@ -1,7 +1,6 @@
 -- https://github.com/tami5/lspsaga.nvim
 
 local mapping = require("core.mapping")
-
 require("lspsaga").setup(
     {
         -- round、single、double
