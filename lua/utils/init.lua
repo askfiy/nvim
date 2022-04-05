@@ -70,7 +70,7 @@ M.icons = {
         Event = "",
         Operator = "",
         TypeParameter = ""
-    }
+    },
 }
 M.path = {}
 

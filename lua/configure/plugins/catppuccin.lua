@@ -83,6 +83,7 @@ else
 end
 
 --  bufferline
+utils.hi.set("Indicator", {fg = colors.black4})
 utils.hi.set("Directory", {fg = colors.blue, bg = colors.black0, gui = "bold"})
 
 -- scrollbar

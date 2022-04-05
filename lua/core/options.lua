@@ -7,7 +7,7 @@ options.transparency_background = false
 options.python_interpreter_path = "/usr/bin/python3"
 options.code_snippet_directory = utils.path.join(vim.fn.stdpath("config"), "snippets")
 options.nvim_lint_dir = utils.path.join(vim.fn.stdpath("config"), "lint")
-options.icons = "vscode"
+options.icons = "kind"
 
 options.database_config = {
     {

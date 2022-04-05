@@ -38,8 +38,9 @@ utils.hi.set("illuminatedWord", {bg = colors.vscSplitThumb})
 utils.hi.set("ScrollbarHandle", {bg = colors.vscSplitThumb})
 
 --  bufferline
+utils.hi.set("Indicator", {fg = colors.vscBack, bg = "#252556"})
 utils.hi.set("Directory", {fg = colors.vscLightBlue, bg = nvim_tree_bg, gui = "bold"})
-utils.hi.set("StatusLineNC", {fg = colors.vscBack, bg = "#252526"})
+utils.hi.set("StatusLineNC", {fg = colors.vscFront, bg = "#252526"})
 
 -- fidget
 utils.hi.set("FidgetTitle", {fg = colors.vscFront})

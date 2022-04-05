@@ -70,7 +70,7 @@ require("bufferline").setup(
                 guibg = {attribute = "bg", highlight = "StatusLineNC"}
             },
             background = {
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"}
             },
             buffer_visible = {
@@ -96,7 +96,7 @@ require("bufferline").setup(
                 guibg = {attribute = "bg", highlight = "StatusLineNC"}
             },
             close_button = {
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"}
             },
             close_button_selected = {
@@ -109,16 +109,18 @@ require("bufferline").setup(
             },
             -- split small vertical line on the left
             indicator_selected = {
-                guifg = {attribute = "fg", highlight = "StatusLineNC"},
+                guifg = {attribute = "fg", highlight = "Indicator"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
             -- How to distinguish styles after opening a file with the same name
             duplicate = {
-                guifg = {attribute = "fg", highlight = "Normal"},
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"}
             },
             duplicate_selected = {
-                guifg = {attribute = "fg", highlight = "Normal"},
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
             -- the small dot when it is not saved
@@ -151,13 +153,13 @@ require("bufferline").setup(
             hint = {
                 -- If you want to keep the diagnostic color when switching other windows, use the following comment configuration
                 -- guifg = {attribute = "fg", highlight = "DiagnosticHint"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             hint_diagnostic = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticHint"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
@@ -170,13 +172,13 @@ require("bufferline").setup(
             -- info
             info = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             info_diagnostic = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
@@ -189,13 +191,13 @@ require("bufferline").setup(
             -- warning
             warning = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             warning_diagnostic = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
@@ -208,13 +210,13 @@ require("bufferline").setup(
             -- error
             error = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticError"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             error_diagnostic = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticError"},
-                guifg = {attribute = "fg", highlight = "Normal"},
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
