@@ -65,6 +65,9 @@ require("bufferline").setup(
             }
         },
         highlights = {
+            -- xxx_        : The focus is not on the buffer, and the buffer is not selected
+            -- xxx_visible : The focus is not on the buffer, but the buffer is selected
+            -- xxx_selected: The buffer is selected, and the focus is on the buffer
             fill = {
                 guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "StatusLineNC"}
@@ -123,6 +126,11 @@ require("bufferline").setup(
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
+            duplicate_visible = {
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
             -- the small dot when it is not saved
             modified = {
                 guifg = {attribute = "fg", highlight = "Normal"},
@@ -157,43 +165,72 @@ require("bufferline").setup(
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
+            hint_selected = {
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticHint"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            hint_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticHint"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
             hint_diagnostic = {
-                -- guifg = {attribute = "fg", highlight = "DiagnosticHint"},
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
-            hint_selected = {
-                gui = "NONE"
-            },
             hint_diagnostic_selected = {
-                gui = "NONE"
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticHint"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            hint_diagnostic_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticHint"},
+                guibg = {attribute = "bg", highlight = "Normal"}
             },
             -- info
             info = {
-                -- guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
-                guifg = {attribute = "fg", highlight = "StatusLineNC"},
-                guibg = {attribute = "bg", highlight = "StatusLine"},
-                guisp = {attribute = "bg", highlight = "StatusLine"}
-            },
-            info_diagnostic = {
-                -- guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             info_selected = {
-                gui = "NONE"
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
+                guibg = {attribute = "bg", highlight = "Normal"}
             },
-            info_diagnostic_selected = {
-                gui = "NONE"
+            info_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
+                guibg = {attribute = "bg", highlight = "Normal"}
             },
-            -- warning
-            warning = {
-                -- guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
+            info_diagnostic = {
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
+            },
+            info_diagnostic_selected = {
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            info_diagnostic_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            -- warning
+            warning = {
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
+                guibg = {attribute = "bg", highlight = "StatusLine"},
+                guisp = {attribute = "bg", highlight = "StatusLine"}
+            },
+            warning_selected = {
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            warning_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
+                guibg = {attribute = "bg", highlight = "Normal"}
             },
             warning_diagnostic = {
                 -- guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
@@ -201,30 +238,43 @@ require("bufferline").setup(
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
-            warning_selected = {
-                gui = "NONE"
-            },
             warning_diagnostic_selected = {
-                gui = "NONE"
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            warning_diagnostic_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
+                guibg = {attribute = "bg", highlight = "Normal"}
             },
             -- error
             error = {
-                -- guifg = {attribute = "fg", highlight = "DiagnosticError"},
-                guifg = {attribute = "fg", highlight = "StatusLineNC"},
-                guibg = {attribute = "bg", highlight = "StatusLine"},
-                guisp = {attribute = "bg", highlight = "StatusLine"}
-            },
-            error_diagnostic = {
-                -- guifg = {attribute = "fg", highlight = "DiagnosticError"},
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"},
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             error_selected = {
-                gui = "NONE"
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticError"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            error_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticError"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            error_diagnostic = {
+                guifg = {attribute = "fg", highlight = "StatusLineNC"},
+                guibg = {attribute = "bg", highlight = "StatusLine"},
+                guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             error_diagnostic_selected = {
-                gui = "NONE"
+                gui = "NONE",
+                guifg = {attribute = "fg", highlight = "DiagnosticError"},
+                guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            error_diagnostic_visible = {
+                guifg = {attribute = "fg", highlight = "DiagnosticError"},
+                guibg = {attribute = "bg", highlight = "Normal"}
             }
         }
     }
