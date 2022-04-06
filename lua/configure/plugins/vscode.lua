@@ -32,11 +32,15 @@ else
     utils.hi.set("FloatBorder", {fg = colors.vscMediumBlue, bg = colors.vscBack})
 end
 
+-- basic
+-- markdown some special cases will display exceptions
+utils.hi.set("Error", {fg = colors.vscFront})
+
 -- vim-illuminate
 utils.hi.set("illuminatedWord", {bg = colors.vscSplitThumb})
 
 -- nvim-tree
-utils.hi.set("NvimTreeOpenedFolderName", {bg = "NONE", gui="bold"})
+utils.hi.set("NvimTreeOpenedFolderName", {bg = "NONE", gui = "bold"})
 
 -- scrollbar
 utils.hi.set("ScrollbarHandle", {bg = colors.vscSplitThumb})
