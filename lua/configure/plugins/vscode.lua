@@ -32,6 +32,11 @@ else
     utils.hi.set("FloatBorder", {fg = colors.vscMediumBlue, bg = colors.vscBack})
 end
 
+-- basic
+-- Some places in markdown that are not wrong will be marked clearly
+-- this is clearly not normal
+utils.hi.set("markdownError", {fg = colors.vscFront, gui = "NONE"})
+
 -- vim-illuminate
 utils.hi.set("illuminatedWord", {bg = colors.vscSplitThumb})
 
