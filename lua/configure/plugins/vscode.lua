@@ -34,7 +34,7 @@ end
 
 -- basic
 -- markdown some special cases will display exceptions
-utils.hi.set("Error", {fg = colors.vscFront, gui="NONE"})
+utils.hi.set("markdownError", {fg = colors.vscFront, gui = "NONE"})
 
 -- vim-illuminate
 utils.hi.set("illuminatedWord", {bg = colors.vscSplitThumb})
