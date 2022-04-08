@@ -21,6 +21,7 @@ return {
             name = "Launch Django",
             program = vim.fn.getcwd() .. "/manage.py",
             pythonPath = "python3",
+            justMyCode = false,
             args = {
                 "runserver",
                 "127.0.0.1:8000",

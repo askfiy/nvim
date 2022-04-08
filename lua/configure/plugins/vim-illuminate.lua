@@ -10,5 +10,6 @@ vim.g.Illuminate_ftblacklist = {
     "dbui",
     "toggleterm",
     "packer",
-    "help"
+    "help",
+    "startuptime"
 }

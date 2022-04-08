@@ -94,6 +94,7 @@ utils.hi.set("IndentBlanklineContextStart", {fg = "NONE", gui = "underline"})
 utils.hi.set("HopNextKey", {fg = rainbow_level_1, bg = colors.vscBack, gui = "bold,underline"})
 utils.hi.set("HopNextKey1", {fg = rainbow_level_1, bg = colors.vscBack, gui = "bold"})
 utils.hi.set("HopNextKey2", {fg = rainbow_level_1, bg = colors.vscBack, gui = "bold,italic"})
+
 -- ts_rainbow.lua
 utils.hi.set("rainbowcol1", {fg = rainbow_level_1})
 utils.hi.set("rainbowcol2", {fg = rainbow_level_2})

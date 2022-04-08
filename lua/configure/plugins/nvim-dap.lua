@@ -23,3 +23,10 @@ for dap_name, dap_options in pairs(dap_config) do
     dap.adapters[dap_name] = dap_options.adapters
     dap.configurations[dap_name] = dap_options.configurations
 end
+
+dap.close_all = function()
+    vim.cmd("lua require'dap'.close()")
+    vim.cmd("lua require'dap.repl'.close()")
+    vim.cmd("lua require'dapui'.close()")
+    vim.cmd("DapVirtualTextForceRefresh")
+end

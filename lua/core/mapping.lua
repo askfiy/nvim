@@ -158,18 +158,14 @@ mapping.global = {
     },
     nvim_dap = {
         {{"n"}, "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "noremap|silent"},
+        {{"n"}, "<leader>dc", "<cmd>lua require'dap'.clear_breakpoints()<cr>", "noremap|silent"},
         {{"n"}, "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", "noremap|silent"},
         {{"n"}, "<F5>", "<cmd>lua require'dap'.continue()<cr>", "noremap|silent"},
         {{"n"}, "<F6>", "<cmd>lua require'dap'.step_into()<cr>", "noremap|silent"},
         {{"n"}, "<F7>", "<cmd>lua require'dap'.step_over()<cr>", "noremap|silent"},
         {{"n"}, "<F8>", "<cmd>lua require'dap'.step_out()<cr>", "noremap|silent"},
         {{"n"}, "<F9>", "<cmd>lua require'dap'.run_last()<cr>", "noremap|silent"},
-        {
-            {"n"},
-            "<F10>",
-            "<cmd>lua require'dap'.close()<cr><cmd>lua require'dap.repl'.close()<cr><cmd>lua require'dapui'.close()<CR><cmd>DapVirtualTextForceRefresh<CR>",
-            "noremap|silent"
-        }
+        {{"n"}, "<F10>", "<cmd>lua require'dap'.close_all()<cr>", "noremap|silent"}
     },
     nvim_hlslens = {
         {

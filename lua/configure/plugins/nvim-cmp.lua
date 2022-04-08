@@ -15,7 +15,6 @@
 --    ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 local mapping = require("core.mapping")
-local options = require("core.options")
 
 local cmp = require("cmp")
 local lspkind = require("lspkind")
