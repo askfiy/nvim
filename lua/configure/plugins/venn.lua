@@ -49,7 +49,6 @@ function venn.toggle_venn_mode()
         local bufnr = vim.fn.bufnr("%")
         for group_name, _ in pairs(mapping.buffer) do
             if group_name ~= "venn" then
-            print(group_name)
                 mapping.register("buffer", group_name, bufnr)
             end
         end
