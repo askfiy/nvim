@@ -46,5 +46,9 @@ function venn.toggle_venn_mode()
         vim.cmd [[mapclear <buffer>]]
         vim.b.venn_enabled = nil
         close_venn_notify()
+        local bufnr = vim.fn.bufnr("%")
+        for group_name, _ in pairs(mapping.buffer) do
+            mapping.register("buffer", group_name, bufnr)
+        end
     end
 end
