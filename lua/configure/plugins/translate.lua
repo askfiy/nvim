@@ -1,4 +1,5 @@
 -- https://github.com/uga-rosa/translate.nvim
+
 -- The plugin uses the translate-shell plugin by default, so you need to install this plugin
 -- https://github.com/soimort/translate-shell
 -- You can also choose to use deepl for translation, but it relies on curl and jq commands
@@ -21,7 +22,7 @@ require("translate").setup(
         preset = {
             output = {
                 split = {
-                    min_size = 8
+                    min_size = 8,
                 }
             }
         }

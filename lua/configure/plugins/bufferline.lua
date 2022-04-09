@@ -2,6 +2,15 @@
 
 local icons = require("utils.icons")
 
+local filter_bufname = {
+    "term",
+    "translate",
+    "repl",
+    "query",
+    "dev",
+    "dbout"
+}
+
 require("bufferline").setup(
     {
         options = {
@@ -29,6 +38,15 @@ require("bufferline").setup(
                     c = c .. icons.diagnostics.hint .. diagnostics_dict.hint
                 end
                 return c
+            end,
+            custom_filter = function(buf_number, _)
+                local buf_name = vim.fn.bufname(buf_number)
+                for _, name in ipairs(filter_bufname) do
+                    if buf_name:find(name) then
+                        return false
+                    end
+                end
+                return true
             end,
             -- The left side yields the position of the NvimTree
             offsets = {

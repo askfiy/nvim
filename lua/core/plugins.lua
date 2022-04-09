@@ -46,11 +46,6 @@ local packer_install_plugins = {
         after = {"impatient.nvim"},
         event = {"BufRead", "BufNewFile"}
     },
-    ["olimorris/persisted.nvim"] = {
-        load_file = true,
-        disable = false,
-        after = {"impatient.nvim"}
-    },
     ["nvim-lua/plenary.nvim"] = {
         load_file = false,
         disable = false,
@@ -429,6 +424,11 @@ local packer_install_plugins = {
         load_file = false,
         disable = false,
         cmd = {"StartupTime"},
+        after = {"impatient.nvim"}
+    },
+    ["olimorris/persisted.nvim"] = {
+        load_file = true,
+        disable = false,
         after = {"impatient.nvim"}
     }
 }

@@ -105,3 +105,7 @@ end
 toggleterm.term_toggle = function()
     vim.cmd("exe v:count.'ToggleTerm'")
 end
+
+toggleterm.toggle_all_term = function()
+    vim.cmd("ToggleTermToggleAll")
+end

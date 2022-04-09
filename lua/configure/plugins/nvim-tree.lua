@@ -6,12 +6,6 @@ vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_icons = {
     default = " ",
     symlink = " ",
-    actions = {
-        change_dir = {
-            enable = true,
-            global = true
-        }
-    },
     git = {
         unstaged = "",
         staged = "✓",
@@ -42,6 +36,12 @@ require("nvim-tree").setup(
             height = 30,
             hide_root_folder = false,
             auto_resize = true
+        },
+        actions = {
+            change_dir = {
+                enable = true,
+                global = true
+            }
         },
         diagnostics = {
             enable = false,

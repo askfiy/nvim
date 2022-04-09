@@ -1,4 +1,4 @@
--- https://github.com/stevearc/.nvim
+-- https://github.com/stevearc/aerial.nvim
 
 local mapping = require("core.mapping")
 

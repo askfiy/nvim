@@ -101,7 +101,7 @@ mapping.global = {
         {{"n", "v"}, "sc", "<cmd>HopChar1<cr>", "noremap|silent"}
     },
     persisted = {
-        {{"n"}, "<leader>sl", "<cmd>SessionLoad<cr>", "noremap|silent"},
+        {{"n"}, "<leader>sl", "<cmd>lua require('persisted').load_session_all()<cr>", "noremap|silent"},
         {{"n"}, "<leader>ss", "<cmd>SessionSave<cr>", "noremap"},
         {{"n"}, "<leader>sd", "<cmd>SessionDelete<cr>", "noremap"}
     },
@@ -115,7 +115,7 @@ mapping.global = {
         {{"n"}, "<leader>tf", "<cmd>lua require('toggleterm').float_toggle()<cr>", "noremap|silent"},
         {{"n"}, "<leader>tv", "<cmd>lua require('toggleterm').vertical_toggle()<cr>", "noremap|silent"},
         {{"n"}, "<leader>tg", "<cmd>lua require('toggleterm').lazygit_toggle()<cr>", "noremap|silent"},
-        {{"n"}, "<leader>ta", "<cmd>ToggleTermToggleAll<cr>", "noremap|silent"}
+        {{"n"}, "<leader>ta", "<cmd>lua require('toggleterm').toggle_all_term()<cr>", "noremap|silent"}
     },
     bufferline = {
         {{"n"}, "<c-q>", "<cmd>Bdelete!<cr>", "noremap|silent"},
