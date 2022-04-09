@@ -1,8 +1,5 @@
 -- https://github.com/olimorris/persisted.nvim
 
--- show a small icon if restore session is available
-vim.g.persisted = true
-
 local persisted = require("persisted")
 
 local del_bufs_filename = {

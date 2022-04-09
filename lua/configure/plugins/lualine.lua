@@ -1,5 +1,6 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 -- https://github.com/SmiteshP/nvim-gps
+local icons = require("utils.icons")
 
 local gps = require("nvim-gps")
 
@@ -24,15 +25,6 @@ local function show_component()
     return not hide_component()
 end
 
--- require persisted.nvim
-local function get_persisting()
-    if vim.g.persisting then
-        return " "
-    elseif vim.g.persisting == false then
-        return " "
-    end
-end
-
 require("lualine").setup(
     {
         options = {
@@ -45,29 +37,45 @@ require("lualine").setup(
         },
         sections = {
             lualine_a = {
+                {
+                    "fileformat",
+                    symbols = {
+                        unix = " ", -- e712
+                        dos = " ", -- e70f
+                        mac = " " -- e711
+                    },
+                    cond = hide_component
+                },
                 {"mode", cond = hide_component},
                 {"filetype", cond = show_component}
             },
             lualine_b = {
                 {"branch", cond = hide_component},
                 {"diff", cond = hide_component},
-                {"diagnostics", cond = hide_component}
+                {
+                    "diagnostics",
+                    symbols = {
+                        error = icons.diagnostics.error,
+                        warn = icons.diagnostics.warning,
+                        info = icons.diagnostics.info,
+                        hint = icons.diagnostics.hint
+                    },
+                    cond = hide_component
+                }
             },
             lualine_c = {
                 {"filename", cond = hide_component},
                 {gps.get_location, cond = gps.is_available}
             },
             lualine_x = {
-                {"encoding", cond = hide_component},
-                {"fileformat", cond = hide_component},
                 {"filetype", cond = hide_component}
             },
             lualine_y = {
-                {get_persisting, cond = hide_component},
-                {"progress", cond = hide_component}
+                {"encoding", cond = hide_component}
             },
             lualine_z = {
-                {"location", cond = hide_component}
+                {"location", cond = hide_component},
+                {"progress", cond = hide_component}
             }
         },
         inactive_sections = {
