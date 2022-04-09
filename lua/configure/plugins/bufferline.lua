@@ -2,6 +2,7 @@
 
 local icons = require("utils.icons")
 
+-- file types not shown in bufferline
 local filter_bufname = {
     "term",
     "translate",
@@ -293,6 +294,11 @@ require("bufferline").setup(
             error_diagnostic_visible = {
                 guifg = {attribute = "fg", highlight = "DiagnosticError"},
                 guibg = {attribute = "bg", highlight = "Normal"}
+            },
+            -- character number to go to buffer
+            pick = {
+                guifg = {attribute = "fg", highlight = "DiagnosticError"},
+                guibg = {attribute = "bg", highlight = "StatusLine"}
             }
         }
     }

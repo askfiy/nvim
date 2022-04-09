@@ -8,6 +8,7 @@ vim.g.indent_blankline_filetype_exclude = {
     "spectre_panel",
     "dbui",
     "toggleterm",
+    "notify",
     "packer",
     "help"
 }

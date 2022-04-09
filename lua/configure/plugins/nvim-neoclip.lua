@@ -1,6 +1,6 @@
 -- https://github.com/AckslD/nvim-neoclip.lua
 
-mapping = require("core.mapping")
+local mapping = require("core.mapping")
 
 local function is_whitespace(line)
     return vim.fn.match(line, [[^\s*$]]) ~= -1

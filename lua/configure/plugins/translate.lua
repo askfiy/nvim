@@ -22,7 +22,7 @@ require("translate").setup(
         preset = {
             output = {
                 split = {
-                    min_size = 8,
+                    min_size = 8
                 }
             }
         }

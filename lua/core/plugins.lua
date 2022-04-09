@@ -75,12 +75,12 @@ local packer_install_plugins = {
     ["catppuccin/nvim"] = {
         as = "catppuccin",
         load_file = true,
-        disable = true,
+        disable = false,
         after = {"nvim-scrollbar"}
     },
     ["Mofiqul/vscode.nvim"] = {
         load_file = true,
-        disable = false,
+        disable = true,
         after = {"nvim-scrollbar"}
     },
     ["RRethy/vim-illuminate"] = {
@@ -294,12 +294,12 @@ local packer_install_plugins = {
     ["tpope/vim-dadbod"] = {
         load_file = false,
         disable = false,
-        cmd = "DBUIToggle",
         after = {"impatient.nvim"}
     },
     ["kristijanhusak/vim-dadbod-ui"] = {
         load_file = true,
         disable = false,
+        cmd = "DBUIToggle",
         after = {"vim-dadbod"}
     },
     ["Vimjas/vim-python-pep8-indent"] = {
@@ -375,6 +375,7 @@ local packer_install_plugins = {
     ["kyazdani42/nvim-tree.lua"] = {
         load_file = true,
         disable = false,
+        module = "nvim-tree",
         cmd = {"NvimTreeToggle", "NvimTreeFindFile"},
         after = {"nvim-web-devicons"}
     },
@@ -436,7 +437,12 @@ local packer_install_plugins = {
 Packer_bootstrap =
     (function()
     local packer_install_path = utils.path.join(vim.fn.stdpath("data"), "site/pack/packer/start/packer.nvim")
+    local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
+    if not string.find(vim.o.runtimepath, rtp_addition) then
+        vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
+    end
     if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
+        vim.notify("Please wait ... \nDownloading packer ...", "info", {title = "Packer"})
         return vim.fn.system(
             {
                 "git",

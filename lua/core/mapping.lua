@@ -156,6 +156,14 @@ mapping.global = {
         {{"n"}, "<leader>tei", ":<c-u>Translate EN -source=ZH -output=insert<cr>", "noremap|silent"},
         {{"x"}, "<leader>tei", ":Translate EN -source=ZH -output=insert<cr>", "noremap|silent"}
     },
+    packer = {
+        {{"n"}, "<leader>ps", "<cmd>PackerSync<cr>", "noremap|silent"},
+        {{"n"}, "<leader>pS", "<cmd>PackerStatus<cr>", "noremap|silent"},
+        {{"n"}, "<leader>pc", "<cmd>PackerClean<cr>", "noremap|silent"},
+        {{"n"}, "<leader>pu", "<cmd>PackerUpdate<cr>", "noremap|silent"},
+        {{"n"}, "<leader>pi", "<cmd>PackerInstall<cr>", "noremap|silent"},
+        {{"n"}, "<leader>pr", "<cmd>PackerCompile<cr>", "noremap|silent"}
+    },
     nvim_dap = {
         {{"n"}, "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "noremap|silent"},
         {{"n"}, "<leader>dc", "<cmd>lua require'dap'.clear_breakpoints()<cr>", "noremap|silent"},

@@ -11,5 +11,6 @@ vim.g.Illuminate_ftblacklist = {
     "toggleterm",
     "packer",
     "help",
+    "notify",
     "startuptime"
 }
