@@ -83,8 +83,8 @@ else
 end
 
 --  bufferline
-utils.hi.set("Directory", {fg = colors.blue, bg = colors.black0, gui = "bold"})
-utils.hi.set("Indicator", {fg = colors.black4})
+utils.hi.set("BufferDirectory", {fg = colors.blue, gui = "bold"})
+utils.hi.set("BufferIndicator", {fg = colors.black4})
 
 -- scrollbar
 utils.hi.set("ScrollbarHandle", {bg = colors.black4})

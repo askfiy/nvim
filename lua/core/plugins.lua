@@ -364,7 +364,7 @@ local packer_install_plugins = {
     ["akinsho/bufferline.nvim"] = {
         load_file = true,
         disable = false,
-        event = {"BufEnter", "BufNewFile"},
+        event = {"BufEnter"},
         after = {"nvim-web-devicons"}
     },
     ["famiu/bufdelete.nvim"] = {

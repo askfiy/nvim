@@ -47,8 +47,8 @@ utils.hi.set("NvimTreeOpenedFolderName", {bg = "NONE", gui = "bold"})
 utils.hi.set("ScrollbarHandle", {bg = colors.vscSplitThumb})
 
 --  bufferline
-utils.hi.set("Indicator", {fg = colors.vscBack})
-utils.hi.set("Directory", {fg = colors.vscLightBlue, bg = nvim_tree_bg, gui = "bold"})
+utils.hi.set("BufferIndicator", {fg = colors.vscBack})
+utils.hi.set("BufferDirectory", {fg = colors.vscLightBlue, bg = nvim_tree_bg, gui = "bold"})
 utils.hi.set("StatusLineNC", {fg = colors.vscFront, bg = status_line_nc_bg})
 
 -- fidget

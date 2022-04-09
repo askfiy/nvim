@@ -54,31 +54,31 @@ require("bufferline").setup(
                 {
                     filetype = "NvimTree",
                     text = "File Explorer",
-                    highlight = "Directory",
+                    highlight = "BufferDirectory",
                     text_align = "left"
                 },
                 {
                     filetype = "undotree",
                     text = "History Explorer",
-                    highlight = "Directory",
+                    highlight = "BufferDirectory",
                     text_align = "left"
                 },
                 {
                     filetype = "dbui",
                     text = "Database Explorer",
-                    highlight = "Directory",
+                    highlight = "BufferDirectory",
                     text_align = "left"
                 },
                 {
                     filetype = "spectre_panel",
                     text = "Project Blurry Search",
-                    highlight = "Directory",
+                    highlight = "BufferDirectory",
                     text_align = "left"
                 },
                 {
                     filetype = "aerial",
                     text = "Outline Explorer",
-                    highlight = "Directory",
+                    highlight = "BufferDirectory",
                     text_align = "center"
                 }
             }
@@ -131,7 +131,7 @@ require("bufferline").setup(
             },
             -- split small vertical line on the left
             indicator_selected = {
-                guifg = {attribute = "fg", highlight = "Indicator"},
+                guifg = {attribute = "fg", highlight = "BufferIndicator"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
             -- How to distinguish styles after opening a file with the same name
