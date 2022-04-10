@@ -90,7 +90,7 @@ $ yay -S delve
 -- Python debug
 $ python3 -m pip install debugpy
 
--- Python diagnostics
+-- Python diagnostics (optional)
 $ pip3 install pylint
 
 -- lazygit
@@ -157,6 +157,26 @@ It's worth noting that `<c-e>` and `<c-y>` are now replaced by moving the buffer
 `ss` is to jump to a word, `sl` is to jump to a certain column, `sc` is to search for a character and jump.
 
 For other key bindings you can open the [mapping.lua](./lua/core/mapping.lua) file to see.
+
+## enable lint diagnostics
+
+I installed the [nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin, you can use diagnostic tools like eslint, pylint, etc.
+
+Take pylint as an example, first you need to set the disable of [nvim-lint](https://github.com/mfussenegger/nvim-lint) in the [plugins.lua](./lua/core/plugins.lua) file is false.
+
+Then use the PackerSync command to install the [nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin.
+
+Open the [pyright.lua](./lua/configure/lsp/pyright.lua) file and comment out the diagnostics from nvim-lsp:
+
+````
+-- If you want to enable pylint diagnostics, turn on the comments below
+["textDocument/publishDiagnostics"] u003d function(...)
+end
+````
+
+Install pylint using the pip tool, and then you can use pylint.
+
+You can configure pylint diagnostics in [pylint.conf](./lint/pylint.conf).
 
 ## possible problems
 

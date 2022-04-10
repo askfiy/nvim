@@ -1,28 +1,64 @@
+local function filter(arr, func)
+    local new_index = 1
+    local size_orig = #arr
+    for old_index, v in ipairs(arr) do
+        if func(v, old_index) then
+            arr[new_index] = v
+            new_index = new_index + 1
+        end
+    end
+    for i = new_index, size_orig do
+        arr[i] = nil
+    end
+end
+
+local function filter_diagnostics(diagnostic)
+    if diagnostic.source ~= "Pyright" then
+        return true
+    end
+
+    if diagnostic.message == '"kwargs" is not accessed' then
+        return false
+    end
+
+    if diagnostic.message == '"args" is not accessed' then
+        return false
+    end
+
+    if string.match(diagnostic.message, '"_.+" is not accessed') then
+        return false
+    end
+
+    return true
+end
+
+local function custom_on_publish_diagnostics(a, params, client_id, c, config)
+    filter(params.diagnostics, filter_diagnostics)
+    vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+end
+
 return {
     root_dir = function()
         return vim.fn.getcwd()
     end,
-    -- If you want to enable pylint diagnostics, turn on the comments below
     handlers = {
         ---@diagnostic disable-next-line: unused-vararg
-        ["textDocument/publishDiagnostics"] = function(...)
-        end
+
+        -- If you want to enable pylint diagnostics, turn on the comments below
+        -- ["textDocument/publishDiagnostics"] = function(...)
+        -- end
+
+        -- If you want to disable pyright from diagnosing unused parameters, turn on the function below
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
     },
     settings = {
         python = {
             analysis = {
-                typeCheckingMode = "off", -- off, basic, strict
+                typeCheckingMode = "basic", -- off, basic, strict
                 useLibraryCodeForTypes = true,
                 autoImportCompletions = true,
-                -- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
                 diagnosticSeverityOverrides = {
-                    strictListInference = "warning",
-                    strictDictionaryInference = "warning",
-                    strictSetInference = "warning",
-                    reportUnusedVariable = false,
-                    reportDuplicateImport = "warning",
-                    reportPrivateUsage = "warning",
-                    reportConstantRedefinition = "error"
+                    reportUndefinedVariable = "error"
                 }
             }
         }

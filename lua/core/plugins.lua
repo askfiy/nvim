@@ -64,14 +64,14 @@ local packer_install_plugins = {
         after = {"impatient.nvim"},
         event = {"BufRead", "BufNewFile"}
     },
-    -------------
-    --- theme ---
-    -------------
     ["petertriho/nvim-scrollbar"] = {
         load_file = true,
         disable = false,
         after = {"impatient.nvim"}
     },
+    -------------
+    --- theme ---
+    -------------
     ["catppuccin/nvim"] = {
         as = "catppuccin",
         load_file = true,
@@ -152,7 +152,7 @@ local packer_install_plugins = {
     },
     ["mfussenegger/nvim-lint"] = {
         load_file = true,
-        disable = false,
+        disable = true,
         after = {"nvim-lsp-installer"}
     },
     ["kosayoda/nvim-lightbulb"] = {
