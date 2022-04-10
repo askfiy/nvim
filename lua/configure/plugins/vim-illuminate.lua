@@ -12,5 +12,6 @@ vim.g.Illuminate_ftblacklist = {
     "packer",
     "help",
     "notify",
-    "startuptime"
+    "startuptime",
+    "lsp-installer"
 }

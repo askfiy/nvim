@@ -10,6 +10,7 @@ vim.g.indent_blankline_filetype_exclude = {
     "toggleterm",
     "notify",
     "packer",
+    "lsp-installer",
     "help"
 }
 

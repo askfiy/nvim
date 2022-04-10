@@ -14,10 +14,6 @@ end
 
 local function filter_diagnostics(diagnostic)
 
-    if diagnostic.source ~= "Pyright" then
-        return true
-    end
-
     if diagnostic.message == '"kwargs" is not accessed' then
         return false
     end
