@@ -52,6 +52,7 @@ local packer_install_plugins = {
         after = {"impatient.nvim"},
         event = {"BufRead", "BufNewFile"}
     },
+
     ["BurntSushi/ripgrep"] = {
         load_file = false,
         disable = false,
@@ -98,6 +99,7 @@ local packer_install_plugins = {
     ["nvim-treesitter/nvim-treesitter"] = {
         load_file = true,
         disable = false,
+        run = ":TSUpdate",
         after = {"impatient.nvim"},
         event = {"BufRead", "BufNewFile"}
     },
@@ -235,7 +237,7 @@ local packer_install_plugins = {
     ["norcalli/nvim-colorizer.lua"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufEnter"},
         after = {"impatient.nvim"}
     },
     ["lewis6991/spellsitter.nvim"] = {

@@ -13,6 +13,7 @@ local function filter(arr, func)
 end
 
 local function filter_diagnostics(diagnostic)
+
     if diagnostic.source ~= "Pyright" then
         return true
     end
@@ -54,7 +55,10 @@ return {
                 useLibraryCodeForTypes = true,
                 autoImportCompletions = true,
                 diagnosticSeverityOverrides = {
-                    reportUndefinedVariable = "error"
+                    reportUndefinedVariable = "error",
+                    reportMissingTypeStubs = "none",
+                    reportIncompleteStub = "none",
+                    reportInvalidStubStatement = "none"
                 }
             }
         }
