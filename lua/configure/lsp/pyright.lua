@@ -25,10 +25,6 @@ local function filter_diagnostics(diagnostic)
         return false
     end
 
-    if string.match(diagnostic.message, '"_.+" is not accessed') then
-        return false
-    end
-
     return true
 end
 
