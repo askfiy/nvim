@@ -93,6 +93,9 @@ $ python3 -m pip install debugpy
 -- Python diagnostics (optional)
 $ pip3 install pylint
 
+-- If you use Pyrigth to diagnose Django code, you should install it
+$ pip3 install django-stubs
+
 -- lazygit
 $ yay -S lazygit
 ```
