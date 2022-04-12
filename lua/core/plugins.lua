@@ -439,12 +439,12 @@ local packer_install_plugins = {
 Packer_bootstrap =
     (function()
     local packer_install_path = api.path.join(vim.fn.stdpath("data"), "site/pack/packer/start/packer.nvim")
-    local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
-    if not string.find(vim.o.runtimepath, rtp_addition) then
-        vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
-    end
     if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
         vim.notify(notices.packer.wait.message(), notices.packer.wait.level, notices.packer.wait.options)
+        local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
+        if not string.find(vim.o.runtimepath, rtp_addition) then
+            vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
+        end
         return vim.fn.system(
             {
                 "git",

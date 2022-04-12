@@ -1,4 +1,5 @@
 vim.o.encoding = "utf-8"
+vim.o.filetype = "plugin"
 vim.o.updatetime = 100
 vim.o.timeoutlen = 500
 vim.o.showcmd = true
@@ -27,9 +28,5 @@ vim.o.clipboard = "unnamedplus"
 vim.o.autoread = true
 vim.o.autoindent = true
 vim.o.cmdheight = 1
-vim.o.iskeyword = "@,48-57,_,192-255,-"
-vim.bo.expandtab = true
-vim.bo.shiftwidth = 2
-vim.bo.tabstop = 2
-vim.bo.softtabstop = 2
+vim.o.iskeyword = "@,48-57,_,192-255"
 vim.opt_local.formatoptions = vim.opt_local.formatoptions - {"c", "r", "o"}
