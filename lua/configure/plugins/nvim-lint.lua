@@ -8,7 +8,7 @@
 
 local options = require("core.options")
 
-local utils = require("utils")
+local api = require("utils.api")
 
 require("lint").linters_by_ft = {
     python = {"pylint"}
@@ -21,7 +21,7 @@ require("lint").linters_by_ft = {
 require("lint.linters.pylint").args = {
     "-f",
     "json",
-    "--rcfile=" .. utils.path.join(options.nvim_lint_dir, "pylint.conf")
+    "--rcfile=" .. api.path.join(options.nvim_lint_dir, "pylint.conf")
 }
 
 vim.api.nvim_create_autocmd(

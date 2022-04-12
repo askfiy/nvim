@@ -1,8 +1,8 @@
 -- https://github.com/mbbill/undotree
 
-local utils = require("utils")
+local api = require("utils.api")
 
-local undotree_dir = utils.path.join(vim.fn.stdpath("cache"), "undotree")
+local undotree_dir = api.path.join(vim.fn.stdpath("cache"), "undotree")
 
 if vim.fn.has("persistent_undo") then
     local target_path = vim.fn.expand(undotree_dir)

@@ -3,11 +3,11 @@
 -- WARN: dap download the debugger manually
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
-local utils = require("utils")
+local api = require("utils.api")
 
 local dap = require("dap")
 
-utils.hi.set("debugger", {fg = "red"})
+api.hi.set("debugger", {fg = "red"})
 
 -- set breakpoint style
 vim.fn.sign_define("DapBreakpoint", {text = "⚫", texthl = "debugger", linehl = "", numhl = ""})

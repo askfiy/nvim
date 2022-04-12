@@ -1,10 +1,10 @@
-local utils = require("utils")
+local api = require("utils.api")
 
 local function load_html_snippets()
     local root_dir = vim.fn.getcwd()
     local dir_name = vim.fn.expand("%:p:h:t")
     -- load django template snippets
-    if dir_name == "templates" and vim.fn.filereadable(utils.path.join(root_dir, "manage.py")) == 1 then
+    if dir_name == "templates" and vim.fn.filereadable(api.path.join(root_dir, "manage.py")) == 1 then
         vim.cmd("let g:vsnip_filetypes.html = ['python/django/template']")
     else
         vim.cmd("let g:vsnip_filetypes.html = []")
@@ -21,7 +21,7 @@ end
 local function load_python_snippets()
     local root_dir = vim.fn.getcwd()
     -- load django snippets
-    if vim.fn.filereadable(utils.path.join(root_dir, "manage.py")) == 1 then
+    if vim.fn.filereadable(api.path.join(root_dir, "manage.py")) == 1 then
         vim.cmd(
             [[
             let g:vsnip_filetypes.python = [

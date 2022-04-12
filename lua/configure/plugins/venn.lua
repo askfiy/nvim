@@ -1,6 +1,7 @@
 -- https://github.com/jbyuki/venn.nvim
 
 local mapping = require("core.mapping")
+local notices = require("utils.notices")
 local venn = require("venn")
 
 local notify = nil
@@ -8,29 +9,14 @@ local notify = nil
 local function open_venn_notify()
     -- clear all history notify windows
     vim.notify.dismiss()
-    notify =
-        vim.notify(
-        "Venn enabled",
-        "info",
-        {
-            title = "Venn",
-            keep = function()
-                return vim.b.venn_enabled
-            end,
-            render = "minimal"
-        }
-    )
+    notify = vim.notify(notices.venn.enable.message(), notices.venn.enable.level, notices.venn.enable.options)
 end
 
 local function close_venn_notify()
     vim.notify(
-        "Venn disable",
-        "info",
-        {
-            title = "Venn",
-            render = "minimal",
-            replace = notify
-        }
+        notices.venn.disable.message(),
+        notices.venn.disable.level,
+        vim.tbl_extend("force", notices.venn.disable.options, {replace = notify})
     )
 end
 

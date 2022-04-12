@@ -9,7 +9,7 @@ function M.path.join(...)
     return path_string:sub(1, #path_string - 1)
 end
 
-function M.path.exists(path)
+function M.path.is_exists(path)
     local file = io.open(path, "r")
     if file then
         io.close(file)
@@ -20,7 +20,7 @@ end
 
 M.module = {}
 
-function M.module.get_module(name)
+function M.module.is_exist(name)
     local ok, m = pcall(require, name)
     return ok, m
 end

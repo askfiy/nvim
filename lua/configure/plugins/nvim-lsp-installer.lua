@@ -1,6 +1,7 @@
 -- https://github.com/williamboman/nvim-lsp-installer
 
 local mapping = require("core.mapping")
+local notices = require("utils.notices")
 
 local lsp_installer_servers = require("nvim-lsp-installer.servers")
 
@@ -61,7 +62,11 @@ for server_name, server_options in pairs(servers) do
         )
         -- auto install if language server is not ready
         if not server:is_installed() then
-            vim.notify("Install Language Server : " .. server_name, "warn", {title = "Language Servers"})
+            vim.notify(
+                notices.language_server.download.message(server_name),
+                notices.language_server.download.level,
+                notices.language_server.download.options
+            )
             server:install()
         end
     end

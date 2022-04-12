@@ -1,7 +1,7 @@
 -- https://github.com/catppuccin/nvim
 
 local options = require("core.options")
-local utils = require("utils")
+local api = require("utils.api")
 
 local catppuccin = require("catppuccin")
 local colors = require("catppuccin.api.colors").get_colors()
@@ -76,46 +76,46 @@ vim.cmd([[colorscheme catppuccin]])
 
 -- lsp_signature and translate
 if options.transparency_background then
-    utils.hi.set("NormalFloat", {bg = "NONE"})
+    api.hi.set("NormalFloat", {bg = "NONE"})
 else
-    utils.hi.set("NormalFloat", {bg = colors.black2})
-    utils.hi.set("FloatBorder", {bg = colors.black2})
+    api.hi.set("NormalFloat", {bg = colors.black2})
+    api.hi.set("FloatBorder", {bg = colors.black2})
 end
 
 --  bufferline
-utils.hi.set("BufferDirectory", {fg = colors.blue, gui = "bold"})
-utils.hi.set("BufferIndicator", {fg = colors.black4})
+api.hi.set("BufferDirectory", {fg = colors.blue, gui = "bold"})
+api.hi.set("BufferIndicator", {fg = colors.black4})
 
 -- scrollbar
-utils.hi.set("ScrollbarHandle", {bg = colors.black4})
+api.hi.set("ScrollbarHandle", {bg = colors.black4})
 
 -- vim visual multi
-utils.hi.set("VM_mode1", {fg = colors.black2, bg = colors.mauve})
-utils.hi.set("VM_mode2", {fg = colors.black2, bg = colors.blue})
+api.hi.set("VM_mode1", {fg = colors.black2, bg = colors.mauve})
+api.hi.set("VM_mode2", {fg = colors.black2, bg = colors.blue})
 
 -- fidget
-utils.hi.set("FidgetTitle", {fg = colors.blue, gui = "bold"})
-utils.hi.set("FidgetTask", {fg = colors.blue})
+api.hi.set("FidgetTitle", {fg = colors.blue, gui = "bold"})
+api.hi.set("FidgetTask", {fg = colors.blue})
 
 -- lspsaga
-utils.hi.set("LspFloatWinNormal", {bg = colors.black2})
-utils.hi.set("LspSagaRenameBorder", {fg = colors.blue})
-utils.hi.set("LspSagaHoverBorder", {fg = colors.blue})
-utils.hi.set("LspSagaDocTruncateLine", {fg = colors.blue})
-utils.hi.set("LspSagaDiagnosticBorder", {fg = colors.blue})
-utils.hi.set("LspSagaDiagnosticTruncateLine", {fg = colors.blue})
+api.hi.set("LspFloatWinNormal", {bg = colors.black2})
+api.hi.set("LspSagaRenameBorder", {fg = colors.blue})
+api.hi.set("LspSagaHoverBorder", {fg = colors.blue})
+api.hi.set("LspSagaDocTruncateLine", {fg = colors.blue})
+api.hi.set("LspSagaDiagnosticBorder", {fg = colors.blue})
+api.hi.set("LspSagaDiagnosticTruncateLine", {fg = colors.blue})
 
 -- telescope
-utils.hi.set("TelescopeBorder", {fg = colors.blue})
-utils.hi.set("TelescopeMatching", {fg = colors.blue, gui = "bold"})
+api.hi.set("TelescopeBorder", {fg = colors.blue})
+api.hi.set("TelescopeMatching", {fg = colors.blue, gui = "bold"})
 
 -- cmp selection
-utils.hi.set("PmenuSel", {bg = colors.green, fg = colors.black0, gui = "NONE"})
+api.hi.set("PmenuSel", {bg = colors.green, fg = colors.black0, gui = "NONE"})
 
 -- cmp match
-utils.hi.set("CmpItemAbbrMatch", {fg = colors.blue, bg = "NONE"})
-utils.hi.set("CmpItemAbbrMatchFuzzy", {bg = "NONE", fg = colors.blue})
+api.hi.set("CmpItemAbbrMatch", {fg = colors.blue, bg = "NONE"})
+api.hi.set("CmpItemAbbrMatchFuzzy", {bg = "NONE", fg = colors.blue})
 
 -- indent_blankline
-utils.hi.set("IndentBlanklineContextChar", {fg = colors.blue})
-utils.hi.set("IndentBlanklineChar", {fg = colors.black4})
+api.hi.set("IndentBlanklineContextChar", {fg = colors.blue})
+api.hi.set("IndentBlanklineChar", {fg = colors.black4})

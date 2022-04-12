@@ -1,4 +1,5 @@
-local utils = require("utils")
+local api = require("utils.api")
+local notices = require("utils.notices")
 
 local packer_install_plugins = {
     -------------
@@ -52,7 +53,6 @@ local packer_install_plugins = {
         after = {"impatient.nvim"},
         event = {"BufRead", "BufNewFile"}
     },
-
     ["BurntSushi/ripgrep"] = {
         load_file = false,
         disable = false,
@@ -438,13 +438,13 @@ local packer_install_plugins = {
 
 Packer_bootstrap =
     (function()
-    local packer_install_path = utils.path.join(vim.fn.stdpath("data"), "site/pack/packer/start/packer.nvim")
+    local packer_install_path = api.path.join(vim.fn.stdpath("data"), "site/pack/packer/start/packer.nvim")
     local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
     if not string.find(vim.o.runtimepath, rtp_addition) then
         vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
     end
     if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
-        vim.notify("Please wait ... \nDownloading packer ...", "info", {title = "Packer"})
+        vim.notify(notices.packer.wait.message(), notices.packer.wait.level, notices.packer.wait.options)
         return vim.fn.system(
             {
                 "git",
@@ -478,15 +478,15 @@ packer.startup(
                     else
                         file_name = string.match(name, "/([%w-_]+).?")
                     end
-                    local require_path = utils.path.join("configure", "plugins", file_name)
-                    local config_path = utils.path.join(vim.fn.stdpath("config"), "lua", require_path .. ".lua")
-                    if utils.path.exists(config_path) then
+                    local require_path = api.path.join("configure", "plugins", file_name)
+                    local config_path = api.path.join(vim.fn.stdpath("config"), "lua", require_path .. ".lua")
+                    if api.path.is_exists(config_path) then
                         plugin.config = "require('" .. require_path .. "')"
                     else
                         vim.notify(
-                            "Missing config file for " .. name .. ": " .. config_path,
-                            "error",
-                            {title = "packer"}
+                            notices.packer.config_not_found.message(name, config_path),
+                            notices.packer.config_not_found.level,
+                            notices.packer.config_not_found.options
                         )
                     end
                 end

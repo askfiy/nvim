@@ -1,6 +1,6 @@
 -- https://github.com/AndrewRadev/switch.vim
 
-local utils = require("utils")
+local api = require("utils.api")
 
 local words1 = {
     -- status
@@ -35,7 +35,7 @@ local words2 = vim.deepcopy(words1)
 
 for _, value in ipairs(words1) do
     local upper_words = {string.upper(value[1]), string.upper(value[2])}
-    local title_words = {utils.string.title(value[1]), utils.string.title(value[2])}
+    local title_words = {api.string.title(value[1]), api.string.title(value[2])}
     table.insert(words2, upper_words)
     table.insert(words2, title_words)
 end

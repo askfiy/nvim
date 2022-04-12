@@ -7,7 +7,7 @@ local mapping = require("core.mapping")
 require("nvim-treesitter.configs").setup(
     {
         -- installed highlight support sources
-        ensure_installed = "maintained",
+        ensure_installed = "all",
         -- synchronous download highlighting support
         sync_install = false,
         -- highlight related

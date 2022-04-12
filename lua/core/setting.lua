@@ -27,6 +27,7 @@ vim.o.clipboard = "unnamedplus"
 vim.o.autoread = true
 vim.o.autoindent = true
 vim.o.cmdheight = 1
+vim.o.iskeyword = "@,48-57,_,192-255,-"
 vim.bo.expandtab = true
 vim.bo.shiftwidth = 2
 vim.bo.tabstop = 2
