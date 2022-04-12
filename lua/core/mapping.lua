@@ -29,6 +29,8 @@ mapping.global = {
         {{"n"}, "<m-h>", "<c-w><", "noremap|silent"},
         {{"n"}, "<m-l>", "<c-w>>", "noremap|silent"},
         {{"n"}, "<leader>cs", "<cmd>set spell!<cr>", "noremap|silent"},
+        {{"i", "c", "t"}, "<m-w>", "<c-right>", "noremap"},
+        {{"i", "c", "t"}, "<m-b>", "<c-left>", "noremap"},
         {{"i", "c", "t"}, "<m-k>", "<up>", "noremap"},
         {{"i", "c", "t"}, "<m-j>", "<down>", "noremap"},
         {{"i", "c", "t"}, "<m-h>", "<left>", "noremap"},
