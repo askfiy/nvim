@@ -24,11 +24,11 @@ function venn.toggle_venn_mode()
     local venn_enabled = vim.inspect(vim.b.venn_enabled)
     if venn_enabled == "nil" then
         vim.b.venn_enabled = true
-        vim.cmd [[setlocal ve=all]]
+        vim.cmd [[setlocal virtualedit=all]]
         mapping.register("buffer", "venn", 0)
         open_venn_notify()
     else
-        vim.cmd [[setlocal ve=]]
+        vim.cmd [[setlocal virtualedit=]]
         vim.cmd [[mapclear <buffer>]]
         vim.b.venn_enabled = nil
         close_venn_notify()

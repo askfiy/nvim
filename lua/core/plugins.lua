@@ -45,25 +45,25 @@ local packer_install_plugins = {
         load_file = false,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["nvim-lua/plenary.nvim"] = {
         load_file = false,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["BurntSushi/ripgrep"] = {
         load_file = false,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["sharkdp/fd"] = {
         load_file = false,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["petertriho/nvim-scrollbar"] = {
         load_file = true,
@@ -88,20 +88,20 @@ local packer_install_plugins = {
         load_file = true,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["p00f/nvim-ts-rainbow"] = {
         load_file = false,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["nvim-treesitter/nvim-treesitter"] = {
         load_file = true,
         disable = false,
         run = ":TSUpdate",
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["SmiteshP/nvim-gps"] = {
         load_file = false,
@@ -125,7 +125,7 @@ local packer_install_plugins = {
         load_file = false,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        event = {"BufReadPre", "BufNewFile"}
     },
     ["stevearc/aerial.nvim"] = {
         load_file = true,
@@ -243,7 +243,7 @@ local packer_install_plugins = {
     ["lewis6991/spellsitter.nvim"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["sbdchd/neoformat"] = {
@@ -254,7 +254,7 @@ local packer_install_plugins = {
     ["JoosepAlviste/nvim-ts-context-commentstring"] = {
         load_file = false,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["numToStr/Comment.nvim"] = {
@@ -265,7 +265,7 @@ local packer_install_plugins = {
     ["ur4ltz/surround.nvim"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["windwp/nvim-autopairs"] = {
@@ -277,13 +277,13 @@ local packer_install_plugins = {
     ["folke/todo-comments.nvim"] = {
         load_file = true,
         disable = true,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["lukas-reineke/indent-blankline.nvim"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     -- viml plugin
@@ -333,7 +333,7 @@ local packer_install_plugins = {
     ["ethanholz/nvim-lastplace"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["kevinhwang91/nvim-hlslens"] = {
@@ -384,7 +384,7 @@ local packer_install_plugins = {
     ["mbbill/undotree"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["akinsho/toggleterm.nvim"] = {
@@ -396,13 +396,13 @@ local packer_install_plugins = {
     ["mg979/vim-visual-multi"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["folke/which-key.nvim"] = {
         load_file = true,
         disable = false,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufReadPre", "BufNewFile"},
         after = {"impatient.nvim"}
     },
     ["uga-rosa/translate.nvim"] = {
