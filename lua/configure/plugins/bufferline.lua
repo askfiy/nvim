@@ -4,7 +4,6 @@ local icons = require("utils.icons")
 
 -- file types not shown in bufferline
 local filter_bufname = {
-    "term",
     "translate",
     "repl",
     "query",

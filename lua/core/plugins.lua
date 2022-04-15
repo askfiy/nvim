@@ -276,7 +276,7 @@ local packer_install_plugins = {
     },
     ["folke/todo-comments.nvim"] = {
         load_file = true,
-        disable = true,
+        disable = false,
         event = {"BufRead", "BufNewFile"},
         after = {"impatient.nvim"}
     },
