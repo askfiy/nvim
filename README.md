@@ -45,7 +45,7 @@ Basic dependencies:
 
 Other dependencies:
 
-- tar curl git gzip wget
+- tar curl git gzip wget unzip
 - node npm
 - xsel
 - [lazygit](https://github.com/jesseduffield/lazygit)
@@ -78,7 +78,7 @@ $ pip3 install autopep8
 $ pip3 install sqlformat
 
 -- Translate
-$ yay -S trans
+$ yay -S translate-shell
 
 -- markdown preview
 $ yay -S pandoc
@@ -98,6 +98,10 @@ $ pip3 install django-stubs
 
 -- lazygit
 $ yay -S lazygit
+
+-- tabnine require
+$ yay -S unzip
+$ yay -S curl
 ```
 
 ## content
@@ -181,9 +185,19 @@ Install pylint using the pip tool, and then you can use pylint.
 
 You can configure pylint diagnostics in [pylint.conf](./lint/pylint.conf).
 
+## enable copilot
+
+input command:
+
+```
+$ Copilot setup
+```
+
+Record your verification code and enter it in your browser.
+
 ## possible problems
 
-If prompted with tabnine problems, you should:
+If prompted with tabnine problems, you should install the curl and unzip commands first, after execute command:
 
 ```
 $ ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh

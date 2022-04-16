@@ -6,9 +6,9 @@ if options.platform_info == "UNIX" then
         {
             pattern = {"*"},
             callback = function()
-                local input_status = tonumber(vim.fn.system("fcitx-remote"))
+                local input_status = tonumber(vim.fn.system("fcitx5-remote"))
                 if input_status == 2 then
-                    vim.fn.system("fcitx-remote -c")
+                    vim.fn.system("fcitx5-remote -c")
                 end
             end
         }
