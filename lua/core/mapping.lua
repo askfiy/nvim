@@ -175,7 +175,7 @@ mapping.global = {
         {{"n"}, "<F7>", "<cmd>lua require'dap'.step_over()<cr>", "noremap|silent"},
         {{"n"}, "<F8>", "<cmd>lua require'dap'.step_out()<cr>", "noremap|silent"},
         {{"n"}, "<F9>", "<cmd>lua require'dap'.run_last()<cr>", "noremap|silent"},
-        {{"n"}, "<F10>", "<cmd>lua require'dap'.close_all()<cr>", "noremap|silent"}
+        {{"n"}, "<F10>", "<cmd>lua require'dap'.terminate()<cr>", "noremap|silent"}
     },
     nvim_hlslens = {
         {
