@@ -10,7 +10,7 @@ local dap = require("dap")
 api.hi.set("debugger", {fg = "red"})
 
 -- set breakpoint style
-vim.fn.sign_define("DapBreakpoint", {text = "⚫", texthl = "debugger", linehl = "", numhl = ""})
+-- vim.fn.sign_define("DapBreakpoint", {text = "⚫", texthl = "debugger", linehl = "", numhl = ""})
 
 -- load debugger configuration
 local dap_config = {
