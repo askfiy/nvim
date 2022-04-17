@@ -237,7 +237,7 @@ local packer_install_plugins = {
     ["norcalli/nvim-colorizer.lua"] = {
         load_file = true,
         disable = false,
-        event = {"BufEnter"},
+        event = {"BufReadPre"},
         after = {"impatient.nvim"}
     },
     ["lewis6991/spellsitter.nvim"] = {
