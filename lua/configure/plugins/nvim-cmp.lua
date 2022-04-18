@@ -11,7 +11,7 @@
 
 -- FIX: Manually install Tabnine when there is an error in Tabnine
 --    TabNine is not executable
--- Requires curl
+-- Requires curl and unzip
 --    ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 local mapping = require("core.mapping")
@@ -48,6 +48,7 @@ local kind_priority = {
     ["Value"] = 1
 }
 
+---@diagnostic disable-next-line: unused-local
 local kind_compare = function(entry1, entry2)
     local entry1_kind = cmp.lsp.CompletionItemKind[entry1:get_kind()]
     local entry2_kind = cmp.lsp.CompletionItemKind[entry2:get_kind()]
@@ -161,7 +162,7 @@ cmp.setup(
                 cmp.config.compare.locality,
                 cmp.config.compare.kind,
                 cmp.config.compare.sort_text,
-                cmp.config.compare.order,
+                cmp.config.compare.order
                 -- kind_compare
             }
         }
@@ -197,5 +198,23 @@ cmp.setup.cmdline(
                 {name = "cmdline"}
             }
         )
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    {"TextChangedI"},
+    {
+        pattern = {"*"},
+        callback = function()
+            local cmp_config = require("cmp.config")
+            -- vim-visual-multi and vsnip
+            if vim.fn.mode() == "i" and vim.fn["vsnip#available"](1) == 1 or vim.b.visual_multi then
+                cmp_config.global.completion.autocomplete = false
+            else
+                if not cmp_config.global.completion.autocomplete then
+                    cmp_config.global.completion.autocomplete = {"TextChanged"}
+                end
+            end
+        end
     }
 )
