@@ -77,7 +77,7 @@ vim.cmd([[colorscheme catppuccin]])
 -- lsp_signature and translate
 if options.transparency_background then
     api.hi.set("NormalFloat", {bg = "NONE"})
-    -- hop backends
+    -- hop background
     api.hi.set("HopNextKey", {bg = "NONE"})
     api.hi.set("HopNextKey1", {bg = "NONE"})
     api.hi.set("HopNextKey2", {bg = "NONE"})
