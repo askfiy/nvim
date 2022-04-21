@@ -154,7 +154,7 @@ local packer_install_plugins = {
     },
     ["mfussenegger/nvim-lint"] = {
         load_file = true,
-        disable = true,
+        disable = false,
         after = {"nvim-lsp-installer"}
     },
     ["kosayoda/nvim-lightbulb"] = {

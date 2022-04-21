@@ -4,7 +4,7 @@ live_config_reload: true
 # 环境变量
 
 env:
-  TERM: alacritty
+  TERM: xterm-256color
 
 # 窗口设置
 window:
