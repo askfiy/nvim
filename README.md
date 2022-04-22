@@ -46,7 +46,6 @@ Basic dependencies:
 - [tar](https://www.gnu.org/software/tar/) [curl](https://curl.se/) [git](https://git-scm.com/) [gzip](https://www.gnu.org/software/gzip/) [wget](https://www.gnu.org/software/wget/) [unzip](infozip.sourceforge.net/UnZip.html)
 - [xsel](https://www.vergenet.net/~conrad/software/xsel/)
 
-
 Other dependencies:
 
 - [lazygit](https://github.com/jesseduffield/lazygit)
@@ -165,7 +164,6 @@ Directory Description:
 - resources/: some external programs not related to the project itself
 - snippets/: Snippet configuration
 
-
 File Description:
 
 - [init.lua](./init.lua): project entry file
@@ -180,7 +178,6 @@ File Description:
 - [lua/utils/api.lua](./lua/utils/api.lua): defines some functions that can be easily used
 - [lua/utils/icons.lua](./lua/utils/icons.lua): you can specify some icons here
 - [lua/utils/notices.lua](./lua/utils/notices.lua): store user-defined notification messages
-
 
 ## key bindings
 
@@ -215,11 +212,11 @@ Then use the PackerSync command to install the [nvim-lint](https://github.com/mf
 
 Open the [pyright.lua](./lua/configure/lsp/pyright.lua) file and comment out the diagnostics from nvim-lsp:
 
-````
+```
 -- If you want to enable pylint diagnostics, turn on the comments below
 ["textDocument/publishDiagnostics"] u003d function(...)
 end
-````
+```
 
 Install pylint using the pip tool, and then you can use pylint.
 
@@ -246,7 +243,6 @@ $ ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 ```
 
 If the icon shows an error, you should install [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/)，And the font of the terminal needs to be changed.
-
 
 ## some commands
 

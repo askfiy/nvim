@@ -274,6 +274,12 @@ local packer_install_plugins = {
         event = {"InsertEnter"},
         after = {"impatient.nvim"}
     },
+    ["windwp/nvim-ts-autotag"] = {
+        load_file = true,
+        disable = false,
+        event = {"InsertEnter"},
+        after = {"impatient.nvim"}
+    },
     ["folke/todo-comments.nvim"] = {
         load_file = true,
         disable = false,
