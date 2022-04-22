@@ -76,12 +76,12 @@ local packer_install_plugins = {
     ["catppuccin/nvim"] = {
         as = "catppuccin",
         load_file = true,
-        disable = false,
+        disable = true,
         after = {"nvim-scrollbar"}
     },
     ["Mofiqul/vscode.nvim"] = {
         load_file = true,
-        disable = true,
+        disable = false,
         after = {"nvim-scrollbar"}
     },
     ["RRethy/vim-illuminate"] = {
@@ -154,7 +154,7 @@ local packer_install_plugins = {
     },
     ["mfussenegger/nvim-lint"] = {
         load_file = true,
-        disable = false,
+        disable = true,
         after = {"nvim-lsp-installer"}
     },
     ["kosayoda/nvim-lightbulb"] = {

@@ -39,16 +39,18 @@ Basic dependencies:
 - [neovim > 0.7](https://github.com/neovim/neovim)
 - [gcc](https://gcc.gnu.org/)
 - [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/)
+- [node](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
 - [fd](https://link.zhihu.com/?target=https%3A//github.com/sharkdp/fd)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
-- [translate-shell](https://github.com/soimort/translate-shell)
+- [tar](https://www.gnu.org/software/tar/) [curl](https://curl.se/) [git](https://git-scm.com/) [gzip](https://www.gnu.org/software/gzip/) [wget](https://www.gnu.org/software/wget/) [unzip](infozip.sourceforge.net/UnZip.html)
+- [xsel](https://www.vergenet.net/~conrad/software/xsel/)
+
 
 Other dependencies:
 
-- tar curl git gzip wget unzip
-- node npm
-- xsel
 - [lazygit](https://github.com/jesseduffield/lazygit)
+- [translate-shell](https://github.com/soimort/translate-shell)
 
 I copied a quick install script from someone else's repository, I'm not sure if it's available.
 
@@ -62,7 +64,7 @@ They are:
 I prefer to download all dependent projects manually, take `arch` as an example:
 
 ```
--- use the system clipboard
+-- Use the system clipboard
 $ yay -S xsel
 
 -- Fuzzy search
@@ -96,10 +98,10 @@ $ pip3 install pylint
 -- If you use Pyrigth to diagnose Django code, you should install it
 $ pip3 install django-stubs
 
--- lazygit
+-- Lazygit
 $ yay -S lazygit
 
--- tabnine require
+-- Tabnine require
 $ yay -S unzip
 $ yay -S curl
 ```
@@ -109,10 +111,10 @@ $ yay -S curl
 Directory listing:
 
 ```
+
 .
 ├── ftplugin
 │   └── ...
-├── init.lua
 ├── lint
 │   └── ...
 ├── lua
@@ -120,6 +122,8 @@ Directory listing:
 │   │   ├── dap
 │   │   │   └── ...
 │   │   ├── lsp
+│   │   │   ├── requires
+│   │   │   │   └── ...
 │   │   │   └── ...
 │   │   └── plugins
 │   │       └── ...
@@ -134,24 +138,49 @@ Directory listing:
 │   │   ├── plugins.lua
 │   │   └── setting.lua
 │   └── utils
-│       └── ...
-├── resource
-│   └── ....
-└── snippets
+│       ├── api.lua
+│       ├── icons.lua
+│       └── notices.lua
+├── README.md
+├── resources
+│   └── ...
+├── snippets
+│   └── ...
+└── init.lua
 ```
 
-Directory Description：
+Directory Description:
 
-- core: Core directory
-- configure: LSP、DAP、Plugins configuration
-- utils: Some wrapped API functions
-- after: Last loaded configuration
+- ftplugin/: the directory where language indentation rules are stored
+- lint/: lint code diagnostic configuration file storage directory
+- lua/ : project home directory
+- lua/configure/: plugin, LSP, DAP configuration
+- lua/configure/dap/: debugger configuration
+- lua/configure/lsp/: language server configuration
+- lua/configure/plugins/: plugin configuration
+- lua/configure/lsp/requires/: LSP dependencies
+- lua/core/: core configuration
+- lua/core/after/: Configuration loaded after initialization is complete
+- utils/: functional configuration
+- resources/: some external programs not related to the project itself
+- snippets/: Snippet configuration
+
 
 File Description:
 
-- mapping: Key binding
-- options: User settings
-- settings: System settings
+- [init.lua](./init.lua): project entry file
+- [lua/core/setting.lua](./lua/core/setting.lua): neovim original setting
+- [lua/core/options.lua](./lua/core/options.lua): user-defined configuration items
+- [lua/core/mapping.lua](./lua/core/mapping.lua): user-defined shortcut keys
+- [lua/core/plugins.lua](./lua/core/plugins.lua): all plugin configurations loaded
+- [lua/core/after/init.lua](./lua/core/after/init.lua): the entry file after all configuration items are loaded，In addition, it is also responsible for defining the global variable configuration of some plugins
+- [lua/core/after/input_toggle.lua](./lua/core/after/input_toggle.lua): the input method switching scheme that needs to be loaded, currently only supports [fcixt5](https://github.com/fcitx/fcitx5) of the Linux platform
+- [lua/core/after/load_mapping.lua](./lua/core/after/load_mapping.lua): Load all user-defined keys
+- [lua/core/after/load_snippet.lua](./lua/core/after/load_snippet.lua): Load different code snippets under different conditions
+- [lua/utils/api.lua](./lua/utils/api.lua): defines some functions that can be easily used
+- [lua/utils/icons.lua](./lua/utils/icons.lua): you can specify some icons here
+- [lua/utils/notices.lua](./lua/utils/notices.lua): store user-defined notification messages
+
 
 ## key bindings
 
@@ -165,7 +194,18 @@ It's worth noting that `<c-e>` and `<c-y>` are now replaced by moving the buffer
 
 For other key bindings you can open the [mapping.lua](./lua/core/mapping.lua) file to see.
 
-## enable lint diagnostics
+## icon setting
+
+I have defined a set of [vscode](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf) icon schemes that you need to install to use.
+
+Set in [options.lua](./lua/core/options.lua) file:
+
+```
+-- options.icons = "kind"
+options.icons = "vscode"
+```
+
+## lint diagnostics
 
 I installed the [nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin, you can use diagnostic tools like eslint, pylint, etc.
 
@@ -184,6 +224,8 @@ end
 Install pylint using the pip tool, and then you can use pylint.
 
 You can configure pylint diagnostics in [pylint.conf](./lint/pylint.conf).
+
+If you don't want to use pylint or any other lint, you should disable the nvim-lint plugin. set in [plugins.lua](./lua/core/plugins.lua) .
 
 ## enable copilot
 
@@ -205,14 +247,6 @@ $ ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 If the icon shows an error, you should install [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/)，And the font of the terminal needs to be changed.
 
-I have defined a set of [vscode](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf) icon schemes that you need to install to use.
-
-Set in [options.lua](./lua/core/options.lua) file:
-
-```
--- options.icons = "kind"
-options.icons = "vscode"
-```
 
 ## some commands
 
