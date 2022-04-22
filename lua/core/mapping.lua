@@ -354,9 +354,9 @@ mapping.plugin = {
         quit = "<esc>",
         exec = "<cr>"
     },
-    telescope = {
-        insert_delete_buf = "<c-d>",
-        noremal_delete_buf = "dd"
+    telescope_buffer = {
+        insert_del_buf = "<c-d>",
+        noremal_del_buf = "dd"
     },
     nvim_neoclip = {
         confirm_select = "<cr>",
@@ -398,8 +398,8 @@ mapping.plugin = {
     },
     toggleterm = {
         exit_insert = "<esc>",
-        lazy_git_exit = "q",
-        float_exit = "<esc>"
+        lazy_git_exit_insert = "q",
+        float_exit_insert = "<esc>"
     },
     vim_visual_multi = {
         switch_mode = "<tab>",

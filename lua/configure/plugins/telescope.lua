@@ -12,10 +12,10 @@ require("telescope").setup(
             buffers = {
                 mappings = {
                     i = {
-                        [mapping.plugin.telescope.insert_delete_buf] = "delete_buffer"
+                        [mapping.plugin.telescope_buffer.insert_del_buf] = "delete_buffer"
                     },
                     n = {
-                        [mapping.plugin.telescope.noremal_delete_buf] = "delete_buffer"
+                        [mapping.plugin.telescope_buffer.noremal_del_buf] = "delete_buffer"
                     }
                 }
             }

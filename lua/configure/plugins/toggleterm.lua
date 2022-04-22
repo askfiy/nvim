@@ -56,7 +56,7 @@ local float_term =
             open_expand()
             vim.keymap.set(
                 {"t"},
-                mapping.plugin.toggleterm.float_exit,
+                mapping.plugin.toggleterm.float_exit_insert,
                 "<c-\\><c-n><cmd>close<cr>",
                 {noremap = true, silent = true, buffer = term.bufnr}
             )
@@ -80,7 +80,7 @@ local lazy_git =
             -- q in lazygit is quit
             vim.keymap.set(
                 {"i"},
-                mapping.plugin.toggleterm.lazy_git_exit,
+                mapping.plugin.toggleterm.lazy_git_exit_insert,
                 "<cmd>close<cr>",
                 {noremap = true, silent = true, buffer = term.bufnr}
             )
