@@ -5,7 +5,7 @@ local function load_html_snippets()
     local dir_name = vim.fn.expand("%:p:h:t")
     -- load django template snippets
     if dir_name == "templates" and vim.fn.filereadable(api.path.join(root_dir, "manage.py")) == 1 then
-        vim.cmd("let g:vsnip_filetypes.html = ['python/django/template']")
+        vim.cmd("let g:vsnip_filetypes.html = ['djangohtml']")
     else
         vim.cmd("let g:vsnip_filetypes.html = []")
     end
@@ -22,18 +22,7 @@ local function load_python_snippets()
     local root_dir = vim.fn.getcwd()
     -- load django snippets
     if vim.fn.filereadable(api.path.join(root_dir, "manage.py")) == 1 then
-        vim.cmd(
-            [[
-            let g:vsnip_filetypes.python = [
-                \'python/django/models',
-                \'python/django/admin',
-                \'python/django/froms',
-                \'python/django/tags',
-                \'python/django/urls',
-                \'python/django/views'
-                \]
-            ]]
-        )
+        vim.cmd("let g:vsnip_filetypes.python = ['django']")
     else
         vim.cmd("let g:vsnip_filetypes.python = []")
     end

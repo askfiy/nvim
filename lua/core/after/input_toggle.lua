@@ -1,6 +1,4 @@
-local options = require("core.options")
-
-if options.platform_info == "UNIX" then
+if vim.bo.fileformat == "unix" then
     vim.api.nvim_create_autocmd(
         {"InsertLeave"},
         {

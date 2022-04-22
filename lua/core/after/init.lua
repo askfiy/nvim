@@ -4,8 +4,6 @@ vim.g.vsnip_filetypes = {
     javascript = {"typescript"},
     typescript = {"javascript"},
     vue = {"javascript", "typescript"},
-    html = {},
-    python = {}
 }
 
 vim.g.vsnip_snippet_dir = options.code_snippet_directory

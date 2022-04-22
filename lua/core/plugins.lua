@@ -154,7 +154,7 @@ local packer_install_plugins = {
     },
     ["mfussenegger/nvim-lint"] = {
         load_file = true,
-        disable = true,
+        disable = false,
         after = {"nvim-lsp-installer"}
     },
     ["kosayoda/nvim-lightbulb"] = {
@@ -165,7 +165,7 @@ local packer_install_plugins = {
     -------------
     -- complete -
     -------------
-    ["rafamadriz/friendly-snippets"] = {
+    ["askfiy/friendly-snippets"] = {
         load_file = false,
         disable = false,
         event = {"InsertEnter", "CmdlineEnter"},

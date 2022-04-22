@@ -1,31 +1,33 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 
+local icons = require("utils.icons")
+
 -- add a backslash / after the directory
 vim.g.nvim_tree_add_trailing = 1
 
 vim.g.nvim_tree_icons = {
-    default = " ",
-    symlink = " ",
+    default = icons.nvim_tree.default_icon,
+    symlink = icons.nvim_tree.symlink_file,
     git = {
-        unstaged = "",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "",
-        deleted = "",
-        ignored = ""
+        unstaged = icons.nvim_tree.git_unstaged,
+        staged = icons.nvim_tree.git_staged,
+        unmerged = icons.nvim_tree.git_unmerged,
+        renamed = icons.nvim_tree.git_renamed,
+        untracked = icons.nvim_tree.git_untracked,
+        deleted = icons.nvim_tree.git_deleted,
+        ignored = icons.nvim_tree.git_ignored
     },
     folder = {
         -- arrow_open = "╰─▸",
         -- arrow_closed = "├─▸",
-        arrow_open = "",
-        arrow_closed = "",
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-        symlink_open = ""
+        arrow_open = icons.nvim_tree.folder_arrow_open,
+        arrow_closed = icons.nvim_tree.folder_arrow_closed,
+        default = icons.nvim_tree.folder_default,
+        open = icons.nvim_tree.folder_open,
+        empty = icons.nvim_tree.folder_empty,
+        empty_open = icons.nvim_tree.folder_empty_open,
+        symlink = icons.nvim_tree.folder_symlink,
+        symlink_open = icons.nvim_tree.folder_symlink_open
     }
 }
 
@@ -44,16 +46,16 @@ require("nvim-tree").setup(
             }
         },
         diagnostics = {
-            enable = false,
+            enable = true,
             icons = {
-                hint = "",
-                info = "",
-                warning = "",
-                error = ""
+                hint = icons.diagnostics.hint,
+                info = icons.diagnostics.info,
+                warning = icons.diagnostics.warning,
+                error = icons.diagnostics.error
             }
         },
         git = {
-            enable = false,
+            enable = true,
             ignore = true,
             timeout = 500
         }
