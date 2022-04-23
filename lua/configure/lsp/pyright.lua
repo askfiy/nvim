@@ -38,11 +38,11 @@ return {
         ---@diagnostic disable-next-line: unused-vararg
 
         -- If you want to enable pylint diagnostics, turn on the comments below
-        ["textDocument/publishDiagnostics"] = function(...)
-        end
+        -- ["textDocument/publishDiagnostics"] = function(...)
+        -- end
 
         -- If you want to disable pyright from diagnosing unused parameters, turn on the function below
-        -- ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
     },
     settings = {
         python = {
