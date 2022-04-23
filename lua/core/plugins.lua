@@ -76,12 +76,12 @@ local packer_install_plugins = {
     ["catppuccin/nvim"] = {
         as = "catppuccin",
         load_file = true,
-        disable = true,
+        disable = false,
         after = {"nvim-scrollbar"}
     },
     ["Mofiqul/vscode.nvim"] = {
         load_file = true,
-        disable = false,
+        disable = true,
         after = {"nvim-scrollbar"}
     },
     ["RRethy/vim-illuminate"] = {
@@ -263,6 +263,12 @@ local packer_install_plugins = {
         after = {"nvim-ts-context-commentstring"}
     },
     ["ur4ltz/surround.nvim"] = {
+        load_file = true,
+        disable = false,
+        event = {"BufRead", "BufNewFile"},
+        after = {"impatient.nvim"}
+    },
+    ["tpope/vim-repeat"] = {
         load_file = true,
         disable = false,
         event = {"BufRead", "BufNewFile"},
