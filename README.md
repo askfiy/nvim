@@ -267,4 +267,4 @@ LSPInstallInfo: View LSP download status
 
 In my daily use, I will encounter some bugs from the plug-in itself. I hereby appeal to everyone to help me go to the original plug-in address and submit ISSUES, so that they can be repaired faster:
 
-- [vim-visual-multi](https://github.com/mg979/vim-visual-multi)： add cursor up and add cursor down keymap invaid
+- [vim-visual-multi](https://github.com/mg979/vim-visual-multi)： &lt;c-n&gt; and &lt;c-p&gt; of completion menu do not work when completion menu is visible

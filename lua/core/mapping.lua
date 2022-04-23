@@ -141,22 +141,14 @@ mapping.global = {
         {{"n"}, "<leader>bs", "<cmd>BufferLineSortByExtension<cr>", "noremap|silent"}
     },
     translator = {
-        {{"n"}, "<leader>tcs", ":<c-u>Translate ZH -source=EN -output=split<cr>", "noremap|silent"},
-        {{"x"}, "<leader>tcs", ":Translate ZH -source=EN -output=split<cr>", "noremap|silent"},
-        {{"n"}, "<leader>tcr", ":<c-u>Translate ZH -source=EN -output=replace<cr>", "noremap|silent"},
-        {{"x"}, "<leader>tcr", ":Translate ZH -source=EN -output=replace<cr>", "noremap|silent"},
-        {{"n"}, "<leader>tcf", ":<c-u>Translate ZH -source=EN -output=floating<cr>", "noremap|silent"},
-        {{"x"}, "<leader>tcf", ":Translate ZH -source=EN -output=floating<cr>", "noremap|silent"},
-        {{"n"}, "<leader>tci", ":<c-u>Translate ZH -source=EN -output=insert<cr>", "noremap|silent"},
-        {{"x"}, "<leader>tci", ":Translate ZH -source=EN -output=insert<cr>", "noremap|silent"},
-        {{"n"}, "<leader>tes", ":<c-u>Translate EN -source=ZH -output=split<cr>", "noremap|silent"},
-        {{"x"}, "<leader>tes", ":Translate EN -source=ZH -output=split<cr>", "noremap|silent"},
-        {{"n"}, "<leader>ter", ":<c-u>Translate EN -source=ZH -output=replace<cr>", "noremap|silent"},
-        {{"x"}, "<leader>ter", ":Translate EN -source=ZH -output=replace<cr>", "noremap|silent"},
-        {{"n"}, "<leader>tef", ":<c-u>Translate EN -source=ZH -output=floating<cr>", "noremap|silent"},
-        {{"x"}, "<leader>tef", ":Translate EN -source=ZH -output=floating<cr>", "noremap|silent"},
-        {{"n"}, "<leader>tei", ":<c-u>Translate EN -source=ZH -output=insert<cr>", "noremap|silent"},
-        {{"x"}, "<leader>tei", ":Translate EN -source=ZH -output=insert<cr>", "noremap|silent"}
+        {{"n", "x"}, "<leader>tcs", ":Translate ZH -source=EN -output=split<cr>", "noremap|silent"},
+        {{"n", "x"}, "<leader>tcr", ":Translate ZH -source=EN -output=replace<cr>", "noremap|silent"},
+        {{"n", "x"}, "<leader>tcf", ":Translate ZH -source=EN -output=floating<cr>", "noremap|silent"},
+        {{"n", "x"}, "<leader>tci", ":Translate ZH -source=EN -output=insert<cr>", "noremap|silent"},
+        {{"n", "x"}, "<leader>tes", ":Translate EN -source=ZH -output=split<cr>", "noremap|silent"},
+        {{"n", "x"}, "<leader>ter", ":Translate EN -source=ZH -output=replace<cr>", "noremap|silent"},
+        {{"n", "x"}, "<leader>tef", ":Translate EN -source=ZH -output=floating<cr>", "noremap|silent"},
+        {{"n", "x"}, "<leader>tei", ":Translate EN -source=ZH -output=insert<cr>", "noremap|silent"}
     },
     packer = {
         {{"n"}, "<leader>ps", "<cmd>PackerSync<cr>", "noremap|silent"},
@@ -402,12 +394,12 @@ mapping.plugin = {
         float_exit_insert = "<esc>"
     },
     vim_visual_multi = {
-        switch_mode = "<tab>",
-        find_under = "<c-n>",
-        skip_region = "<c-s>",
-        remove_region = "<c-p>",
-        add_cursor_to_up = "<c-k>",
-        add_cursor_to_down = "<c-j>"
+        {{"n"}, "<tab>", ":call b:VM_Selection.Global.change_mode(1)<cr>", "noremap|silent"},
+        {{"n"}, "<c-n>", ":call vm#commands#ctrln(v:count1)<cr>", "noremap|silent"},
+        {{"n"}, "<c-s>", ":call vm#commands#skip(0)<cr>", "noremap|silent"},
+        {{"n"}, "<c-p>", ":call vm#commands#skip(1)<cr>", "noremap|silent"},
+        {{"n"}, "<c-k>", ":call vm#commands#add_cursor_up(0, v:count1)<cr>", "noremap|silent"},
+        {{"n"}, "<c-j>", ":call vm#commands#add_cursor_down(0, v:count1)<cr>", "noremap|silent"}
     }
 }
 

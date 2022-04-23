@@ -202,21 +202,22 @@ cmp.setup.cmdline(
 )
 
 -- TODO: Don't trigger completion in certain modes
-vim.api.nvim_create_autocmd(
-    {"TextChangedI"},
-    {
-        pattern = {"*"},
-        callback = function()
-            local cmp_config = require("cmp.config")
-            -- vim-visual-multi and vsnip
-            -- if vim.fn["vsnip#available"](1) == 1 or vim.b.visual_multi then
-            if vim.b.visual_multi then
-                cmp_config.global.completion.autocomplete = false
-            else
-                if not cmp_config.global.completion.autocomplete then
-                    cmp_config.global.completion.autocomplete = {"TextChanged"}
-                end
-            end
-        end
-    }
-)
+-- vim.api.nvim_create_autocmd(
+--     {"TextChangedI"},
+--     {
+--         pattern = {"*"},
+--         callback = function()
+--             local cmp_config = require("cmp.config")
+--             -- vim-visual-multi and vsnip
+--             -- if vim.fn["vsnip#available"](1) == 1 or vim.b.visual_multi then
+--             if vim.b.visual_multi then
+--                 cmp_config.global.completion.autocomplete = false
+--             else
+--                 if not cmp_config.global.completion.autocomplete then
+--                     cmp_config.global.completion.autocomplete = {"TextChanged"}
+--                 end
+--             end
+--         end
+--     }
+-- )
+
