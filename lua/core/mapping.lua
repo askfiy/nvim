@@ -398,8 +398,8 @@ mapping.plugin = {
         {{"n"}, "<c-n>", ":call vm#commands#ctrln(v:count1)<cr>", "noremap|silent"},
         {{"n"}, "<c-s>", ":call vm#commands#skip(0)<cr>", "noremap|silent"},
         {{"n"}, "<c-p>", ":call vm#commands#skip(1)<cr>", "noremap|silent"},
-        {{"n"}, "<c-k>", ":call vm#commands#add_cursor_up(0, v:count1)<cr>", "noremap|silent"},
-        {{"n"}, "<c-j>", ":call vm#commands#add_cursor_down(0, v:count1)<cr>", "noremap|silent"}
+        {{"n"}, "<m-p>", ":call vm#commands#add_cursor_up(0, v:count1)<cr>", "noremap|silent"},
+        {{"n"}, "<m-n>", ":call vm#commands#add_cursor_down(0, v:count1)<cr>", "noremap|silent"}
     }
 }
 

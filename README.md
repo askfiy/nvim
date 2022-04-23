@@ -262,9 +262,3 @@ LSPInstallInfo: View LSP download status
 - [Configure new DAP debugger](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation)
 - [Configure new LSP file (1)](https://github.com/williamboman/nvim-lsp-installer#available-lsps)
 - [Configure new LSP file (2)](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
-
-## known bugs
-
-In my daily use, I will encounter some bugs from the plug-in itself. I hereby appeal to everyone to help me go to the original plug-in address and submit ISSUES, so that they can be repaired faster:
-
-- [vim-visual-multi](https://github.com/mg979/vim-visual-multi)： &lt;c-n&gt; and &lt;c-p&gt; of completion menu do not work when completion menu is visible
