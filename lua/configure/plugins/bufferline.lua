@@ -33,7 +33,7 @@ require("bufferline").setup(
                 elseif diagnostics_dict.warning then
                     c = c .. icons.diagnostics.warning .. diagnostics_dict.warning
                 elseif diagnostics_dict.info then
-                    c = c .. icons.diagnostics.hint .. diagnostics_dict.info
+                    c = c .. icons.diagnostics.info .. diagnostics_dict.info
                 elseif diagnostics_dict.hint then
                     c = c .. icons.diagnostics.hint .. diagnostics_dict.hint
                 end

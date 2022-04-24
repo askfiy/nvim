@@ -8,9 +8,9 @@ local notify_opts = {
     -- • fade
     -- • slide
     -- • static
-    stages = "fade",
+    stages = "static",  -- Under a transparent background, only static will ensure normal display effect
     -- default: 5000
-    timeout = 1000
+    timeout = 1800
 }
 
 if options.transparency_background then
