@@ -50,6 +50,8 @@ Other dependencies:
 
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [translate-shell](https://github.com/soimort/translate-shell)
+- [picgo-core](https://github.com/PicGo/PicGo-Core)
+- [mysql-client](https://www.percona.com/software/mysql-database/percona-server)
 
 I copied a quick install script from someone else's repository, I'm not sure if it's available.
 
@@ -106,6 +108,9 @@ $ yay -S curl
 
 -- Image upload to image bed function (optional)
 $ yay -S picgo-core
+
+-- mysql client linker (optional)
+$ yay -S percona-server-clients
 ```
 
 ## content
@@ -113,7 +118,6 @@ $ yay -S picgo-core
 Directory listing:
 
 ```
-
 .
 ├── ftplugin
 │   └── ...
@@ -236,6 +240,12 @@ With the [askfiy/nvim-picgo](https://github.com/askfiy/nvim-picgo) plugin, you c
 For specific usage, please refer to its documentation.
 
 The shortcut keys here are `<leader>uc` and `<leader>up`
+
+## database link
+
+If you have mysql-client programs on your system, you can link them by configuring database in [options.lua](./lua/core/options.lua).
+
+Just press `<leader>4` and you can select the database you want to link to.
 
 ## enable copilot
 
