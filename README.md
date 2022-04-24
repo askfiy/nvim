@@ -103,6 +103,9 @@ $ yay -S lazygit
 -- Tabnine require
 $ yay -S unzip
 $ yay -S curl
+
+-- Image upload to image bed function (optional)
+$ yay -S picgo-core
 ```
 
 ## content
@@ -223,6 +226,16 @@ Install pylint using the pip tool, and then you can use pylint.
 You can configure pylint diagnostics in [pylint.conf](./lint/pylint.conf).
 
 If you don't want to use pylint or any other lint, you should disable the nvim-lint plugin. set in [plugins.lua](./lua/core/plugins.lua) .
+
+## upload picture
+
+For markdown users, it is very common to upload images to a certain image bed.
+
+With the [askfiy/nvim-picgo](https://github.com/askfiy/nvim-picgo) plugin, you can upload images to various image beds.
+
+For specific usage, please refer to its documentation.
+
+The shortcut keys here are `<leader>uc` and `<leader>up`
 
 ## enable copilot
 
