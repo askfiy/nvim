@@ -165,7 +165,7 @@ local packer_install_plugins = {
     -------------
     -- complete -
     -------------
-    ["askfiy/friendly-snippets"] = {
+    ["rafamadriz/friendly-snippets"] = {
         load_file = false,
         disable = false,
         event = {"InsertEnter", "CmdlineEnter"},
