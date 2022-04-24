@@ -68,6 +68,10 @@ mapping.global = {
             "noremap|silent|expr"
         }
     },
+    nvim_picgo = {
+        {{"n"}, "<leader>uc", "<cmd>lua require'nvim-picgo'.upload_clipboard()<cr>", "noremap|silent"},
+        {{"n"}, "<leader>uf", "<cmd>lua require'nvim-picgo'.upload_imagefile()<cr>", "noremap|silent"}
+    },
     nvim_tree = {
         {{"n"}, "<leader>1", "<cmd>NvimTreeToggle<cr>", "noremap|silent"},
         {{"n"}, "<leader>fc", "<cmd>NvimTreeFindFile<cr>", "noremap|silent"}

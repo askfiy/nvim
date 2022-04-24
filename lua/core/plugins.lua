@@ -336,6 +336,12 @@ local packer_install_plugins = {
     -------------
     -- function -
     -------------
+    ["askfiy/nvim-picgo"] = {
+        load_file = true,
+        disable = false,
+        module = "nvim-picgo",
+        after = {"impatient.nvim"}
+    },
     ["Pocco81/AutoSave.nvim"] = {
         load_file = true,
         disable = false,

@@ -153,11 +153,11 @@ cmp.setup(
         sorting = {
             priority_weight = 2,
             comparators = {
+                under_compare,
                 cmp.config.compare.offset,
                 cmp.config.compare.exact,
                 cmp.config.compare.score,
                 cmp.config.compare.length,
-                under_compare,
                 cmp.config.compare.recently_used,
                 cmp.config.compare.locality,
                 cmp.config.compare.kind,

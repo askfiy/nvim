@@ -10,7 +10,7 @@ local notify_opts = {
     -- • static
     stages = "fade",
     -- default: 5000
-    timeout = 2000
+    timeout = 1000
 }
 
 if options.transparency_background then
