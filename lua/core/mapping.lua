@@ -68,6 +68,9 @@ mapping.global = {
             "noremap|silent|expr"
         }
     },
+    nvim_window_picker = {
+        {{"n"}, "<c-w>w", " <cmd>lua require('window-picker').goto_window()<cr>", "noremap|silent"}
+    },
     nvim_picgo = {
         {{"n"}, "<leader>uc", "<cmd>lua require'nvim-picgo'.upload_clipboard()<cr>", "noremap|silent"},
         {{"n"}, "<leader>uf", "<cmd>lua require'nvim-picgo'.upload_imagefile()<cr>", "noremap|silent"}
@@ -153,9 +156,9 @@ mapping.global = {
         {{"n", "x"}, "<leader>ter", ":Translate EN -source=ZH -output=replace<cr>", "noremap|silent"},
         {{"n", "x"}, "<leader>tef", ":Translate EN -source=ZH -output=floating<cr>", "noremap|silent"},
         {{"n", "x"}, "<leader>tei", ":Translate EN -source=ZH -output=insert<cr>", "noremap|silent"},
-        {{"n"}, "<leader>tcS", ":Translate ZH -source=EN -output=floating -comment<cr>", "noremap|silent"},
+        {{"n"}, "<leader>tcF", ":Translate ZH -source=EN -output=floating -comment<cr>", "noremap|silent"},
         {{"n"}, "<leader>tcR", ":Translate ZH -source=EN -output=replace -comment<cr>", "noremap|silent"},
-        {{"n"}, "<leader>teS", ":Translate EN -source=ZH -output=floating -comment<cr>", "noremap|silent"},
+        {{"n"}, "<leader>teF", ":Translate EN -source=ZH -output=floating -comment<cr>", "noremap|silent"},
         {{"n"}, "<leader>teR", ":Translate EN -source=ZH -output=replace -comment<cr>", "noremap|silent"},
     },
     packer = {

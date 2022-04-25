@@ -53,18 +53,6 @@ local packer_install_plugins = {
         after = {"impatient.nvim"},
         event = {"BufRead", "BufNewFile"}
     },
-    ["BurntSushi/ripgrep"] = {
-        load_file = false,
-        disable = false,
-        after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
-    },
-    ["sharkdp/fd"] = {
-        load_file = false,
-        disable = false,
-        after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
-    },
     ["petertriho/nvim-scrollbar"] = {
         load_file = true,
         disable = false,
@@ -76,12 +64,12 @@ local packer_install_plugins = {
     ["catppuccin/nvim"] = {
         as = "catppuccin",
         load_file = true,
-        disable = false,
+        disable = true,
         after = {"nvim-scrollbar"}
     },
     ["Mofiqul/vscode.nvim"] = {
         load_file = true,
-        disable = true,
+        disable = false,
         after = {"nvim-scrollbar"}
     },
     ["RRethy/vim-illuminate"] = {
@@ -342,11 +330,11 @@ local packer_install_plugins = {
         module = "nvim-picgo",
         after = {"impatient.nvim"}
     },
-    ["declancm/cinnamon.nvim"] = {
-        load_file = false,
+    ["s1n7ax/nvim-window-picker"] = {
+        load_file = true,
         disable = false,
         after = {"impatient.nvim"},
-        event = {"BufRead", "BufNewFile"}
+        module = "window-picker"
     },
     ["Pocco81/AutoSave.nvim"] = {
         load_file = true,
@@ -375,7 +363,7 @@ local packer_install_plugins = {
     ["nvim-telescope/telescope.nvim"] = {
         load_file = true,
         module = "telescope",
-        after = {"fd", "ripgrep", "nvim-web-devicons"}
+        after = {"nvim-web-devicons"}
     },
     ["AckslD/nvim-neoclip.lua"] = {
         load_file = true,
@@ -385,7 +373,7 @@ local packer_install_plugins = {
     ["nvim-pack/nvim-spectre"] = {
         load_file = true,
         module = "spectre",
-        after = {"ripgrep", "plenary.nvim"}
+        after = {"plenary.nvim"}
     },
     ["akinsho/bufferline.nvim"] = {
         load_file = true,

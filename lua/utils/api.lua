@@ -50,4 +50,17 @@ function M.hi.set(name, opts)
     vim.cmd(command)
 end
 
+function M.hi.get(group, style)
+    local opts = {}
+    local output = vim.fn.execute("highlight " .. group)
+    local lines = vim.fn.trim(output)
+    for k, v in lines:gmatch("(%a+)=(#?%w+)") do
+        opts[k] = v
+    end
+    if style ~= "gui" then
+        return opts["gui" .. style]
+    end
+    return opts[style]
+end
+
 return M

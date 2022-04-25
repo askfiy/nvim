@@ -22,8 +22,8 @@ if vim.g.vscode_style == "dark" then
     local rainbow_level_2 = "#DA70BF"
     local rainbow_level_3 = "#87CEFA"
     local select_blue = "#094771"
-    local nvim_tree_bg = "#242526"
-    local status_line_nc_bg = "#252526"
+    local nvim_tree_bg = api.hi.get("NvimTreeNormal", "bg")
+    local status_line_nc_bg = api.hi.get("StatusLineNC", "bg")
 
     -- lsp_signature and translate
     if options.transparency_background then
