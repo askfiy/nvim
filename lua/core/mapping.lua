@@ -152,7 +152,9 @@ mapping.global = {
         {{"n", "x"}, "<leader>tes", ":Translate EN -source=ZH -output=split<cr>", "noremap|silent"},
         {{"n", "x"}, "<leader>ter", ":Translate EN -source=ZH -output=replace<cr>", "noremap|silent"},
         {{"n", "x"}, "<leader>tef", ":Translate EN -source=ZH -output=floating<cr>", "noremap|silent"},
-        {{"n", "x"}, "<leader>tei", ":Translate EN -source=ZH -output=insert<cr>", "noremap|silent"}
+        {{"n", "x"}, "<leader>tei", ":Translate EN -source=ZH -output=insert<cr>", "noremap|silent"},
+        {{"n"}, "<leader>tcc", ":Translate ZH -source=EN -comment<cr>", "noremap|silent"},
+        {{"n"}, "<leader>tec", ":Translate EN -source=ZH -comment<cr>", "noremap|silent"}
     },
     packer = {
         {{"n"}, "<leader>ps", "<cmd>PackerSync<cr>", "noremap|silent"},

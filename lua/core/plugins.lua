@@ -342,6 +342,12 @@ local packer_install_plugins = {
         module = "nvim-picgo",
         after = {"impatient.nvim"}
     },
+    ["declancm/cinnamon.nvim"] = {
+        load_file = false,
+        disable = false,
+        after = {"impatient.nvim"},
+        event = {"BufRead", "BufNewFile"}
+    },
     ["Pocco81/AutoSave.nvim"] = {
         load_file = true,
         disable = false,
