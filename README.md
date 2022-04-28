@@ -39,6 +39,7 @@
   - [Emment](#Emment)
   - [Motions](#Motions)
   - [Drawing](#Drawing)
+  - [Code-image](#Code-image)
   - [Copillot](#Copillot)
 
 </details>
@@ -790,7 +791,7 @@ Press `<leader>5` to open Venn, then try `<c-j/k/h/l>` to draw lines.
 
 Select an area with `<c-v>` and press `f` or `b` you will get a solid or hollow box.
 
-### Code image
+### Code-image
 
 Use `<leader>ci` in normal or visual mode to generate code screenshots, requires a network link.
 
