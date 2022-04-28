@@ -472,23 +472,17 @@ end)()
 
 local packer = require("packer")
 
-packer.init(
-    {
-        auto_clean = false
-    }
-)
-
 packer.startup(
     {
         function(use)
-            for name, opts in pairs(packer_install_plugins) do
-                local plugin = vim.tbl_extend("force", {name}, opts)
-                if opts.load_file then
+            for plugin_name, plugin_options in pairs(packer_install_plugins) do
+                local plugin = vim.tbl_extend("force", {plugin_name}, plugin_options)
+                if plugin_options.load_file then
                     local file_name
-                    if opts.as then
-                        file_name = opts.as
+                    if plugin_options.as then
+                        file_name = plugin_options.as
                     else
-                        file_name = string.match(name, "/([%w-_]+).?")
+                        file_name = string.match(plugin_name, "/([%w-_]+).?")
                     end
                     local require_path = api.path.join("configure", "plugins", file_name)
                     local config_path = api.path.join(vim.fn.stdpath("config"), "lua", require_path .. ".lua")
@@ -496,7 +490,7 @@ packer.startup(
                         plugin.config = "require('" .. require_path .. "')"
                     else
                         vim.notify(
-                            notices.packer.config_not_found.message(name, config_path),
+                            notices.packer.config_not_found.message(plugin_name, config_path),
                             notices.packer.config_not_found.level,
                             notices.packer.config_not_found.options
                         )

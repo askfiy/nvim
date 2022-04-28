@@ -32,7 +32,7 @@ local function open_expand()
 end
 
 local function close_expand()
-    vim.keymap.set({"t"}, mapping.plugin.toggleterm.exit_insert, "<c-\\><c-n>", {noremap = true, silent = true})
+    vim.keymap.set({"t"}, mapping.plugin.toggleterm.exit_insert, "<c-\\><c-n>", {silent = true})
 end
 
 -- create vertical term
@@ -58,7 +58,7 @@ local float_term =
                 {"t"},
                 mapping.plugin.toggleterm.float_exit_insert,
                 "<c-\\><c-n><cmd>close<cr>",
-                {noremap = true, silent = true, buffer = term.bufnr}
+                {silent = true, buffer = term.bufnr}
             )
         end,
         on_close = close_expand
@@ -82,7 +82,7 @@ local lazy_git =
                 {"i"},
                 mapping.plugin.toggleterm.lazy_git_exit_insert,
                 "<cmd>close<cr>",
-                {noremap = true, silent = true, buffer = term.bufnr}
+                {silent = true, buffer = term.bufnr}
             )
         end,
         on_close = close_expand
