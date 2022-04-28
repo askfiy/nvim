@@ -1,3 +1,5 @@
+-- https://github.com/microsoft/pyright
+
 local function filter(arr, func)
     local new_index = 1
     local size_orig = #arr
@@ -13,7 +15,6 @@ local function filter(arr, func)
 end
 
 local function filter_diagnostics(diagnostic)
-
     if diagnostic.message == '"kwargs" is not accessed' then
         return false
     end

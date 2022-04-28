@@ -69,7 +69,7 @@ mapping.global = {
         }
     },
     nvim_window_picker = {
-        {{"n"}, "<c-w>w", " <cmd>lua require('window-picker').goto_window()<cr>", "noremap|silent"}
+        {{"n"}, "<c-w>w", "<cmd>lua require('window-picker').goto_window()<cr>", "noremap|silent"}
     },
     nvim_picgo = {
         {{"n"}, "<leader>uc", "<cmd>lua require'nvim-picgo'.upload_clipboard()<cr>", "noremap|silent"},
@@ -89,7 +89,7 @@ mapping.global = {
         {"n", "<leader>5", "<cmd>lua require('venn').toggle_venn_mode()<cr>", "noremap|silent"}
     },
     todo_comments = {
-        {"n", "<leader>ft", "<cmd>TodoTelescope theme=dropdown<cr>", "noremap|silent"}
+        {"n", "<leader>fd", "<cmd>TodoTelescope theme=dropdown<cr>", "noremap|silent"}
     },
     neoformat = {
         {{"n"}, "<leader>cf", "<cmd>Neoformat<cr>", "noremap|silent"}
@@ -248,6 +248,12 @@ mapping.global = {
             {"n"},
             "<leader>fh",
             "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_dropdown({}))<cr>",
+            "noremap|silent"
+        },
+        {
+            {"n"},
+            "<leader>ft",
+            "<cmd>lua require('telescope.builtin').help_tags(require('telescope.themes').get_dropdown({}))<cr>",
             "noremap|silent"
         },
         {

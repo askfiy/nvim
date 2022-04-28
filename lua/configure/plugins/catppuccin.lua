@@ -82,9 +82,13 @@ if options.transparency_background then
     api.hi.set("HopNextKey1", {bg = "NONE"})
     api.hi.set("HopNextKey2", {bg = "NONE"})
     api.hi.set("HopUnmatched", {bg = "NONE"})
+    -- lspsaga background
+    api.hi.set("LspFloatWinNormal", {bg = "NONE"})
 else
     api.hi.set("NormalFloat", {bg = colors.black2})
     api.hi.set("FloatBorder", {bg = colors.black2})
+    -- lspsaga background
+    api.hi.set("LspFloatWinNormal", {bg = colors.black2})
 end
 
 --  bufferline
@@ -103,7 +107,6 @@ api.hi.set("FidgetTitle", {fg = colors.blue, gui = "bold"})
 api.hi.set("FidgetTask", {fg = colors.blue})
 
 -- lspsaga
-api.hi.set("LspFloatWinNormal", {bg = colors.black2})
 api.hi.set("LspSagaRenameBorder", {fg = colors.blue})
 api.hi.set("LspSagaHoverBorder", {fg = colors.blue})
 api.hi.set("LspSagaDocTruncateLine", {fg = colors.blue})

@@ -1,3 +1,5 @@
+-- https://github.com/artempyanykh/zeta-note
+
 local requires = require("configure.lsp.requires")
 
 return {

@@ -9,6 +9,7 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local servers = {
+    vimls = require("configure.lsp.vimls"),
     sumneko_lua = require("configure.lsp.sumneko_lua"),
     pyright = require("configure.lsp.pyright"),
     tsserver = require("configure.lsp.tsserver"),

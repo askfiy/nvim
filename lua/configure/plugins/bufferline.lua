@@ -6,8 +6,6 @@ local icons = require("utils.icons")
 local filter_bufname = {
     "translate",
     "repl",
-    "query",
-    "dev",
     "dbout"
 }
 

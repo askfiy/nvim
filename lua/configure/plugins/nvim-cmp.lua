@@ -88,6 +88,18 @@ cmp.setup(
                 {name = "vim-dadbod-completion"}
             }
         ),
+        window = {
+            completion = cmp.config.window.bordered(
+                {
+                    winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+                }
+            ),
+            documentation = cmp.config.window.bordered(
+                {
+                    winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+                }
+            )
+        },
         formatting = {
             format = lspkind.cmp_format(
                 {
