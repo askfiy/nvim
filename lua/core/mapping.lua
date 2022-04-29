@@ -158,10 +158,10 @@ mapping.global = {
         {{"n", "x"}, "<leader>ter", ":Translate EN -source=ZH -output=replace<cr>", "silent"},
         {{"n", "x"}, "<leader>tef", ":Translate EN -source=ZH -output=floating<cr>", "silent"},
         {{"n", "x"}, "<leader>tei", ":Translate EN -source=ZH -output=insert<cr>", "silent"},
-        {{"n"}, "<leader>tcF", ":Translate ZH -source=EN -output=floating -comment<cr>", "silent"},
-        {{"n"}, "<leader>tcR", ":Translate ZH -source=EN -output=replace -comment<cr>", "silent"},
-        {{"n"}, "<leader>teF", ":Translate EN -source=ZH -output=floating -comment<cr>", "silent"},
-        {{"n"}, "<leader>teR", ":Translate EN -source=ZH -output=replace -comment<cr>", "silent"}
+        {{"n"}, "<leader>tcb", ":Translate ZH -source=EN -output=floating -comment<cr>", "silent"},
+        {{"n"}, "<leader>teb", ":Translate EN -source=ZH -output=floating -comment<cr>", "silent"},
+        {{"n"}, "<leader>tcw", "viw:Translate ZH -source=EN -output=floating<cr>", "silent"},
+        {{"n"}, "<leader>tew", "viw:Translate EN -source=ZH -output=floating<cr>", "silent"},
     },
     packer = {
         {{"n"}, "<leader>ps", "<cmd>PackerSync<cr>", "silent"},
@@ -294,6 +294,14 @@ mapping.global = {
             "<cmd>lua require('telescope.builtin').command_history(require('telescope.themes').get_dropdown({}))<cr>",
             "silent"
         }
+    },
+    vim_visual_multi = {
+        {{"n"}, "<tab>", ":call b:VM_Selection.Global.change_mode(1)<cr>", "silent"},
+        {{"n"}, "<c-n>", ":call vm#commands#ctrln(v:count1)<cr>", "silent"},
+        {{"n"}, "<c-s>", ":call vm#commands#skip(0)<cr>", "silent"},
+        {{"n"}, "<c-p>", ":call vm#commands#skip(1)<cr>", "silent"},
+        {{"n"}, "<m-p>", ":call vm#commands#add_cursor_up(0, v:count1)<cr>", "silent"},
+        {{"n"}, "<m-n>", ":call vm#commands#add_cursor_down(0, v:count1)<cr>", "silent"}
     }
 }
 
@@ -411,14 +419,6 @@ mapping.plugin = {
         exit_insert = "<esc>",
         lazy_git_exit_insert = "q",
         float_exit_insert = "<esc>"
-    },
-    vim_visual_multi = {
-        {{"n"}, "<tab>", ":call b:VM_Selection.Global.change_mode(1)<cr>", "silent"},
-        {{"n"}, "<c-n>", ":call vm#commands#ctrln(v:count1)<cr>", "silent"},
-        {{"n"}, "<c-s>", ":call vm#commands#skip(0)<cr>", "silent"},
-        {{"n"}, "<c-p>", ":call vm#commands#skip(1)<cr>", "silent"},
-        {{"n"}, "<m-p>", ":call vm#commands#add_cursor_up(0, v:count1)<cr>", "silent"},
-        {{"n"}, "<m-n>", ":call vm#commands#add_cursor_down(0, v:count1)<cr>", "silent"}
     }
 }
 

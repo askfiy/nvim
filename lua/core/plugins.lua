@@ -470,6 +470,7 @@ Packer_bootstrap =
     end
 end)()
 
+-- Mirror: https://hub.fastgit.xyz/
 local packer = require("packer")
 
 packer.startup(
