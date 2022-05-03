@@ -93,12 +93,10 @@ require("bufferline").setup(
                 guibg = {attribute = "bg", highlight = "StatusLine"}
             },
             buffer_visible = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
             buffer_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "Normal"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -133,17 +131,14 @@ require("bufferline").setup(
             },
             -- How to distinguish styles after opening a file with the same name
             duplicate = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "StatusLine"}
             },
             duplicate_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
             duplicate_visible = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "StatusLineNC"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -182,7 +177,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             hint_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticHint"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -196,7 +190,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             hint_diagnostic_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticHint"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -211,7 +204,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             info_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -225,7 +217,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             info_diagnostic_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticInfo"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -240,7 +231,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             warning_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -255,7 +245,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             warning_diagnostic_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticWarn"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -270,7 +259,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             error_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticError"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
@@ -284,7 +272,6 @@ require("bufferline").setup(
                 guisp = {attribute = "bg", highlight = "StatusLine"}
             },
             error_diagnostic_selected = {
-                gui = "NONE",
                 guifg = {attribute = "fg", highlight = "DiagnosticError"},
                 guibg = {attribute = "bg", highlight = "Normal"}
             },
