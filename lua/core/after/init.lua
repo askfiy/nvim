@@ -1,9 +1,9 @@
 local options = require("core.options")
 
 vim.g.vsnip_filetypes = {
-    javascript = {"typescript"},
-    typescript = {"javascript"},
-    vue = {"javascript", "typescript"},
+	javascript = { "typescript" },
+	typescript = { "javascript" },
+	vue = { "javascript", "typescript" },
 }
 
 vim.g.vsnip_snippet_dir = options.code_snippet_directory
