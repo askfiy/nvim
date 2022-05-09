@@ -29,9 +29,12 @@ function M.load()
 		return
 	end
 
+	require("telescope").load_extension("persisted")
 	M.persisted = m
 	M.persisted.setup({
 		save_dir = path.join(vim.fn.stdpath("cache"), "sessions"),
+		command = "VimLeavePre",
+		autosave = true,
 	})
 end
 
@@ -55,13 +58,14 @@ function M.after()
 			end
 		end
 		if #wins == 1 then
-			vim.api.nvim_win_set_height(wins[1], 100)
+			local lines = tonumber(vim.fn.system("tput lines"))
+			vim.api.nvim_win_set_height(wins[1], lines * 2)
 		end
 	end, {})
 end
 
 function M.register_global_key()
-	mapping.register("global_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "<leader>sl",
@@ -82,6 +86,15 @@ function M.register_global_key()
 			rhs = "<cmd>SessionDelete<cr>",
 			options = { silent = true },
 			description = "Delete session",
+		},
+		{
+			mode = { "n" },
+			lhs = "<leader>fs",
+			rhs = function()
+				require("telescope").extensions.persisted.persisted()
+			end,
+			options = {silent = true},
+			description = "Find all session"
 		},
 	})
 end

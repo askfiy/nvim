@@ -23,7 +23,7 @@ end
 function M.after() end
 
 function M.register_global_key()
-	mapping.register("global_mappings", {
+	mapping.register({
 		{
 			mode = { "n", "v" },
 			lhs = "ss",

@@ -314,7 +314,7 @@ return {
 }
 ```
 
-Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-lsp-installer.lua]
+Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-lsp-installer.lua](./lua/configure/plugins/nv_nvim-lsp-installer.lua)
 
 ```
 local M = {
@@ -612,3 +612,8 @@ Select an area with `<c-v>` and press `f` or `b` you will get a solid or hollow 
 ### Copillot
 
 Use `<c-l>` to get copillot's suggestions in insert mode.
+
+### 1
+### 2
+
+### 3

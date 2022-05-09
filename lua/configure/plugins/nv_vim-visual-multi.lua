@@ -14,7 +14,7 @@ function M.entrance()
 end
 
 function M.register_global_key()
-	mapping.register("global_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "<tab>",

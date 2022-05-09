@@ -118,7 +118,7 @@ function M.attach_callbackfn(client, bufnr)
 end
 
 function M.register_buffer_key(bufnr)
-	mapping.register("buffer_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "<leader>ca",
@@ -168,9 +168,7 @@ function M.register_buffer_key(bufnr)
 		{
 			mode = { "n" },
 			lhs = "gr",
-			rhs = function()
-				require("telescope.builtin").lsp_references()
-			end,
+			rhs = "lua require('telescope.builtin').lsp_references()<cr>",
 			options = { silent = true, buffer = bufnr },
 			description = "Go to references",
 		},
@@ -208,12 +206,9 @@ function M.register_buffer_key(bufnr)
 				-- When the signature is visible, pressing <c-j> again will close the window
 				local wins = vim.api.nvim_list_wins()
 				for _, win_id in ipairs(wins) do
-					vim.pretty_print(vim.api.nvim_win_get_config(win_id))
-					---@diagnostic disable-next-line: undefined-field
-					local win_config = vim.api.nvim_win_get_config(win_id)
-					---@diagnostic disable-next-line: undefined-field
-					if win_config.relative ~= "" and win_config.width > 1 then
-						-- Note: The scroll bar is actually a floating window, its width is 1
+					local buf_id = vim.api.nvim_win_get_buf(win_id)
+					local ft = vim.api.nvim_buf_get_option(buf_id, "filetype")
+					if ft == "lsp-signature-help" then
 						vim.api.nvim_win_close(win_id, false)
 						return
 					end

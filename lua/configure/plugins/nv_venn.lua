@@ -4,7 +4,7 @@ local mapping = require("core.mapping")
 
 local M = {
 	notify = nil,
-	buffer_mappings = nil,
+	buffer_mappings = {},
 }
 
 function M.before()
@@ -42,29 +42,50 @@ function M.close_venn_notify()
 		render = "minimal",
 	})
 end
+
+function M.get_buffer_keymap() end
+
 function M.wrapper_command()
 	M.venn.toggle_venn_mode = function()
 		local venn_enable = vim.b.venn_enabled
 		if not venn_enable then
 			vim.b.venn_enabled = true
 			vim.wo.virtualedit = "all"
-			if not M.buffer_mappings then
-				M.buffer_mappings = vim.deepcopy(mapping.buffer_mappings)
-			end
+			M.cache_buffer_key()
 			M.register_buffer_key(0)
 			M.open_venn_notify()
 		else
 			vim.b.venn_enabled = false
 			vim.wo.virtualedit = ""
 			vim.cmd([[mapclear <buffer>]])
-			mapping.register("buffer_mappings", M.buffer_mappings)
+			M.remap_buffer_key()
 			M.close_venn_notify()
 		end
 	end
 end
 
+function M.cache_buffer_key()
+	for _, mode in ipairs({ "i", "v", "n" }) do
+		M.buffer_mappings = vim.tbl_extend("force", M.buffer_mappings, vim.api.nvim_buf_get_keymap(0, mode))
+	end
+	vim.tbl_filter(function(key_map)
+		return key_map.desc
+	end, M.buffer_mappings)
+end
+
+function M.remap_buffer_key()
+	vim.tbl_map(function(key_map)
+		vim.keymap.set(key_map.mode, key_map.lhs, key_map.rhs or key_map.callback, {
+			buffer = key_map.buffer,
+			desc = key_map.desc,
+			silent = key_map.silent,
+			expr = key_map.expr,
+		})
+	end, M.buffer_mappings)
+end
+
 function M.register_global_key()
-	mapping.register("global_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "<leader>5",
@@ -78,7 +99,7 @@ function M.register_global_key()
 end
 
 function M.register_buffer_key(bufnr)
-	mapping.register("buffer_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "<c-j>",

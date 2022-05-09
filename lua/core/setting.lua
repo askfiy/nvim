@@ -41,6 +41,7 @@ local settings = {
 		autoindent = true,
 		cmdheight = 1,
 		iskeyword = "@,48-57,_,192-255",
+		sessionoptions = "buffers,curdir,folds,winpos,winsize",
 		laststatus = 3,
 		fillchars = "vert:┃,horiz:━,verthoriz:╋,horizup:┻,horizdown:┳,vertleft:┫,vertright:┣",
 	},

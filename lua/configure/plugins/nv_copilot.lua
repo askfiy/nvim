@@ -10,7 +10,7 @@ function M.entrance()
 end
 
 function M.register_global_key()
-	mapping.register("buffer_mappings", {
+	mapping.register({
 		{
 			mode = { "i" },
 			lhs = "<c-l>",

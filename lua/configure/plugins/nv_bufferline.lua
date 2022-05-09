@@ -79,7 +79,7 @@ function M.load()
 end
 
 function M.after()
-	mapping.register("global_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "<c-q>",

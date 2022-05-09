@@ -57,7 +57,7 @@ end
 function M.after() end
 
 function M.register_buffer_key(bufnr)
-	mapping.register("buffer_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "[c",

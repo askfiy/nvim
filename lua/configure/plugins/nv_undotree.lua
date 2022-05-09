@@ -10,6 +10,7 @@ local M = {
 function M.entrance()
 	M.register_global_key()
 	if vim.fn.has("persistent_undo") then
+		---@diagnostic disable-next-line: missing-parameter
 		local target_path = vim.fn.expand(M.undotree_dir)
 		if not vim.fn.isdirectory(target_path) then
 			vim.fn.mkdir(target_path, "p", 0700)
@@ -20,7 +21,7 @@ function M.entrance()
 end
 
 function M.register_global_key()
-	mapping.register("buffer_mappings", {
+	mapping.register({
 		{
 			mode = { "n" },
 			lhs = "<leader>3",

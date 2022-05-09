@@ -1,7 +1,6 @@
 local options = require("core.options")
 local path = require("utils.api.path")
 
-
 local packer_install_tbl = {
 	--[[
 	=====================================
