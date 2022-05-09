@@ -1,37 +1,57 @@
-vim.o.encoding = "utf-8"
-vim.o.filetype = "plugin"
-vim.o.updatetime = 100
-vim.o.timeoutlen = 500
-vim.o.showcmd = true
-vim.o.hidden = true
-vim.o.termguicolors = true
-vim.o.cursorline = true
-vim.o.syntax = "enable"
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.scrolloff = 10
-vim.o.mouse = "a"
-vim.o.backup = false
-vim.o.swapfile = false
-vim.o.list = true
-vim.o.incsearch = true
-vim.o.hlsearch = true
-vim.o.wrapscan = true
-vim.o.showmatch = true
-vim.o.matchtime = 2 -- default 5
-vim.o.wildmenu = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.spell = true
-vim.o.spelllang = "en_us,cjk"
-vim.o.foldenable = true
-vim.o.foldmethod = "indent"
-vim.o.foldlevel = 100
-vim.w.foldcolumn = 0
-vim.o.linebreak = true
-vim.o.clipboard = "unnamedplus"
-vim.o.autoread = true
-vim.o.autoindent = true
-vim.o.cmdheight = 1
-vim.o.iskeyword = "@,48-57,_,192-255"
-vim.opt_local.formatoptions = vim.opt_local.formatoptions - {"c", "r", "o"}
+-- There are some settings, which are automatically configured in neovim
+-- you can view it with :h vim-differences
+
+local settings = {
+	w = {
+		foldcolumn = 0,
+	},
+	o = {
+		syntax = "enable",
+		background = "dark",
+		encoding = "utf-8",
+		signcolumn = "yes:1",
+		filetype = "plugin",
+		updatetime = 100,
+		timeoutlen = 500,
+		showcmd = true,
+		hidden = true,
+		termguicolors = true,
+		cursorline = true,
+		number = true,
+		relativenumber = true,
+		scrolloff = 21,
+		mouse = "a",
+		list = true,
+		incsearch = true,
+		hlsearch = true,
+		wrapscan = true,
+		showmatch = true,
+		spell = true,
+		spelllang = "en_us,cjk",
+		matchtime = 2,
+		wildmenu = true,
+		ignorecase = true,
+		smartcase = true,
+		foldenable = true,
+		foldmethod = "indent",
+		foldlevel = 100,
+		linebreak = true,
+		clipboard = "unnamedplus",
+		autoread = true,
+		autoindent = true,
+		cmdheight = 1,
+		iskeyword = "@,48-57,_,192-255",
+		laststatus = 3,
+		fillchars = "vert:┃,horiz:━,verthoriz:╋,horizup:┻,horizdown:┳,vertleft:┫,vertright:┣",
+	},
+}
+
+vim.opt_local.formatoptions = vim.opt_local.formatoptions - { "c", "r", "o" }
+
+for prefix, tab in pairs(settings) do
+	for key, value in pairs(tab) do
+		vim[prefix][key] = value
+	end
+end
+
+return settings

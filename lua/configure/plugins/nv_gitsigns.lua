@@ -1,0 +1,120 @@
+-- https://github.com/lewis6991/gitsigns.nvim
+
+local mapping = require("core.mapping")
+
+local M = {
+	-- default add and change text: │
+	add_symbol = "+",
+	change_symbol = "~",
+	delete_symbol = "-",
+	topdelte_symbol = "‾",
+	changedelete_symbol = "_",
+}
+
+function M.before() end
+
+function M.load()
+	local ok, m = pcall(require, "gitsigns")
+	if not ok then
+		return
+	end
+
+	M.gitsigns = m
+	M.gitsigns.setup({
+		on_attach = function(bufnr)
+			M.register_buffer_key(bufnr)
+		end,
+		signs = {
+			add = { hl = "GitSignsAdd", text = M.add_symbol, numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+			change = {
+				hl = "GitSignsChange",
+				text = M.change_symbol,
+				numhl = "GitSignsChangeNr",
+				linehl = "GitSignsChangeLn",
+			},
+			delete = {
+				hl = "GitSignsDelete",
+				text = M.delete_symbol,
+				numhl = "GitSignsDeleteNr",
+				linehl = "GitSignsDeleteLn",
+			},
+			topdelete = {
+				hl = "GitSignsDelete",
+				text = M.topdelte_symbol,
+				numhl = "GitSignsDeleteNr",
+				linehl = "GitSignsDeleteLn",
+			},
+			changedelete = {
+				hl = "GitSignsChange",
+				text = M.changedelete_symbol,
+				numhl = "GitSignsChangeNr",
+				linehl = "GitSignsChangeLn",
+			},
+		},
+	})
+end
+
+function M.after() end
+
+function M.register_buffer_key(bufnr)
+	mapping.register("buffer_mappings", {
+		{
+			mode = { "n" },
+			lhs = "[c",
+			rhs = "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<cr>'",
+			options = { silent = true, expr = true, buffer = bufnr },
+			description = "Jump to the prev hunk",
+		},
+		{
+			mode = { "n" },
+			lhs = "]c",
+			rhs = "&diff ? ']c' : '<cmd>Gitsigns next_hunk<cr>'",
+			options = { silent = true, expr = true, buffer = bufnr },
+			description = "Jump to the next hunk",
+		},
+		{
+			mode = { "n" },
+			lhs = "<leader>gl",
+			rhs = "<cmd>Gitsigns toggle_current_line_blame<cr>",
+			options = { silent = true, buffer = bufnr },
+			description = "Toggle current line blame",
+		},
+		{
+			mode = { "n" },
+			lhs = "<leader>gh",
+			rhs = "<cmd>lua require'gitsigns'.blame_line{full=true}<cr>",
+			options = { silent = true, buffer = bufnr },
+			description = "Show current block blame",
+		},
+		{
+			mode = { "n" },
+			lhs = "<leader>gd",
+			rhs = "<cmd>Gitsigns diffthis<cr>",
+			options = { silent = true, buffer = bufnr },
+			description = "Open deff view",
+		},
+		{
+			mode = { "n" },
+			lhs = "<leader>gD",
+			rhs = "<cmd>Gitsigns toggle_deleted<cr>",
+			options = { silent = true, buffer = bufnr },
+			description = "Show deleted lines",
+		},
+		{
+			mode = { "n", "v" },
+			lhs = "<leader>gr",
+			rhs = "<cmd>Gitsigns reset_hunk<cr>",
+			options = { silent = true, buffer = bufnr },
+			description = "Reset current hunk",
+		},
+		{
+			mode = { "n" },
+			lhs = "<leader>gR",
+			rhs = "<cmd>Gitsigns reset_buffer<cr>",
+			options = { silent = true, buffer = bufnr },
+			description = "Reset current buffer",
+		},
+	})
+end
+
+return M
