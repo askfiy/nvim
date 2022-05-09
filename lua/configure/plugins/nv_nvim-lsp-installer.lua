@@ -168,7 +168,9 @@ function M.register_buffer_key(bufnr)
 		{
 			mode = { "n" },
 			lhs = "gr",
-			rhs = "lua require('telescope.builtin').lsp_references()<cr>",
+			rhs = function()
+				require("telescope.builtin").lsp_references()
+			end,
 			options = { silent = true, buffer = bufnr },
 			description = "Go to references",
 		},
