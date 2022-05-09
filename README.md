@@ -40,6 +40,10 @@ Currently, it supports the following languages:
 - SQL
 - Markdown
 
+Please file a PR if you configure a new LSP or DAP.
+
+Also, any questions can be raised, it has just been refactored and some features have not been tested.
+
 ## Dependencies
 
 Basic dependencies:
@@ -62,6 +66,7 @@ Other dependencies:
 - [picgo-core](https://github.com/PicGo/PicGo-Core)
 - [mysql-client](https://www.percona.com/software/mysql-database/percona-server)
 - [sqlite3](https://www.sqlite.org/index.html)
+- [trash](https://formulae.brew.sh/formula/trash)
 
 You can quickly install all dependencies using the package manager (don't be afraid, many are optional):
 
@@ -69,10 +74,26 @@ You can quickly install all dependencies using the package manager (don't be afr
 -- use the system clipboard
 $ yay -S xsel
 
+-- parsing
+$ yay -S tree-sitter
+
 -- Fuzzy Finder
 $ yay -S fd
 $ yay -S sed
 $ yay -S ripgrep
+
+-- * neovim rely
+$ npm install -g neovim
+$ pip3 install neovim
+
+-- * Python diagnostics
+$ pip3 install pylint
+
+-- * If you use pylint to diagnose Django code, you should install it
+$ pip3 install pylint-django
+
+-- * If you use Pyrigth to diagnose Django code, you should install it (Disabled by default)
+$ pip3 install django-stubs
 
 -- * Code format
 $ yay -S stylua
@@ -81,29 +102,16 @@ $ npm install -g gofmt
 $ pip3 install autopep8
 $ pip3 install sqlformat
 
--- parsing
-$ yay -S tree-sitter
-
 -- * Golang debug
 $ yay -S delve
 
 -- * Python debug
 $ python3 -m pip install debugpy
 
--- * Python diagnostics
-$ pip3 install pylint
-
--- * If you use Pyrigth to diagnose Django code, you should install it
-$ pip3 install django-stubs
-
--- * neovim rely
-$ npm install -g neovim
-$ pip3 install neovim
-
 -- * Lazygit
 $ yay -S lazygit
 
--- * Translate
+-- * Translate (you can also use Google or Deepl source, if you do you must install curl)
 $ yay -S translate-shell
 
 -- * Markdown preview
@@ -122,6 +130,9 @@ $ yay -S percona-server-clients
 
 -- * Persistent save history yank records
 $ yay -S sqllit3
+
+-- * Command-line tool to put files into recycle bin
+$ yay -S trash
 ```
 
 ## How do use
@@ -612,8 +623,3 @@ Select an area with `<c-v>` and press `f` or `b` you will get a solid or hollow 
 ### Copillot
 
 Use `<c-l>` to get copillot's suggestions in insert mode.
-
-### 1
-### 2
-
-### 3

@@ -29,6 +29,7 @@ function M.global_highlights()
 	local highlights = {
 		-- telescope
 		["TelescopeMatching"] = { fg = colors.blue, gui = "bold" },
+		-- ["TelescopeSelection "] = { fg = colors.black0, bg = colors.green, gui = "NONE" },
 
 		-- fidget
 		["FidgetTitle"] = { fg = colors.blue, gui = "bold" },

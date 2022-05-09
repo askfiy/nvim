@@ -22,7 +22,12 @@ function M.load()
 			M.null_ls.builtins.formatting.autopep8,
 			M.null_ls.builtins.formatting.sqlformat,
 			M.null_ls.builtins.diagnostics.pylint.with({
-				extra_args = { "-f", "json", "--rcfile=" .. path.join(options.nvim_lint_dir, "pylint.conf") },
+				extra_args = {
+					"-f",
+					"json",
+					"--load-plugins=pylint_django",
+					"--rcfile=" .. path.join(options.nvim_lint_dir, "pylint.conf"),
+				},
 			}),
 		},
 	})
