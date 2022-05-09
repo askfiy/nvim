@@ -59,7 +59,7 @@ function M.register_global_key()
 			lhs = "<leader>de",
 			rhs = function()
 				---@diagnostic disable-next-line: missing-parameter
-				require("dapui").eval()
+				require("dapui").eval(vim.fn.input("Enter debug expression : "))
 			end,
 			options = { silent = true },
 			description = "Execute debug expressions",
