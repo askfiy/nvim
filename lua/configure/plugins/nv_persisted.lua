@@ -29,13 +29,13 @@ function M.load()
 		return
 	end
 
-	require("telescope").load_extension("persisted")
 	M.persisted = m
 	M.persisted.setup({
 		save_dir = path.join(vim.fn.stdpath("cache"), "sessions"),
 		command = "VimLeavePre",
 		autosave = true,
 	})
+	require("telescope").load_extension("persisted")
 end
 
 function M.after()
