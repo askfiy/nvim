@@ -7,6 +7,7 @@ local M = {}
 
 function M.before()
 	M.register_global_key()
+
 	vim.g.nvim_tree_add_trailing = 1
 
 	vim.g.nvim_tree_icons = {

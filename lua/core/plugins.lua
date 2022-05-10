@@ -22,11 +22,9 @@ local packer_install_tbl = {
 		after = { "impatient.nvim" },
 	},
 	["rcarriga/nvim-notify"] = { -- fancy notification message
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["lewis6991/gitsigns.nvim"] = { -- git commit sign
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	--[[
@@ -36,7 +34,6 @@ local packer_install_tbl = {
 	--]]
 	["catppuccin/nvim"] = { -- dark purple theme
 		as = "catppuccin",
-		after = { "impatient.nvim" },
 		cond = options.colorscheme == "catppuccin",
 	},
 	--[[
@@ -48,25 +45,20 @@ local packer_install_tbl = {
 		after = { "nvim-web-devicons", "gitsigns.nvim" },
 	},
 	["famiu/bufdelete.nvim"] = { -- preserve buffer layout when buffers are deleted
-		after = { "impatient.nvim" },
 		cmd = { "Bdelete" },
 	},
 	["kyazdani42/nvim-tree.lua"] = { -- file tree view
-		after = { "nvim-web-devicons" },
 		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
 	},
 	["mbbill/undotree"] = { -- undo tree
 		ptp = "viml",
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["akinsho/bufferline.nvim"] = { -- buffer label
-		after = { "nvim-web-devicons" },
 		event = { "BufEnter" },
 	},
 
 	["folke/which-key.nvim"] = { -- keybinder
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	--[[
@@ -75,7 +67,6 @@ local packer_install_tbl = {
 	=====================================
 	--]]
 	["neovim/nvim-lspconfig"] = { -- Basic LSP configuration support
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["hrsh7th/cmp-nvim-lsp"] = { -- Enhance neovim completion
@@ -107,7 +98,7 @@ local packer_install_tbl = {
 	=====================================
 	--]]
 	["rafamadriz/friendly-snippets"] = { -- provide rich snippet support
-		after = { "impatient.nvim", "cmp-nvim-lsp" },
+		after = { "cmp-nvim-lsp" },
 		event = { "InsertEnter", "CmdlineEnter" },
 	},
 	["hrsh7th/vim-vsnip"] = { -- provide snippet support for nvim-cmp
@@ -141,7 +132,6 @@ local packer_install_tbl = {
 	["github/copilot.vim"] = { -- AI smart completion
 		disable = true,
 		ptp = "viml",
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	--[[
@@ -150,7 +140,6 @@ local packer_install_tbl = {
 	=====================================
 	--]]
 	["mfussenegger/nvim-dap"] = { -- provide code debugging
-		after = { "impatient.nvim" },
 		module = "dap",
 	},
 	["theHamsta/nvim-dap-virtual-text"] = { -- provide dummy text for debugging
@@ -166,13 +155,11 @@ local packer_install_tbl = {
 	--]]
 	["tpope/vim-dadbod"] = { -- core tool for linking databases
 		ptp = "viml",
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["kristijanhusak/vim-dadbod-ui"] = { -- quick link database
 		ptp = "viml",
 		cmd = "DBUIToggle",
-		after = { "vim-dadbod" },
 	},
 	--[[
 	=====================================
@@ -180,36 +167,28 @@ local packer_install_tbl = {
 	=====================================
 	--]]
 	["windwp/nvim-autopairs"] = { -- autocomplete parentheses
-		after = { "impatient.nvim" },
 		event = { "InsertEnter" },
 	},
 	["norcalli/nvim-colorizer.lua"] = { -- view code color
 		event = { "BufReadPre" },
-		after = { "impatient.nvim" },
 	},
 	["RRethy/vim-illuminate"] = { -- highlight the same word under the cursor
 		ptp = "viml",
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["lukas-reineke/indent-blankline.nvim"] = { -- highlight indent
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["p00f/nvim-ts-rainbow"] = { -- rainbow brackets
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["JoosepAlviste/nvim-ts-context-commentstring"] = { -- Provides context-based commenting behavior for Comment
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["lewis6991/spellsitter.nvim"] = { -- highlight spelling errors
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["windwp/nvim-ts-autotag"] = { -- autocomplete tags
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["nvim-treesitter/nvim-treesitter"] = { -- syntax tree plugin
@@ -221,7 +200,6 @@ local packer_install_tbl = {
 	},
 	["tpope/vim-repeat"] = { -- repeat the modified surround operation of surround
 		ptp = "viml",
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["ur4ltz/surround.nvim"] = { -- modify surround
@@ -229,12 +207,10 @@ local packer_install_tbl = {
 	},
 	["folke/todo-comments.nvim"] = { -- highlight and find all TODO comments
 		event = { "BufRead", "BufNewFile" },
-		after = { "impatient.nvim" },
 	},
 	["AndrewRadev/switch.vim"] = { -- quickly switch the opposite of the word
 		ptp = "viml",
 		cmd = "Switch",
-		after = { "impatient.nvim" },
 	},
 
 	["Vimjas/vim-python-pep8-indent"] = { -- Python indentation rules
@@ -254,7 +230,6 @@ local packer_install_tbl = {
 	--]]
 	["nvim-telescope/telescope.nvim"] = { -- fuzzy lookup tool
 		module = "telescope",
-		after = { "plenary.nvim" },
 	},
 	["tami5/sqlite.lua"] = { -- persistent storage history yank records
 		after = { "impatient.nvim" },
@@ -264,7 +239,6 @@ local packer_install_tbl = {
 	},
 	["nvim-pack/nvim-spectre"] = { -- Text replacement and retrieval tool for all items
 		module = "spectre",
-		after = { "plenary.nvim" },
 	},
 	--[[
 	=====================================
@@ -273,13 +247,11 @@ local packer_install_tbl = {
 	--]]
 	["phaazon/hop.nvim"] = { -- quick jump to any location
 		module = "hop",
-		after = { "impatient.nvim" },
 		cmd = { "HopWord", "HopLine", "HopChar1", "HopChar1CurrentLine" },
 	},
 	["kevinhwang91/nvim-hlslens"] = { -- Enhanced / query experience
 		module = "hlslens",
 		event = { "CmdlineEnter" },
-		after = { "impatient.nvim" },
 	},
 	["davidgranstrom/nvim-markdown-preview"] = { -- markdown preview tool
 		ptp = "viml",
@@ -288,21 +260,17 @@ local packer_install_tbl = {
 	},
 	["askfiy/nvim-picgo"] = { -- image uploader
 		module = "nvim-picgo",
-		after = { "impatient.nvim" },
 	},
 	["mg979/vim-visual-multi"] = { -- multi-cursor mode
 		ptp = "viml",
 		event = { "CursorMoved" },
-		after = { "impatient.nvim" },
 	},
 	["jbyuki/venn.nvim"] = { -- an excellent drawing tool
 		module = "venn",
-		after = { "impatient.nvim" },
 	},
 	["kristijanhusak/vim-carbon-now-sh"] = { -- carbon-based code screenshot tool (requires internet connection)
 		ptp = "viml",
 		cmd = { "CarbonNowSh" },
-		after = { "impatient.nvim" },
 	},
 	--[[
 	=====================================
@@ -314,32 +282,25 @@ local packer_install_tbl = {
 	},
 	["yianwillis/vimcdoc"] = { -- vim Chinese documentation
 		ptp = "viml",
-		after = { "impatient.nvim" },
 	},
 	["dstein64/vim-startuptime"] = { -- query startup time
 		ptp = "viml",
-		after = { "impatient.nvim" },
 		cmd = { "StartupTime" },
 	},
 	["vladdoster/remember.nvim"] = { -- restore file cursor position
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["dstein64/nvim-scrollview"] = { -- draggable scrollbar
-		after = { "impatient.nvim" },
 		event = { "BufRead", "BufNewFile" },
 	},
 	["akinsho/toggleterm.nvim"] = { -- Beautify neovim default terminal
 		module = "toggleterm",
-		after = { "impatient.nvim" },
 	},
 	["uga-rosa/translate.nvim"] = { -- an excellent translation plugin
 		cmd = { "Translate" },
-		after = { "impatient.nvim" },
 	},
 	["jghauser/mkdir.nvim"] = {
 		event = "CmdlineEnter",
-		after = { "impatient.nvim" },
 	},
 }
 

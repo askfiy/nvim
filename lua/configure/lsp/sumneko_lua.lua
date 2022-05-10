@@ -1,5 +1,7 @@
 -- https://github.com/sumneko/lua-language-server
 
+local lua_dev = require("lua-dev")
+
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -12,7 +14,8 @@ return {
 			client.resolved_capabilities.document_formatting = false
 		end,
 	},
-	options = {
+
+	options = vim.tbl_extend("force", {
 		-- cmd = { "lua-language-server", "--locale=zh-CN" },
 		cmd = { "lua-language-server" },
 		filetypes = { "lua" },
@@ -37,5 +40,5 @@ return {
 				},
 			},
 		},
-	},
+	}, lua_dev),
 }

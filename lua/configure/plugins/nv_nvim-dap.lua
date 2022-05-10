@@ -5,13 +5,15 @@
 
 local mapping = require("core.mapping")
 
-local M = {
-	dubug_adapter_config = {
+local M = {}
+
+function M.load_dap_config()
+	M.dubug_adapter_config = {
 		go = require("configure.dap.go"),
 		python = require("configure.dap.python"),
 		dotnet = require("configure.dap.dotnet"),
-	},
-}
+	}
+end
 
 function M.before()
 	M.register_global_key()
@@ -24,6 +26,7 @@ function M.load()
 	end
 
 	M.dap = m
+	M.load_dap_config()
 end
 
 function M.after()

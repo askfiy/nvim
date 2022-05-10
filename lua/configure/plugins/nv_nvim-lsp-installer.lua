@@ -4,8 +4,10 @@ local icons = require("utils.icons")
 local mapping = require("core.mapping")
 local vim_lsp_handers = require("vim.lsp.handlers")
 
-local M = {
-	language_servers_config = {
+local M = {}
+
+function M.load_lsp_config()
+	M.language_servers_config = {
 		-- ltex = require("configure.lsp.ltex"),
 		vimls = require("configure.lsp.vimls"),
 		sumneko_lua = require("configure.lsp.sumneko_lua"),
@@ -17,32 +19,34 @@ local M = {
 		vuels = require("configure.lsp.vuels"),
 		gopls = require("configure.lsp.gopls"),
 		pyright = require("configure.lsp.pyright"),
-	},
-}
-
-function M.before()
-	M.lsp_float_settings()
-	M.diagnostics_settings()
+	}
 end
 
+function M.before() end
+
 function M.load()
-	local ok, m = pcall(require, "nvim-lsp-installer.servers")
+	local ok, m = pcall(require, "nvim-lsp-installer")
 	if not ok then
 		return
 	end
 
-	M.nvim_lsp_installer_servers = m
+	M.lsp_float_settings()
+	M.diagnostics_settings()
+	M.load_lsp_config()
+
+	M.nvim_lsp_installer = m
+	M.lspconfig = require("lspconfig")
 	M.aerial = require("aerial")
-	M.lua_dev = require("lua-dev")
 	M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 	M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+	M.nvim_lsp_installer.setup()
 end
 
 function M.after()
 	for server_name, server_settings in pairs(M.language_servers_config) do
 		local server_options = server_settings.options
 		local server_hooks = server_settings.hooks
-		local server_available, server = M.nvim_lsp_installer_servers.get_server(server_name)
+		local server_available, server = M.nvim_lsp_installer.get_server(server_name)
 		if server_available then
 			---@diagnostic disable-next-line: undefined-field
 			if not server:is_installed() then
@@ -50,9 +54,6 @@ function M.after()
 				---@diagnostic disable-next-line: undefined-field
 				server:install()
 			else
-				if server_name == "sumneko_lua" then
-					server_options = vim.tbl_deep_extend("force", M.lua_dev.setup(), server_options)
-				end
 				server_options.capabilities = M.capabilities
 				server_options.on_attach = function(client, bufnr)
 					M.attach_callbackfn(client, bufnr)
@@ -60,8 +61,7 @@ function M.after()
 				end
 				server_options.flags = { debounce_text_changes = 150 }
 				server_options.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, server_options.handlers or {})
-				---@diagnostic disable-next-line: undefined-field
-				server:setup(server_options)
+				M.lspconfig[server_name].setup(server_options)
 			end
 		end
 	end
