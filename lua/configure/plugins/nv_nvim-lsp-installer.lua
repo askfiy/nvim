@@ -142,10 +142,12 @@ function M.register_buffer_key(bufnr)
 		},
 		{
 			mode = { "n" },
-			lhs = "gh",
-			rhs = vim.lsp.buf.hover,
+			lhs = "gI",
+			rhs = function()
+				require("telescope.builtin").lsp_implementations()
+			end,
 			options = { silent = true, buffer = bufnr },
-			description = "Show help information",
+			description = "Go to implementations",
 		},
 		{
 			mode = { "n" },
@@ -173,6 +175,13 @@ function M.register_buffer_key(bufnr)
 			end,
 			options = { silent = true, buffer = bufnr },
 			description = "Go to references",
+		},
+		{
+			mode = { "n" },
+			lhs = "gh",
+			rhs = vim.lsp.buf.hover,
+			options = { silent = true, buffer = bufnr },
+			description = "Show help information",
 		},
 		{
 			mode = { "n" },

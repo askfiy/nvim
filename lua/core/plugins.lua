@@ -363,9 +363,18 @@ Packer_bootstrap = (function()
 	end
 end)()
 
--- For Chinese users, if the download is slow, you can switch to the github mirror source
--- Mirror: https://hub.fastgit.xyz/
 local packer = require("packer")
+
+packer.init({
+	git = {
+		-- For Chinese users, if the download is slow, you can switch to the github mirror source
+		-- replace : https://hub.fastgit.xyz/%s
+		default_url_format = "https://github.com/%s",
+	},
+	display = {
+		prompt_border = "rounded",
+	},
+})
 
 packer.startup({
 	function(use)

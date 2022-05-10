@@ -26,6 +26,7 @@ function M.load()
 					"-f",
 					"json",
 					"--load-plugins=pylint_django",
+					"--disable=django-not-configured",
 					"--rcfile=" .. path.join(options.nvim_lint_dir, "pylint.conf"),
 				},
 			}),

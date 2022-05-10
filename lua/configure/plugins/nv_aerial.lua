@@ -5,14 +5,10 @@ local options = require("core.options")
 local mapping = require("core.mapping")
 
 local M = {
-	aerial_icons = {},
+	aerial_icons = icons[options.icons_style],
 }
 
-function M.before()
-	for kind, icon in pairs(icons[options.icons_style]) do
-		M.aerial_icons[kind] = icon:sub(1, #icon - 1)
-	end
-end
+function M.before() end
 
 function M.load()
 	local ok, m = pcall(require, "aerial")
@@ -23,8 +19,8 @@ function M.load()
 	M.aerial = m
 	M.aerial.setup({
 		min_width = 30,
-		-- backends = { "lsp", "treesitter", "markdown" },
-		backends = { "treesitter", "markdown" },
+		backends = { "lsp", "treesitter", "markdown" },
+		-- backends = { "treesitter", "markdown" },
 		-- show all icons
 		filter_kind = false,
 		-- auto use lspkind-nvim or nvim-web-devicons
@@ -41,6 +37,18 @@ function M.load()
 			nested_top = "│ ",
 			-- Raw indentation
 			whitespace = "  ",
+		},
+		lsp = {
+			-- Fetch document symbols when LSP diagnostics update.
+			-- If false, will update on buffer changes.
+			diagnostics_trigger_update = false,
+
+			-- Set to false to not update the symbols when there are LSP errors
+			update_when_errors = true,
+
+			-- How long to wait (in ms) after a buffer change before updating
+			-- Only used when diagnostics_trigger_update = false
+			update_delay = 300,
 		},
 		update_events = "TextChanged,InsertLeave",
 		on_attach = function(bufnr)

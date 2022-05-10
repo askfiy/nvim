@@ -93,8 +93,8 @@ function M.register_global_key()
 			rhs = function()
 				require("telescope").extensions.persisted.persisted()
 			end,
-			options = {silent = true},
-			description = "Find all session"
+			options = { silent = true },
+			description = "Find all session",
 		},
 	})
 end
