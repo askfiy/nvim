@@ -371,9 +371,6 @@ packer.init({
 		-- replace : https://hub.fastgit.xyz/%s
 		default_url_format = "https://github.com/%s",
 	},
-	display = {
-		prompt_border = "rounded",
-	},
 })
 
 packer.startup({
