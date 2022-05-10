@@ -2,6 +2,7 @@ local path = require("utils.api.path")
 
 local function load_html_snippets()
 	local root_dir = vim.fn.getcwd()
+	---@diagnostic disable-next-line: missing-parameter
 	local dir_name = vim.fn.expand("%:p:h:t")
 	-- load django template snippets
 	if dir_name == "templates" and path.is_exists(path.join(root_dir, "manage.py")) then

@@ -337,6 +337,10 @@ local packer_install_tbl = {
 		cmd = { "Translate" },
 		after = { "impatient.nvim" },
 	},
+	["jghauser/mkdir.nvim"] = {
+		event = "CmdlineEnter",
+		after = { "impatient.nvim" },
+	},
 }
 
 Packer_bootstrap = (function()

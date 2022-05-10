@@ -6,9 +6,9 @@ local vim_lsp_handers = require("vim.lsp.handlers")
 
 local M = {
 	language_servers_config = {
+		-- ltex = require("configure.lsp.ltex"),
 		vimls = require("configure.lsp.vimls"),
 		sumneko_lua = require("configure.lsp.sumneko_lua"),
-		-- ltex = require("configure.lsp.ltex"),
 		jsonls = require("configure.lsp.jsonls"),
 		tailwindcss = require("configure.lsp.tailwindcss"),
 		html = require("configure.lsp.html"),
