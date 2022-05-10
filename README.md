@@ -228,12 +228,12 @@ LSPInstallInfo: View LSP download status
 [Tabnine](https://github.com/tzachar/cmp-tabnine) is disabled for performance reasons, you can search for Tabnine in the [lua/core/plugins.lua](./lua/core/plugins.lua) file and open it.
 
 ```
-	["tzachar/cmp-tabnine"] = { -- AI smart completion (it may affect performance)
-        -- comment the line below
-		disable = true,
-		run = "./install.sh",
-		after = { "nvim-cmp" },
-	},
+["tzachar/cmp-tabnine"] = { -- AI smart completion (it may affect performance)
+    -- comment the line below
+    disable = true,
+    run = "./install.sh",
+    after = { "nvim-cmp" },
+},
 ```
 
 Enter `:PackerSync` to install the plugin. After the installation is complete, an error may occur. You need to execute the following command:
@@ -288,13 +288,13 @@ local M = {}
 function M.before() end
 
 function M.load()
-	local ok, m = pcall(require, "m")
-	if not ok then
-		return
-	end
+    local ok, m = pcall(require, "m")
+    if not ok then
+        return
+    end
 
-	M.m = m
-	M.m.setup({config})
+    M.m = m
+    M.m.setup({config})
 end
 
 function M.after() end
@@ -312,26 +312,24 @@ The configuration file template is as follows:
 
 ```
 return {
-	hooks = {
-		---@diagnostic disable-next-line: unused-local
-		attach = function(client, bufnr)
+    hooks = {
+        ---@diagnostic disable-next-line: unused-local
+        attach = function(client, bufnr)
             -- This is required, you don't have to write anything.
             -- Here you can do things that only target the current LSP server when you need it
-		end,
-	},
-	options = {
+        end,
+    },
+    options = {
         -- LSP configuration goes here
-	},
+    },
 }
 ```
 
 Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-lsp-installer.lua](./lua/configure/plugins/nv_nvim-lsp-installer.lua)
 
 ```
-local M = {
-	language_servers_config = {
-		lsp_name = require("configure.lsp.your_lsp_config_file_name"),
-	},
+M.language_servers_config = {
+    lsp_name = require("configure.lsp.your_lsp_config_file_name")
 }
 ```
 
@@ -343,29 +341,27 @@ The configuration file template is as follows:
 
 ```
 return {
-	names = {
-        -- Some debuggers have different names for adapters and configurations
-        -- so you have to specify it here, it's required
-		adapters = "adapters_name",
-		configurations = "configurations_name",
-	},
-	adapters = {
+    names = {
+            -- Some debuggers have different names for adapters and configurations
+            -- so you have to specify it here, it's required
+            adapters = "adapters_name",
+            configurations = "configurations_name",
+        },
+    adapters = {
         ...
-	},
-	configurations = {
+    },
+    configurations = {
         ...
-	},
+    },
 }
 ```
 
 Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-dap.lua](lua/configure/plugins/nv_nvim-dap.lua)
 
 ```
-local M = {
-	dubug_adapter_config = {
-		...
-		arbitrary_name = require("configure.dap.your_dap_config_file_name"),
-	},
+M.dubug_adapter_config = {
+    ...
+    arbitrary_name = require("configure.dap.your_dap_config_file_name"),
 }
 ```
 
@@ -377,17 +373,40 @@ The default `leader` is `space`, you can check the [lua/core/mapping.lua](./lua/
 
 Some vim or neovim default keys have been replaced, namely:
 
-- `normal <c-u>` : now it will move up 10 lines instead of half the display area
-- `normal <c-d>` : now it will move down 10 lines instead of half the display area
-- `normal <c-e>` : now it will move the current buffer to the left instead of scrolling up a line
-- `normal <c-y>` : now it will move the current display area to the right instead of scrolling down a line
-- `normal <c-l>` : now he will focus on the left buffer instead of clearing the search highlight
+- `"n" <c-u>` : now it will move up 10 lines instead of half the display area
+- `"n" <c-d>` : now it will move down 10 lines instead of half the display area
+- `"n" <c-e>` : now it will move the current buffer to the left instead of scrolling up a line
+- `"n" <c-y>` : now it will move the current display area to the right instead of scrolling down a line
+- `"n" <c-l>` : now he will focus on the left buffer instead of clearing the search highlight
+
+The following is a description of the basic keys:
+
+```
+-  "n" <leader><esc>    :  Escape Neovim
+-  "i" jj               :  Escape editor insert mode
+-  "t" <esc>            :  Escape terminal insert mode
+-  "n" <c-d>            :  Move 10 lines down
+-  "n" <m-j>            :  Increase horizontal split screen sizee
+-  "n" <m-h>            :  Reduce vertical split screen size
+-  "n" <leader>cs       :  Enable or disable spell checking
+-  "c" <m-n>            :  Look down history
+-  "n", "x" j           :  Move down one line
+-  "n", "x" L           :  Move to the last character at the end of the line
+-  "i", "c", "t" <m-b>  :  Jump to previous word in insert mode
+-  "i", "c", "t" <m-j>  :  Move cursor down in insert mode
+-  "i", "c", "t" <m-l>  :  Move cursor right in insert mode
+```
 
 ### Manager keymap
 
 `<leader>1`, `<leader>2`, `<leader>3`, `<leader>4` Can open some specific functions.
 
-![图片](https://user-images.githubusercontent.com/81478335/167361254-1d79dd69-eec8-40a3-bae1-6011f2d30fc2.png)
+```
+- "n" <leader>1  : Open File Explorer
+- "n" <leader>2  : Open Outilne Explorer
+- "n" <leader>3  : Open Undo Explorer
+- "n" <leader>4  : Open Database Explorer
+```
 
 - File Exporer is [Nvim-tree](https://github.com/kyazdani42/nvim-tree.lua), you can press `g?` for help.
 - Outline Explorer is [aerial](https://github.com/stevearc/aerial.nvim), you can press `?` for help.
@@ -396,113 +415,183 @@ Some vim or neovim default keys have been replaced, namely:
 
 ### Buffer keymap
 
-```
-- normal <c-q> : Close current buffer
-- normal <c-h> : Go to left buffer
-- normal <c-l> : Go to right buffer
-- normal <c-e> : Move current buffer to left
-- normal <c-y> : Move current buffer to right
-```
+It is a very good idea to manage all buffers via the [bufferline](https://github.com/akinsho/bufferline.nvim) and [bufferdelete](https://github.com/famiu/bufdelete.nvim) plugins , here is my keymap, usually they start with `<leader>b`:
 
-Other keys can be viewed by pressing `<leader>b` in normal mode.
-
-![图片](https://user-images.githubusercontent.com/81478335/167360833-2e19d73c-43d2-48e6-876c-738bd27483c7.png)
+```
+-  "n" <c-q>       :  Close current buffer
+-  "n" <c-h>       :  Go to left buffer
+-  "n" <c-l>       :  Go to right buffer
+-  "n" <c-e>       :  Move current buffer to left
+-  "n" <c-y>       :  Move current buffer to right
+-  "n" <leader>bh  :  Close all left buffers
+-  "n" <leader>bl  :  Close all right buffers
+-  "n" <leader>bo  :  Close all other buffers
+-  "n" <leader>ba  :  Close all buffers
+-  "n" <leader>bt  :  Go to buffer *
+-  "n" <leader>bs  :  Buffers sort (by extension)
+-  "n" <leader>b1  :  Go to buffer 1
+-  "n" <leader>b2  :  Go to buffer 2
+-  "n" <leader>b3  :  Go to buffer 3
+-  "n" <leader>b4  :  Go to buffer 4
+-  "n" <leader>b5  :  Go to buffer 5
+-  "n" <leader>b6  :  Go to buffer 6
+-  "n" <leader>b7  :  Go to buffer 7
+-  "n" <leader>b8  :  Go to buffer 8
+-  "n" <leader>b9  :  Go to buffer 9
+```
 
 ### LSP keymap
 
-```
-- normal gh : Show help information
-- normal gr : Go to references
-- normal go : Show Workspace Diagnostics
-- normal gd : Go to definitions
-- normal gD : Go to type definitions
-- normal [g : Jump to prev diagnostic
-- normal ]g : Jump to next diagnostic
-- insert <c-j> : Toggle signature help
-```
+LSP-related keys are usually prefixed with `g` or `<leader>c`, I prefer to use `<leader>c` as `code operate` to memorize.
+Here are the default keys I bind:
 
-Other keys can be viewed by pressing `<leader>c` in normal mode.
-
-![图片](https://user-images.githubusercontent.com/81478335/167362538-9babb025-bb4f-4abc-a012-377fff85350b.png)
+```
+-  "n" <leader>ca  :  Show code action
+-  "n" <leader>cn  :  Variable renaming
+-  "n" <leader>cf  :  Format buffer
+-  "n" gI          :  Go to implementations
+-  "n" gD          :  Go to type definitions
+-  "n" gd          :  Go to definitions
+-  "n" gr          :  Go to references
+-  "n" gh          :  Show help information
+-  "n" go          :  Show Workspace Diagnostics
+-  "n" [g          :  Jump to prev diagnostic
+-  "n" ]g          :  Jump to next diagnostic
+-  "i" <c-j>       :  Toggle signature help
+```
 
 ### Code Completion
 
+It's nice to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with [vim-vsnip](https://github.com/hrsh7th/vim-vsnip) for code completion, it's very fast and stable, here are my default keybindings:
+
 ```
-- insert <c-k> : Toggle completion menu
-- insert <c-p> : select the previous completion suggestion
-- insert <c-n> : select the next completion suggestion
-- insert <c-d> : select the fifth completion suggestion below
-- insert <c-u> : select the fifth completion suggestion above
-- insert <cr>  : confirm current suggestion
-- insert <tab> : similar to vscode, if you do not enter the completion menu, select the next item, if you enter the completion menu, select the current item
-- insert <c-b> : scroll up the floating window
-- insert <c-f> : scroll down the floating window
+- "i" <c-k> : Toggle completion menu
+- "i" <c-p> : select the previous completion suggestion
+- "i" <c-n> : select the next completion suggestion
+- "i" <c-d> : select the fifth completion suggestion below
+- "i" <c-u> : select the fifth completion suggestion above
+- "i" <cr>  : confirm current suggestion
+- "i" <tab> : similar to vscode, if you do not enter the completion menu, select the next item, if you enter the completion menu, select the current item
+- "i" <c-b> : scroll up the floating window
+- "i" <c-f> : scroll down the floating window
 ```
 
 Additionally, `<tab>` and `<s-tab>` can also be used in fragments, which behave the same as in vscode:
 
 ```
-- insert <tab> : jump backward
-- insert <s-tab> : jump forward
+- "i" <tab> : jump backward
+- "i" <s-tab> : jump forward
 ```
 
 ### Debug
 
-The `<leader>d` prefix is used to manage `Debug`:
+Code debugging currently only supports Python and Golang, through [nvim-dap](https://github.com/mfussenegger/nvim-dap) and [https://github.com/rcarriga/nvim-dap-ui]() And the combination of [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) gives me an IDE-like debugging experience.
 
-![图片](https://user-images.githubusercontent.com/81478335/167365809-85e6d011-5e62-4dbf-925b-2d924250e1f9.png)
-
-Some other keys will only take effect after entering `Debug` mode:
+I use `<leader>d` to enable code debugging, all `<f>` keys will only take effect after you actually enable debug mode: 
 
 ```
-- normal <f5> : Enable debugging or jump to the next breakpoint
-- normal <f6> : Step into
-- normal <f7> : Step over
-- normal <f8> : Step out
-- normal <f9> : Rerun debug
-- normal <f10> : Close debug
+-  "n" <leader>db  :  Mark or delete breakpoints
+-  "n" <leader>dc  :  Clear breakpoints in the current buffer
+-  "n" <leader>du  :  Toggle debug ui
+-  "n" <leader>de  :  Execute debug expressions
+-  "n" <F5>        :  Enable debugging or jump to the next breakpoint
+-  "n" <F6>        :  Step into
+-  "n" <F7>        :  Step over
+-  "n" <F8>        :  Step out
+-  "n" <F9>        :  Rerun debug
+-  "n" <F10>       :  Close debug
 ```
 
 Additionally, you can enter expressions by pressing `i` in the `repl` window.
 
 ### Find
 
-All lookups are prefixed with `<leader>f`:
+All lookups are prefixed with `<leader>f`.
 
-![图片](https://user-images.githubusercontent.com/81478335/167366170-6c56cdf5-5495-4782-8e28-66dead74b808.png)
+Currently it supports some of the following searches, and you can define more search methods.
+
+```
+-  "n" <leader>ff  :  Find files in the current workspace
+-  "n" <leader>fg  :  Find string in the current workspace
+-  "n" <leader>fo  :  Find telescope history
+-  "n" <leader>fh  :  Open last lookup
+-  "n" <leader>ft  :  Find all help document tags
+-  "n" <leader>fm  :  Find marks in the current workspace
+-  "n" <leader>fi  :  Find all neovim highlights
+-  "n" <leader>fb  :  Find all buffers
+-  "n" <leader>f/  :  Find all search history
+-  "n" <leader>f:  :  Find all command history
+-  "n" <leader>fs  :  Find all session
+-  "n" <leader>fn  :  Show notices history
+-  "n" <leader>fd  :  Find todo tag in the current workspace
+-  "n" <leader>fy  :  Show Clipboard History
+-  "n" <leader>fc  :  Find the current file and open it in file explorer
+```
+
+They are provided by the following plugins respectively:
+
+- [Telescope](https://github.com/nvim-telescope/telescope.nvim)
+- [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+- [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua)
+- [persisted.nvim](https://github.com/olimorris/persisted.nvim)
+- [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)
 
 ### Git
 
-You can use `<leader>g` to view Git information in the current file, for Git management, we have other ways:
+You can use `<leader>g` to view Git information in the current file, for Git management, I would use lazygit instead of any plugin for neovim.
 
-![图片](https://user-images.githubusercontent.com/81478335/167366513-1f1e91c3-caff-4ae3-944a-952f44d6d816.png)
+These functions are provided by [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim):
+
+```
+-  "n" [c               :  Jump to the prev hunk
+-  "n" ]c               :  Jump to the next hunk
+-  "n" <leader>gl       :  Toggle current line blame
+-  "n" <leader>gh       :  Show current block blame
+-  "n" <leader>gD       :  Show deleted lines
+-  "n" <leader>gd       :  Open deff view
+-  "n" <leader>gR       :  Reset current buffer
+-  "n", "v" <leader>gr  :  Reset current hunk
+```
 
 ### Replace
 
-The full workspace fuzzy string search and replace of vscode is very easy to use, there is also a corresponding plugin in neovim, I set its prefix key to `<leader>r`:
-
-![图片](https://user-images.githubusercontent.com/81478335/167366676-34b8a278-dd7e-4898-ac27-d6c9fa344c2b.png)
+The full workspace fuzzy string search and replace of vscode is very easy to use, there is also a corresponding plugin in neovim, I set its prefix key to `<leader>r`.
 
 Also, after entering the fuzzy search and replace interface, you can use `?` to get more help.
+
+This functionality is provided by [nvim-spectre](https://github.com/nvim-pack/nvim-spectre):
+
+```
+-  "n" <leader>rp  :  Replace characters in all files in the current workspace
+-  "n" <leader>rf  :  Replace all characters in the current file
+-  "n" <leader>rw  :  Replace the character under the cursor in all files under the current workspace
+```
 
 ### Session
 
 Restoring the working state after reopening the IDE is a feature that modern editors should have. You can directly use `<leader>sl` to restore the last session record.
 
-In addition, `<leader>s` is also bound to some other keys:
+In addition, `<leader>s` is also bound to some other keys.
 
-![图片](https://user-images.githubusercontent.com/81478335/167367284-476b6958-f9a2-4eab-8804-b8ec8b5825ad.png)
+This functionality is provided by [persisted.nvim](https://github.com/olimorris/persisted.nvim):
+
+```
+-  "n" <leader>ss  :  Save session
+-  "n" <leader>sd  :  Delete session
+-  "n" <leader>sl  :  Load session
+```
 
 ### Terminal
 
-The prefix key for the integrated terminal is `<leader>t`:
+The prefix key for the integrated terminal is `<leader>t`, the integrated terminal experience brought by the [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) plugin is very good:
 
 ```
-- normal <leader>tt : Toggle bottom or vertical terminal
-- normal <leader>tf : Toggle floating terminal
-- normal <leader>tv : Toggle vertical terminal
-- normal <leader>tg : Toggle lazygit terminal (requires lazygit installed)
-- normal <leader>ta : Toggle all terminal
+- "n" <leader>tt : Toggle bottom or vertical terminal
+- "n" <leader>tf : Toggle floating terminal
+- "n" <leader>tv : Toggle vertical terminal
+- "n" <leader>tg : Toggle lazygit terminal (requires lazygit installed)
+- "n" <leader>ta : Toggle all terminal
 ```
 
 The floating terminal and lazygit terminal can only open one, but the bottom terminal and side terminal can open many.
@@ -513,27 +602,24 @@ Notice! floating terminal number is 120, lazygit terminal number is 130.
 
 ### Translate
 
-Well, translated commands are also prefixed with `<leader>t`:
-
-![图片](https://user-images.githubusercontent.com/81478335/167368539-edd9ef3e-c6f0-40d6-ae81-7385b4d8add2.png)
+Well, translated commands are also prefixed with `<leader>t`. [translate.nvim](https://github.com/uga-rosa/translate.nvim) is definitely the best translation plugin I've ever seen.
 
 ```
-- normal | visual <leader>tcs : Translate English to Chinese and open in split window
-- normal | visual <leader>tcr : Translate English to Chinese and replace English
-- normal | visual <leader>tcf : Translate English to Chinese and open in float window
-- normal | visual <leader>tci : Translate English to Chinese and insert to next line
-- normal | visual <leader>tcc : Translate English to Chinese and copy result to clipboard
-- normal | visual <leader>tcw : Translate English word to Chinese and open in float window
-- normal | visual <leader>tcb : Translate English comment to Chinese and open in float window
+-  "n", "x" <leader>tcs  :  Translate English to Chinese and open in split window
+-  "n", "x" <leader>tcr  :  Translate English to Chinese and replace English
+-  "n", "x" <leader>tcf  :  Translate English to Chinese and open in float window
+-  "n", "x" <leader>tci  :  Translate English to Chinese and insert to next line
+-  "n", "x" <leader>tcc  :  Translate English to Chinese and copy result to clipboard
+-  "n" <leader>tcb       :  Translate English comment to Chinese and open in float window
+-  "n" <leader>tcw       :  Translate English word to Chinese and open in float window
 
-
-- normal | visual <leader>tes : Translate Chinese to English and open in split window
-- normal | visual <leader>ter : Translate Chinese to English and replace Chinese
-- normal | visual <leader>tef : Translate Chinese to English and open in float window
-- normal | visual <leader>tei : Translate Chinese to English and insert to next line
-- normal | visual <leader>tec : Translate Chinese to English and copy result to clipboard
-- normal | visual <leader>tew : Translate Chinese word to English and open in float window
-- normal | visual <leader>teb : Translate Chinese comment to English and open in float window
+-  "n", "x" <leader>tes  :  Translate Chinese to English and open in split window
+-  "n", "x" <leader>ter  :  Translate Chinese to English and replace Chinese
+-  "n", "x" <leader>tef  :  Translate Chinese to English and open in float window
+-  "n", "x" <leader>tei  :  Translate Chinese to English and insert to next line
+-  "n", "x" <leader>tec  :  Translate Chinese to English and copy result to clipboard
+-  "n" <leader>teb       :  Translate Chinese comment to English and open in float window
+-  "n" <leader>tew       :  Translate Chinese word to English and open in float window
 ```
 
 If you want to change the language, you can open the [/lua/configure/plugins/nv_translate.lua](./lua/configure/plugins/nv_translate.lua) file and change the mapping.
@@ -544,23 +630,30 @@ Finally, don't forget to modify the key grouping description in the [/lua/config
 
 There are some buttons that can upload pictures to the Internet, and a makrdown picture link will be generated after the upload is complete。
 
-The prefix is `<leader>u`：
+[nvim-picgo](https://github.com/askfiy/nvim-picgo) is the first neovim plugin I wrote myself and I love it.
 
-![图片](https://user-images.githubusercontent.com/81478335/167370030-b0a1044b-05b6-4dad-8e6e-c88bc2e5159c.png)
+The prefix is `<leader>u`.
+
+```
+-  "n" <leader>uc  :  Upload image from clipboard
+-  "n" <leader>uf  :  Upload image from disk file
+```
 
 ### Multiple cursors
 
 It is common to quickly select a range of words and make changes. Here are the key bindings for multi-cursor mode:
 
 ```
-normal <tab> : Toggle between normal and visual mode
-normal <c-n> : Select down
-normal <c-s> : Skip selection
-normal <c-p> : Delete the current selection
-normal <m-p> : Create cursor down
-normal <m-n> : Create cursor up
-normal <esc> : Exit Multiple cursors mode
+"n" <tab> : Toggle between normal and visual mode
+"n" <c-n> : Select down
+"n" <c-s> : Skip selection
+"n" <c-p> : Delete the current selection
+"n" <m-p> : Create cursor down
+"n" <m-n> : Create cursor up
+"n" <esc> : Exit Multiple cursors mode
 ```
+
+The plugin that provides multi-cursor mode is [vim-visual-multi](https://github.com/mg979/vim-visual-multi).
 
 ### Surround
 
@@ -569,28 +662,34 @@ It is very common to change `"` to `'` or `()` to `[]`.
 You can make quick changes using the following keys:
 
 ```
-normal ys{range}{char} : Add Surround
-normal cs{char}{char}  : Changne Surround
-normal cq              : Toggle Surround
-normal ds{char}        : Delete Surround
-visual s               : Add Surround
+"n" ys{range}{char} : Add Surround
+"n" cs{char}{char}  : Changne Surround
+"n" cq              : Toggle Surround
+"n" ds{char}        : Delete Surround
+visual s            : Add Surround
 ```
+
+This feature is provided by [surround.nvim](https://github.com/ur4ltz/surround.nvim), in addition, you can also use the `.` command to repeat the last modified surround work, which is provided by [vim-repeat ](https://github.com/tpope/vim-repeat).
 
 ### Comment
 
 Good code needs to use comments, you can press the following shortcut keys to quickly add comments：
 
 ```
-normal gcc : Toggle line comment
-normal gcb : Toggle block comment
-normal gca : Insert line comment to line end
-normal gcj : Insert line comment to next line
-normal gck : Insert line comment to previous line
-normal gb{range} : Switch the specified line to a block comment
+"n" gcc : Toggle line comment
+"n" gcb : Toggle block comment
+"n" gca : Insert line comment to line end
+"n" gcj : Insert line comment to next line
+"n" gck : Insert line comment to previous line
+"n" gb{range} : Switch the specified line to a block comment
 
-visual gc  : Toggle line comment
-visual gb  : Toggle block comment
+"v" gc  : Toggle line comment
+"v" gb  : Toggle block comment
 ```
+
+In addition, in some single-file multi-language environments (such as Vue), it also supports switching annotations according to context.
+
+Well, these functions are provided by [Comment.nvim](https://github.com/numToStr/Comment.nvim) and [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring).
 
 ### Switch
 
@@ -598,23 +697,30 @@ It is common to quickly change `True` to `False`. Switching can be done quickly 
 
 If you want to add some words, you can edit the [lua/configure/plugins/nv_switch.lua](./lua/configure/plugins/nv_switch.lua) file.
 
+As you can see, this feature is supported without the [switch](https://github.com/AndrewRadev/switch.vim) plugin.
+
 ### Emment
 
 Use `<c-f>,` to quickly expand emment fragments.
 
 `<c-f>` has some other functions, but it only works with certain types of files:
 
-![图片](https://user-images.githubusercontent.com/81478335/167378228-47973a0c-fca2-45df-a87e-8ee3d53ec9e2.png)
-
 ### Motions
 
 With the [Hop](https://github.com/phaazon/hop.nvim) plugin, you can quickly jump to any position in the buffer:
 
-![图片](https://user-images.githubusercontent.com/81478335/167379194-0e6b7036-54e8-4ccd-9e95-04af1f2ad1c0.png)
+```
+-  "n", "v" ss  :  Jump to word head
+-  "n", "v" sl  :  Jump to line
+-  "n", "v" sf  :  Jump to search char on buffer
+-  "n", "v" sc  :  Jump to search char on current line
+```
 
 ### Drawing
 
 Drawing with neovim is a cool feature when writing Markdown documents.
+
+[venn](https://github.com/jbyuki/venn.nvim) implements this very cool feature.
 
 Press `<leader>5` to open Venn, then try `<c-j/k/h/l>` to draw lines.
 

@@ -113,7 +113,7 @@ function M.register_global_key()
 				require("telescope.builtin").highlights()
 			end,
 			options = { silent = true },
-			description = "FInd all neovim highlights",
+			description = "Find all neovim highlights",
 		},
 		{
 			mode = { "n" },

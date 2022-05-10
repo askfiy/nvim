@@ -1,5 +1,3 @@
--- set guicursor=N:block-Cursorline
-
 local options = require("core.options")
 
 local function auto_save()
