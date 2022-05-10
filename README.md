@@ -382,19 +382,27 @@ Some vim or neovim default keys have been replaced, namely:
 The following is a description of the basic keys:
 
 ```
--  "n" <leader><esc>    :  Escape Neovim
--  "i" jj               :  Escape editor insert mode
--  "t" <esc>            :  Escape terminal insert mode
--  "n" <c-d>            :  Move 10 lines down
--  "n" <m-j>            :  Increase horizontal split screen sizee
--  "n" <m-h>            :  Reduce vertical split screen size
--  "n" <leader>cs       :  Enable or disable spell checking
--  "c" <m-n>            :  Look down history
--  "n", "x" j           :  Move down one line
--  "n", "x" L           :  Move to the last character at the end of the line
--  "i", "c", "t" <m-b>  :  Jump to previous word in insert mode
--  "i", "c", "t" <m-j>  :  Move cursor down in insert mode
--  "i", "c", "t" <m-l>  :  Move cursor right in insert mode
+-  "i" jj                 :  Escape editor insert mode
+-  "t" <esc>              :  Escape terminal insert mode
+-  "n" <c-u>              :  Move 10 lines up
+-  "n" <c-d>              :  Move 10 lines down
+-  "n" <m-k>              :  Reduce horizontal split screen size
+-  "n" <m-j>              :  Increase horizontal split screen size
+-  "n" <m-h>              :  Reduce vertical split screen size
+-  "n" <m-l>              :  Increase vertical split screen size
+-  "n" <leader>cs         :  Enable or disable spell checking
+-  "c" <m-p>              :  Look up history
+-  "c" <m-n>              :  Look down history
+-  "n", "x" k             :  Move up one line
+-  "n", "x" j             :  Move down one line
+-  "n", "x" H             :  Move to the first character at the beginning of the line
+-  "n", "x" L             :  Move to the last character at the end of the line
+-  "i", "c", "t" <m-w>    :  Jump to next word in insert mode
+-  "i", "c", "t" <m-b>    :  Jump to previous word in insert mode
+- -  "i", "c", "t" <m-j>  :  Move cursor down in insert mode "i", "c", "t" <m-k>  :  Move cursor up in insert mode
+-  "i", "c", "t" <m-h>    :  Move cursor left in insert mode
+-  "i", "c", "t" <m-l>    :  Move cursor right in insert mode
+
 ```
 
 ### Manager keymap
