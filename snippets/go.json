@@ -1,0 +1,13 @@
+{
+  "main package code": {
+    "prefix": "code",
+    "body": [
+      "package main\n",
+      "import \"fmt\"\n",
+      "func main() {",
+      "\tfmt.Printf(\"hi Golang\\n${1}\")",
+      "}"
+    ],
+    "description": "package main code"
+  }
+}

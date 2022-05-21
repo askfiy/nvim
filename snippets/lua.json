@@ -1,0 +1,41 @@
+{
+  "pretty_print": {
+    "prefix": "print",
+    "body": ["vim.pretty_print($1)"],
+    "description": "vim.pretty_print"
+  },
+  "lua_module": {
+    "prefix": "lua_module",
+    "body": [
+      "local M = {}",
+      "",
+      "function M.before() end",
+      "",
+      "function M.load()",
+      "\tlocal ok, m = pcall(require, \"${1:m}\")",
+      "\tif not ok then",
+      "\t\treturn",
+      "\tend",
+      "",
+      "\tM.$1${2} = m",
+      "end",
+      "",
+      "function M.after() end",
+      "",
+      "return M"
+    ],
+    "description": "lua module config"
+  },
+  "viml_module": {
+    "prefix": "viml_module",
+    "body": [
+      "local M = {}",
+      "",
+      "function M.entrance()",
+      "end",
+      "",
+      "return M"
+    ],
+    "description": "viml module config"
+  }
+}
