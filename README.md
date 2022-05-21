@@ -42,6 +42,7 @@
   - [Copillot](#Copillot)
 
 </details>
+
 ## Features
 
 - Completely written in Lua language
