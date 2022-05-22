@@ -13,7 +13,6 @@ local M = {
 }
 
 function M.load_lsp_config()
-    -- float style
     M.language_servers_config = {
         -- ltex = require("configure.lsp.ltex"),
         vimls = require("configure.lsp.vimls"),

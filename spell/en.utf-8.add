@@ -88,3 +88,4 @@ APIView
 dispath
 boolean
 treesitter
+lspconfig
