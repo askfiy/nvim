@@ -1,6 +1,7 @@
 local hi = {}
 
 function hi.set(name, opts)
+
     -- Set neovim highlight
     -- Example:
     --     hi.set("Comment", {fg = "Green", bg = "Black", bold = true})

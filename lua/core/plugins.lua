@@ -120,6 +120,9 @@ local packer_install_tbl = {
     ["hrsh7th/cmp-cmdline"] = { -- provide command line completion
         after = { "nvim-cmp" },
     },
+    ["hrsh7th/cmp-nvim-lsp-signature-help"] = {
+        after = { "nvim-cmp" },
+    },
     ["kristijanhusak/vim-dadbod-completion"] = { -- complete completion for dadbod  (it may affect performance)
         ptp = "viml",
         after = { "nvim-cmp" },
@@ -183,16 +186,16 @@ local packer_install_tbl = {
         event = { "BufRead", "BufNewFile" },
         run = ":TSUpdate",
     },
-    ["p00f/nvim-ts-rainbow"] = { -- rainbow brackets
+    ["lewis6991/spellsitter.nvim"] = {
         after = { "nvim-treesitter" },
     },
-    ["JoosepAlviste/nvim-ts-context-commentstring"] = { -- Provides context-based commenting behavior for Comment
+    ["p00f/nvim-ts-rainbow"] = { -- rainbow brackets
         after = { "nvim-treesitter" },
     },
     ["windwp/nvim-ts-autotag"] = { -- autocomplete tags
         after = { "nvim-treesitter" },
     },
-    ["lewis6991/spellsitter.nvim"] = {
+    ["JoosepAlviste/nvim-ts-context-commentstring"] = { -- Provides context-based commenting behavior for Comment
         after = { "nvim-treesitter" },
     },
     ["numToStr/Comment.nvim"] = { -- provide code comment function

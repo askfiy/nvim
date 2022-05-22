@@ -9,8 +9,8 @@ local M = {
     ignore_message = {
         "exit code",
         "Invalid buffer",
+        "textDocument/documentSymbol is not supported",
         "client has shut down after sending the message",
-        "method textDocument/documentSymbol is not supported by any of the servers registered for the current buffer",
     },
 }
 

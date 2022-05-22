@@ -72,6 +72,7 @@ function M.load()
             { name = "cmdline" },
             { name = "cmp_tabnine" },
             { name = "vim-dadbod-completion" },
+            { name = "nvim_lsp_signature_help" },
         }),
         -- define the appearance of the completion menu
         window = {

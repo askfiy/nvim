@@ -13,7 +13,6 @@ function M.load_dap_config()
         go = require("configure.dap.go"),
         python = require("configure.dap.python"),
         dotnet = require("configure.dap.dotnet"),
-        c__cpp_rust = require("configure.dap.c_cpp_rust"),
     }
 end
 
