@@ -82,3 +82,8 @@ minIDE
 javascript
 Vimscript
 lua
+Django
+restframework
+APIView
+dispath
+boolean

@@ -13,6 +13,7 @@ function M.load_dap_config()
         go = require("configure.dap.go"),
         python = require("configure.dap.python"),
         dotnet = require("configure.dap.dotnet"),
+        c__cpp_rust = require("configure.dap.c_cpp_rust"),
     }
 end
 
@@ -32,11 +33,8 @@ end
 
 function M.after()
     for _, dap_config in pairs(M.dubug_adapter_config) do
-        local adapter_name = dap_config.names.adapters
-        local configurations_name = dap_config.names.configurations
-
-        M.dap.adapters[adapter_name] = dap_config.adapters
-        M.dap.configurations[configurations_name] = dap_config.configurations
+        M.dap.adapters = vim.tbl_extend("force", M.dap.adapters, dap_config.adapters)
+        M.dap.configurations = vim.tbl_extend("force", M.dap.configurations, dap_config.configurations)
     end
 end
 

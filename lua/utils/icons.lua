@@ -12,8 +12,9 @@ icons.diagnostics = {
 }
 
 icons.kind = {
+    -- Method: פּ
     Text = "",
-    Method = "פּ",
+    Method = "",
     Function = "",
     Constructor = "",
     Field = "ﰠ",

@@ -4,6 +4,7 @@
 
 local icons = require("utils.icons")
 local mapping = require("core.mapping")
+local options = require("core.options")
 
 local M = {
     opt_scrolloff = vim.opt.scrolloff:get(),
@@ -66,6 +67,12 @@ function M.load()
                 uninstall_server = "X",
             },
         },
+        github = {
+            -- For Chinese users, if the download is slow, you can switch to the github mirror source
+            -- download_url_template = "https://hub.fastgit.xyz/%s/releases/download/%s/%s",
+            download_url_template = options.use_github_mirror and "https://hub.fastgit.xyz/%s/releases/download/%s/%s"
+                or "https://github.com/%s/releases/download/%s/%s",
+        },
         max_concurrent_installers = 20,
     })
 end
@@ -92,7 +99,7 @@ function M.after()
                     debounce_text_changes = 150,
                 }
                 -- Merge public headers with private headers
-                lsp_config.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, lsp_config.handlers or {})
+                lsp_config.handlers = vim.tbl_extend("force", M.lsp_handlers, lsp_config.handlers or {})
                 -- Use the public configuration first, then use the private configuration of each LSP server
                 -- If there are duplicates, the private configuration will override the public configuration
                 lsp_config.on_attach = function(client, bufnr)

@@ -17,15 +17,15 @@ local options = {
     -- Whether the background is transparent
     -- • boolean
     transparent_background = false,
-    -- Python interpreter path
-    -- • string
-    python_interpreter_path = "/usr/bin/python3",
     -- lint configuration file
     -- • string
     nvim_lint_dir = path.join(vim.fn.stdpath("config"), "lint"),
     -- Code snippet storage directory
     -- • string
     code_snippets_directory = path.join(vim.fn.stdpath("config"), "snippets"),
+    -- Whether to use the github mirror source address
+    -- • boolean
+    use_github_mirror = true,
 }
 
 -- database link configuration

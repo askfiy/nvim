@@ -20,8 +20,21 @@ function M.load()
         min_width = 30,
         -- Backend for rendering symbols
         backends = { "lsp", "treesitter", "markdown" },
-        -- Show all icons
-        filter_kind = false,
+        -- If set to False, show all icons, otherwise show already
+        -- Defined icon
+        -- filter_kind = false,
+        filter_kind = {
+            "Module",
+            "Struct",
+            "Interface",
+            "Class",
+            "Constructor",
+            "Enum",
+            "Function",
+            "Method",
+            -- customize
+            "Property",
+        },
         -- Icon to use
         icons = icons[options.icons_style],
         -- Show box drawing characters for the tree hierarchy

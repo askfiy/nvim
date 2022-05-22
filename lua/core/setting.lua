@@ -69,7 +69,7 @@ local settings = {
         -- Allow search highlighting
         hlsearch = true,
         -- Allows to search the entire file repeatedly (continuation of the search after the last result will return to the first result)
-        wrapscan = true,
+        -- wrapscan = true,
         -- Allow matching symbols to be displayed (no need, there is a plugin for auto-completing parentheses)
         showmatch = false,
         -- Default is 5, set the duration of showmatch

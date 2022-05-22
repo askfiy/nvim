@@ -390,24 +390,18 @@ To add a new Dap configuration, please add a new configuration file in the [lua/
 The configuration file template is as follows:
 
 ```
-local M = {}
-
-M.names = {
-    -- Some debuggers have different names for adapters and configurations.
-    -- So you have to specify it here, it's required
-    adapters = "adapters_name",
-    configurations = "configurations_name",
+return {
+    adapters = {
+        name = {
+        ...
+        }
+    },
+    configurations = {
+        name = {
+        ...
+        }
+    },
 }
-
-M.adapters = {
-    ...
-}
-
-M.configurations = {
-    ...
-}
-
-return M
 ```
 
 Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-dap.lua](lua/configure/plugins/nv_nvim-dap.lua)
