@@ -89,12 +89,6 @@ end
 function M.after()
     -- Define the command to delete the buffer
     vim.api.nvim_create_user_command("BufferDelete", function()
-        -- if terminal, hide
-        if vim.bo.buftype == "terminal" then
-            vim.api.nvim_win_hide(0)
-            return
-        end
-
         ---@diagnostic disable-next-line: missing-parameter
         local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
         local modified = vim.api.nvim_buf_get_option(0, "modified")
@@ -108,7 +102,7 @@ function M.after()
         local force = force or not vim.bo.buflisted or vim.bo.buftype == "nofile"
 
         -- if not force, change to prev buf and then close current
-        local close_cmd = force and ":bd!" or ":bp | bd" .. vim.fn.bufnr()
+        local close_cmd = force and ":bd!" or ":bp | bd!" .. vim.api.nvim_get_current_buf()
         vim.cmd(close_cmd)
     end, {})
 end

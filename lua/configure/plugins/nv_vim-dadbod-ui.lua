@@ -1,5 +1,6 @@
 -- https://github.com/kristijanhusak/vim-dadbod-ui
 
+local fn = require("utils.fn")
 local options = require("core.options")
 local mapping = require("core.mapping")
 
@@ -22,7 +23,11 @@ function M.register_global_key()
         {
             mode = { "n" },
             lhs = "<leader>4",
-            rhs = ":DBUIToggle<cr>",
+            -- rhs = ":NvDBUIToggle<cr>",
+            rhs = function()
+                fn.toggle_sidebar("dbui")
+                vim.cmd("DBUIToggle")
+            end,
             options = { silent = true },
             description = "Open Database Explorer",
         },

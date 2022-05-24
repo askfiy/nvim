@@ -1,5 +1,6 @@
 -- https://github.com/mbbill/undotree
 
+local fn = require("utils.fn")
 local path = require("utils.api.path")
 local mapping = require("core.mapping")
 
@@ -36,7 +37,11 @@ function M.register_global_key()
         {
             mode = { "n" },
             lhs = "<leader>3",
-            rhs = ":UndotreeToggle<cr>",
+            -- rhs = ":UndotreeToggle<cr>",
+            rhs = function()
+                fn.toggle_sidebar("undotree")
+                vim.cmd("UndotreeToggle")
+            end,
             options = { silent = true },
             description = "Open Undo Explorer",
         },
