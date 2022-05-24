@@ -16,7 +16,9 @@ function M.load()
     local show = M.which_key.show
     M.which_key.show = function(keys, opts)
         if vim.bo.filetype == "TelescopePrompt" then
-            return
+            local map = "<c-r>"
+            local key = vim.api.nvim_replace_termcodes(map, true, false, true)
+            vim.api.nvim_feedkeys(key, "i", true)
         end
         show(keys, opts)
     end
