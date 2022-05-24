@@ -8,7 +8,7 @@
 -- https://github.com/tzachar/cmp-tabnine
 -- https://github.com/kristijanhusak/vim-dadbod-completion
 
--- FIX: Manually install Tabnine when there is an error in Tabnine
+-- WARN: Manually install Tabnine when there is an error in Tabnine
 --    TabNine is not executable
 -- Requires curl and unzip
 --    ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh

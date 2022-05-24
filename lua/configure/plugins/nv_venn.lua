@@ -1,6 +1,6 @@
 -- https://github.com/jbyuki/venn.nvim
 
--- FIX: If you open venn mode too early, it may cause some keys in the buffer to fail
+-- WARN: If you open venn mode too early, it may cause some keys in the buffer to fail
 -- So it is recommended not to open venn mode in code files
 
 local mapping = require("core.mapping")
