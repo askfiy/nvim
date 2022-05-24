@@ -32,7 +32,15 @@ function M.load()
     })
 end
 
-function M.after() end
+function M.after()
+    -- FIX: Exception error for q:
+    local hl = require("todo-comments.highlight")
+
+    local highlight_win = hl.highlight_win
+    hl.highlight_win = function(win, force)
+        pcall(highlight_win, win, force)
+    end
+end
 
 function M.register_global_key()
     mapping.register({
