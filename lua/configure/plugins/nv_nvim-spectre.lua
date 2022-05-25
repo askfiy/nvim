@@ -38,7 +38,8 @@ function M.register_global_key()
             lhs = "<leader>rf",
             rhs = function()
                 fn.toggle_sidebar("spectre_panel")
-                vim.cmd("normal! viw")
+                -- FIX: Invalid selected word ..
+                -- vim.cmd("normal! viw")
                 require("spectre").open_file_search()
             end,
             options = { silent = true },
