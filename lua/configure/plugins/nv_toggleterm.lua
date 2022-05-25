@@ -35,6 +35,17 @@ function M.load()
         on_open = function()
             vim.wo.spell = false
         end,
+        highlights = {
+            Normal = {
+                link = "Normal",
+            },
+            NormalFloat = {
+                link = "NormalFloat ",
+            },
+            FloatBorder = {
+                link = "FloatBorder",
+            },
+        },
     })
 end
 

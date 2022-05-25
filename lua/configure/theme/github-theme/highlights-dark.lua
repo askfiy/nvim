@@ -66,10 +66,6 @@ function M.global_highlights()
         ["FidgetTitle"] = { fg = colors.bright_blue, gui = "bold" },
         ["FidgetTask"] = { fg = colors.bright_blue },
 
-        -- toggleterm
-        ["ToggleTerm120FloatBorder"] = { fg = border_colors },
-        ["ToggleTerm130FloatBorder "] = { fg = border_colors },
-
         -- hop
         ["HopNextKey"] = { fg = rainbow_level_1, bg = "NONE", gui = "bold" },
         ["HopNextKey1"] = { fg = rainbow_level_3, bg = "NONE", gui = "bold" },

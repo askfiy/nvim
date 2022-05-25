@@ -63,10 +63,6 @@ function M.global_highlights()
         ["FidgetTitle"] = { fg = colors.vscFront, gui = "bold" },
         ["FidgetTask"] = { fg = colors.vscFront },
 
-        -- toggleterm
-        ["ToggleTerm120FloatBorder"] = { fg = border_colors },
-        ["ToggleTerm130FloatBorder "] = { fg = border_colors },
-
         -- indent-blankline
         ["IndentBlanklineContextChar"] = { fg = colors.vscLightBlue },
         ["IndentBlanklineContextStart"] = { fg = "NONE", bg = "NONE", gui = "underline" },

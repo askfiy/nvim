@@ -57,10 +57,6 @@ function M.global_highlights()
         ["IndentBlanklineContextChar"] = { fg = colors.blue },
         ["IndentBlanklineChar"] = { fg = colors.black4 },
 
-        -- toggleterm
-        ["ToggleTerm120FloatBorder"] = { fg = colors.blue },
-        ["ToggleTerm130FloatBorder "] = { fg = colors.blue },
-
         -- cmp
         ["PmenuSel"] = { fg = colors.black0, bg = colors.green, gui = "NONE" },
         ["PmenuThumb"] = { bg = colors.black4 },
