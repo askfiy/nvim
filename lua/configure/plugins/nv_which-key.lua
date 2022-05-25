@@ -54,36 +54,38 @@ function M.after()
             c = "Translate English to Chinese",
             e = "Translate Chinese to English",
         },
-    }, { prefix = "<leader>" })
+    }, { prefix = "<leader>", mode = "n" })
 
     -- comment
     M.which_key.register({
         c = {
-            name = "Toggle line comment",
+            name = "Comment",
             c = "Toggle line comment",
             b = "Toggle block comment",
             a = "Insert line comment to line end",
             j = "Insert line comment to next line",
             k = "Insert line comment to previous line",
         },
-        b = {
-            name = "Switch the specified line to a block comment",
-        },
-    }, { prefix = "g" })
+    }, { prefix = "g", mode = "n" })
+
+    M.which_key.register({
+        c = "Switch the specified line to a line comment",
+        b = "Switch the specified line to a block comment",
+    }, { prefix = "g", mode = "v" })
 
     -- surround
     M.which_key.register({
         q = "Switch Surround",
         s = "Change Surround",
-    }, { prefix = "c" })
+    }, { prefix = "c", mode = "n" })
 
     M.which_key.register({
         s = "Delete Surround",
-    }, { prefix = "d" })
+    }, { prefix = "d", mode = "n" })
 
     M.which_key.register({
         s = "Add Surround",
-    }, { prefix = "y" })
+    }, { prefix = "y", mode = "n" })
 end
 
 return M

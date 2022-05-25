@@ -53,15 +53,13 @@
 
 ## illustrate
 
-This is a Neovim configuration written in pure Lua, with good extensibility and a very easy-to-understand configuration (I refactored it entirely in Lua and made sure to remove all viml).
+This is a Neovim configuration written in pure Lua, with good extensibility and a very easy-to-understand configuration.
 
 Now it should be stable and fast, I do lazy loading for 99% of the plugins and it should start in between 20ms - 70ms depending on your PC's configuration.
 
 Really does it lightning fast ⚡️.
 
 ![](https://user-images.githubusercontent.com/81478335/160888684-419daafc-bdcd-48fd-af49-74950ebc0d21.png)
-
-With the completion of the refactoring, this configuration will be stable and long-term use.
 
 Currently, it supports the following languages:
 
@@ -76,10 +74,6 @@ Currently, it supports the following languages:
 - Json
 - SQL
 - Markdown
-
-Please file a PR if you configure a new LSP or DAP.
-
-Also, any questions can be raised, it has just been refactored and some features have not been tested.
 
 ## Dependencies
 
@@ -184,7 +178,7 @@ $ git clone https://github.com/askfiy/nvim
 
 When you open neovim for the first time, it will automatically download all plugins and LSP servers, this process may take 1-2 minutes. please wait patiently ...
 
-When you first open it, you should look at the [/lua/core/options.lua](./lua/core/options.lua) file and make some customizations to it.
+When you first open it, you should look at the [nvim/lua/core/options.lua](./lua/core/options.lua) file and make some customizations to it.
 
 ## Directory-Structure
 
@@ -251,13 +245,13 @@ File Description:
 
 ## Personal-customization
 
-Open the [/lua/core/options.lua](./lua/core/options.lua) file and you can do some basic customizations.
+Open the [nvim/lua/core/options.lua](./lua/core/options.lua) file and you can do some basic customizations.
 
 - icons_style : use kind by default (need [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/) support), you can also use vscode (need [codicon.ttf](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)) support, use kind by default
 
-Use your own icon: Use your own image of interest, defined in [/lua/utils/icons.lua](./lua/utils/icons.lua).
+Use your own icon: Use your own image of interest, defined in [nvim/lua/utils/icons.lua](./lua/utils/icons.lua).
 
-Change key bindings: change the key set description in [/lua/configure/plugins/nv_which-key.lua](./lua/configure/plugins/nv_which-key.lua), change the default keys in different plugin configuration files .
+Change key bindings: change the key set description in [nvim/lua/configure/plugins/nv_which-key.lua](./lua/configure/plugins/nv_which-key.lua), change the default keys in different plugin configuration files .
 
 ## Some-commands
 
@@ -274,7 +268,7 @@ LSPInstallInfo: View LSP download status
 
 ### Tabnine
 
-[Tabnine](https://github.com/tzachar/cmp-tabnine) is disabled for performance reasons, you can search for Tabnine in the [lua/core/plugins.lua](./lua/core/plugins.lua) file and open it.
+[Tabnine](https://github.com/tzachar/cmp-tabnine) is disabled for performance reasons, you can search for Tabnine in the [nvim/lua/core/plugins.lua](./lua/core/plugins.lua) file and open it.
 
 ```
 ["tzachar/cmp-tabnine"] = { -- AI smart completion (it may affect performance)
@@ -303,7 +297,7 @@ It will return you a string of verification codes, which you need to record and 
 
 ### Add-New-plugin
 
-Add the new plugins you want to use in [lua/core/plugins](./lua/core/plugins.lua).
+Add the new plugins you want to use in [nvim/lua/core/plugins](./lua/core/plugins.lua).
 
 Note that if your newly installed plugin requires a configuration file, and the plugin is written in viml, you must declare it like this:
 
@@ -314,7 +308,7 @@ Note that if your newly installed plugin requires a configuration file, and the 
 }
 ```
 
-Then you can create configuration files in the [lua/configure/plugins](./lua/configure/plugins/) directory.
+Then you can create configuration files in the [nvim/lua/configure/plugins](./lua/configure/plugins/) directory.
 
 The configuration file must start with `nv_` and end with `.lua`, such as `nv_plugin_name.lua`.
 
@@ -355,7 +349,7 @@ The reason for this is that you can manage your plugins more easily, so I recomm
 
 ### Add-Lsp-config
 
-To add a new LSP configuration, please add a new configuration file in the [lua/configure/lsp/](./lua/configure/lsp/) directory.
+To add a new LSP configuration, please add a new configuration file in the [nvim/lua/configure/lsp/](./lua/configure/lsp/) directory.
 
 The configuration file template is as follows:
 
@@ -375,7 +369,7 @@ M.lsp_config = {
 return M
 ```
 
-Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-lsp-installer.lua](./lua/configure/plugins/nv_nvim-lsp-installer.lua)
+Then you need to add a new configuration to [nvim/lua/configure/plugins/nv_nvim-lsp-installer.lua](./lua/configure/plugins/nv_nvim-lsp-installer.lua)
 
 ```
 M.language_servers_config = {
@@ -385,7 +379,7 @@ M.language_servers_config = {
 
 ### Add-Dap-config
 
-To add a new Dap configuration, please add a new configuration file in the [lua/configure/dap/](./lua/configure/dap/) directory.
+To add a new Dap configuration, please add a new configuration file in the [nvim/lua/configure/dap/](./lua/configure/dap/) directory.
 
 The configuration file template is as follows:
 
@@ -404,7 +398,7 @@ return {
 }
 ```
 
-Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-dap.lua](lua/configure/plugins/nv_nvim-dap.lua)
+Then you need to add a new configuration to [nvim/lua/configure/plugins/nv_nvim-dap.lua](lua/configure/plugins/nv_nvim-dap.lua)
 
 ```
 M.dubug_adapter_config = {
@@ -417,7 +411,7 @@ M.dubug_adapter_config = {
 
 ### Diff-keymap
 
-The default `leader` is `space`, you can check the [lua/core/mapping.lua](./lua/core/mapping.lua) file to see the basic key bindings.
+The default `leader` is `space`, you can check the [nvim/lua/core/mapping.lua](./lua/core/mapping.lua) file to see the basic key bindings.
 
 Some vim or neovim default keys have been replaced, namely:
 
@@ -471,7 +465,7 @@ The following is a description of the basic keys:
 
 ### Buffer-keymap
 
-It is a very good idea to manage all buffers via the [bufferline](https://github.com/akinsho/bufferline.nvim) and [bufferdelete](https://github.com/famiu/bufdelete.nvim) plugins , here is my keymap, usually they start with `<leader>b`:
+It is a very good idea to manage all buffers via the [bufferline](https://github.com/akinsho/bufferline.nvim) plugins , here is my keymap, usually they start with `<leader>b`:
 
 ```
 -  "n" <c-q>       :  Close current buffer
@@ -547,7 +541,7 @@ Additionally, `<tab>` and `<s-tab>` can also be used in fragments, which behave 
 
 ### Debug
 
-Code debugging currently only supports Python and Golang, through [nvim-dap](https://github.com/mfussenegger/nvim-dap) and [https://github.com/rcarriga/nvim-dap-ui]() And the combination of [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) gives me an IDE-like debugging experience.
+Code debugging currently only supports Python and Golang, through [nvim-dap](https://github.com/mfussenegger/nvim-dap) and [https://github.com/rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) And the combination of [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) gives me an IDE-like debugging experience.
 
 I use `<leader>d` to enable code debugging, all `<f>` keys will only take effect after you actually enable debug mode:
 
@@ -683,9 +677,9 @@ Well, translated commands are also prefixed with `<leader>t`. [translate.nvim](h
 -  "n" <leader>tew       :  Translate Chinese word to English and open in float window
 ```
 
-If you want to change the language, you can open the [/lua/configure/plugins/nv_translate.lua](./lua/configure/plugins/nv_translate.lua) file and change the mapping.
+If you want to change the language, you can open the [nvim/lua/configure/plugins/nv_translate.lua](./lua/configure/plugins/nv_translate.lua) file and change the mapping.
 
-Finally, don't forget to modify the key grouping description in the [/lua/configure/plugins/nv_which-key.lua](./lua/configure/plugins/nv_which-key.lua) file.
+Finally, don't forget to modify the key grouping description in the [nvim/lua/configure/plugins/nv_which-key.lua](./lua/configure/plugins/nv_which-key.lua) file.
 
 ### Upload
 
@@ -711,9 +705,9 @@ It is common to quickly select a range of words and make changes. Here are the k
 "n" <c-s> : Skip selection
 "n" <c-d> : Delete the current selection
 "n" <m-p> : Create cursor down
+"n" <m-n> : Create cursor up
 "n" [     : Go to Prev
 "n" ]     : Go to next
-"n" <m-n> : Create cursor up
 "n" <esc> : Exit Multiple cursors mode
 ```
 
@@ -730,7 +724,7 @@ You can make quick changes using the following keys:
 "n" cs{char}{char}  : Changne Surround
 "n" cq              : Toggle Surround
 "n" ds{char}        : Delete Surround
-visual s            : Add Surround
+"v" s               : Add Surround
 ```
 
 This feature is provided by [surround.nvim](https://github.com/ur4ltz/surround.nvim), in addition, you can also use the `.` command to repeat the last modified surround work, which is provided by [vim-repeat ](https://github.com/tpope/vim-repeat).
@@ -759,7 +753,7 @@ Well, these functions are provided by [Comment.nvim](https://github.com/numToStr
 
 It is common to quickly change `True` to `False`. Switching can be done quickly with `gs`.
 
-If you want to add some words, you can edit the [lua/configure/plugins/nv_switch.lua](./lua/configure/plugins/nv_switch.lua) file.
+If you want to add some words, you can edit the [nvim/lua/configure/plugins/nv_switch.lua](./lua/configure/plugins/nv_switch.lua) file.
 
 In addition, using `gS` can quickly switch variable naming methods, such as:
 
