@@ -30,8 +30,7 @@ local packer_install_tbl = {
 	 ------------- Theme ---------------
 	=====================================
 	--]]
-    ["catppuccin/nvim"] = { -- dark purple theme
-        as = "catppuccin",
+    ["askfiy/catppuccin"] = { -- dark purple theme
         cond = options.colorscheme == "catppuccin",
     },
     ["Mofiqul/vscode.nvim"] = {
