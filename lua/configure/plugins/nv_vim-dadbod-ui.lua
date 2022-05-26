@@ -1,6 +1,6 @@
 -- https://github.com/kristijanhusak/vim-dadbod-ui
 
-local fn = require("utils.fn")
+local aux = require("utils.api.aux")
 local options = require("core.options")
 local mapping = require("core.mapping")
 
@@ -25,7 +25,7 @@ function M.register_global_key()
             lhs = "<leader>4",
             -- rhs = ":NvDBUIToggle<cr>",
             rhs = function()
-                fn.toggle_sidebar("dbui")
+                aux.toggle_sidebar("dbui")
                 vim.cmd("DBUIToggle")
             end,
             options = { silent = true },

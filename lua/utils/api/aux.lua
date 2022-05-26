@@ -1,11 +1,11 @@
-local fn = {}
+local aux = {}
 
 --[[
     Toggle sidebar
 
     target_ft: expected sidebar file type to open
 ]]
-fn.toggle_sidebar = function(target_ft)
+function aux.toggle_sidebar(target_ft)
     local offset_ft = {
         "NvimTree",
         "undotree",
@@ -24,4 +24,5 @@ fn.toggle_sidebar = function(target_ft)
     end
 end
 
-return fn
+
+return aux

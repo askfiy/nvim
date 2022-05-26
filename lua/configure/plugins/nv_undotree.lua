@@ -1,6 +1,6 @@
 -- https://github.com/mbbill/undotree
 
-local fn = require("utils.fn")
+local aux = require("utils.api.aux")
 local path = require("utils.api.path")
 local mapping = require("core.mapping")
 
@@ -39,7 +39,7 @@ function M.register_global_key()
             lhs = "<leader>3",
             -- rhs = ":UndotreeToggle<cr>",
             rhs = function()
-                fn.toggle_sidebar("undotree")
+                aux.toggle_sidebar("undotree")
                 vim.cmd("UndotreeToggle")
             end,
             options = { silent = true },

@@ -1,6 +1,6 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 
-local fn = require("utils.fn")
+local aux = require("utils.api.aux")
 local icons = require("utils.icons")
 local mapping = require("core.mapping")
 
@@ -120,7 +120,7 @@ function M.register_global_key()
             lhs = "<leader>1",
             -- rhs = "<cmd>NvimTreeToggle<cr>",
             rhs = function()
-                fn.toggle_sidebar("NvimTree")
+                aux.toggle_sidebar("NvimTree")
                 vim.cmd("NvimTreeToggle")
             end,
             options = { silent = true },

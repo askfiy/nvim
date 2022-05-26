@@ -1,6 +1,6 @@
 -- https://github.com/nvim-pack/nvim-spectre
 
-local fn = require("utils.fn")
+local aux = require("utils.api.aux")
 local mapping = require("core.mapping")
 
 local M = {}
@@ -27,7 +27,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>rp",
             rhs = function()
-                fn.toggle_sidebar("spectre_panel")
+                aux.toggle_sidebar("spectre_panel")
                 require("spectre").open()
             end,
             options = { silent = true },
@@ -37,7 +37,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>rf",
             rhs = function()
-                fn.toggle_sidebar("spectre_panel")
+                aux.toggle_sidebar("spectre_panel")
                 -- FIX: Invalid selected word ..
                 -- vim.cmd("normal! viw")
                 require("spectre").open_file_search()
@@ -49,7 +49,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>rw",
             rhs = function()
-                fn.toggle_sidebar("spectre_panel")
+                aux.toggle_sidebar("spectre_panel")
                 require("spectre").open_visual({ select_word = true })
             end,
             options = { silent = true },

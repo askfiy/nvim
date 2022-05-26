@@ -305,7 +305,7 @@ function M.register_buffer_key(bufnr)
                         if cursor_line < win_last_line then
                             vim.api.nvim_win_set_cursor(win_id, { win_last_line + M.float_scrollnumber, 0 })
                         elseif cursor_line + M.float_scrollnumber > buf_total_line then
-                            vim.api.nvim_win_set_cursor(win_id, { win_last_line, 0 })
+                            vim.api.nvim_win_set_cursor(win_id, { buf_total_line, 0 })
                         else
                             vim.api.nvim_win_set_cursor(win_id, { cursor_line + M.float_scrollnumber, 0 })
                         end
