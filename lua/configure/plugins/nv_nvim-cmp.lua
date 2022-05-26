@@ -17,6 +17,28 @@ local icons = require("utils.icons")
 local options = require("core.options")
 
 local M = {
+    -- whether to allow the following completion sources to have the same keywords as other completion sources
+    duplicate_keywords = {
+        -- allow duplicate keywords
+        ["vsnip"] = 1,
+        ["nvim_lsp"] = 1,
+        -- Do not allow duplicate keywords
+        ["buffer"] = 0,
+        ["path"] = 0,
+        ["cmdline"] = 0,
+        ["cmp_tabnine"] = 0,
+        ["vim-dadbod-completion"] = 0,
+    },
+    -- Priority when sorting by source (disabled by default)
+    soruce_priority = {
+        ["vsnip"] = 7,
+        ["nvim_lsp"] = 6,
+        ["cmp_tabnine"] = 5,
+        ["buffer"] = 4,
+        ["path"] = 3,
+        ["cmdline"] = 2,
+        ["vim-dadbod-completion"] = 1,
+    },
     -- Priority when sorting by kind (disabled by default)
     kind_priority = {
         ["Snippet"] = 25,
@@ -57,6 +79,10 @@ function M.load()
 
     M.cmp = m
     M.cmp.setup({
+        -- Behavior for suggested keywords when selecting suggestions
+        confirmation = {
+            default_behavior = M.cmp.ConfirmBehavior.Replace,
+        },
         -- Fragment plugin used
         snippet = {
             expand = function(args)
@@ -136,6 +162,7 @@ function M.load()
                 M.cmp.config.compare.kind,
                 M.cmp.config.compare.sort_text,
                 M.cmp.config.compare.order,
+                -- M.source_compare,
                 -- M.kind_compare,
             },
         },
@@ -146,6 +173,8 @@ function M.load()
                 local source = entry.source.name
                 vim_item.kind = string.format("%s %s", icons[options.icons_style][kind], kind)
                 vim_item.menu = string.format("<%s>", string.upper(source))
+                vim_item.dup = M.duplicate_keywords[source] or 0
+
                 return vim_item
             end,
         },
@@ -187,7 +216,7 @@ function M.under_compare(entry1, entry2)
 end
 
 function M.kind_compare(entry1, entry2)
-    -- Sort by Kind priority (disabled by default)
+    -- Sort by kind priority (disabled by default)
     local entry1_kind = M.cmp.lsp.CompletionItemKind[entry1:get_kind()]
     local entry2_kind = M.cmp.lsp.CompletionItemKind[entry2:get_kind()]
 
@@ -196,6 +225,18 @@ function M.kind_compare(entry1, entry2)
 
     -- desc
     return kind_priority2 < kind_priority1
+end
+
+function M.source_compare(entry1, entry2)
+    -- Sort by source priority
+    local source1 = entry1.source.name
+    local source2 = entry2.source.name
+
+    local source_priority1 = M.soruce_priority[source1] or 0
+    local source_priority2 = M.soruce_priority[source2] or 0
+
+    -- desc
+    return source_priority2 < source_priority1
 end
 
 return M
