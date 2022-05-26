@@ -41,16 +41,20 @@ mapping.register({
     {
         mode = { "n" },
         lhs = "<c-u>",
-        rhs = math.ceil(vim.api.nvim_win_get_height(0) / 4) .. "k",
+        rhs = function()
+            vim.cmd("normal! " .. math.ceil(vim.api.nvim_win_get_height(0) / 4) .. "k")
+        end,
         options = { silent = true },
-        description = "Move 10 lines up",
+        description = "Move 1/4 screen up",
     },
     {
         mode = { "n" },
         lhs = "<c-d>",
-        rhs = math.ceil(vim.api.nvim_win_get_height(0) / 4) .. "j",
+        rhs = function()
+            vim.cmd("normal! " .. math.ceil(vim.api.nvim_win_get_height(0) / 4) .. "j")
+        end,
         options = { silent = true },
-        description = "Move 10 lines down",
+        description = "Move 1/4 screen down",
     },
     {
         mode = { "n" },
@@ -102,7 +106,7 @@ mapping.register({
         description = "Look down history",
     },
     {
-        mode = { "n", "x" },
+        mode = { "n", "v" },
         lhs = "k",
         rhs = function()
             return vim.v.count > 0 and "k" or "gk"
@@ -111,7 +115,7 @@ mapping.register({
         description = "Move up one line",
     },
     {
-        mode = { "n", "x" },
+        mode = { "n", "v" },
         lhs = "j",
         rhs = function()
             return vim.v.count > 0 and "j" or "gj"
@@ -120,7 +124,7 @@ mapping.register({
         description = "Move down one line",
     },
     {
-        mode = { "n", "x" },
+        mode = { "n", "v" },
         lhs = "H",
         rhs = function()
             return vim.v.count > 0 and "^" or "g^"
@@ -129,7 +133,7 @@ mapping.register({
         description = "Move to the first character at the beginning of the line",
     },
     {
-        mode = { "n", "x" },
+        mode = { "n", "v" },
         lhs = "L",
         rhs = function()
             return vim.v.count > 0 and "$" or "g$"

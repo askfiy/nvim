@@ -415,8 +415,8 @@ The default `leader` is `space`, you can check the [nvim/lua/core/mapping.lua](.
 
 Some vim or neovim default keys have been replaced, namely:
 
-- `"n" <c-u>` : now it will move up 10 lines instead of half the display area
-- `"n" <c-d>` : now it will move down 10 lines instead of half the display area
+- `"n" <c-u>` : now it moves up 1/4 screen instead of 1/2 screen
+- `"n" <c-d>` : now it moves down 1/4 screen instead of 1/2 screen
 - `"n" <c-e>` : now it will move the current buffer to the left instead of scrolling up a line
 - `"n" <c-y>` : now it will move the current display area to the right instead of scrolling down a line
 - `"n" <c-l>` : now he will focus on the right buffer instead of clearing the search highlight
@@ -427,18 +427,18 @@ The following is a description of the basic keys:
 -  "i" jj                 :  Escape editor insert mode
 -  "t" <esc>              :  Escape terminal insert mode
 -  "n" <esc>              :  Clear search highlight
--  "n" <c-u>              :  Move 10 lines up
--  "n" <c-d>              :  Move 10 lines down
+-  "n" <c-u>              :  Move 1/4 screen up
+-  "n" <c-d>              :  Move 1/4 screen down
 -  "n" <m-k>              :  Reduce horizontal split screen size
 -  "n" <m-j>              :  Increase horizontal split screen size
 -  "n" <m-h>              :  Reduce vertical split screen size
 -  "n" <m-l>              :  Increase vertical split screen size
 -  "c" <m-p>              :  Look up history
 -  "c" <m-n>              :  Look down history
--  "n", "x" k             :  Move up one line
--  "n", "x" j             :  Move down one line
--  "n", "x" H             :  Move to the first character at the beginning of the line
--  "n", "x" L             :  Move to the last character at the end of the line
+-  "n", "v" k             :  Move up one line
+-  "n", "v" j             :  Move down one line
+-  "n", "v" H             :  Move to the first character at the beginning of the line
+-  "n", "v" L             :  Move to the last character at the end of the line
 -  "i", "c", "t" <m-w>    :  Jump to next word in insert mode
 -  "i", "c", "t" <m-b>    :  Jump to previous word in insert mode
 -  "i", "c", "t" <m-j>  :  Move cursor down in insert mode "i", "c", "t" <m-k>  :  Move cursor up in insert mode
@@ -660,19 +660,19 @@ Notice! floating terminal number is 120, lazygit terminal number is 130.
 Well, translated commands are also prefixed with `<leader>t`. [translate.nvim](https://github.com/uga-rosa/translate.nvim) is definitely the best translation plugin I've ever seen.
 
 ```
--  "n", "x" <leader>tcs  :  Translate English to Chinese and open in split window
--  "n", "x" <leader>tcr  :  Translate English to Chinese and replace English
--  "n", "x" <leader>tcf  :  Translate English to Chinese and open in float window
--  "n", "x" <leader>tci  :  Translate English to Chinese and insert to next line
--  "n", "x" <leader>tcc  :  Translate English to Chinese and copy result to clipboard
+-  "n", "v" <leader>tcs  :  Translate English to Chinese and open in split window
+-  "n", "v" <leader>tcr  :  Translate English to Chinese and replace English
+-  "n", "v" <leader>tcf  :  Translate English to Chinese and open in float window
+-  "n", "v" <leader>tci  :  Translate English to Chinese and insert to next line
+-  "n", "v" <leader>tcc  :  Translate English to Chinese and copy result to clipboard
 -  "n" <leader>tcb       :  Translate English comment to Chinese and open in float window
 -  "n" <leader>tcw       :  Translate English word to Chinese and open in float window
 
--  "n", "x" <leader>tes  :  Translate Chinese to English and open in split window
--  "n", "x" <leader>ter  :  Translate Chinese to English and replace Chinese
--  "n", "x" <leader>tef  :  Translate Chinese to English and open in float window
--  "n", "x" <leader>tei  :  Translate Chinese to English and insert to next line
--  "n", "x" <leader>tec  :  Translate Chinese to English and copy result to clipboard
+-  "n", "v" <leader>tes  :  Translate Chinese to English and open in split window
+-  "n", "v" <leader>ter  :  Translate Chinese to English and replace Chinese
+-  "n", "v" <leader>tef  :  Translate Chinese to English and open in float window
+-  "n", "v" <leader>tei  :  Translate Chinese to English and insert to next line
+-  "n", "v" <leader>tec  :  Translate Chinese to English and copy result to clipboard
 -  "n" <leader>teb       :  Translate Chinese comment to English and open in float window
 -  "n" <leader>tew       :  Translate Chinese word to English and open in float window
 ```
