@@ -119,9 +119,6 @@ local packer_install_tbl = {
     ["hrsh7th/cmp-cmdline"] = { -- provide command line completion
         after = { "nvim-cmp" },
     },
-    ["hrsh7th/cmp-nvim-lsp-signature-help"] = {
-        after = { "nvim-cmp" },
-    },
     ["kristijanhusak/vim-dadbod-completion"] = { -- complete completion for dadbod  (it may affect performance)
         ptp = "viml",
         after = { "nvim-cmp" },
@@ -265,7 +262,8 @@ local packer_install_tbl = {
     },
     ["mg979/vim-visual-multi"] = { -- multi-cursor mode
         ptp = "viml",
-        event = { "CursorMoved" },
+        fn = { "vm#commands#add_cursor_up", "vm#commands#add_cursor_down" },
+        keys = { "<c-n>" },
     },
     ["jbyuki/venn.nvim"] = { -- an excellent drawing tool
         module = "venn",
