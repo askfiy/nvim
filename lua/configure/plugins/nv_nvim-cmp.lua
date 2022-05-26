@@ -81,7 +81,8 @@ function M.load()
     M.cmp.setup({
         -- Behavior for suggested keywords when selecting suggestions
         confirmation = {
-            default_behavior = M.cmp.ConfirmBehavior.Replace,
+            -- Insert or Replace
+            default_behavior = M.cmp.ConfirmBehavior.Insert,
         },
         -- Fragment plugin used
         snippet = {

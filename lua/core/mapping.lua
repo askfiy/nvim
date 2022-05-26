@@ -41,14 +41,14 @@ mapping.register({
     {
         mode = { "n" },
         lhs = "<c-u>",
-        rhs = "10k",
+        rhs = math.ceil(vim.api.nvim_win_get_height(0) / 4) .. "k",
         options = { silent = true },
         description = "Move 10 lines up",
     },
     {
         mode = { "n" },
         lhs = "<c-d>",
-        rhs = "10j",
+        rhs = math.ceil(vim.api.nvim_win_get_height(0) / 4) .. "j",
         options = { silent = true },
         description = "Move 10 lines down",
     },
