@@ -32,8 +32,8 @@ end
 
 function M.after()
     for _, dap_config in pairs(M.dubug_adapter_config) do
-        M.dap.adapters = vim.tbl_extend("force", M.dap.adapters, dap_config.adapters)
-        M.dap.configurations = vim.tbl_extend("force", M.dap.configurations, dap_config.configurations)
+        M.dap.adapters = vim.tbl_deep_extend("force", M.dap.adapters, dap_config.adapters)
+        M.dap.configurations = vim.tbl_deep_extend("force", M.dap.configurations, dap_config.configurations)
     end
 end
 

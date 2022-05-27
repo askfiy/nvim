@@ -1,5 +1,6 @@
 -- https://github.com/sumneko/lua-language-server
 -- https://github.com/folke/lua-dev.nvim
+-- https://github.com/sumneko/vscode-lua/blob/master/setting/schema.json
 
 local util = require("lspconfig.util")
 
@@ -25,7 +26,7 @@ M.private_attach_callbackfn = function(client, bufnr)
     client.resolved_capabilities.document_range_formatting = false
 end
 
-M.lsp_config = vim.tbl_extend("force", {
+M.lsp_config = vim.tbl_deep_extend("force", {
     -- cmd = { "lua-language-server", "--locale=zh-CN" },
     filetypes = { "lua" },
     single_file_support = true,
@@ -40,6 +41,9 @@ M.lsp_config = vim.tbl_extend("force", {
             runtime = {
                 version = "LuaJIT",
                 path = runtime_path,
+            },
+            hover = {
+                previewFields = vim.o.lines,
             },
             diagnostics = {
                 globals = { "vim" },

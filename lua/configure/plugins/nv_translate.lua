@@ -2,7 +2,12 @@
 
 local mapping = require("core.mapping")
 
-local M = {}
+local M = {
+    replace_char = {
+        ["u003d"] = "=",
+        ["＃"] = "#",
+    },
+}
 
 function M.before()
     M.register_global_key()
@@ -32,11 +37,15 @@ function M.load()
         parse_after = {
             replace_symbols = {
                 cmd = function(lines)
-                    for index, char in ipairs(lines) do
-                        if char:find("u003d") then
-                            lines[index] = char:gsub("u003d", "=")
+                    -- replace some special symbols
+                    for i, line in ipairs(lines) do
+                        for char, rep in pairs(M.replace_char) do
+                            if line:match(char) then
+                                lines[i] = line:gsub(char, rep)
+                            end
                         end
                     end
+
                     return lines
                 end,
             },

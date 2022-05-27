@@ -98,7 +98,7 @@ function M.after()
                     debounce_text_changes = 150,
                 }
                 -- Merge public headers with private headers
-                lsp_config.handlers = vim.tbl_extend("force", M.lsp_handlers, lsp_config.handlers or {})
+                lsp_config.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, lsp_config.handlers or {})
                 -- Use the public configuration first, then use the private configuration of each LSP server
                 -- If there are duplicates, the private configuration will override the public configuration
                 lsp_config.on_attach = function(client, bufnr)
