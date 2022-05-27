@@ -291,8 +291,7 @@ function M.register_buffer_key(bufnr)
                     if vim.tbl_contains(scroll_floating_filetype, ft) then
                         local win_height = vim.api.nvim_win_get_height(win_id)
                         local cursor_line = vim.api.nvim_win_get_cursor(win_id)[1]
-                        ---@diagnostic disable-next-line: redundant-parameter
-                        local buf_total_line = vim.fn.line("$", win_id)
+                        local buf_total_line = vim.api.nvim_buf_line_count(buf_id)
                         ---@diagnostic disable-next-line: redundant-parameter
                         local win_last_line = vim.fn.line("w$", win_id)
 
@@ -336,8 +335,7 @@ function M.register_buffer_key(bufnr)
                     if vim.tbl_contains(scroll_floating_filetype, ft) then
                         local win_height = vim.api.nvim_win_get_height(win_id)
                         local cursor_line = vim.api.nvim_win_get_cursor(win_id)[1]
-                        ---@diagnostic disable-next-line: redundant-parameter
-                        local buf_total_line = vim.fn.line("$", win_id)
+                        local buf_total_line = vim.api.nvim_buf_line_count(buf_id)
                         ---@diagnostic disable-next-line: redundant-parameter
                         local win_first_line = vim.fn.line("w0", win_id)
 
