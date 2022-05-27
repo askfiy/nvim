@@ -340,7 +340,7 @@ packer.startup({
     function(use)
         for plug_name, plug_config in pairs(packer_install_tbl) do
             local plug_options = vim.tbl_deep_extend("force", { plug_name }, plug_config)
-            local plug_filename = plug_options.as or string.match(plug_name, "/([%w-_]+).?")
+            local plug_filename = plug_options.as or string.match(plug_name, "/([%w%-_]+).?")
             -- The plugin configuration module that needs to be loaded
             local load_disk_path = path.join("configure", "plugins", string.format("nv_%s", plug_filename:lower()))
             -- Path of the plugin configuration module on disk
