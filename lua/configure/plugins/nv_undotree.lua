@@ -21,7 +21,7 @@ function M.entrance()
     -- auto focus default 0
     vim.g.undotree_SetFocusWhenToggle = 1
 
-    if vim.fn.has("persistent_undo") then
+    if vim.fn.has("persistent_undo") == 1 then
         ---@diagnostic disable-next-line: missing-parameter
         local target_path = vim.fn.expand(M.undotree_dir)
         if not vim.fn.isdirectory(target_path) then
