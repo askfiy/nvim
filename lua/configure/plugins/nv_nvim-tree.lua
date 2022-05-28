@@ -8,41 +8,6 @@ local M = {}
 
 function M.before()
     M.register_global_key()
-
-    vim.g.nvim_tree_add_trailing = 1
-    vim.g.nvim_tree_git_hl = 1
-    vim.g.nvim_tree_highlight_opened_files = 0
-
-    vim.g.nvim_tree_show_icons = {
-        folders = 1,
-        files = 1,
-        git = 1,
-        folder_arrows = 1,
-    }
-
-    vim.g.nvim_tree_icons = {
-        default = "",
-        symlink = "",
-        git = {
-            unstaged = "",
-            staged = "",
-            unmerged = "",
-            renamed = "凜",
-            untracked = "",
-            deleted = "",
-            ignored = "",
-        },
-        folder = {
-            arrow_open = "",
-            arrow_closed = "",
-            default = "",
-            open = "",
-            empty = "",
-            empty_open = "",
-            symlink = "",
-            symlink_open = "",
-        },
-    }
 end
 
 function M.load()
@@ -63,6 +28,8 @@ function M.load()
         update_cwd = true,
         -- Ignored file types
         ignore_ft_on_setup = { "dashboard" },
+        -- Auto-reload tree (BufEnter event)
+        reload_on_bufenter = true,
         -- Update the focused file on `BufEnter`, un-collapses the folders recursively
         -- until it finds the file.
         update_focused_file = {
@@ -107,6 +74,42 @@ function M.load()
             dotfiles = false,
             custom = { "node_modules", "\\.cache", "__pycache__" },
             exclude = {},
+        },
+        renderer = {
+            add_trailing = true,
+            highlight_git = true,
+            highlight_opened_files = "all",
+            icons = {
+                show = {
+                    file = true,
+                    folder = true,
+                    folder_arrow = true,
+                    git = true,
+                },
+                glyphs = {
+                    default = "",
+                    symlink = "",
+                    git = {
+                        unstaged = "",
+                        staged = "",
+                        unmerged = "",
+                        renamed = "凜",
+                        untracked = "",
+                        deleted = "",
+                        ignored = "",
+                    },
+                    folder = {
+                        arrow_open = "",
+                        arrow_closed = "",
+                        default = "",
+                        open = "",
+                        empty = "",
+                        empty_open = "",
+                        symlink = "",
+                        symlink_open = "",
+                    },
+                },
+            },
         },
     })
 end
