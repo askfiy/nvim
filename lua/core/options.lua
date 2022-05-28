@@ -23,9 +23,6 @@ local options = {
     -- Code snippet storage directory
     -- • string
     code_snippets_directory = path.join(vim.fn.stdpath("config"), "snippets"),
-    -- Whether to use the github mirror source address
-    -- • boolean
-    use_github_mirror = false,
 }
 
 -- database link configuration

@@ -332,7 +332,7 @@ packer.init({
     git = {
         -- For Chinese users, if the download is slow, you can switch to the github mirror source
         -- replace : https://hub.fastgit.xyz/%s
-        default_url_format = options.use_github_mirror and "https://hub.fastgit.xyz/%s" or "https://github.com/%s",
+        default_url_format = "https://github.com/%s",
     },
 })
 

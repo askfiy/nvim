@@ -37,17 +37,19 @@ function M.load()
             separator_style = "thin",
             -- Diagnostic style
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
-                local c = ""
+                local message
                 if diagnostics_dict.error then
-                    c = c .. icons.diagnostics.Error .. diagnostics_dict.error
+                    message = string.format("%s%s", icons.diagnostics.Error, diagnostics_dict.error)
                 elseif diagnostics_dict.warning then
-                    c = c .. icons.diagnostics.Warn .. diagnostics_dict.warning
+                    message = string.format("%s%s", icons.diagnostics.Warn, diagnostics_dict.warning)
                 elseif diagnostics_dict.info then
-                    c = c .. icons.diagnostics.Info .. diagnostics_dict.info
+                    message = string.format("%s%s", icons.diagnostics.Info, diagnostics_dict.info)
                 elseif diagnostics_dict.hint then
-                    c = c .. icons.diagnostics.Hint .. diagnostics_dict.hint
+                    message = string.format("%s%s", icons.diagnostics.Hint, diagnostics_dict.hint)
+                else
+                    message = ""
                 end
-                return c
+                return message
             end,
             -- Offset of function
             offsets = {

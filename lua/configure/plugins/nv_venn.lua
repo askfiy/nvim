@@ -7,7 +7,7 @@ local mapping = require("core.mapping")
 
 local M = {
     notify = nil,
-    buffer_mappings = {},
+    cache_buffer_mappings = {},
 }
 
 function M.before()
@@ -70,11 +70,11 @@ end
 
 function M.cache_buffer_key()
     for _, mode in ipairs({ "i", "v", "n" }) do
-        M.buffer_mappings = vim.tbl_deep_extend("force", M.buffer_mappings, vim.api.nvim_buf_get_keymap(0, mode))
+        M.buffer_mappings = vim.tbl_deep_extend("force", M.cache_buffer_mappings, vim.api.nvim_buf_get_keymap(0, mode))
     end
     vim.tbl_filter(function(key_map)
         return key_map.desc
-    end, M.buffer_mappings)
+    end, M.cache_buffer_mappings)
 end
 
 function M.remap_buffer_key()
@@ -89,7 +89,7 @@ function M.remap_buffer_key()
             silent = key_map.silent,
             expr = key_map.expr,
         })
-    end, M.buffer_mappings)
+    end, M.cache_buffer_mappings)
 end
 
 function M.register_global_key()

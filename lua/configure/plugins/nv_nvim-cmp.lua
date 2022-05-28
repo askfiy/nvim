@@ -119,8 +119,8 @@ function M.load()
             ["<cr>"] = M.cmp.mapping(M.cmp.mapping.confirm(), { "i", "s", "c" }),
             ["<c-p>"] = M.cmp.mapping(M.cmp.mapping.select_prev_item(), { "i", "s", "c" }),
             ["<c-n>"] = M.cmp.mapping(M.cmp.mapping.select_next_item(), { "i", "s", "c" }),
-            ["<c-b>"] = M.cmp.mapping(M.cmp.mapping.scroll_docs(-4), { "i", "s", "c" }),
-            ["<c-f>"] = M.cmp.mapping(M.cmp.mapping.scroll_docs(4), { "i", "s", "c" }),
+            ["<c-b>"] = M.cmp.mapping(M.cmp.mapping.scroll_docs(-5), { "i", "s", "c" }),
+            ["<c-f>"] = M.cmp.mapping(M.cmp.mapping.scroll_docs(5), { "i", "s", "c" }),
             ["<tab>"] = M.cmp.mapping(M.cmp.mapping.confirm({ select = true }), { "i", "s", "c" }),
             ["<c-u>"] = M.cmp.mapping(function(fallback)
                 if M.cmp.visible() then
@@ -172,6 +172,7 @@ function M.load()
             format = function(entry, vim_item)
                 local kind = vim_item.kind
                 local source = entry.source.name
+
                 vim_item.kind = string.format("%s %s", icons[options.icons_style][kind], kind)
                 vim_item.menu = string.format("<%s>", string.upper(source))
                 vim_item.dup = M.duplicate_keywords[source] or 0
@@ -199,7 +200,6 @@ function M.after()
     M.cmp.setup.cmdline(":", {
         sources = M.cmp.config.sources({
             { name = "path" },
-        }, {
             { name = "cmdline" },
         }),
     })
@@ -229,7 +229,7 @@ function M.kind_compare(entry1, entry2)
 end
 
 function M.source_compare(entry1, entry2)
-    -- Sort by source priority
+    -- Sort by source priority (disabled by default)
     local source1 = entry1.source.name
     local source2 = entry2.source.name
 

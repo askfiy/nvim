@@ -8,8 +8,6 @@ local options = require("core.options")
 
 local M = {
     opt_scrolloff = vim.opt.scrolloff:get(),
-    floating_style = "rounded",
-    float_scrollnumber = 5,
 }
 
 function M.load_lsp_config()
@@ -69,8 +67,7 @@ function M.load()
         github = {
             -- For Chinese users, if the download is slow, you can switch to the github mirror source
             -- download_url_template = "https://hub.fastgit.xyz/%s/releases/download/%s/%s",
-            download_url_template = options.use_github_mirror and "https://hub.fastgit.xyz/%s/releases/download/%s/%s"
-                or "https://github.com/%s/releases/download/%s/%s",
+            download_url_template = "https://github.com/%s/releases/download/%s/%s",
         },
         max_concurrent_installers = 20,
     })
@@ -91,6 +88,7 @@ function M.after()
                 -- If it has been downloaded, it can be used directly
                 local lsp_config = server_settings.lsp_config
                 local private_attach_callbackfn = server_settings.private_attach_callbackfn
+                local public_attach_callbackfn = M.public_attach_callbackfn
 
                 lsp_config.capabilities = M.capabilities
 
@@ -102,7 +100,7 @@ function M.after()
                 -- Use the public configuration first, then use the private configuration of each LSP server
                 -- If there are duplicates, the private configuration will override the public configuration
                 lsp_config.on_attach = function(client, bufnr)
-                    M.public_attach_callbackfn(client, bufnr)
+                    public_attach_callbackfn(client, bufnr)
                     private_attach_callbackfn(client, bufnr)
                 end
                 -- Start LSP server
@@ -116,11 +114,11 @@ function M.float_style_settings()
     -- Add file type for floating window
     M.lsp_handlers = {
         ["textDocument/hover"] = vim.lsp.with(M.lsp_hover, {
-            border = M.floating_style,
+            border = "rounded",
             filetype = "lsp-hover",
         }),
         ["textDocument/signatureHelp"] = vim.lsp.with(M.lsp_signature_help, {
-            border = M.floating_style,
+            border = "rounded",
             filetype = "lsp-signature-help",
         }),
     }
@@ -244,7 +242,7 @@ function M.register_buffer_key(bufnr)
             mode = { "n" },
             lhs = "[g",
             rhs = function()
-                vim.diagnostic.goto_prev({ float = { border = M.floating_style } })
+                vim.diagnostic.goto_prev({ float = { border = "rounded" } })
             end,
             options = { silent = true, buffer = bufnr },
             description = "Jump to prev diagnostic",
@@ -253,7 +251,7 @@ function M.register_buffer_key(bufnr)
             mode = { "n" },
             lhs = "]g",
             rhs = function()
-                vim.diagnostic.goto_next({ float = { border = M.floating_style } })
+                vim.diagnostic.goto_next({ float = { border = "rounded" } })
             end,
             options = { silent = true, buffer = bufnr },
             description = "Jump to next diagnostic",
@@ -302,11 +300,11 @@ function M.register_buffer_key(bufnr)
 
                         vim.opt.scrolloff = 0
                         if cursor_line < win_last_line then
-                            vim.api.nvim_win_set_cursor(win_id, { win_last_line + M.float_scrollnumber, 0 })
-                        elseif cursor_line + M.float_scrollnumber > buf_total_line then
+                            vim.api.nvim_win_set_cursor(win_id, { win_last_line + 5, 0 })
+                        elseif cursor_line + 5 > buf_total_line then
                             vim.api.nvim_win_set_cursor(win_id, { buf_total_line, 0 })
                         else
-                            vim.api.nvim_win_set_cursor(win_id, { cursor_line + M.float_scrollnumber, 0 })
+                            vim.api.nvim_win_set_cursor(win_id, { cursor_line + 5, 0 })
                         end
                         vim.opt.scrolloff = M.opt_scrolloff
 
@@ -346,11 +344,11 @@ function M.register_buffer_key(bufnr)
 
                         vim.opt.scrolloff = 0
                         if cursor_line > win_first_line then
-                            vim.api.nvim_win_set_cursor(win_id, { win_first_line - M.float_scrollnumber, 0 })
-                        elseif cursor_line - M.float_scrollnumber < 1 then
+                            vim.api.nvim_win_set_cursor(win_id, { win_first_line - 5, 0 })
+                        elseif cursor_line - 5 < 1 then
                             vim.api.nvim_win_set_cursor(win_id, { 1, 0 })
                         else
-                            vim.api.nvim_win_set_cursor(win_id, { cursor_line - M.float_scrollnumber, 0 })
+                            vim.api.nvim_win_set_cursor(win_id, { cursor_line - 5, 0 })
                         end
                         vim.opt.scrolloff = M.opt_scrolloff
 

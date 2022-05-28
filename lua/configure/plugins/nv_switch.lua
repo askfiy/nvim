@@ -72,7 +72,7 @@ function M.register_global_key()
                 vim.fn["switch#Switch"]({ definitions = vim.g.variable_style_switch_definitions })
             end,
             options = { silent = true },
-            description = "Switch the opposite meaning of the word",
+            description = "Switch variable naming style",
         },
     })
 end
