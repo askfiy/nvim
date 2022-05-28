@@ -78,7 +78,7 @@ function M.load()
         renderer = {
             add_trailing = true,
             highlight_git = true,
-            highlight_opened_files = "all",
+            highlight_opened_files = "none",
             icons = {
                 show = {
                     file = true,
