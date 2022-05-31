@@ -124,12 +124,12 @@ local packer_install_tbl = {
         after = { "nvim-cmp" },
     },
     ["tzachar/cmp-tabnine"] = { -- AI smart completion (it may affect performance)
-        disable = false,
+        disable = true,
         run = "./install.sh",
         after = { "nvim-cmp" },
     },
     ["github/copilot.vim"] = { -- AI smart completion
-        disable = false,
+        disable = true,
         ptp = "viml",
         event = { "InsertEnter" },
     },

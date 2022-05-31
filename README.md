@@ -154,16 +154,16 @@ $ yay -S unzip
 $ yay -S curl
 
 -- * Image upload to image bed function
-$ yay -S picgo-core
+$ npm install picgo -g
 
 -- * mysql client linker
 $ yay -S percona-server-clients
 
 -- * Persistent save history yank records
-$ yay -S sqllit3
+$ yay -S sqlite3
 
 -- * Command-line tool to put files into recycle bin
-$ yay -S trash
+$ yay -S trash-cli
 ```
 
 ## How-do-use
