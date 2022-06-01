@@ -790,6 +790,12 @@ Press `<leader>5` to open Venn, then try `<c-j/k/h/l>` to draw lines.
 
 Select an area with `<c-v>` and press `f` or `b` you will get a solid or hollow box.
 
+### Code image
+
+Use `<leader>ci` in normal or visual mode to generate code screenshots, requires a network link.
+
 ### Copillot
 
 Use `<c-l>` to get copillot's suggestions in insert mode.
+
+You can also use `<leader>cp` to open the co-pilot's suggestion panel (normal mode).

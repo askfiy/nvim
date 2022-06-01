@@ -19,6 +19,13 @@ function M.register_global_key()
             options = { silent = true, expr = true },
             description = "Suggestions for using copilot",
         },
+        {
+            mode = { "n" },
+            lhs = "<leader>cp",
+            rhs = ":Copilot panel<cr>",
+            options = { silent = true },
+            description = "Open copilot panel",
+        },
     })
 end
 
