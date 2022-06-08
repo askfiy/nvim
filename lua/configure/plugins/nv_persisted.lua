@@ -31,11 +31,7 @@ function M.register_global_key()
         {
             mode = { "n" },
             lhs = "<leader>sl",
-            rhs = function()
-                vim.cmd("silent! SessionLoad")
-                -- Reload lsp servers
-                pcall(vim.cmd, "edit")
-            end,
+            rhs = "<cmd>silent! SessionLoad<cr>",
             options = { silent = true },
             description = "Load session",
         },
