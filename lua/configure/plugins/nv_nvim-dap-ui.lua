@@ -60,8 +60,17 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>de",
             rhs = function()
-                ---@diagnostic disable-next-line: missing-parameter
-                require("dapui").eval()
+                local wins = vim.api.nvim_list_wins()
+                for _, win_id in ipairs(wins) do
+                    local buf_id = vim.api.nvim_win_get_buf(win_id)
+                    local ft = vim.api.nvim_buf_get_option(buf_id, "filetype")
+                    if ft == "dapui_hover" then
+                        ---@diagnostic disable-next-line: missing-parameter
+                        require("dapui").eval()
+                        return
+                    end
+                end
+                require("dapui").eval(vim.fn.input("Enter debug expression: "))
             end,
             options = { silent = true },
             description = "Execute debug expressions",
