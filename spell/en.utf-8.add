@@ -145,3 +145,5 @@ fcitx
 RPC
 viewset
 viewset
+client_conn_list
+manage_conn_dict
