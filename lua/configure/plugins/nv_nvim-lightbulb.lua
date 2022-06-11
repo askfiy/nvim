@@ -18,7 +18,7 @@ function M.load()
         ignore = {},
         sign = {
             enabled = true,
-            priority = 15,
+            priority = 10,
         },
         float = {
             enabled = false,
