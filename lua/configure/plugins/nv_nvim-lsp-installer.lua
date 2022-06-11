@@ -41,6 +41,8 @@ function M.load()
     M.float_style_settings()
     -- Set diagnostic style
     M.diagnostics_style_settings()
+    -- Set lspconfig floating border
+    M.lspconfig_float_settings()
 
     M.aerial = require("aerial")
     M.lspconfig = require("lspconfig")
@@ -49,6 +51,7 @@ function M.load()
     M.nvim_lsp_installer.setup({
         automatic_installation = true,
         ui = {
+            border = "double",
             icons = {
                 server_installed = "",
                 server_pending = "",
@@ -155,6 +158,18 @@ function M.diagnostics_style_settings()
     for tpe, icon in pairs(icons.diagnostics) do
         local hl = "DiagnosticSign" .. tpe
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+end
+
+function M.lspconfig_float_settings()
+    local win = require("lspconfig.ui.windows")
+    local _default_opts = win.default_opts
+
+    ---@diagnostic disable-next-line: redefined-local
+    win.default_opts = function(options)
+        local opts = _default_opts(options)
+        opts.border = "double"
+        return opts
     end
 end
 
