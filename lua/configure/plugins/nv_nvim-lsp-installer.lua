@@ -69,9 +69,7 @@ function M.load()
             },
         },
         github = {
-            -- For Chinese users, if the download is slow, you can switch to the github mirror source
-            -- download_url_template = "https://hub.fastgit.xyz/%s/releases/download/%s/%s",
-            download_url_template = "https://github.com/%s/releases/download/%s/%s",
+            download_url_template = options.download_source .. "%s/releases/download/%s/%s",
         },
         max_concurrent_installers = 20,
     })

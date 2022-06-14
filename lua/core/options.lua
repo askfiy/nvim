@@ -23,6 +23,10 @@ local options = {
     -- Code snippet storage directory
     -- • string
     code_snippets_directory = path.join(vim.fn.stdpath("config"), "snippets"),
+    -- download source (for LSP server, treesitter parser, and various plugin downloads)
+    -- • https://github.com/
+    -- • https://hub.fastgit.xyz/
+    download_source = "https://github.com/",
 }
 
 -- database link configuration

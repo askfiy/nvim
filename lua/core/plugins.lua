@@ -330,9 +330,7 @@ local packer = require("packer")
 
 packer.init({
     git = {
-        -- For Chinese users, if the download is slow, you can switch to the github mirror source
-        -- default_url_format = "https://hub.fastgit.xyz/%s",
-        default_url_format = "https://github.com/%s",
+        default_url_format = options.download_source .. "%s",
     },
 })
 
