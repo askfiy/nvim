@@ -140,8 +140,8 @@ function M.lsp_signature_help(_, result, ctx, config)
     local bufnr, winner = vim.lsp.handlers.signature_help(_, result, ctx, config)
 
     -- Put the signature floating window above the cursor
-    local current_cursorl_line = vim.api.nvim_win_get_cursor(0)[1]
-    if current_cursorl_line > 3 then
+    local current_cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+    if current_cursor_line > 3 then
         vim.api.nvim_win_set_config(winner, {
             anchor = "SW",
             relative = "cursor",
