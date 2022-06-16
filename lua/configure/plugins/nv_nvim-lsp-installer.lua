@@ -138,6 +138,15 @@ end
 function M.lsp_signature_help(_, result, ctx, config)
     -- Add file type for LSP signature help
     local bufnr, winner = vim.lsp.handlers.signature_help(_, result, ctx, config)
+
+    -- Put the signature floating window above the cursor
+    vim.api.nvim_win_set_config(winner, {
+        anchor = "SW",
+        relative = "cursor",
+        row = 0,
+        col = 0
+    })
+
     if bufnr and winner then
         vim.api.nvim_buf_set_option(bufnr, "filetype", config.filetype)
         return bufnr, winner
