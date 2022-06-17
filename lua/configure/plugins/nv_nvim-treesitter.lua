@@ -25,12 +25,10 @@ function M.load()
             enable = true,
             additional_vim_regex_highlighting = false,
             use_languagetree = true,
-            -- FIX: https://github.com/nvim-treesitter/nvim-treesitter/issues/3019
-            -- disable = { "javascript", "typescript" },
         },
         indent = {
             enable = true,
-            disable = { "yaml", "python" },
+            disable = { "yaml", "python", "html" },
         },
         -- incremental selection
         incremental_selection = {
