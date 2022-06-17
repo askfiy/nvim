@@ -143,8 +143,14 @@ local settings = {
 vim.opt.shortmess:append("sI")
 -- Allow h and l newlines
 vim.opt.whichwrap:append("<>[]hl")
+
 -- Remove auto-comments
-vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = "*",
+    callback = function()
+        vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+    end,
+})
 
 for prefix, tab in pairs(settings) do
     if prefix ~= "disable_builtin_plugins" then

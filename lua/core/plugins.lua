@@ -9,7 +9,6 @@ local packer_install_tbl = {
 	--]]
     ["wbthomason/packer.nvim"] = {}, -- package manager
     ["lewis6991/impatient.nvim"] = {}, -- speed up startup
-    ["nathom/filetype.nvim"] = {}, -- speed up startup
     ["rcarriga/nvim-notify"] = {}, -- fancy notification message
     --[[
 	=====================================
