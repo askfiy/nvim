@@ -139,7 +139,6 @@ local settings = {
 -- vim.opt.listchars:append("eol:↴")
 -- vim.opt.listchars:append("tab:↹ ")
 
-vim.opt.shortmess:append("sI") -- reduce the display of <c-g>
 -- Reduce the display of <c-g>
 vim.opt.shortmess:append("sI")
 -- Allow h and l newlines
