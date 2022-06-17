@@ -159,7 +159,7 @@ end
 function M.diagnostics_style_settings()
     vim.diagnostic.config({
         signs = true,
-        underline = true,
+        underline = false,
         severity_sort = true,
         update_in_insert = false,
         float = { source = "always" },
