@@ -24,6 +24,7 @@ function M.load_lsp_config()
         vuels = require("configure.lsp.vuels"),
         gopls = require("configure.lsp.gopls"),
         pyright = require("configure.lsp.pyright"),
+        emmet_ls = require("configure.lsp.emmet_ls"),
     }
 end
 
