@@ -218,10 +218,6 @@ local packer_install_tbl = {
         ft = "py",
         event = { "InsertEnter" },
     },
-    ["mattn/emmet-vim"] = { -- emmet abbreviation support
-        ptp = "viml",
-        ft = { "html", "javascript", "typescript", "vue", "xml", "jsx" },
-    },
     --[[
 	=====================================
 	 ----------- Fuzzy lookup ----------

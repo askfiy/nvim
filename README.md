@@ -36,7 +36,6 @@
   - [Surround](#Surround)
   - [Comment](#Comment)
   - [Switch](#Switch)
-  - [Emment](#Emment)
   - [Motions](#Motions)
   - [Drawing](#Drawing)
   - [Code-image](#Code-image)
@@ -763,12 +762,6 @@ variable_example => variableExample
 ```
 
 As you can see, this feature is supported without the [switch](https://github.com/AndrewRadev/switch.vim) plugin.
-
-### Emment
-
-Use `<c-e>,` to quickly expand emment fragments.
-
-`<c-e>` has some other functions, but it only works with certain types of files:
 
 ### Motions
 
