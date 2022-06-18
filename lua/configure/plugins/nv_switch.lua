@@ -31,7 +31,7 @@ local M = {
         { "active", "inactive" },
         { "white", "black" },
         { "get", "post" },
-        { "forward, backward" },
+        { "forward", "backward" },
         { "odd", "even" },
         { "+", "-" },
         { ">", "<" },
