@@ -17,6 +17,12 @@ local icons = require("utils.icons")
 local options = require("core.options")
 
 local M = {
+    -- Complete the floating window settings of the menu
+    complete_window_settings = {
+        fixed = true,
+        min_width = 20,
+        max_width = 20,
+    },
     -- whether to allow the following completion sources to have the same keywords as other completion sources
     duplicate_keywords = {
         -- allow duplicate keywords
@@ -173,6 +179,21 @@ function M.load()
                 vim_item.kind = string.format("%s %s", icons[options.icons_style][kind], kind)
                 vim_item.menu = string.format("<%s>", string.upper(source))
                 vim_item.dup = M.duplicate_keywords[source] or 0
+
+                -- Determine if it is a fixed window size
+                if M.complete_window_settings.fixed then
+                    local label = vim_item.abbr
+                    local min_width = M.complete_window_settings.min_width
+                    local max_width = M.complete_window_settings.max_width
+                    local truncated_label = vim.fn.strcharpart(label, 0, max_width)
+
+                    if truncated_label ~= label then
+                        vim_item.abbr = string.format("%s %s", truncated_label, "…")
+                    elseif string.len(label) < min_width then
+                        local padding = string.rep(" ", min_width - string.len(label))
+                        vim_item.abbr = string.format("%s %s", label, padding)
+                    end
+                end
 
                 return vim_item
             end,
