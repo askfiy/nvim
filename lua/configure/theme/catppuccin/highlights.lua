@@ -81,6 +81,8 @@ function M.global_highlights()
         ["rainbowcol3"] = { bg = "NONE" },
         ["rainbowcol4"] = { bg = "NONE" },
         ["rainbowcol5"] = { bg = "NONE" },
+        ["rainbowcol6"] = { bg = "NONE" },
+        ["rainbowcol7"] = { bg = "NONE" },
 
         -- aerinal icons
         ["AerialArrayIcon"] = { fg = colors.blue },
