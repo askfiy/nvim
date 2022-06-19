@@ -38,8 +38,6 @@ function M.register_global_key()
             lhs = "<leader>rf",
             rhs = function()
                 aux.toggle_sidebar("spectre_panel")
-                -- FIX: Invalid selected word ..
-                -- vim.cmd("normal! viw")
                 require("spectre").open_file_search()
             end,
             options = { silent = true },
@@ -47,7 +45,21 @@ function M.register_global_key()
         },
         {
             mode = { "n" },
-            lhs = "<leader>rw",
+            lhs = "<leader>rwf",
+            rhs = function()
+                aux.toggle_sidebar("spectre_panel")
+                require("spectre").open_visual({
+                    select_word = true,
+                    ---@diagnostic disable-next-line: missing-parameter
+                    path = vim.fn.fnameescape(vim.fn.expand("%:p:.")),
+                })
+            end,
+            options = { silent = true },
+            description = "Replace the character under the cursor in the current file",
+        },
+        {
+            mode = { "n" },
+            lhs = "<leader>rwp",
             rhs = function()
                 aux.toggle_sidebar("spectre_panel")
                 require("spectre").open_visual({ select_word = true })

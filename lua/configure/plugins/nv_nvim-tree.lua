@@ -132,7 +132,10 @@ function M.register_global_key()
         {
             mode = { "n" },
             lhs = "<leader>fc",
-            rhs = "<cmd>NvimTreeFindFile<cr>",
+            rhs = function()
+                aux.toggle_sidebar("NvimTree")
+                vim.cmd("NvimTreeFindFile")
+            end,
             options = { silent = true },
             description = "Find the current file and open it in file explorer",
         },
