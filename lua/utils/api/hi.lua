@@ -3,7 +3,7 @@ local hi = {}
 --[[
 Set neovim highlight
 Example:
-     hi.set("Comment", {fg = "Green", bg = "Black", bold = true})
+     hi.set("Comment", {fg = "Green", bg = "Black", gui = "bold,italic"})
      => nil
 ]]
 function hi.set(name, opts)
@@ -22,7 +22,7 @@ end
 Get neovim highlight
 Example:
     hi.get("Comment", "fg")
-    => "#Green"
+    => "#00FF00"
 ]]
 function hi.get(name, style)
     local opts = {}
