@@ -81,7 +81,13 @@ function M.load()
     })
 end
 
-function M.after() end
+function M.after()
+    -- FIX: https://github.com/nvim-telescope/telescope.nvim/issues/699
+    vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        pattern = { "*" },
+        command = "normal zx",
+    })
+end
 
 function M.register_global_key()
     mapping.register({
