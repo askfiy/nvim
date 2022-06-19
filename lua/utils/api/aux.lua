@@ -24,6 +24,9 @@ function aux.toggle_sidebar(target_ft)
     end
 end
 
+--[[
+    Keep the terminal's window offset when there is a sidebar
+]]
 function aux.terminal_offset_run_command(command)
     local offset_ft = {
 
