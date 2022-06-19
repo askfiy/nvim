@@ -137,7 +137,7 @@ function M.register_global_key()
         {
             mode = { "n", "v" },
             lhs = "<leader>tec",
-            rhs = ":Translate EN -source=ZN -output=register<cr>",
+            rhs = ":Translate EN -source=ZH -output=register<cr>",
             options = { silent = true },
             description = "Translate Chinese to English and copy result to clipboard",
         },
