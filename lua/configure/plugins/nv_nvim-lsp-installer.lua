@@ -142,7 +142,11 @@ function M.lsp_signature_help(_, result, ctx, config)
 
     -- Put the signature floating window above the cursor
     local current_cursor_line = vim.api.nvim_win_get_cursor(0)[1]
-    local win_height = vim.api.nvim_win_get_height(winner)
+    local ok, win_height = pcall(vim.api.nvim_win_get_height, winner)
+
+    if not ok then
+        return
+    end
 
     if current_cursor_line > win_height + 2 then
         vim.api.nvim_win_set_config(winner, {
@@ -322,7 +326,7 @@ function M.register_buffer_key(bufnr)
                         ---@diagnostic disable-next-line: redundant-parameter
                         local win_last_line = vim.fn.line("w$", win_id)
 
-                        if buf_total_line == win_height then
+                        if buf_total_line <= win_height then
                             vim.api.nvim_echo({ { "Can't scroll down", "MoreMsg" } }, false, {})
                             return
                         end
@@ -366,7 +370,7 @@ function M.register_buffer_key(bufnr)
                         ---@diagnostic disable-next-line: redundant-parameter
                         local win_first_line = vim.fn.line("w0", win_id)
 
-                        if buf_total_line == win_height then
+                        if buf_total_line <= win_height then
                             vim.api.nvim_echo({ { "Can't scroll up", "MoreMsg" } }, false, {})
                             return
                         end
