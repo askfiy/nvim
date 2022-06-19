@@ -33,7 +33,7 @@ function M.load()
             "Function",
             "Method",
             -- customize
-            "Property",
+            -- "Property",
         },
         -- Icon to use
         icons = icons[options.icons_style],
