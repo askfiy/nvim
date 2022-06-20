@@ -111,7 +111,7 @@ local settings = {
         -- Enable global status bar
         laststatus = 3,
         -- After turning on the global status bar, we should set a more obvious separator
-        fillchars = "vert:┃,horiz:━,verthoriz:╋,horizup:┻,horizdown:┳,vertleft:┫,vertright:┣",
+        fillchars = "vert:┃,horiz:━,verthoriz:╋,horizup:┻,horizdown:┳,vertleft:┫,vertright:┣,eob: ",
     },
     disable_builtin_plugins = {
         -- "netrw",
