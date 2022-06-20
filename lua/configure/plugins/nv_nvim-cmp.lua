@@ -181,7 +181,7 @@ function M.load()
                 vim_item.dup = M.duplicate_keywords[source] or 0
 
                 -- Determine if it is a fixed window size
-                if M.complete_window_settings.fixed then
+                if M.complete_window_settings.fixed and vim.fn.mode() == "i" then
                     local label = vim_item.abbr
                     local min_width = M.complete_window_settings.min_width
                     local max_width = M.complete_window_settings.max_width
