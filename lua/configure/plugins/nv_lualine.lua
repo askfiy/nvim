@@ -130,10 +130,17 @@ function M.trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
         local win_width = vim.fn.winwidth(0)
         if hide_width and win_width < hide_width then
             return ""
-        elseif trunc_width and trunc_len and win_width < trunc_width and #str > trunc_len then
+        elseif
+            vim.api.nvim_buf_get_option(0, "filetype") ~= "toggleterm"
+            and trunc_width
+            and trunc_len
+            and win_width < trunc_width
+            and #str > trunc_len
+        then
             return str:sub(1, trunc_len) .. (no_ellipsis and "" or "...")
+        else
+            return str
         end
-        return str
     end
 end
 
