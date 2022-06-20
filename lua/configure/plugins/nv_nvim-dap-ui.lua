@@ -1,5 +1,6 @@
 -- https://github.com/rcarriga/nvim-dap-ui
 
+local aux = require("utils.api.aux")
 local mapping = require("core.mapping")
 
 local M = {}
@@ -17,9 +18,26 @@ function M.load()
     M.dap = require("dap")
     M.dapui = m
     M.dapui.setup({
-        sidebar = {
-            -- Dapui windows on the right
-            position = "right",
+        layouts = {
+            {
+                elements = {
+                    -- Elements can be strings or table with id and size keys.
+                    "scopes",
+                    "breakpoints",
+                    "stacks",
+                    "watches",
+                },
+                size = 30,
+                position = "right",
+            },
+            {
+                elements = {
+                    "repl",
+                    "console",
+                },
+                size = 10,
+                position = "bottom",
+            },
         },
     })
 end
@@ -60,11 +78,8 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>de",
             rhs = function()
-                local wins = vim.api.nvim_list_wins()
-                for _, win_id in ipairs(wins) do
-                    local buf_id = vim.api.nvim_win_get_buf(win_id)
-                    local ft = vim.api.nvim_buf_get_option(buf_id, "filetype")
-                    if ft == "dapui_hover" then
+                for _, opts in ipairs(aux.get_all_win_buf_ft()) do
+                    if opts.buf_ft == "dapui_hover" then
                         ---@diagnostic disable-next-line: missing-parameter
                         require("dapui").eval()
                         return
