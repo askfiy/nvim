@@ -5,15 +5,18 @@ local options = require("core.options")
 local mapping = require("core.mapping")
 
 local M = {
-    -- Define message warnings to ignore, usually from the LSP server
+    -- Define message warnings to ignore, usually from the LSP or DAP server
     ignore_message = {
+        -- LSP
         "exit code",
         "Invalid buffer",
         "textDocument/documentSymbol is not supported",
         "client has shut down after sending the message",
+        -- DAP
+        "No stopped thread. Cannot move",
     },
-    -- The following information will not be displayed using Notify, but using echo
-    switch_notice_method = {
+    -- Use echo instead of Notify to display the following message
+    echo_message = {
         "Reason: breakpoint",
         "Reason: step",
     },
@@ -66,7 +69,7 @@ function M.load()
                 end
             end
 
-            for _, v in ipairs(M.switch_notice_method) do
+            for _, v in ipairs(M.echo_message) do
                 if msg:match(v) then
                     vim.api.nvim_echo({ { msg, "MoreMsg" } }, false, {})
                     return
