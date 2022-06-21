@@ -12,6 +12,11 @@ local M = {
         "textDocument/documentSymbol is not supported",
         "client has shut down after sending the message",
     },
+    -- The following information will not be displayed using Notify, but using echo
+    switch_notice_method = {
+        "Reason: breakpoint",
+        "Reason: step",
+    },
 }
 
 function M.before()
@@ -60,6 +65,14 @@ function M.load()
                     return
                 end
             end
+
+            for _, v in ipairs(M.switch_notice_method) do
+                if msg:match(v) then
+                    vim.api.nvim_echo({ { msg, "MoreMsg" } }, false, {})
+                    return
+                end
+            end
+
             return m(msg, ...)
         end,
         __index = m,

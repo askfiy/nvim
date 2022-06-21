@@ -130,6 +130,7 @@ local packer_install_tbl = {
     ["github/copilot.vim"] = { -- AI smart completion
         disable = false,
         ptp = "viml",
+        ft = { "dap-repl" },
         event = { "InsertEnter" },
     },
     --[[
