@@ -83,6 +83,12 @@ function M.load()
                     highlight = "Directory",
                     text_align = "center",
                 },
+                {
+                    filetype = "toggleterm",
+                    text = "Integrated Terminal",
+                    highlight = "Directory",
+                    text_align = "center",
+                }
             },
         },
     })
