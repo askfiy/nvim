@@ -93,9 +93,27 @@ function aux.terminal_offset_run_command(command)
 
     local all_win_buf_ft = aux.get_all_win_buf_ft()
 
+    local aerial_exists = false
+    local aerial_win_id = 0
+    local aerial_width = 0
+
+    for _, opts in ipairs(all_win_buf_ft) do
+        if opts.buf_ft == "aerial" then
+            aerial_exists = true
+            aerial_win_id = opts.win_id
+            aerial_width = vim.api.nvim_win_get_width(opts.win_id)
+        end
+    end
+
     for _, opts in ipairs(all_win_buf_ft) do
         if vim.tbl_contains(vim.tbl_keys(offset_ft), opts.buf_ft) then
             offset_ft[opts.buf_ft](opts.win_id)
+
+            -- Resize aerial width
+            if aerial_exists then
+                vim.api.nvim_win_set_width(aerial_win_id, aerial_width)
+            end
+
             return
         end
     end
