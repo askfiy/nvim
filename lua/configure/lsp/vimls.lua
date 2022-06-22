@@ -2,11 +2,7 @@
 
 local util = require("lspconfig.util")
 
-local M = {}
-
-M.private_attach_callbackfn = function(client, bufnr) end
-
-M.lsp_config = {
+return {
     filetypes = { "vim" },
     single_file_support = true,
     cmd = { "vim-language-server", "--stdio" },
@@ -26,5 +22,3 @@ M.lsp_config = {
         suggest = { fromVimruntime = true, fromRuntimepath = true },
     },
 }
-
-return M

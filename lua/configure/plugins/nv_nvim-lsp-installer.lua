@@ -78,7 +78,7 @@ function M.load()
 end
 
 function M.after()
-    for server_name, server_settings in pairs(M.language_servers_config) do
+    for server_name, lsp_config in pairs(M.language_servers_config) do
         local server_available, server = M.nvim_lsp_installer.get_server(server_name)
         -- Determine whether the LSP server is valid (supports automatic download)
         if server_available then
@@ -89,23 +89,18 @@ function M.after()
                 ---@diagnostic disable-next-line: undefined-field
                 server:install()
             else
-                -- If it has been downloaded, it can be used directly
-                local lsp_config = server_settings.lsp_config
-                local private_attach_callbackfn = server_settings.private_attach_callbackfn
-                local public_attach_callbackfn = M.public_attach_callbackfn
-
                 lsp_config.capabilities = M.capabilities
 
                 lsp_config.flags = {
                     debounce_text_changes = 150,
                 }
+
                 -- Merge public headers with private headers
                 lsp_config.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, lsp_config.handlers or {})
-                -- Use the public configuration first, then use the private configuration of each LSP server
-                -- If there are duplicates, the private configuration will override the public configuration
+                -- Run the callback function, help the top key position
                 lsp_config.on_attach = function(client, bufnr)
-                    public_attach_callbackfn(client, bufnr)
-                    private_attach_callbackfn(client, bufnr)
+                    M.aerial.on_attach(client, bufnr)
+                    M.register_buffer_key(bufnr)
                 end
                 -- Start LSP server
                 M.lspconfig[server_name].setup(lsp_config)
@@ -192,11 +187,6 @@ function M.lspconfig_float_settings()
     end
 end
 
-function M.public_attach_callbackfn(client, bufnr)
-    M.aerial.on_attach(client, bufnr)
-    M.register_buffer_key(bufnr)
-end
-
 function M.register_buffer_key(bufnr)
     mapping.register({
         {
@@ -216,7 +206,7 @@ function M.register_buffer_key(bufnr)
         {
             mode = { "n" },
             lhs = "<leader>cf",
-            rhs = vim.lsp.buf.formatting_sync,
+            rhs = vim.lsp.buf.format,
             options = { silent = true, buffer = bufnr },
             description = "Format buffer",
         },

@@ -10,8 +10,11 @@ local M = {
         -- LSP
         "exit code",
         "Invalid buffer",
+        "textDocument/signatureHelp is not supported",
         "textDocument/documentSymbol is not supported",
         "client has shut down after sending the message",
+        "client has shut down during progress update",
+        "client has shut down after sending a workspace/configuration request",
         -- DAP
         "No stopped thread. Cannot move",
     },

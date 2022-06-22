@@ -20,15 +20,7 @@ local root_files = {
     "selene.toml",
 }
 
-local M = {}
-
-M.private_attach_callbackfn = function(client, bufnr)
-    -- disable sumneko format
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-end
-
-M.lsp_config = vim.tbl_deep_extend("keep", lua_dev.setup(), {
+return vim.tbl_deep_extend("keep", lua_dev.setup(), {
     -- cmd = { "lua-language-server", "--locale=zh-CN" },
     filetypes = { "lua" },
     single_file_support = true,
@@ -59,5 +51,3 @@ M.lsp_config = vim.tbl_deep_extend("keep", lua_dev.setup(), {
         },
     },
 })
-
-return M

@@ -29,11 +29,7 @@ local filter_publish_diagnostics = function(a, params, client_id, c, config)
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
 end
 
-local M = {}
-
-M.private_attach_callbackfn = function(client, bufnr) end
-
-M.lsp_config = {
+return {
     filetypes = { "python" },
     single_file_support = true,
     cmd = { "pyright-langserver", "--stdio" },
@@ -42,7 +38,7 @@ M.lsp_config = {
     handlers = {
         -- If you want to disable pyright's diagnostic prompt, open the code below
         -- ["textDocument/publishDiagnostics"] = function(...) end,
-        -- If you want to disable pyright from diagnosing unused parameters, turn on the function below
+        -- If you want to disable pyright from diagnosing unused parameters, open the function below
         ["textDocument/publishDiagnostics"] = vim.lsp.with(filter_publish_diagnostics, {
             filter_keywrod = {
                 '"kwargs" is not accessed',
@@ -79,5 +75,3 @@ M.lsp_config = {
         },
     },
 }
-
-return M

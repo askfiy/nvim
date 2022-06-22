@@ -2,17 +2,18 @@
 
 local util = require("lspconfig.util")
 
-local M = {}
+local root_files = {
+    "tsconfig.json",
+    "package.json",
+    "jsconfig.json",
+    ".git",
+}
 
-M.private_attach_callbackfn = function(client, bufnr) end
-
-M.lsp_config = {
+return {
     cmd = { "vls" },
     filetypes = { "vue" },
     root_dir = function(fname)
-        return util.root_pattern("tsconfig.json")(fname)
-            or util.root_pattern("package.json", "jsconfig.json", ".git")(fname)
-            or vim.fn.getcwd()
+        return util.root_pattern(unpack(root_files))(fname) or vim.fn.getcwd()
     end,
     init_options = {
         config = {
@@ -32,5 +33,3 @@ M.lsp_config = {
         },
     },
 }
-
-return M

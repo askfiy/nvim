@@ -38,6 +38,9 @@ function M.global_highlights()
     local bufferline_error_fg = colors.red
 
     local highlights = {
+        -- winbar
+        ["WinBar"] = { fg = "NONE", bg = "NONE", gui = "NONE" },
+
         -- scrollview
         ["ScrollView"] = { bg = colors.black4 },
 

@@ -2,23 +2,19 @@
 
 local util = require("lspconfig.util")
 
-local M = {}
+local root_files = {
+    "package.json",
+    ".git",
+}
 
-M.private_attach_callbackfn = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-end
-
-M.lsp_config = {
+return {
     single_file_support = true,
     filetypes = { "css", "scss", "less" },
     cmd = { "vscode-css-language-server", "--stdio" },
-    root_dir = util.root_pattern("package.json", ".git"),
+    root_dir = util.root_pattern(unpack(root_files)),
     settings = {
         css = { validate = true },
         scss = { validate = true },
         less = { validate = true },
     },
 }
-
-return M

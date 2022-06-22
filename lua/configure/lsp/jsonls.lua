@@ -2,14 +2,7 @@
 
 local util = require("lspconfig.util")
 
-local M = {}
-
-M.private_attach_callbackfn = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-end
-
-M.lsp_config = {
+return {
     single_file_support = true,
     filetypes = { "json", "jsonc" },
     cmd = { "vscode-json-language-server", "--stdio" },
@@ -18,5 +11,3 @@ M.lsp_config = {
     },
     root_dir = util.find_git_ancestor,
 }
-
-return M

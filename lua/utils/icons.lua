@@ -10,13 +10,13 @@ icons.diagnostics = {
     Info = "ﬤ ",
     Hint = " ",
 }
-
 icons.kind = {
     -- Method: פּ
     Text = "",
     Method = "",
     Function = "",
     Constructor = "",
+    Namespace = "",
     Field = "ﰠ",
     Variable = "",
     Class = "",

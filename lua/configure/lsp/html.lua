@@ -2,19 +2,17 @@
 
 local util = require("lspconfig.util")
 
-local M = {}
+local root_files = {
+    "package.json",
+    ".git",
+}
 
-M.private_attach_callbackfn = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-end
-
-M.lsp_config = {
+return {
     filetypes = { "html" },
     single_file_support = true,
     cmd = { "vscode-html-language-server", "--stdio" },
     root_dir = function(fname)
-        return util.root_pattern("package.json", ".git")(fname)
+        return util.root_pattern(unpack(root_files))(fname)
     end,
     settings = {},
     init_options = {
@@ -23,5 +21,3 @@ M.lsp_config = {
         configurationSection = { "html", "css", "javascript" },
     },
 }
-
-return M

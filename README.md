@@ -79,7 +79,7 @@ Currently, it supports the following languages:
 
 Basic dependencies:
 
-- [neovim > 0.7](https://github.com/neovim/neovim)
+- [neovim >= 0.8](https://github.com/neovim/neovim)
 - [gcc](https://gcc.gnu.org/)
 - [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
 - [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/)
@@ -354,19 +354,9 @@ To add a new LSP configuration, please add a new configuration file in the [nvim
 The configuration file template is as follows:
 
 ```
-local M = {}
-
-M.private_attach_callbackfn = function(client, bufnr)
-    -- Do your own thing
-    -- It will be called after publish_attach_callbackfn
-end
-
-M.lsp_config = {
-    -- Write your LSP configuration
-    ...
+return {
+    -- LSP configurations
 }
-
-return M
 ```
 
 Then you need to add a new configuration to [nvim/lua/configure/plugins/nv_nvim-lsp-installer.lua](./lua/configure/plugins/nv_nvim-lsp-installer.lua)
@@ -387,12 +377,12 @@ The configuration file template is as follows:
 return {
     adapters = {
         name = {
-        ...
+            ...
         }
     },
     configurations = {
         name = {
-        ...
+            ...
         }
     },
 }

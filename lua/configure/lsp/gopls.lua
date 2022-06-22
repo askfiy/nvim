@@ -2,20 +2,17 @@
 
 local util = require("lspconfig.util")
 
-local M = {}
+local root_files = {
+    "go.work",
+    "go.mod",
+    ".git",
+}
 
-M.private_attach_callbackfn = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-end
-
-M.lsp_config = {
+return {
     cmd = { "gopls" },
     single_file_support = true,
     filetypes = { "go", "gomod", "gotmpl" },
     root_dir = function(fname)
-        return util.root_pattern("go.work")(fname) or util.root_pattern("go.mod", ".git")(fname)
+        return util.root_pattern(unpack(root_files))(fname)
     end,
 }
-
-return M
