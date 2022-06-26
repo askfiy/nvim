@@ -8,13 +8,8 @@ local M = {
     -- Define message warnings to ignore, usually from the LSP or DAP server
     ignore_message = {
         -- LSP
-        "exit code",
-        "Invalid buffer",
-        "textDocument/signatureHelp is not supported",
-        "textDocument/documentSymbol is not supported",
-        "client has shut down after sending the message",
-        "client has shut down during progress update",
-        "client has shut down after sending a workspace/configuration request",
+        "LSP%[id=%d*%] client has shut down after sending the message",
+        "method textDocument/documentSymbol is not supported by any of the servers registered for the current buffer",
         -- DAP
         "No stopped thread. Cannot move",
     },

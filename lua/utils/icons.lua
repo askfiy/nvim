@@ -10,6 +10,7 @@ icons.diagnostics = {
     Info = "ﬤ ",
     Hint = " ",
 }
+
 icons.kind = {
     -- Method: פּ
     Text = "",
@@ -38,6 +39,13 @@ icons.kind = {
     Event = "",
     Operator = "",
     TypeParameter = "",
+    String = "",
+    Number = "",
+    Boolean = "◩",
+    Array = "",
+    Object = "",
+    Key = "",
+    Null = "ﳠ",
 }
 
 icons.vscode = {

@@ -82,8 +82,11 @@ local packer_install_tbl = {
     ["jose-elias-alvarez/null-ls.nvim"] = { -- Provides third-party diagnostics, debugging, formatting, etc. for the built-in LSP
         after = { "nvim-lspconfig" },
     },
+    ["SmiteshP/nvim-navic"] = {
+        after = { "nvim-lspconfig" },
+    },
     ["williamboman/nvim-lsp-installer"] = { -- automatically install LSP service
-        after = { "nvim-lspconfig", "cmp-nvim-lsp", "aerial.nvim", "lua-dev.nvim", "null-ls.nvim" },
+        after = { "nvim-lspconfig", "cmp-nvim-lsp", "aerial.nvim", "lua-dev.nvim", "null-ls.nvim", "nvim-navic" },
     },
     ["j-hui/fidget.nvim"] = { -- prompt LSP initialization status
         after = { "nvim-lsp-installer" },
@@ -118,7 +121,7 @@ local packer_install_tbl = {
     ["hrsh7th/cmp-cmdline"] = { -- provide command line completion
         after = { "nvim-cmp" },
     },
-    ["kristijanhusak/vim-dadbod-completion"] = { -- complete completion for dadbod  (it may affect performance)
+    ["kristijanhusak/vim-dadbod-completion"] = { -- complete completion for dadbod
         ptp = "viml",
         after = { "nvim-cmp" },
     },
@@ -127,7 +130,7 @@ local packer_install_tbl = {
         run = "./install.sh",
         after = { "nvim-cmp" },
     },
-    ["github/copilot.vim"] = { -- AI smart completion
+    ["github/copilot.vim"] = { -- AI smart completion (it may affect performance)
         disable = false,
         ptp = "viml",
         ft = { "dap-repl" },

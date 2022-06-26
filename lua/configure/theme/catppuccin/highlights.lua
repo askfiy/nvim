@@ -38,6 +38,7 @@ function M.global_highlights()
     local bufferline_error_fg = colors.red
 
     local highlights = {
+
         -- winbar
         ["WinBar"] = { fg = "NONE", bg = "NONE", gui = "NONE" },
 
@@ -114,6 +115,37 @@ function M.global_highlights()
         ["AerialStructIcon"] = { fg = colors.blue },
         ["AerialTypeParameterIcon"] = { fg = colors.blue },
         ["AerialVariableIcon"] = { fg = colors.blue },
+
+        -- navic
+
+        ["NavicIconsFile"] = { link = "Identifier" },
+        ["NavicIconsModule"] = { link = "Include" },
+        ["NavicIconsNamespace"] = { link = "Include" },
+        ["NavicIconsPackage"] = { link = "Include" },
+        ["NavicIconsClass"] = { link = "Type" },
+        ["NavicIconsMethod"] = { link = "Function" },
+        ["NavicIconsProperty"] = { link = "Identifier" },
+        ["NavicIconsField"] = { link = "Identifier" },
+        ["NavicIconsConstructor"] = { link = "Special" },
+        ["NavicIconsEnum"] = { link = "Type" },
+        ["NavicIconsInterface"] = { link = "Type" },
+        ["NavicIconsFunction"] = { link = "Function" },
+        ["NavicIconsVariable"] = { link = "Identifier" },
+        ["NavicIconsConstant"] = { link = "Constant" },
+        ["NavicIconsString"] = { link = "Identifier" },
+        ["NavicIconsNumber"] = { link = "Identifier" },
+        ["NavicIconsBoolean"] = { link = "Identifier" },
+        ["NavicIconsArray"] = { link = "Identifier" },
+        ["NavicIconsObject"] = { link = "Identifier" },
+        ["NavicIconsKey"] = { link = "Identifier" },
+        ["NavicIconsNull"] = { link = "Identifier" },
+        ["NavicIconsEnumMember"] = { link = "Identifier" },
+        ["NavicIconsStruct"] = { link = "Type" },
+        ["NavicIconsEvent"] = { link = "Identifier" },
+        ["NavicIconsOperator"] = { link = "Identifier" },
+        ["NavicIconsTypeParameter"] = { link = "Identifier" },
+        ["NavicText"] = { fg = colors.white },
+        ["NavicSeparator"] = { fg = colors.white },
 
         -- gitsigns
         -- line blame

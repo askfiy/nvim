@@ -39,6 +39,7 @@ function M.load()
 
     M.nvim_lsp_installer = m
 
+    -- Load lsp config file
     M.load_lsp_config()
     -- Set options for floating windows
     M.float_style_settings()
@@ -47,6 +48,7 @@ function M.load()
     -- Set lspconfig floating border
     M.lspconfig_float_settings()
 
+    M.navic = require("nvim-navic")
     M.aerial = require("aerial")
     M.lspconfig = require("lspconfig")
     M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -100,6 +102,7 @@ function M.after()
                 -- Run the callback function, help the top key position
                 lsp_config.on_attach = function(client, bufnr)
                     M.aerial.on_attach(client, bufnr)
+                    M.navic.attach(client, bufnr)
                     M.register_buffer_key(bufnr)
                 end
                 -- Start LSP server

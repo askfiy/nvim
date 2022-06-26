@@ -9,6 +9,11 @@ Example:
 function hi.set(name, opts)
     local command = "highlight! " .. name
     for k, v in pairs(opts) do
+        if k == "link" then
+            hi.link(name, v)
+            return
+        end
+
         if k ~= "gui" then
             command = command .. " gui" .. k .. "=" .. v
         else
