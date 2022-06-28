@@ -9,14 +9,16 @@ local M = {
     },
     icons = api.get_icons("diagnostic", true),
     ignore_message = {
+        -- navic
+        'nvim%-navic: Server ".*" does not support documentSymbols.',
         -- LSP
         "%[LSP%]%[sumneko_lua%] timeout",
         "LSP%[id=%d*%] client has shut down after sending Log",
         "LSP%[id=%d*%] client has shut down during progress update",
         "LSP%[id=%d*%] client has shut down while creating progress report",
         "LSP%[%d*%] client has shut down after sending a workspace/configuration request",
+        "method textDocument/signatureHelp is not supported by any of the servers registered for the current buffer",
         "method textDocument/documentSymbol is not supported by any of the servers registered for the current buffer",
-        "nvim%-navic: Server \"%w*\" does not support documentSymbols."
     },
     echo_message = {
         -- DAP
@@ -51,7 +53,6 @@ function M.load()
     M.notify.setup(notify_options)
 
     vim.notify = setmetatable({}, {
-        ---@diagnostic disable-next-line: unused-local
         __call = function(self, message, ...)
             for _, v in ipairs(M.ignore_message) do
                 if message:match(v) then

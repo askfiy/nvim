@@ -1,5 +1,4 @@
 local api = require("utils.api")
-
 local options = {
     -- whether to enable transparent background
     transparent = false,

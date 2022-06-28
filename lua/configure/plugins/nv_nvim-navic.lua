@@ -12,6 +12,7 @@ local M = {
 
 function M.before()
     M.ignore_filetype = {
+        "dapui_hover",
         "markdown",
         "NvimTree",
         "aerial",
