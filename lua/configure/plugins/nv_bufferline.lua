@@ -1,57 +1,56 @@
 -- https://github.com/akinsho/bufferline.nvim
 
-local icons = require("utils.icons")
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "bufferline" },
+    },
+    icons = api.get_icons("diagnostic", true),
+}
+
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "bufferline")
-    if not ok then
-        return
-    end
-
-    M.bufferline = m
     M.bufferline.setup({
         options = {
-            -- Allow user to override highlight group
             themable = true,
-            -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+            show_close_icon = true,
             numbers = "ordinal",
-            -- The currently selected buffer style
             indicator_icon = "▎",
-            -- It is not recommended to modify the icons below
             buffer_close_icon = "",
             modified_icon = "●",
             close_icon = "",
             left_trunc_marker = "",
             right_trunc_marker = "",
-            -- Diagnostics source
             diagnostics = "nvim_lsp",
-            -- Other unselected buffer splits
-            -- Split style："slant" | "thick" | "thin" | { "|", "|" }
             separator_style = "thin",
-            -- Diagnostic style
+            ---@diagnostic disable-next-line: unused-local
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
                 local message
                 if diagnostics_dict.error then
-                    message = string.format("%s%s", icons.diagnostics.Error, diagnostics_dict.error)
+                    message = string.format("%s%s", M.icons.Error, diagnostics_dict.error)
                 elseif diagnostics_dict.warning then
-                    message = string.format("%s%s", icons.diagnostics.Warn, diagnostics_dict.warning)
+                    message = string.format("%s%s", M.icons.Warn, diagnostics_dict.warning)
                 elseif diagnostics_dict.info then
-                    message = string.format("%s%s", icons.diagnostics.Info, diagnostics_dict.info)
+                    message = string.format("%s%s", M.icons.Info, diagnostics_dict.info)
                 elseif diagnostics_dict.hint then
-                    message = string.format("%s%s", icons.diagnostics.Hint, diagnostics_dict.hint)
+                    message = string.format("%s%s", M.icons.Hint, diagnostics_dict.hint)
                 else
                     message = ""
                 end
                 return message
             end,
-            -- Offset of function
+            -- custom_areas = {
+            --     right = function()
+            --         return {
+            --             { text = "  ", guifg = "#f28fad", guibg = "#1A1826" },
+            --         }
+            --     end,
+            -- },
             offsets = {
                 {
                     filetype = "NvimTree",
@@ -88,35 +87,31 @@ function M.load()
                     text = "Integrated Terminal",
                     highlight = "Directory",
                     text_align = "center",
-                }
+                },
             },
         },
     })
 end
 
 function M.after()
-    -- Define the command to delete the buffer
     vim.api.nvim_create_user_command("BufferDelete", function()
         ---@diagnostic disable-next-line: missing-parameter
         local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
         local modified = vim.api.nvim_buf_get_option(0, "modified")
 
-        -- if file doesnt exist & its modified
         if file_exists == 0 and modified then
-            vim.notify("The file is not saved", "warn", { title = "Buffer" })
+            vim.notify("The file is not saved", "WARN", { title = "Buffer" })
             return
         end
 
-        local force = force or not vim.bo.buflisted or vim.bo.buftype == "nofile"
+        local force = not vim.bo.buflisted or vim.bo.buftype == "nofile"
 
-        -- if not force, change to prev buf and then close current
-        local close_cmd = force and ":bd!" or ":bp | bd!" .. vim.api.nvim_get_current_buf()
-        vim.cmd(close_cmd)
+        vim.cmd(force and "bd!" or string.format("bp | bd! %s", vim.api.nvim_get_current_buf()))
     end, {})
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<c-q>",

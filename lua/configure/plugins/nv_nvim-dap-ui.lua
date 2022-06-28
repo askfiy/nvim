@@ -1,27 +1,25 @@
 -- https://github.com/rcarriga/nvim-dap-ui
 
-local aux = require("utils.api.aux")
-local mapping = require("core.mapping")
+local api = require("utils.api")
+local aux_public = require("utils.aux.public")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "dapui" },
+        { "dap" },
+    },
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "dapui")
-    if not ok then
-        return
-    end
-
-    M.dap = require("dap")
-    M.dapui = m
     M.dapui.setup({
         layouts = {
             {
                 elements = {
-                    -- Elements can be strings or table with id and size keys.
+                    -- elements can be strings or table with id and size keys.
                     "scopes",
                     "breakpoints",
                     "stacks",
@@ -62,8 +60,8 @@ function M.after()
     end
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>du",
@@ -78,13 +76,14 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>de",
             rhs = function()
-                for _, opts in ipairs(aux.get_all_win_buf_ft()) do
+                for _, opts in ipairs(aux_public.get_all_win_buf_ft()) do
                     if opts.buf_ft == "dapui_hover" then
                         ---@diagnostic disable-next-line: missing-parameter
                         require("dapui").eval()
                         return
                     end
                 end
+                ---@diagnostic disable-next-line: missing-parameter
                 require("dapui").eval(vim.fn.input("Enter debug expression: "))
             end,
             options = { silent = true },

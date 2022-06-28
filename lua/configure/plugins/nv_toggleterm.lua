@@ -1,25 +1,25 @@
 -- https://github.com/akinsho/toggleterm.nvim
 
-local aux = require("utils.api.aux")
-local mapping = require("core.mapping")
+local api = require("utils.api")
+local options = require("core.options")
+local aux_public = require("utils.aux.public")
 
 local M = {
-    vertical_term = nil,
-    floating_term = nil,
-    lazygit_term = nil,
+    safe_requires = {
+        { "toggleterm" },
+    },
+    terminals = {
+        vert = nil,
+        float = nil,
+        lazygit = nil,
+    },
 }
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "toggleterm")
-    if not ok then
-        return
-    end
-
-    M.toggleterm = m
     M.terms = require("toggleterm.terminal").Terminal
 
     M.toggleterm.setup({
@@ -57,35 +57,47 @@ end
 
 function M.create_terminal()
     -- create terminal
-    M.vertical_term = M.terms:new({
+    M.terminals.vert = M.terms:new({
         direction = "vertical",
     })
 
-    M.floating_term = M.terms:new({
+    M.terminals.float = M.terms:new({
         hidden = true,
         count = 120,
         direction = "float",
         float_opts = {
-            border = "double",
+            border = options.float_border and "double" or "none",
         },
         on_open = function(term)
             M.open_callback()
-            vim.keymap.set({ "t" }, "<esc>", "<c-\\><c-n><cmd>close<cr>", { silent = true, buffer = term.bufnr })
+            api.map.register({
+                mode = { "t" },
+                lhs = "<esc>",
+                rhs = "<c-\\><c-n><cmd>close<cr>",
+                options = { silent = true, buffer = term.bufnr },
+                discope = "Escape float terminal",
+            })
         end,
         on_close = M.close_callback,
     })
 
-    M.lazygit_term = M.terms:new({
+    M.terminals.lazygit = M.terms:new({
         cmd = "lazygit",
         count = 130,
         hidden = true,
         direction = "float",
         float_opts = {
-            border = "double",
+            border = options.float_border and "double" or "none",
         },
         on_open = function(term)
             M.open_callback()
-            vim.keymap.set({ "i" }, "q", "<cmd>close<cr>", { silent = true, buffer = term.bufnr })
+            api.map.register({
+                mode = { "i" },
+                lhs = "q",
+                rhs = "<cmd>close<cr>",
+                options = { silent = true, buffer = term.bufnr },
+                discope = "Escape lazygit terminal",
+            })
         end,
         on_close = M.close_callback,
     })
@@ -95,43 +107,46 @@ function M.wrapper_command()
     -- define new method
     M.toggleterm.vertical_toggle = function()
         ---@diagnostic disable-next-line: missing-parameter
-        M.vertical_term:toggle()
+        M.terminals.vert:toggle()
     end
 
     M.toggleterm.float_toggle = function()
         ---@diagnostic disable-next-line: missing-parameter
-        M.floating_term:toggle()
+        M.terminals.float:toggle()
     end
 
     M.toggleterm.lazygit_toggle = function()
         ---@diagnostic disable-next-line: missing-parameter
-        M.lazygit_term:toggle()
+        M.terminals.lazygit:toggle()
     end
 
     M.toggleterm.term_toggle = function()
         -- FIX: https://github.com/akinsho/toggleterm.nvim/issues/97#issuecomment-1160323635
         local count = vim.api.nvim_eval("v:count1")
-        aux.terminal_offset_run_command(string.format("exe %d.'ToggleTerm'", count))
+        aux_public.terminal_offset_run_command(string.format("exe %d.'ToggleTerm'", count))
     end
-
     M.toggleterm.toggle_all_term = function()
-        aux.terminal_offset_run_command("ToggleTermToggleAll")
+        aux_public.terminal_offset_run_command("ToggleTermToggleAll")
     end
 end
 
 function M.open_callback()
-    -- enter insert mode
     vim.cmd("startinsert")
-    -- unmap esc
-    vim.keymap.del({ "t" }, "<esc>")
+    api.map.unregister({ "t" }, "<esc>")
 end
 
 function M.close_callback()
-    vim.keymap.set({ "t" }, "<esc>", "<c-\\><c-n>", { silent = true })
+    api.map.register({
+        mode = { "t" },
+        lhs = "<esc>",
+        rhs = "<c-\\><c-n>",
+        options = { silent = true },
+        discope = "Escape terminal insert mode",
+    })
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>tt",

@@ -1,89 +1,82 @@
 -- https://github.com/rcarriga/nvim-notify
 
-local icons = require("utils.icons")
+local api = require("utils.api")
 local options = require("core.options")
-local mapping = require("core.mapping")
 
 local M = {
-    -- Define message warnings to ignore, usually from the LSP or DAP server
+    safe_requires = {
+        { "notify" },
+    },
+    icons = api.get_icons("diagnostic", true),
     ignore_message = {
         -- LSP
-        "LSP%[id=%d*%] client has shut down after sending the message",
+        "%[LSP%]%[sumneko_lua%] timeout",
+        "LSP%[id=%d*%] client has shut down after sending Log",
+        "LSP%[id=%d*%] client has shut down during progress update",
+        "LSP%[id=%d*%] client has shut down while creating progress report",
+        "LSP%[%d*%] client has shut down after sending a workspace/configuration request",
         "method textDocument/documentSymbol is not supported by any of the servers registered for the current buffer",
-        -- DAP
-        "No stopped thread. Cannot move",
+        "nvim%-navic: Server \"%w*\" does not support documentSymbols."
     },
-    -- Use echo instead of Notify to display the following message
     echo_message = {
-        "Reason: breakpoint",
-        "Reason: step",
+        -- DAP
+        "Debug adapter disconnected",
+        "could not find file",
+        "No stopped thread. Cannot move",
     },
 }
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "notify")
-    if not ok then
-        return
-    end
-
     local notify_options = {
-        -- animation style
-        -- • fade_in_slide_out
-        -- • fade
-        -- • slide
-        -- • static
-        -- Under a transparent background, only static will ensure normal display effect
-        stages = "static",
-        -- default: 5000
+        stages = "fade",
         timeout = 3000,
-        -- default: 30
         fps = 120,
         icons = {
-            ERROR = icons.diagnostics.Error,
-            WARN = icons.diagnostics.Warn,
-            INFO = icons.diagnostics.Hint,
+            ERROR = M.icons.Error,
+            WARN = M.icons.Warn,
+            INFO = M.icons.Hint,
             DEBUG = " ",
             TRACE = "✎ ",
         },
     }
-    -- If it is a transparent background, an exception will be thrown, and you must specify a background color yourself
-    if options.transparent_background then
-        notify_options.background_colour = "#ffffff"
+
+    if options.transparent then
+        notify_options.background_colour = "#1E1E2E"
     end
 
-    m.setup(notify_options)
+    M.notify.setup(notify_options)
 
-    -- Define a meta table for ignoring some information sent by the LSP
-    -- but keep all the methods of the original m
     vim.notify = setmetatable({}, {
-        __call = function(self, msg, ...)
+        ---@diagnostic disable-next-line: unused-local
+        __call = function(self, message, ...)
             for _, v in ipairs(M.ignore_message) do
-                if msg:match(v) then
+                if message:match(v) then
                     return
                 end
             end
 
             for _, v in ipairs(M.echo_message) do
-                if msg:match(v) then
-                    vim.api.nvim_echo({ { msg, "MoreMsg" } }, false, {})
+                if message:match(v) then
+                    vim.api.nvim_echo({ { message, "MoreMsg" } }, false, {})
                     return
                 end
             end
 
-            return m(msg, ...)
+            return M.notify(message, ...)
         end,
-        __index = m,
+
+        __index = M.notify,
     })
 end
 
 function M.after() end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>fn",

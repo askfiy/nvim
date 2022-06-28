@@ -2,23 +2,18 @@
 
 local options = require("core.options")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "catppuccin" },
+    },
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "catppuccin")
-    if not ok then
-        return
-    end
-
-    M.catppuccin = m
     M.catppuccin.setup({
-        -- Whether the background is transparent
-        transparent_background = options.transparent_background,
-        -- Whether to follow terminal color
+        transparent_background = options.transparent,
         term_colors = false,
-        -- Set the style of treesitter
         styles = {
             comments = "NONE",
             functions = "NONE",
@@ -26,18 +21,17 @@ function M.load()
             strings = "NONE",
             variables = "NONE",
         },
-        -- Integration with other plugins
         integrations = {
             -- Enable plugins
             cmp = true,
             treesitter = true,
             bufferline = true,
             gitsigns = true,
-            telescope = true,
             which_key = true,
-            notify = true,
             hop = true,
             ts_rainbow = true,
+            telescope = true,
+            notify = true,
             -- Diable plugins
             lsp_trouble = false,
             lsp_saga = false,
@@ -70,7 +64,7 @@ function M.load()
             nvimtree = {
                 enabled = true,
                 show_root = false,
-                transparent_panel = options.transparent_background,
+                transparent_panel = options.transparent,
             },
             indent_blankline = {
                 enabled = true,
@@ -84,11 +78,10 @@ function M.load()
             },
         },
     })
+    vim.cmd([[colorscheme catppuccin]])
 end
 
 function M.after()
-    vim.cmd([[colorscheme catppuccin]])
-    -- Apply custom theme highlighting
     require("configure.theme.catppuccin.highlights").execute()
 end
 

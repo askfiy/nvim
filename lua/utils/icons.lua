@@ -1,29 +1,43 @@
 local icons = {}
 
-icons.lsp_hover = {
-    Action = "💡",
+icons.hover = {
+    Action = "",
 }
 
-icons.diagnostics = {
-    Error = " ",
-    Warn = " ",
-    Info = "ﬤ ",
-    Hint = " ",
+icons.platform = {
+    unix = "",
+    dos = "",
+    mac = "",
 }
 
-icons.kind = {
-    -- Method: פּ
+icons.diagnostic = {
+    Error = "",
+    Warn = "",
+    Info = "ﬤ",
+    Hint = "",
+}
+
+icons.lsp_kind = {
+    -- lsp type
+    String = "",
+    Number = "",
+    Boolean = "◩",
+    Array = "",
+    Object = "",
+    Key = "",
+    Null = "ﳠ",
+    -- lsp kind
     Text = "",
     Method = "",
     Function = "",
-    Constructor = "",
-    Namespace = "",
+    Constructor = "",
+    Namespace = "",
     Field = "ﰠ",
-    Variable = "",
+    Variable = "ﳋ",
     Class = "",
     Interface = "",
     Module = "ﰪ",
-    Property = "ﳋ",
+    Property = "",
     Unit = "塞",
     Value = "",
     Enum = "",
@@ -38,42 +52,7 @@ icons.kind = {
     Struct = "﬌",
     Event = "",
     Operator = "",
-    TypeParameter = "",
-    String = "",
-    Number = "",
-    Boolean = "◩",
-    Array = "",
-    Object = "",
-    Key = "",
-    Null = "ﳠ",
-}
-
-icons.vscode = {
-    Text = " ",
-    Method = " ",
-    Function = " ",
-    Constructor = " ",
-    Field = " ",
-    Variable = " ",
-    Class = " ",
-    Interface = " ",
-    Module = " ",
-    Property = " ",
-    Unit = " ",
-    Value = " ",
-    Enum = " ",
-    Keyword = " ",
-    Snippet = " ",
-    Color = " ",
-    File = " ",
-    Reference = " ",
-    Folder = " ",
-    EnumMember = " ",
-    Constant = " ",
-    Struct = " ",
-    Event = " ",
-    Operator = " ",
-    TypeParameter = " ",
+    TypeParameter = "",
 }
 
 return icons

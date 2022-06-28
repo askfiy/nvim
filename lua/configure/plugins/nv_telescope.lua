@@ -1,20 +1,18 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "telescope" },
+    },
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "telescope")
-    if not ok then
-        return
-    end
-
-    M.telescope = m
     M.telescope.setup({
         defaults = {
             prompt_prefix = " ",
@@ -89,8 +87,8 @@ function M.after()
     })
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>ff",

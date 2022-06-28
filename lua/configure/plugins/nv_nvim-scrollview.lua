@@ -1,18 +1,15 @@
 -- https://github.com/dstein64/nvim-scrollview
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "scrollview" },
+    },
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "scrollview")
-    if not ok then
-        return
-    end
-
-    M.scrollview = m
     M.scrollview.setup({
-        -- Do not display scrollbars for the following file types
         excluded_filetypes = {
             "NvimTree",
             "aerial",
@@ -23,10 +20,10 @@ function M.load()
         },
         -- only show in current window
         current_only = true,
-        -- Transparency
+        -- transparency
         winblend = 0,
-        base = "right",
         -- offset
+        base = "right",
         column = 1,
         character = "",
     })

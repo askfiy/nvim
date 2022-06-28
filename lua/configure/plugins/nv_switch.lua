@@ -1,7 +1,6 @@
 -- https://github.com/AndrewRadev/switch.vim
 
-local str = require("utils.api.str")
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
 local M = {
     word_antisense_switch = {
@@ -51,14 +50,20 @@ local M = {
     },
 }
 
-function M.entrance()
-    M.register_global_key()
+function M.str_title(s)
+    return (s:gsub("(%a)([%w_']*)", function(f, r)
+        return f:upper() .. r:lower()
+    end))
+end
+
+function M.before()
+    M.register_key()
 
     local put_words = vim.deepcopy(M.word_antisense_switch)
 
     for _, value in ipairs(M.word_antisense_switch) do
         local upper_words = { string.upper(value[1]), string.upper(value[2]) }
-        local title_words = { str.title(value[1]), str.title(value[2]) }
+        local title_words = { M.str_title(value[1]), M.str_title(value[2]) }
         table.insert(put_words, upper_words)
         table.insert(put_words, title_words)
     end
@@ -67,8 +72,12 @@ function M.entrance()
     vim.g.variable_style_switch_definitions = M.variable_style_switch
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.load() end
+
+function M.after() end
+
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "gs",

@@ -1,9 +1,12 @@
 -- https://github.com/lukas-reineke/indent-blankline.nvim
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "indent_blankline" },
+    },
+}
 
 function M.before()
-    -- Disable indent in file type
     vim.g.indent_blankline_filetype_exclude = {
         "NvimTree",
         "aerial",
@@ -12,6 +15,7 @@ function M.before()
         "dbui",
         "toggleterm",
         "notify",
+        "startuptime",
         "packer",
         "lsp-installer",
         "help",
@@ -24,18 +28,9 @@ function M.before()
 end
 
 function M.load()
-    local ok, m = pcall(require, "indent_blankline")
-    if not ok then
-        return
-    end
-
-    M.indent_blankline = m
     M.indent_blankline.setup({
-        -- Show the start of the current region
         show_current_context_start = false,
-        -- Show current area
         show_current_context = true,
-        -- Show the ending symbol
         show_end_of_line = true,
     })
 end

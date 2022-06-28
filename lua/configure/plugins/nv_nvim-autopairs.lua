@@ -1,17 +1,15 @@
 -- https://github.com/windwp/nvim-autopairs
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "nvim-autopairs", "autopairs" },
+    },
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "nvim-autopairs")
-    if not ok then
-        return
-    end
-
-    M.nvim_autopairs = m
-    M.nvim_autopairs.setup()
+    M.autopairs.setup()
 end
 
 function M.after() end

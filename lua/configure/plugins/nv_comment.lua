@@ -1,17 +1,15 @@
 -- https://github.com/numToStr/Comment.nvim
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "Comment", "comment" },
+        { "Comment.utils", "comment_utils" },
+    },
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "Comment")
-    if not ok then
-        return
-    end
-
-    M.comment = m
-    M.comment_utils = require("Comment.utils")
     M.comment.setup({
         toggler = {
             line = "gcc",

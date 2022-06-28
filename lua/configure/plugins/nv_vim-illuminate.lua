@@ -2,7 +2,8 @@
 
 local M = {}
 
-function M.entrance()
+function M.before()
+    vim.g.Illuminate_delay = 100
     vim.g.Illuminate_ftblacklist = {
         "NvimTree",
         "aerial",
@@ -22,5 +23,9 @@ function M.entrance()
         "",
     }
 end
+
+function M.load() end
+
+function M.after() end
 
 return M

@@ -1,24 +1,24 @@
 -- https://github.com/github/copilot.vim
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
 local M = {}
 
-function M.entrance()
-    M.register_global_key()
-
-    -- Disable default tab completion
+function M.before()
+    M.register_key()
     vim.g.copilot_no_tab_map = true
-
-    -- Whitelist or blacklist
+    -- FIX: https://github.com/mfussenegger/nvim-dap/issues/562
     vim.g.copilot_filetypes = {
         ["dap-repl"] = false,
     }
-
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.load() end
+
+function M.after() end
+
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "i" },
             lhs = "<c-l>",

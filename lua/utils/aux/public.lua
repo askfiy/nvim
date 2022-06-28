@@ -1,16 +1,6 @@
-local aux = {}
+local aux_public = {}
 
---[[
-Get all win_id and buf_id and buf_filetype
-
-Example:
-     aux.get_all_win_buf_ft()
-
-Returns:
-     {{win_id = 1008, buf_id = 5, buf_ft = "main.c"}, ...}
-
-]]
-function aux.get_all_win_buf_ft()
+function aux_public.get_all_win_buf_ft()
     local result = {}
     local wins = vim.api.nvim_list_wins()
 
@@ -28,38 +18,31 @@ function aux.get_all_win_buf_ft()
     return result
 end
 
---[[
-    Toggle sidebar
-
-    target_ft: expected sidebar file type to open
-]]
-function aux.toggle_sidebar(target_ft)
+function aux_public.toggle_sidebar(target_ft)
     local offset_ft = {
         "NvimTree",
         "undotree",
         "dbui",
         "spectre_panel",
     }
-
-    for _, opts in ipairs(aux.get_all_win_buf_ft()) do
+    for _, opts in ipairs(aux_public.get_all_win_buf_ft()) do
         if opts.buf_ft ~= target_ft and vim.tbl_contains(offset_ft, opts.buf_ft) then
             vim.api.nvim_win_close(opts.win_id, true)
         end
     end
 end
 
---[[
-    Keep the terminal's window offset when there is a sidebar
-]]
-function aux.terminal_offset_run_command(command)
+function aux_public.terminal_offset_run_command(command)
     local offset_ft = {
 
+        ---@diagnostic disable-next-line: unused-local
         NvimTree = function(win_id)
             vim.cmd("NvimTreeToggle")
             vim.cmd(command)
             require("nvim-tree").toggle(false, true)
         end,
 
+        ---@diagnostic disable-next-line: unused-local
         undotree = function(win_id)
             vim.g.undotree_SetFocusWhenToggle = 0
             vim.cmd("UndotreeToggle")
@@ -76,7 +59,7 @@ function aux.terminal_offset_run_command(command)
             local max_term_id = 0
             local max_win_id = 0
 
-            for _, opts in ipairs(aux.get_all_win_buf_ft()) do
+            for _, opts in ipairs(aux_public.get_all_win_buf_ft()) do
                 if opts.buf_ft == "toggleterm" then
                     local buf_name = vim.api.nvim_buf_get_name(opts.buf_id)
                     local term_id = tonumber(buf_name:match("#(%d+)$"))
@@ -91,7 +74,7 @@ function aux.terminal_offset_run_command(command)
         end,
     }
 
-    local all_win_buf_ft = aux.get_all_win_buf_ft()
+    local all_win_buf_ft = aux_public.get_all_win_buf_ft()
 
     local aerial_exists = false
     local aerial_win_id = 0
@@ -121,4 +104,4 @@ function aux.terminal_offset_run_command(command)
     vim.cmd(command)
 end
 
-return aux
+return aux_public

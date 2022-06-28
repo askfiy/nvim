@@ -1,15 +1,12 @@
--- https://github.com/mbbill/undotree
-
-local aux = require("utils.api.aux")
-local path = require("utils.api.path")
-local mapping = require("core.mapping")
+local api = require("utils.api")
+local aux_public = require("utils.aux.public")
 
 local M = {
-    undotree_dir = path.join(vim.fn.stdpath("cache"), "undotree"),
+    undotree_dir = api.path.join(vim.fn.stdpath("cache"), "undotree"),
 }
 
-function M.entrance()
-    M.register_global_key()
+function M.before()
+    M.register_key()
 
     -- style: default 1, optional: 1 2 3 4
     -- vim.g.undotree_WindowLayout = 2
@@ -32,14 +29,17 @@ function M.entrance()
     end
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.load() end
+
+function M.after() end
+
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>3",
-            -- rhs = ":UndotreeToggle<cr>",
             rhs = function()
-                aux.toggle_sidebar("undotree")
+                aux_public.toggle_sidebar("undotree")
                 vim.cmd("UndotreeToggle")
             end,
             options = { silent = true },

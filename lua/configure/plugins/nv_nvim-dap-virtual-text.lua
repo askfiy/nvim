@@ -1,16 +1,14 @@
 -- https://github.com/theHamsta/nvim-dap-virtual-text
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "nvim-dap-virtual-text", "nvim_dap_virtual_text" },
+    },
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "nvim-dap-virtual-text")
-    if not ok then
-        return
-    end
-
-    M.nvim_dap_virtual_text = m
     M.nvim_dap_virtual_text.setup()
 end
 

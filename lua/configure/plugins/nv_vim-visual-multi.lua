@@ -1,15 +1,17 @@
 -- https://github.com/mg979/vim-visual-multi
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
 local M = {}
 
-function M.entrance()
-    M.register_global_key()
-    vim.g.VM_Extend_hl = "VM_Extend_hi"
-    vim.g.VM_Cursor_hl = "VM_Cursor_hi"
-    vim.g.VM_Mono_hl = "VM_Mono_hi"
-    vim.g.VM_Insert_hl = "VM_Insert_hi"
+function M.before()
+    M.register_key()
+
+    vim.g.VM_Extend_hl = "VM_Extend_hl"
+    vim.g.VM_Cursor_hl = "VM_Cursor_hl"
+    vim.g.VM_Mono_hl = "VM_Mono_hl"
+    vim.g.VM_Insert_hl = "VM_Insert_hl"
+
     vim.g.VM_default_mappings = 0
 
     vim.g.VM_maps = {
@@ -20,8 +22,14 @@ function M.entrance()
     }
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.load()
+end
+
+function M.after()
+end
+
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<m-p>",

@@ -1,8 +1,12 @@
 -- https://github.com/uga-rosa/translate.nvim
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
+local options = require("core.options")
 
 local M = {
+    safe_requires = {
+        { "translate" },
+    },
     replace_char = {
         ["u003d"] = "=",
         ["＃"] = "#",
@@ -10,16 +14,10 @@ local M = {
 }
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "translate")
-    if not ok then
-        return
-    end
-
-    M.translate = m
     M.translate.setup({
         default = {
             command = "translate_shell",
@@ -31,6 +29,9 @@ function M.load()
             output = {
                 split = {
                     min_size = 8,
+                },
+                floating = {
+                    border =  options.float_border and "single" or "none",
                 },
             },
         },
@@ -55,8 +56,8 @@ end
 
 function M.after() end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n", "v" },
             lhs = "<leader>tcs",

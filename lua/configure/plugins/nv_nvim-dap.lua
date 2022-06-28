@@ -1,44 +1,34 @@
 -- https://github.com/mfussenegger/nvim-dap
 
--- Dap download the debugger manually
--- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
+local api = require("utils.api")
 
-local mapping = require("core.mapping")
-
-local M = {}
-
-function M.load_dap_config()
-    -- Load adapter configuration file
-    M.dubug_adapter_config = {
-        go = require("configure.dap.go"),
-        python = require("configure.dap.python"),
-        dotnet = require("configure.dap.dotnet"),
-    }
-end
+local M = {
+    safe_requires = {
+        { "dap" },
+    },
+    dap_root_directory = api.path.join(vim.fn.stdpath("config"), "lua", "configure", "dap"),
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "dap")
-    if not ok then
-        return
-    end
+    ---@diagnostic disable-next-line: missing-parameter
+    local file_list = vim.fn.globpath(M.dap_root_directory, "*.lua", false, true)
 
-    M.dap = m
-    M.load_dap_config()
-end
-
-function M.after()
-    for _, dap_config in pairs(M.dubug_adapter_config) do
+    for _, file in ipairs(file_list) do
+        local dap_config = require("configure.dap." .. vim.fn.fnamemodify(file, ":t:r"))
         M.dap.adapters = vim.tbl_deep_extend("force", M.dap.adapters, dap_config.adapters)
         M.dap.configurations = vim.tbl_deep_extend("force", M.dap.configurations, dap_config.configurations)
     end
+
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.after() end
+
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>db",

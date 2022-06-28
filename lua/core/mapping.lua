@@ -1,15 +1,6 @@
-vim.g.mapleader = " "
+local api = require("utils.api")
 
-local mapping = {}
-
-mapping.register = function(group_keymap)
-    for _, key_map in pairs(group_keymap) do
-        key_map.options.desc = key_map.description
-        vim.keymap.set(key_map.mode, key_map.lhs, key_map.rhs, key_map.options)
-    end
-end
-
-mapping.register({
+api.map.bulk_register({
     {
         mode = { "n" },
         lhs = "<leader><esc>",
@@ -96,7 +87,7 @@ mapping.register({
         lhs = "<m-p>",
         rhs = "<up>",
         options = {},
-        description = "Look up history",
+        -- overload
     },
     {
         mode = { "c" },
@@ -184,5 +175,3 @@ mapping.register({
         description = "Move cursor right in insert mode",
     },
 })
-
-return mapping

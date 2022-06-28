@@ -1,8 +1,4 @@
 -- https://github.com/sumneko/lua-language-server
--- https://github.com/folke/lua-dev.nvim
-
--- https://github.com/sumneko/vscode-lua/blob/master/setting/schema.json
--- https://github.com/xiyaowong/coc-sumneko-lua/blob/main/settings.md
 
 local util = require("lspconfig.util")
 
@@ -18,13 +14,13 @@ local root_files = {
     ".luacheckrc",
     ".stylua.toml",
     "selene.toml",
+    "init.lua"
 }
 
 return vim.tbl_deep_extend("keep", lua_dev.setup(), {
-    -- cmd = { "lua-language-server", "--locale=zh-CN" },
+    cmd = { "lua-language-server" },
     filetypes = { "lua" },
     single_file_support = true,
-    cmd = { "lua-language-server" },
     root_dir = function(fname)
         ---@diagnostic disable-next-line: deprecated
         return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)

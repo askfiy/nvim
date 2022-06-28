@@ -1,28 +1,38 @@
 -- https://github.com/stevearc/aerial.nvim
 
-local icons = require("utils.icons")
-local options = require("core.options")
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "aerial" },
+    },
+    icons = api.get_icons("lsp_kind", false),
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "aerial")
-    if not ok then
-        return
-    end
-
-    M.aerial = m
     M.aerial.setup({
-        -- Minimum width
+        icons = M.icons,
         min_width = 30,
-        -- Backend for rendering symbols
+        show_guides = true,
         backends = { "lsp", "treesitter", "markdown" },
-        -- If set to False, show all icons, otherwise show already
-        -- Defined icon
-        -- filter_kind = false,
+        update_events = "TextChanged,InsertLeave",
+        ---@diagnostic disable-next-line: unused-local
+        on_attach = function(bufnr)
+            M.register_key()
+        end,
+        lsp = {
+            diagnostics_trigger_update = false,
+            update_when_errors = true,
+            update_delay = 300,
+        },
+        guides = {
+            mid_item = "├─",
+            last_item = "└─",
+            nested_top = "│ ",
+            whitespace = "  ",
+        },
         filter_kind = {
             "Module",
             "Struct",
@@ -32,52 +42,19 @@ function M.load()
             "Enum",
             "Function",
             "Method",
-            -- customize
-            -- "Property",
-        },
-        -- Icon to use
-        icons = icons[options.icons_style],
-        -- Show box drawing characters for the tree hierarchy
-        show_guides = true,
-        -- Event to update symbol tree
-        update_events = "TextChanged,InsertLeave",
-        -- Bind keys
-        on_attach = function(bufnr)
-            M.register_buffer_key(bufnr)
-        end,
-        -- Customize the characters used when show_guides = true
-        guides = {
-            -- When the child item has a sibling below it
-            mid_item = "├─",
-            -- When the child item is the last in the list
-            last_item = "└─",
-            -- When there are nested child guides to the right
-            nested_top = "│ ",
-            -- Raw indentation
-            whitespace = "  ",
-        },
-        lsp = {
-            -- Fetch document symbols when LSP diagnostics update.
-            -- If false, will update on buffer changes.
-            diagnostics_trigger_update = false,
-            -- Set to false to not update the symbols when there are LSP errors
-            update_when_errors = true,
-            -- How long to wait (in ms) after a buffer change before updating
-            -- Only used when diagnostics_trigger_update = false
-            update_delay = 300,
         },
     })
 end
 
 function M.after() end
 
-function M.register_buffer_key(bufnr)
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>2",
             rhs = "<cmd>AerialToggle! right<cr>",
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Open Outilne Explorer",
         },
         {
@@ -85,7 +62,7 @@ function M.register_buffer_key(bufnr)
             mode = { "n" },
             lhs = "{",
             rhs = "<cmd>AerialPrev<cr>",
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Move item up",
         },
         {
@@ -93,7 +70,7 @@ function M.register_buffer_key(bufnr)
             mode = { "n" },
             lhs = "}",
             rhs = "<cmd>AerialNext<cr>",
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Move item down",
         },
         {
@@ -101,7 +78,7 @@ function M.register_buffer_key(bufnr)
             mode = { "n" },
             lhs = "[[",
             rhs = "<cmd>AerialPrevUp<cr>",
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Move up one level",
         },
         {
@@ -109,7 +86,7 @@ function M.register_buffer_key(bufnr)
             mode = { "n" },
             lhs = "]]",
             rhs = "<cmd>AerialNextUp<cr>",
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Move down one level",
         },
     })

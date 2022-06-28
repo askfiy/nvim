@@ -1,20 +1,18 @@
 -- https://github.com/folke/which-key.nvim
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "which-key", "wk" },
+    },
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "which-key")
-    if not ok then
-        return
-    end
+    -- FIX: https://github.com/folke/which-key.nvim/issues/273
+    local show = M.wk.show
 
-    M.which_key = m
-
-    -- FIX: <telescope c-r> bug
-    local show = M.which_key.show
-    M.which_key.show = function(keys, opts)
+    M.wk.show = function(keys, opts)
         if vim.bo.filetype == "TelescopePrompt" then
             local map = "<c-r>"
             local key = vim.api.nvim_replace_termcodes(map, true, false, true)
@@ -23,7 +21,7 @@ function M.load()
         show(keys, opts)
     end
 
-    M.which_key.setup({
+    M.wk.setup({
         plugins = {
             spelling = {
                 enabled = true,
@@ -40,13 +38,13 @@ end
 
 function M.after()
     -- global leader
-    M.which_key.register({
+    M.wk.register({
         b = { name = "Buffers" },
         c = { name = "Code" },
         d = { name = "Debug" },
         f = { name = "Find" },
         g = { name = "Git" },
-        r = { name = "Replace" },
+        r = { name = "Replace", w = "Replace Word To ..." },
         s = { name = "Session" },
         u = { name = "Upload" },
         t = {
@@ -57,7 +55,7 @@ function M.after()
     }, { prefix = "<leader>", mode = "n" })
 
     -- comment
-    M.which_key.register({
+    M.wk.register({
         c = {
             name = "Comment",
             c = "Toggle line comment",
@@ -68,22 +66,22 @@ function M.after()
         },
     }, { prefix = "g", mode = "n" })
 
-    M.which_key.register({
+    M.wk.register({
         c = "Switch the specified line to a line comment",
         b = "Switch the specified line to a block comment",
     }, { prefix = "g", mode = "v" })
 
     -- surround
-    M.which_key.register({
+    M.wk.register({
         q = "Switch Surround",
         s = "Change Surround",
     }, { prefix = "c", mode = "n" })
 
-    M.which_key.register({
+    M.wk.register({
         s = "Delete Surround",
     }, { prefix = "d", mode = "n" })
 
-    M.which_key.register({
+    M.wk.register({
         s = "Add Surround",
     }, { prefix = "y", mode = "n" })
 end

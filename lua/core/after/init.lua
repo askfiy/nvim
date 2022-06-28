@@ -1,6 +1,2 @@
-local after = {}
-
-require("core.after.vsnip-set")
-require("core.after.auto-command")
-
-return after
+require("core.after.autocmd")
+require("core.after.snippet")

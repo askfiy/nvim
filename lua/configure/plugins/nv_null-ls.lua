@@ -1,19 +1,18 @@
 -- https://github.com/jose-elias-alvarez/null-ls.nvim
 
-local path = require("utils.api.path")
+---@diagnostic disable: unused-local
+local api = require("utils.api")
 local options = require("core.options")
 
-local M = {}
+local M = {
+    safe_requires = {
+        {"null-ls", "null_ls"}
+    },
+}
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "null-ls")
-    if not ok then
-        return
-    end
-
-    M.null_ls = m
     M.null_ls.setup({
         sources = {
             M.null_ls.builtins.formatting.prettier,
@@ -32,7 +31,7 @@ function M.load()
             --         "json",
             --         "--load-plugins=pylint_django",
             --         "--disable=django-not-configured",
-            --         "--rcfile=" .. path.join(options.nvim_lint_dir, "pylint.conf"),
+            --         "--rcfile=" .. api.path.join(options.lint_directory, "pylint.conf"),
             --     },
             -- }),
         },

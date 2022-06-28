@@ -1,111 +1,115 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 
-local icons = require("utils.icons")
+local api = require("utils.api")
+local aux_lsp = require("utils.aux.lsp")
 
 local M = {
-    filter_ft = {
+    safe_requires = {
+        { "lualine" },
+    },
+    icons = {
+        platform = api.get_icons("platform", true),
+        diagnostic = api.get_icons("diagnostic", true),
+    },
+    filter_filetype = {
         "NvimTree",
         "aerial",
         "dbui",
     },
-    platform_icons = {
-        unix = " ",
-        dos = " ",
-        mac = " ",
-    },
 }
+
+function M.get_active_lsp()
+    local message = ""
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+
+    local active_clients, ignore_lsp = aux_lsp.get_active_clients()
+
+    if next(active_clients) == nil then
+        return message
+    end
+
+    for _, client in ipairs(active_clients) do
+        local filetypes = client.config.filetypes
+        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and not vim.tbl_contains(ignore_lsp, client.name) then
+            return client.name
+        end
+    end
+
+    return message
+end
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "lualine")
-    if not ok then
-        return
-    end
-
-    M.lualine = m
     M.lualine.setup({
         options = {
-            -- Whether to enable symbols
             icons_enabled = true,
-            -- App theme
             theme = "auto",
-            -- Separator
             component_separators = { left = "", right = "" },
             section_separators = { left = "", right = "" },
-            -- Disabled file types
             disabled_filetypes = {},
-            -- Enable global status bar
             globalstatus = true,
         },
         sections = {
             lualine_a = {
                 {
                     "fileformat",
-                    symbols = M.platform_icons,
-                    fmt = M.trunc(12, 0, nil, true),
+                    symbols = M.icons.platform,
                 },
                 {
                     "mode",
                     cond = function()
-                        return not vim.tbl_contains(M.filter_ft, vim.o.filetype)
+                        return not vim.tbl_contains(M.filter_filetype, vim.o.filetype)
                     end,
-                    fmt = M.trunc(22, 0, nil, true),
                 },
                 {
                     "filetype",
                     cond = function()
-                        return vim.tbl_contains(M.filter_ft, vim.o.filetype)
+                        return vim.tbl_contains(M.filter_filetype, vim.o.filetype)
                     end,
-                    fmt = M.trunc(12, 0, nil, true),
                 },
             },
             lualine_b = {
                 {
                     "branch",
-                    fmt = M.trunc(70, 0, nil, true),
                 },
                 {
                     "diff",
-                    fmt = M.trunc(85, 0, nil, true),
                 },
                 {
                     "diagnostics",
                     symbols = {
-                        error = icons.diagnostics.error,
-                        warn = icons.diagnostics.warning,
-                        info = icons.diagnostics.info,
-                        hint = icons.diagnostics.hint,
+                        error = M.icons.diagnostic.Error,
+                        warn = M.icons.diagnostic.Warn,
+                        info = M.icons.diagnostic.Info,
+                        hint = M.icons.diagnostic.Hint,
                     },
-                    fmt = M.trunc(90, 0, nil, true),
                 },
             },
             lualine_c = {
                 {
                     "filename",
-                    fmt = M.trunc(37, 0, nil, true),
                 },
             },
             lualine_x = {
                 {
                     "filetype",
-                    fmt = M.trunc(42, 0, nil, true),
                 },
+                {
+                    M.get_active_lsp,
+                }
             },
             lualine_y = {
                 {
                     "encoding",
-                    fmt = M.trunc(52, 0, nil, true),
                 },
             },
             lualine_z = {
                 {
                     "location",
-                    fmt = M.trunc(61, 0, nil, true),
                 },
                 {
                     "progress",
-                    fmt = M.trunc(12, 0, nil, true),
                 },
             },
         },
@@ -122,26 +126,5 @@ function M.load()
 end
 
 function M.after() end
-
-function M.jump() end
-
-function M.trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
-    return function(str)
-        local win_width = vim.fn.winwidth(0)
-        if hide_width and win_width < hide_width then
-            return ""
-        elseif
-            vim.api.nvim_buf_get_option(0, "filetype") ~= "toggleterm"
-            and trunc_width
-            and trunc_len
-            and win_width < trunc_width
-            and #str > trunc_len
-        then
-            return str:sub(1, trunc_len) .. (no_ellipsis and "" or "...")
-        else
-            return str
-        end
-    end
-end
 
 return M

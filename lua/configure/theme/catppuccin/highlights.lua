@@ -1,101 +1,63 @@
-local hi = require("utils.api.hi")
+local hl = require("utils.api.hl")
 local options = require("core.options")
 local colors = require("catppuccin.api.colors").get_colors()
 
-local M = {
-    transparent_background = options.transparent_background,
-}
+local M = {}
 
-function M.apply_highlights(highlights)
-    for name, opts in pairs(highlights) do
-        hi.set(name, opts)
-    end
-end
-
--- For bufferline:
--- hi          : is the state when it is not selected
--- hi_selected : is the selected state
--- hi_visible  : selects the current Buf, but leaves it temporarily
---             (for example, after opening NvimTree in the current buffer, the cursor will move to NvimTree, then the current buffer is in the visible state)
-
-function M.global_highlights()
-    local bufferline_full_bg = colors.black0
-
-    local bufferline_bg_focused = colors.black2
-    local bufferline_bg_unfocused = colors.black1
-    local bufferline_fg_focused = colors.white
-    local bufferline_fg_unfocused = colors.black4
-
-    local bufferline_close_fg = colors.red
-    local bufferline_indicator_fg = colors.peach
-    local bufferline_separator_fg = colors.peach
-    local bufferline_modfiy_fg = colors.green
-    local bufferline_pick_fg = colors.red
-
-    local bufferline_hint_fg = colors.rosewater
-    local bufferline_info_fg = colors.sky
-    local bufferline_warn_fg = colors.yellow
-    local bufferline_error_fg = colors.red
-
-    local highlights = {
-
+function M.global_highlight()
+    hl.bulk_set({
         -- winbar
-        ["WinBar"] = { fg = "NONE", bg = "NONE", gui = "NONE" },
+        ["WinBar"] = { bold = false },
 
-        -- scrollview
+        -- scroll
         ["ScrollView"] = { bg = colors.black4 },
 
-        -- telescope
-        ["TelescopeMatching"] = { fg = colors.blue, gui = "bold" },
-        -- ["TelescopeSelection "] = { fg = colors.black0, bg = colors.green, gui = "NONE" },
-
-        -- NvimTree
-        ["NvimTreeWinSeparator"] = { bg = "NONE" },
-        ["NvimTreeWindowPicker "] = { fg = colors.pink, bg = colors.black0, gui = "bold" },
+        -- nvim-tree
+        ["NvimTreeWindowPicker"] = { fg = colors.pink, bg = colors.black0, bold = true },
 
         -- fidget
-        ["FidgetTitle"] = { fg = colors.blue, gui = "bold" },
+        ["FidgetTitle"] = { fg = colors.blue, bold = true },
         ["FidgetTask"] = { fg = colors.blue },
 
         -- indent-blankline
         ["IndentBlanklineContextChar"] = { fg = colors.blue },
         ["IndentBlanklineChar"] = { fg = colors.black4 },
 
+        -- vim-visual-multi
+        ["VM_Extend_hl"] = { fg = colors.black2, bg = colors.mauve },
+        ["VM_Cursor_hl"] = { fg = colors.black2, bg = colors.mauve },
+        ["VM_Mono_hl"] = { fg = colors.black2, bg = colors.blue },
+        ["VM_insert_hl"] = { fg = colors.black2, bg = colors.red },
+
         -- cmp
-        ["PmenuSel"] = { fg = colors.black0, bg = colors.green, gui = "NONE" },
+        ["PmenuSel"] = { fg = colors.black0, bg = colors.green, bold = false },
         ["PmenuThumb"] = { bg = colors.black4 },
-        ["CmpItemAbbrMatch"] = { fg = colors.blue, bg = "NONE" },
-        ["CmpItemAbbrMatchFuzzy"] = { fg = colors.blue, bg = "NONE" },
+        ["CmpItemAbbrMatch"] = { fg = colors.blue, bold = true },
+        ["CmpItemAbbrMatchFuzzy"] = { fg = colors.blue },
 
-        -- diagnostic
-        ["DiagnosticError"] = { bg = "NONE" },
-        ["DiagnosticWarn"] = { bg = "NONE" },
-        ["DiagnosticInfo"] = { bg = "NONE" },
-        ["DiagnosticHint"] = { bg = "NONE" },
-
-        -- visual-multi
-        ["VM_Extend_hi"] = { fg = colors.black2, bg = colors.mauve },
-        ["VM_Cursor_hi"] = { fg = colors.black2, bg = colors.mauve },
-        ["VM_Mono_hi"] = { fg = colors.black2, bg = colors.blue },
-        ["VM_insert_hi"] = { fg = colors.black2, bg = colors.red },
+        -- -- diagnostic
+        ["DiagnosticError"] = { fg = colors.red, bg = "none" },
+        ["DiagnosticWarn"] = { fg = colors.yellow, bg = "none" },
+        ["DiagnosticInfo"] = { fg = colors.blue, bg = "none" },
+        ["DiagnosticHint"] = { fg = colors.blue, bg = "none" },
 
         -- rainbowcol
-        ["rainbowcol1"] = { bg = "NONE" },
-        ["rainbowcol2"] = { bg = "NONE" },
-        ["rainbowcol3"] = { bg = "NONE" },
-        ["rainbowcol4"] = { bg = "NONE" },
-        ["rainbowcol5"] = { bg = "NONE" },
-        ["rainbowcol6"] = { bg = "NONE" },
-        ["rainbowcol7"] = { bg = "NONE" },
+        ["rainbowcol1"] = { fg = colors.peach, bg = "none" },
+        ["rainbowcol2"] = { fg = colors.mauve, bg = "none" },
+        ["rainbowcol3"] = { fg = colors.teal, bg = "none" },
+        ["rainbowcol4"] = { fg = colors.peach, bg = "none" },
+        ["rainbowcol5"] = { fg = colors.mauve, bg = "none" },
+        ["rainbowcol6"] = { fg = colors.teal, bg = "none" },
+        ["rainbowcol7"] = { fg = colors.peach, bg = "none" },
 
-        -- aerinal icons
+        -- aerinal
         ["AerialArrayIcon"] = { fg = colors.blue },
         ["AerialBooleanIcon"] = { fg = colors.blue },
         ["AerialClassIcon"] = { fg = colors.blue },
         ["AerialConstantIcon"] = { fg = colors.blue },
         ["AerialConstructorIcon"] = { fg = colors.blue },
         ["AerialEnumIcon"] = { fg = colors.blue },
-        ["AerialEnumMemberIcon   "] = { fg = colors.blue },
+        ["AerialEnumMemberIcon"] = { fg = colors.blue },
         ["AerialEventIcon"] = { fg = colors.blue },
         ["AerialFieldIcon"] = { fg = colors.blue },
         ["AerialFileIcon"] = { fg = colors.blue },
@@ -117,195 +79,237 @@ function M.global_highlights()
         ["AerialVariableIcon"] = { fg = colors.blue },
 
         -- navic
-
-        ["NavicIconsFile"] = { link = "Identifier" },
-        ["NavicIconsModule"] = { link = "Include" },
-        ["NavicIconsNamespace"] = { link = "Include" },
-        ["NavicIconsPackage"] = { link = "Include" },
-        ["NavicIconsClass"] = { link = "Type" },
-        ["NavicIconsMethod"] = { link = "Function" },
-        ["NavicIconsProperty"] = { link = "Identifier" },
-        ["NavicIconsField"] = { link = "Identifier" },
-        ["NavicIconsConstructor"] = { link = "Special" },
-        ["NavicIconsEnum"] = { link = "Type" },
-        ["NavicIconsInterface"] = { link = "Type" },
-        ["NavicIconsFunction"] = { link = "Function" },
-        ["NavicIconsVariable"] = { link = "Identifier" },
-        ["NavicIconsConstant"] = { link = "Constant" },
-        ["NavicIconsString"] = { link = "Identifier" },
-        ["NavicIconsNumber"] = { link = "Identifier" },
-        ["NavicIconsBoolean"] = { link = "Identifier" },
-        ["NavicIconsArray"] = { link = "Identifier" },
-        ["NavicIconsObject"] = { link = "Identifier" },
-        ["NavicIconsKey"] = { link = "Identifier" },
-        ["NavicIconsNull"] = { link = "Identifier" },
-        ["NavicIconsEnumMember"] = { link = "Identifier" },
-        ["NavicIconsStruct"] = { link = "Type" },
-        ["NavicIconsEvent"] = { link = "Identifier" },
-        ["NavicIconsOperator"] = { link = "Identifier" },
-        ["NavicIconsTypeParameter"] = { link = "Identifier" },
+        ["NavicIconsFile"] = { fg = colors.blue },
+        ["NavicIconsModule"] = { fg = colors.blue },
+        ["NavicIconsNamespace"] = { fg = colors.blue },
+        ["NavicIconsPackage"] = { fg = colors.blue },
+        ["NavicIconsClass"] = { fg = colors.blue },
+        ["NavicIconsMethod"] = { fg = colors.blue },
+        ["NavicIconsProperty"] = { fg = colors.blue },
+        ["NavicIconsField"] = { fg = colors.blue },
+        ["NavicIconsConstructor"] = { fg = colors.blue },
+        ["NavicIconsEnum"] = { fg = colors.blue },
+        ["NavicIconsInterface"] = { fg = colors.blue },
+        ["NavicIconsFunction"] = { fg = colors.blue },
+        ["NavicIconsVariable"] = { fg = colors.blue },
+        ["NavicIconsConstant"] = { fg = colors.blue },
+        ["NavicIconsString"] = { fg = colors.blue },
+        ["NavicIconsNumber"] = { fg = colors.blue },
+        ["NavicIconsBoolean"] = { fg = colors.blue },
+        ["NavicIconsArray"] = { fg = colors.blue },
+        ["NavicIconsObject"] = { fg = colors.blue },
+        ["NavicIconsKey"] = { fg = colors.blue },
+        ["NavicIconsNull"] = { fg = colors.blue },
+        ["NavicIconsEnumMember"] = { fg = colors.blue },
+        ["NavicIconsStruct"] = { fg = colors.blue },
+        ["NavicIconsEvent"] = { fg = colors.blue },
+        ["NavicIconsOperator"] = { fg = colors.blue },
+        ["NavicIconsTypeParameter"] = { fg = colors.blue },
         ["NavicText"] = { fg = colors.white },
         ["NavicSeparator"] = { fg = colors.white },
 
         -- gitsigns
         -- line blame
-        ["GitSignsCurrentLineBlame"] = { bg = "NONE" },
+        ["GitSignsCurrentLineBlame"] = { bg = "none" },
 
         -- line number
-        ["GitSignsAdd"] = { bg = "NONE" },
-        ["GitSignsChange"] = { bg = "NONE" },
-        ["GitSignsDelete"] = { bg = "NONE" },
+        ["GitSignsAdd"] = { fg = colors.green, bg = "none" },
+        ["GitSignsChange"] = { fg = colors.yellow, bg = "none" },
+        ["GitSignsDelete"] = { fg = colors.red, bg = "none" },
 
         -- preview hunk floating
-        ["GitSignsAddLn"] = { fg = colors.green, bg = "NONE" },
-        ["GitSignsChangeLn"] = { fg = colors.yellow, bg = "NONE" },
-        ["GitSignsDeleteLn"] = { fg = colors.red, bg = "NONE" },
+        ["GitSignsAddLn"] = { fg = colors.green, bg = "none" },
+        ["GitSignsChangeLn"] = { fg = colors.yellow, bg = "none" },
+        ["GitSignsDeleteLn"] = { fg = colors.red, bg = "none" },
 
         -- blame line full floating
-        ["GitSignsAddInline"] = { fg = colors.green, bg = "NONE" },
-        ["GitSignsDeleteInline"] = { fg = colors.yellow, bg = "NONE" },
-        ["GitSignsChangeInline"] = { fg = colors.red, bg = "NONE" },
+        ["GitSignsAddInline"] = { fg = colors.green, bg = "none" },
+        ["GitSignsDeleteInline"] = { fg = colors.yellow, bg = "none" },
+        ["GitSignsChangeInline"] = { fg = colors.red, bg = "none" },
 
         -- bufferline
         -- offset
-        ["Directory"] = { gui = "bold" },
+        ["Directory"] = { fg = colors.blue, bold = true },
 
         -- blank space background
-        ["BufferLineFill"] = { bg = bufferline_full_bg },
+        ["BufferLineFill"] = { bg = colors.black0 },
 
         -- bufferline split symbol (line) on the left side of the current window
-        ["BufferLineIndicatorSelected"] = { fg = bufferline_indicator_fg, bg = bufferline_bg_focused },
-        ["BufferLineIndicator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
-        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicatorSelected"] = { fg = colors.peach, bg = colors.black2 },
+        ["BufferLineIndicator"] = { fg = colors.black2, bg = colors.black1 },
+        ["BufferLineIndicatorVisible"] = { fg = colors.black2, bg = colors.black1 },
 
         -- bufferline is not the split symbol on the left side of the current window (can also be seen in the current window, but it is very subtle)
-        ["BufferLineSeparatorSelected"] = { fg = bufferline_separator_fg, bg = bufferline_bg_focused },
-        ["BufferLineSeparator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
-        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparatorSelected"] = { fg = colors.peach, bg = colors.black2 },
+        ["BufferLineSeparator"] = { fg = colors.black2, bg = colors.black1 },
+        ["BufferLineSeparatorVisible"] = { fg = colors.black2, bg = colors.black1 },
 
         -- bufferline close button
-        ["BufferLineCloseButtonSelected"] = { fg = bufferline_close_fg, bg = bufferline_bg_focused },
-        ["BufferLineCloseButton"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineCloseButtonVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineCloseButtonSelected"] = { fg = colors.red, bg = colors.black2 },
+        ["BufferLineCloseButton"] = { fg = colors.black4, bg = colors.black1 },
+        ["BufferLineCloseButtonVisible"] = { fg = colors.black4, bg = colors.black1 },
 
         -- bufferline small dots when unsaved
-        ["BufferLineModifiedSelected"] = { fg = bufferline_modfiy_fg, bg = bufferline_bg_focused },
-        ["BufferLineModified"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineModifiedVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineModifiedSelected"] = { fg = colors.green, bg = colors.black2 },
+        ["BufferLineModified"] = { fg = colors.black4, bg = colors.black1 },
+        ["BufferLineModifiedVisible"] = { fg = colors.black4, bg = colors.black1 },
 
         -- bufferline serial number
-        ["BufferLineNumbersSelected"] = { fg = bufferline_fg_focused, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineNumbers"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
-        ["BufferLineNumbersVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineNumbersSelected"] = {
+            fg = colors.white,
+            bg = colors.black2,
+            bold = false,
+            italic = false,
+        },
+        ["BufferLineNumbers"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
+        ["BufferLineNumbersVisible"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
 
         -- bufferline jump
-        ["BufferLinePickSelected"] = { fg = bufferline_pick_fg, bg = bufferline_bg_focused, gui = "bold" },
-        ["BufferLinePick"] = { fg = bufferline_pick_fg, bg = bufferline_bg_unfocused, gui = "bold" },
-        ["BufferLinePickVisible"] = { fg = bufferline_pick_fg, bg = bufferline_bg_unfocused, gui = "bold" },
+        ["BufferLinePickSelected"] = { fg = colors.red, bg = colors.black2, bold = true },
+        ["BufferLinePick"] = { fg = colors.red, bg = colors.black1, bold = true },
+        ["BufferLinePickVisible"] = { fg = colors.red, bg = colors.black1, bold = true },
 
         -- bufferline tab
-        ["BufferLineTabSelected"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused }, -- currently selected
-        ["BufferLineTab"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused }, -- Unselected
-        ["BufferLineTabClose"] = { fg = bufferline_close_fg, bg = bufferline_full_bg }, -- Right close button
+        ["BufferLineTabSelected"] = { fg = colors.black1, bg = colors.back1 }, -- currently selected
+        ["BufferLineTab"] = { fg = colors.black4, bg = colors.black1 }, -- Unselected
+        ["BufferLineTabClose"] = { fg = colors.red, bg = colors.black1 }, -- Right close button
 
         -- bufferline file with the same name
-        ["BufferlineDuplicateSelected"] = { fg = bufferline_fg_focused, bg = bufferline_bg_focused, gui = "italic" },
-        ["BufferlineDuplicate"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "italic" },
+        ["BufferlineDuplicateSelected"] = { fg = colors.white, bg = colors.black2, italic = true },
+        ["BufferlineDuplicate"] = { fg = colors.black4, bg = colors.black1, italic = true },
         ["BufferlineDuplicateVisible"] = {
-            fg = bufferline_fg_unfocused,
-            bg = bufferline_bg_unfocused,
-            gui = "italic",
+            fg = colors.black4,
+            bg = colors.black1,
+            italic = true,
         },
 
         -- bufferline currently open buffer (when no diagnostics)
-        ["BufferLineBufferSelected"] = { fg = bufferline_fg_focused, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineBackground"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" }, -- unchecked
-        ["BufferLineBufferVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineBufferSelected"] = { fg = colors.white, bg = colors.black2, bold = false, italic = false },
+        ["BufferLineBackground"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false }, -- unchecked
+        ["BufferLineBufferVisible"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
 
         -- bufferline diagnostic information (text)
-        ["BufferLineHintSelected"] = { fg = bufferline_hint_fg, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineHint"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
-        ["BufferLineHintVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineHintSelected"] = { fg = colors.rosewater, bg = colors.black2, bold = false, italic = false },
+        ["BufferLineHint"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
+        ["BufferLineHintVisible"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
 
-        ["BufferLineInfoSelected"] = { fg = bufferline_info_fg, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineInfo"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
-        ["BufferLineInfoVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_focused, gui = "NONE" },
+        ["BufferLineInfoSelected"] = { fg = colors.blue, bg = colors.black2, bold = false, italic = false },
+        ["BufferLineInfo"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
+        ["BufferLineInfoVisible"] = { fg = colors.black4, bg = colors.black2, bold = false, italic = false },
 
-        ["BufferLineWarningSelected"] = { fg = bufferline_warn_fg, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineWarning"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
-        ["BufferLineWarningVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineWarningSelected"] = { fg = colors.yellow, bg = colors.black2, bold = false, italic = false },
+        ["BufferLineWarning"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
+        ["BufferLineWarningVisible"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
 
-        ["BufferLineErrorSelected"] = { fg = bufferline_error_fg, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineError"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
-        ["BufferLineErrorVisible"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineErrorSelected"] = { fg = colors.red, bg = colors.black2, bold = false, italic = false },
+        ["BufferLineError"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
+        ["BufferLineErrorVisible"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
 
         -- bufferline diagnostic information (icon)
-        ["BufferLineHintDiagnosticSelected"] = { fg = bufferline_hint_fg, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineHintDiagnostic"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineHintDiagnosticSelected"] = {
+            fg = colors.rosewater,
+            bg = colors.black2,
+            bold = false,
+            italic = false,
+        },
+        ["BufferLineHintDiagnostic"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
         ["BufferLineHintDiagnosticVisible"] = {
-            fg = bufferline_fg_unfocused,
-            bg = bufferline_bg_unfocused,
-            gui = "NONE",
+            fg = colors.black4,
+            bg = colors.black1,
+            bold = false,
+            italic = false,
         },
 
-        ["BufferLineInfoDiagnosticSelected"] = { fg = bufferline_info_fg, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineInfoDiagnostic"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineInfoDiagnosticSelected"] = {
+            fg = colors.blue,
+            bg = colors.black2,
+            bold = false,
+            italic = false,
+        },
+        ["BufferLineInfoDiagnostic"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
         ["BufferLineInfoDiagnosticVisible"] = {
-            fg = bufferline_fg_unfocused,
-            bg = bufferline_bg_focused,
-            gui = "NONE",
+            fg = colors.black4,
+            bg = colors.black2,
+            bold = false,
+            italic = false,
         },
 
         ["BufferLineWarningDiagnosticSelected"] = {
-            fg = bufferline_warn_fg,
-            bg = bufferline_bg_focused,
-            gui = "NONE",
+            fg = colors.yellow,
+            bg = colors.black2,
+            bold = false,
+            italic = false,
         },
-        ["BufferLineWarningDiagnostic"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineWarningDiagnostic"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
         ["BufferLineWarningDiagnosticVisible"] = {
-            fg = bufferline_fg_unfocused,
-            bg = bufferline_bg_unfocused,
-            gui = "NONE",
+            fg = colors.black4,
+            bg = colors.black1,
+            bold = false,
+            italic = false,
         },
 
-        ["BufferLineErrorDiagnosticSelected"] = { fg = bufferline_error_fg, bg = bufferline_bg_focused, gui = "NONE" },
-        ["BufferLineErrorDiagnostic"] = { fg = bufferline_fg_unfocused, bg = bufferline_bg_unfocused, gui = "NONE" },
+        ["BufferLineErrorDiagnosticSelected"] = {
+            fg = colors.red,
+            bg = colors.black2,
+            bold = false,
+            italic = false,
+        },
+        ["BufferLineErrorDiagnostic"] = { fg = colors.black4, bg = colors.black1, bold = false, italic = false },
         ["BufferLineErrorDiagnosticVisible"] = {
-            fg = bufferline_fg_unfocused,
-            bg = bufferline_bg_unfocused,
-            gui = "NONE",
+            fg = colors.black4,
+            bg = colors.black1,
+            bold = false,
+            italic = false,
         },
-    }
-    M.apply_highlights(highlights)
+    })
 end
 
-function M.is_transparent_highlights()
-    local highlights = {
+function M.is_transparent()
+    hl.bulk_set({
+
         -- lsp hover and diagnostic float window
-        ["NormalFloat "] = { bg = "NONE" },
+        ["NormalFloat"] = { fg = colors.white, bg = "none" },
         -- hop no background
-        ["HopNextKey"] = { bg = "NONE" },
-        ["HopNextKey1"] = { bg = "NONE" },
-        ["HopNextKey2"] = { bg = "NONE" },
-        ["HopUnmatched"] = { bg = "NONE" },
-    }
-    M.apply_highlights(highlights)
+        ["HopNextKey"] = { fg = colors.peach, bg = "none", bold = true },
+        ["HopNextKey1"] = { fg = colors.blue, bg = "none", bold = true },
+        ["HopNextKey2"] = { fg = colors.teal, bg = "none", bold = true, italic = true },
+        ["HopUnmatched"] = { fg = colors.gray0, bg = "none" },
+    })
+
+    if not options.float_border then
+        hl.bulk_set({
+            ["NormalFloat"] = { fg = colors.white, bg = colors.black0 },
+            ["DiagnosticFloatingError"] = { fg = colors.red, bg = colors.black0 },
+            ["DiagnosticFloatingWarn"] = { fg = colors.yellow, bg = colors.black0 },
+            ["DiagnosticFloatingInfo"] = { fg = colors.blue, bg = colors.black0 },
+            ["DiagnosticFloatingHint"] = { fg = colors.blue, bg = colors.black0 },
+        })
+    end
 end
 
-function M.no_transparent_highlights()
-    local highlights = {
+function M.no_transparent()
+    hl.bulk_set({
         -- lsp hover and diagnostic float window
-        ["NormalFloat "] = { bg = colors.black2 },
-    }
-    M.apply_highlights(highlights)
+        ["NormalFloat"] = { bg = colors.black2 },
+    })
+
+    if not options.float_border then
+        hl.bulk_set({
+            ["NormalFloat"] = { fg = colors.white, bg = colors.black3 },
+            ["DiagnosticFloatingError"] = { fg = colors.red, bg = colors.black3 },
+            ["DiagnosticFloatingWarn"] = { fg = colors.yellow, bg = colors.black3 },
+            ["DiagnosticFloatingInfo"] = { fg = colors.blue, bg = colors.black3 },
+            ["DiagnosticFloatingHint"] = { fg = colors.blue, bg = colors.black3 },
+        })
+    end
 end
 
 function M.execute()
-    M.global_highlights()
-    if M.transparent_background then
-        M.is_transparent_highlights()
+    M.global_highlight()
+    if options.transparent then
+        M.is_transparent()
     else
-        M.no_transparent_highlights()
+        M.no_transparent()
     end
 end
 

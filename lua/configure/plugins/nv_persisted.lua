@@ -1,23 +1,20 @@
 -- https://github.com/olimorris/persisted.nvim
 
-local path = require("utils.api.path")
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "persisted" },
+    },
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "persisted")
-    if not ok then
-        return
-    end
-
-    M.persisted = m
     M.persisted.setup({
-        save_dir = path.join(vim.fn.stdpath("cache"), "sessions"),
+        save_dir = api.path.join(vim.fn.stdpath("cache"), "sessions"),
         use_git_branche = true,
         command = "VimLeavePre",
         autosave = true,
@@ -26,8 +23,8 @@ end
 
 function M.after() end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>sl",
@@ -40,7 +37,7 @@ function M.register_global_key()
             lhs = "<leader>ss",
             rhs = function()
                 vim.cmd("silent! SessionSave")
-                print("Session saved successfully")
+                vim.api.nvim_echo({ { "Session saved successfully", "MoreMsg" } }, true, {})
             end,
             options = { silent = true },
             description = "Save session",
@@ -51,9 +48,9 @@ function M.register_global_key()
             rhs = function()
                 local ok, _ = pcall(vim.cmd, "SessionDelete")
                 if ok then
-                    print("Session deleted successfully")
+                    vim.api.nvim_echo({ { "Session deleted successfully", "MoreMsg" } }, true, {})
                 else
-                    print("Session deleted failed, file has been deleted")
+                    vim.api.nvim_echo({ { "Session deleted failed", "ErrorMsg" } }, true, {})
                 end
             end,
             options = { silent = true },

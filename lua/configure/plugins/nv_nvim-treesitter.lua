@@ -5,26 +5,29 @@
 
 local options = require("core.options")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "nvim-treesitter.configs", "nvim_treesitter" },
+    },
+}
+
+function M.download_source_settings()
+    if options.download_source ~= "https://github.com/" then
+        for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
+            config.install_info.url = config.install_info.url:gsub("https://github.com/", options.download_source)
+        end
+    end
+end
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "nvim-treesitter.configs")
-    if not ok then
-        return
-    end
-
-    M.download_source_settings()
-
-    M.nvim_treesitter = m
     M.nvim_treesitter.setup({
         ensure_installed = "all",
         ignore_install = { "phpdoc" },
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
-            use_languagetree = true,
         },
         indent = {
             enable = true,
@@ -69,13 +72,5 @@ function M.load()
 end
 
 function M.after() end
-
-function M.download_source_settings()
-    if options.download_source ~= "https://github.com/" then
-        for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
-            config.install_info.url = config.install_info.url:gsub("https://github.com/", options.download_source)
-        end
-    end
-end
 
 return M

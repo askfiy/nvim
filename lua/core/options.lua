@@ -1,36 +1,23 @@
-local path = require("utils.api.path")
+local api = require("utils.api")
 
 local options = {
-    -- Auto save Buffer
-    auto_save_buffer = true,
-    -- Automatically switch input method, currently only for Linux and Fcitx5
-    auto_switch_input = true,
-    --  Icon style to use
-    -- • vscode (requires condicon.ttf installed)
-    -- • kind (default)options.
-    icons_style = "kind",
-    -- theme style to use
-    -- • catppuccin
-    -- • vscode
-    -- • github-theme
-    colorscheme = "catppuccin",
-    -- Whether the background is transparent
-    -- • boolean
-    transparent_background = false,
-    -- lint configuration file
-    -- • string
-    nvim_lint_dir = path.join(vim.fn.stdpath("config"), "lint"),
-    -- Code snippet storage directory
-    -- • string
-    code_snippets_directory = path.join(vim.fn.stdpath("config"), "snippets"),
-    -- download source (for LSP server, treesitter parser, and various plugin downloads)
-    -- • https://github.com/
-    -- • https://hub.fastgit.xyz/
+    -- whether to enable transparent background
+    transparent = false,
+    -- whether to show winbar
+    show_winbar = true,
+    -- whether to add a border to the floating window
+    float_border = true,
+    -- specify the lint configuration file
+    lint_directory = api.path.join(vim.fn.stdpath("config"), "lint"),
+    -- configuration file path for user code snippets
+    snippets_directory = api.path.join(vim.fn.stdpath("config"), "snippets"),
+    -- download the address of the plugin, treesitter parser, lsp server
     download_source = "https://github.com/",
+    -- download_source = "https://hub.fastgit.xyz/",
 }
 
 -- database link configuration
-options.database_config = {
+options.dbs = {
     {
         name = "dev",
         url = "mysql://askfiy@192.168.0.120/db1",

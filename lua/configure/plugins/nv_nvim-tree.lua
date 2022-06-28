@@ -1,36 +1,34 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
 
-local aux = require("utils.api.aux")
-local icons = require("utils.icons")
-local mapping = require("core.mapping")
+local api = require("utils.api")
+local aux_public = require("utils.aux.public")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "nvim-tree", "nvim_tree" },
+    },
+    icons = api.get_icons("diagnostic", true),
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "nvim-tree")
-    if not ok then
-        return
-    end
-
-    M.nvim_tree = m
     M.nvim_tree.setup({
-        -- Disable netrw
+        -- disable netrw
         disable_netrw = false,
-        -- Hijack the netrw window
+        -- hijack the netrw window
         hijack_netrw = false,
-        -- Keeps the cursor on the first letter of the filename when moving in the tree.
+        -- keeps the cursor on the first letter of the filename when moving in the tree.
         hijack_cursor = true,
-        -- Refresh tree when changing root
+        -- refresh tree when changing root
         update_cwd = true,
-        -- Ignored file types
+        -- ignored file types
         ignore_ft_on_setup = { "dashboard" },
-        -- Auto-reload tree (BufEnter event)
+        -- auto-reload tree (bufenter event)
         reload_on_bufenter = true,
-        -- Update the focused file on `BufEnter`, un-collapses the folders recursively
+        -- update the focused file on `bufenter`, un-collapses the folders recursively
         -- until it finds the file.
         update_focused_file = {
             enable = true,
@@ -46,10 +44,10 @@ function M.load()
             enable = true,
             show_on_dirs = true,
             icons = {
-                hint = icons.diagnostics.Hint,
-                info = icons.diagnostics.Info,
-                warning = icons.diagnostics.Warn,
-                error = icons.diagnostics.Error,
+                hint = M.icons.Hint,
+                info = M.icons.Info,
+                warning = M.icons.Warn,
+                error = M.icons.Error,
             },
         },
         actions = {
@@ -116,14 +114,13 @@ end
 
 function M.after() end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>1",
-            -- rhs = "<cmd>NvimTreeToggle<cr>",
             rhs = function()
-                aux.toggle_sidebar("NvimTree")
+                aux_public.toggle_sidebar("NvimTree")
                 vim.cmd("NvimTreeToggle")
             end,
             options = { silent = true },
@@ -133,7 +130,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>fc",
             rhs = function()
-                aux.toggle_sidebar("NvimTree")
+                aux_public.toggle_sidebar("NvimTree")
                 vim.cmd("NvimTreeFindFile")
             end,
             options = { silent = true },

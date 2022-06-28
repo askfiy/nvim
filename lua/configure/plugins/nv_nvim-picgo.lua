@@ -1,27 +1,25 @@
 -- https://github.com/askfiy/nvim-picgo
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "nvim-picgo", "nvim_picgo" },
+    },
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "nvim-picgo")
-    if not ok then
-        return
-    end
-
-    M.nvim_picgo = m
     M.nvim_picgo.setup()
 end
 
 function M.after() end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>uc",

@@ -1,15 +1,19 @@
 -- https://github.com/kristijanhusak/vim-carbon-now-sh
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
 local M = {}
 
-function M.entrance()
+function M.before()
     M.register_global_key()
 end
 
+function M.load() end
+
+function M.after() end
+
 function M.register_global_key()
-    mapping.register({
+    api.map.bulk_register({
         {
             mode = { "v" },
             lhs = "<leader>ci",

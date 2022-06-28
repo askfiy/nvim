@@ -1,20 +1,18 @@
 -- https://github.com/folke/todo-comments.nvim
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "todo-comments", "todo_comments" },
+    },
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "todo-comments")
-    if not ok then
-        return
-    end
-
-    M.todo_comments = m
     M.todo_comments.setup({
         keywords = {
             -- alt = alias
@@ -32,18 +30,10 @@ function M.load()
     })
 end
 
-function M.after()
-    -- FIX: Exception error for q:
-    local hl = require("todo-comments.highlight")
+function M.after() end
 
-    local highlight_win = hl.highlight_win
-    hl.highlight_win = function(win, force)
-        pcall(highlight_win, win, force)
-    end
-end
-
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>fd",

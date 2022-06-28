@@ -1,31 +1,30 @@
 -- https://github.com/kristijanhusak/vim-dadbod-ui
 
-local aux = require("utils.api.aux")
+local api = require("utils.api")
+local aux_public = require("utils.aux.public")
 local options = require("core.options")
-local mapping = require("core.mapping")
 
 local M = {}
 
-function M.entrance()
-    M.register_global_key()
-
-    vim.g.dbs = options.database_config
-    -- width
+function M.before()
+    M.register_key()
+    vim.g.dbs = options.dbs
     vim.g.db_ui_winwidth = 30
-    -- automatically execute built-in statements
     vim.g.db_ui_auto_execute_table_helpers = true
-    -- do not automatically query when saving
     vim.g.db_ui_execute_on_save = false
 end
 
-function M.register_global_key()
-    mapping.register({
+function M.load() end
+
+function M.after() end
+
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>4",
-            -- rhs = ":NvDBUIToggle<cr>",
             rhs = function()
-                aux.toggle_sidebar("dbui")
+                aux_public.toggle_sidebar("dbui")
                 vim.cmd("DBUIToggle")
             end,
             options = { silent = true },

@@ -1,21 +1,34 @@
 -- https://github.com/AckslD/nvim-neoclip.lua
+-- https://github.com/tami5/sqlite.lua
 
-local mapping = require("core.mapping")
+local api = require("utils.api")
 
-local M = {}
+local M = {
+    safe_requires = {
+        {"neoclip"}
+    }
+}
+
+function M.all(tbl, check)
+    for _, entry in ipairs(tbl) do
+        if not check(entry) then
+            return false
+        end
+    end
+    return true
+end
+
+function M.is_whitespace(line)
+    return vim.fn.match(line, [[^\s*$]]) ~= -1
+end
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "neoclip")
-    if not ok then
-        return
-    end
 
-    M.nvim_neoclip = m
-    M.nvim_neoclip.setup({
+    M.neoclip.setup({
         -- preview = false,
         -- content_spec_column = true,
         history = 1000,
@@ -42,7 +55,7 @@ function M.load()
                 },
             },
         },
-        -- Filter blank lines
+        -- filter blank lines
         filter = function(data)
             return not M.all(data.event.regcontents, M.is_whitespace)
         end,
@@ -51,21 +64,8 @@ end
 
 function M.after() end
 
-function M.all(tbl, check)
-    for _, entry in ipairs(tbl) do
-        if not check(entry) then
-            return false
-        end
-    end
-    return true
-end
-
-function M.is_whitespace(line)
-    return vim.fn.match(line, [[^\s*$]]) ~= -1
-end
-
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>fy",

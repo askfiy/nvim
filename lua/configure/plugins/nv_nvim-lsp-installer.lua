@@ -1,62 +1,43 @@
 -- https://github.com/neovim/nvim-lspconfig
--- https://github.com/hrsh7th/cmp-nvim-lsp
+-- https://github.com/SmiteshP/nvim-navic
 -- https://github.com/stevearc/aerial.nvim
 -- https://github.com/williamboman/nvim-lsp-installer
 
-local aux = require("utils.api.aux")
-local icons = require("utils.icons")
-local mapping = require("core.mapping")
+local api = require("utils.api")
+local aux_lsp = require("utils.aux.lsp")
 local options = require("core.options")
 
 local M = {
-    opt_scrolloff = vim.opt.scrolloff:get(),
+    safe_requires = {
+        { "aerial" },
+        { "lspconfig" },
+        { "nvim-navic", "navic" },
+        { "nvim-lsp-installer", "lsp_installer" },
+    },
+    installer_servers = {
+        "vimls",
+        "sumneko_lua",
+        "gopls",
+        "pyright",
+        "html",
+        "vuels",
+        "cssls",
+        "jsonls",
+        "emmet_ls",
+        "tsserver",
+        "tailwindcss",
+    },
 }
-
-function M.load_lsp_config()
-    M.language_servers_config = {
-        -- ltex = require("configure.lsp.ltex"),
-        vimls = require("configure.lsp.vimls"),
-        sumneko_lua = require("configure.lsp.sumneko_lua"),
-        jsonls = require("configure.lsp.jsonls"),
-        tailwindcss = require("configure.lsp.tailwindcss"),
-        html = require("configure.lsp.html"),
-        cssls = require("configure.lsp.cssls"),
-        tsserver = require("configure.lsp.tsserver"),
-        vuels = require("configure.lsp.vuels"),
-        gopls = require("configure.lsp.gopls"),
-        pyright = require("configure.lsp.pyright"),
-        emmet_ls = require("configure.lsp.emmet_ls"),
-    }
-end
 
 function M.before() end
 
 function M.load()
-    local ok, m = pcall(require, "nvim-lsp-installer")
-    if not ok then
-        return
-    end
+    aux_lsp.quick_set(options.float_border)
 
-    M.nvim_lsp_installer = m
-
-    -- Load lsp config file
-    M.load_lsp_config()
-    -- Set options for floating windows
-    M.float_style_settings()
-    -- Set diagnostic style
-    M.diagnostics_style_settings()
-    -- Set lspconfig floating border
-    M.lspconfig_float_settings()
-
-    M.navic = require("nvim-navic")
-    M.aerial = require("aerial")
-    M.lspconfig = require("lspconfig")
-    M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-    M.nvim_lsp_installer.setup({
+    M.lsp_installer.setup({
         automatic_installation = true,
         ui = {
-            border = "double",
+            border = options.float_border and "double" or "none",
             icons = {
                 server_installed = "",
                 server_pending = "",
@@ -80,138 +61,97 @@ function M.load()
 end
 
 function M.after()
-    for server_name, lsp_config in pairs(M.language_servers_config) do
-        local server_available, server = M.nvim_lsp_installer.get_server(server_name)
-        -- Determine whether the LSP server is valid (supports automatic download)
+    -- store servers name waiting to be installed
+    local download_servers = {}
+
+    for _, server_name in pairs(M.installer_servers) do
+        local server_available, server_object = M.lsp_installer.get_server(server_name)
+
+        -- if available
         if server_available then
-            ---@diagnostic disable-next-line: undefined-field
-            if not server:is_installed() then
-                -- If the LSP server is not downloaded, download it
-                vim.notify("Install Language Server: " .. server_name, "info", { title = "Language Server" })
-                ---@diagnostic disable-next-line: undefined-field
-                server:install()
-            else
-                lsp_config.capabilities = M.capabilities
 
-                lsp_config.flags = {
-                    debounce_text_changes = 150,
-                }
+            -- if is installed
+            if server_object:is_installed() then
 
-                -- Merge public headers with private headers
-                lsp_config.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, lsp_config.handlers or {})
-                -- Run the callback function, help the top key position
-                lsp_config.on_attach = function(client, bufnr)
-                    M.aerial.on_attach(client, bufnr)
-                    M.navic.attach(client, bufnr)
-                    M.register_buffer_key(bufnr)
+                -- determine if there is a user-defined configuration file
+                local ok, lsp_config = pcall(require, string.format("configure.lsp.%s", server_name))
+
+                -- if there is no user-defined configuration file, use the default configuration
+                if not ok then
+                    lsp_config = {}
                 end
-                -- Start LSP server
+
+                lsp_config.capabilities = aux_lsp.get_capabilities()
+                lsp_config.handlers = aux_lsp.get_headlers(lsp_config)
+                lsp_config.on_attach = function(client, bufnr)
+                    M.register_key()
+                    M.navic.attach(client, bufnr)
+                    M.aerial.on_attach(client, bufnr)
+                end
+
                 M.lspconfig[server_name].setup(lsp_config)
+
+            -- if not installed, add to download list and install server
+            else
+                table.insert(download_servers, server_name)
+                server_object:install()
             end
+
+        -- invalid server name
+        else
+            local error_message = server_object
+            vim.notify(error_message, "ERROR", { title = "Language Server" })
         end
     end
-end
 
-function M.float_style_settings()
-    -- Add file type for floating window
-    M.lsp_handlers = {
-        ["textDocument/hover"] = vim.lsp.with(M.lsp_hover, {
-            border = "rounded",
-            filetype = "lsp-hover",
-        }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(M.lsp_signature_help, {
-            border = "rounded",
-            filetype = "lsp-signature-help",
-        }),
-    }
-end
-
-function M.lsp_hover(_, result, ctx, config)
-    -- Add file type for LSP hover
-    local bufnr, winner = vim.lsp.handlers.hover(_, result, ctx, config)
-    if bufnr and winner then
-        vim.api.nvim_buf_set_option(bufnr, "filetype", config.filetype)
-        return bufnr, winner
+    -- show download information
+    if not vim.tbl_isempty(download_servers) then
+        vim.notify(
+            string.format("Install Language Servers: \n - %s", table.concat(download_servers, "\n - ")),
+            "INFO",
+            { title = "Language Server" }
+        )
     end
 end
 
-function M.lsp_signature_help(_, result, ctx, config)
-    -- Add file type for LSP signature help
-    local bufnr, winner = vim.lsp.handlers.signature_help(_, result, ctx, config)
-
-    -- Put the signature floating window above the cursor
-    local current_cursor_line = vim.api.nvim_win_get_cursor(0)[1]
-    local ok, win_height = pcall(vim.api.nvim_win_get_height, winner)
-
-    if not ok then
-        return
-    end
-
-    if current_cursor_line > win_height + 2 then
-        vim.api.nvim_win_set_config(winner, {
-            anchor = "SW",
-            relative = "cursor",
-            row = 0,
-            col = -1,
-        })
-    end
-
-    if bufnr and winner then
-        vim.api.nvim_buf_set_option(bufnr, "filetype", config.filetype)
-        return bufnr, winner
-    end
-end
-
-function M.diagnostics_style_settings()
-    vim.diagnostic.config({
-        signs = true,
-        underline = true,
-        severity_sort = true,
-        update_in_insert = false,
-        float = { source = "always" },
-        virtual_text = { prefix = "●", source = "always" },
-    })
-
-    for tpe, icon in pairs(icons.diagnostics) do
-        local hl = "DiagnosticSign" .. tpe
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
-end
-
-function M.lspconfig_float_settings()
-    local win = require("lspconfig.ui.windows")
-    local _default_opts = win.default_opts
-
-    ---@diagnostic disable-next-line: redefined-local
-    win.default_opts = function(options)
-        local opts = _default_opts(options)
-        opts.border = "double"
-        return opts
-    end
-end
-
-function M.register_buffer_key(bufnr)
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>ca",
             rhs = vim.lsp.buf.code_action,
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Show code action",
         },
         {
             mode = { "n" },
             lhs = "<leader>cn",
             rhs = vim.lsp.buf.rename,
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Variable renaming",
         },
         {
             mode = { "n" },
             lhs = "<leader>cf",
             rhs = vim.lsp.buf.format,
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Format buffer",
+        },
+        {
+            mode = { "n" },
+            lhs = "gh",
+            rhs = vim.lsp.buf.hover,
+            options = { silent = true },
+            description = "Show help information",
+        },
+        {
+            mode = { "n" },
+            lhs = "gr",
+            rhs = function()
+                require("telescope.builtin").lsp_references()
+            end,
+            options = { silent = true },
+            description = "Go to references",
         },
         {
             mode = { "n" },
@@ -219,7 +159,8 @@ function M.register_buffer_key(bufnr)
             rhs = function()
                 require("telescope.builtin").lsp_implementations()
             end,
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
+
             description = "Go to implementations",
         },
         {
@@ -228,7 +169,7 @@ function M.register_buffer_key(bufnr)
             rhs = function()
                 require("telescope.builtin").lsp_type_definitions()
             end,
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Go to type definitions",
         },
         {
@@ -237,24 +178,8 @@ function M.register_buffer_key(bufnr)
             rhs = function()
                 require("telescope.builtin").lsp_definitions()
             end,
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Go to definitions",
-        },
-        {
-            mode = { "n" },
-            lhs = "gr",
-            rhs = function()
-                require("telescope.builtin").lsp_references()
-            end,
-            options = { silent = true, buffer = bufnr },
-            description = "Go to references",
-        },
-        {
-            mode = { "n" },
-            lhs = "gh",
-            rhs = vim.lsp.buf.hover,
-            options = { silent = true, buffer = bufnr },
-            description = "Show help information",
         },
         {
             mode = { "n" },
@@ -262,122 +187,43 @@ function M.register_buffer_key(bufnr)
             rhs = function()
                 require("telescope.builtin").diagnostics()
             end,
-            options = { silent = true, buffer = bufnr },
+            options = { silent = true },
             description = "Show Workspace Diagnostics",
         },
         {
             mode = { "n" },
             lhs = "[g",
-            rhs = function()
-                vim.diagnostic.goto_prev({ float = { border = "rounded" } })
-            end,
-            options = { silent = true, buffer = bufnr },
+            rhs = aux_lsp.goto_prev_diagnostic,
+            options = { silent = true },
             description = "Jump to prev diagnostic",
         },
         {
             mode = { "n" },
             lhs = "]g",
-            rhs = function()
-                vim.diagnostic.goto_next({ float = { border = "rounded" } })
-            end,
-            options = { silent = true, buffer = bufnr },
+            rhs = aux_lsp.goto_next_diagnostic,
+            options = { silent = true },
             description = "Jump to next diagnostic",
         },
         {
             mode = { "i" },
             lhs = "<c-j>",
-            rhs = function()
-                -- When the signature is visible, pressing <c-j> again will close the window
-                for _, opts in ipairs(aux.get_all_win_buf_ft()) do
-                    if opts.buf_ft == "lsp-signature-help" then
-                        vim.api.nvim_win_close(opts.win_id, false)
-                        return
-                    end
-                end
-                vim.lsp.buf.signature_help()
-            end,
-            options = { silent = true, buffer = bufnr },
+            rhs = aux_lsp.sigature_help,
+            options = { silent = true },
             description = "Toggle signature help",
         },
         {
             mode = { "i", "n" },
-            lhs = "<c-f>",
-            rhs = function()
-                local scroll_floating_filetype = { "lsp-signature-help", "lsp-hover" }
-
-                for _, opts in ipairs(aux.get_all_win_buf_ft()) do
-                    if vim.tbl_contains(scroll_floating_filetype, opts.buf_ft) then
-                        local win_height = vim.api.nvim_win_get_height(opts.win_id)
-                        local cursor_line = vim.api.nvim_win_get_cursor(opts.win_id)[1]
-                        local buf_total_line = vim.api.nvim_buf_line_count(opts.buf_id)
-                        ---@diagnostic disable-next-line: redundant-parameter
-                        local win_last_line = vim.fn.line("w$", opts.win_id)
-
-                        if buf_total_line <= win_height or cursor_line == buf_total_line then
-                            vim.api.nvim_echo({ { "Can't scroll down", "MoreMsg" } }, false, {})
-                            return
-                        end
-
-                        vim.opt.scrolloff = 0
-                        if cursor_line < win_last_line then
-                            vim.api.nvim_win_set_cursor(opts.win_id, { win_last_line + 5, 0 })
-                        elseif cursor_line + 5 > buf_total_line then
-                            vim.api.nvim_win_set_cursor(opts.win_id, { buf_total_line, 0 })
-                        else
-                            vim.api.nvim_win_set_cursor(opts.win_id, { cursor_line + 5, 0 })
-                        end
-                        vim.opt.scrolloff = M.opt_scrolloff
-
-                        return
-                    end
-                end
-
-                local map = "<c-f>"
-                local key = vim.api.nvim_replace_termcodes(map, true, false, true)
-                vim.api.nvim_feedkeys(key, "n", true)
-            end,
-            options = { silent = true, buffer = bufnr },
-            description = "Scroll down floating window",
+            lhs = "<c-b>",
+            rhs = aux_lsp.scroll_to_up,
+            options = { silent = true },
+            description = "Scroll up floating window",
         },
         {
             mode = { "i", "n" },
-            lhs = "<c-b>",
-            rhs = function()
-                local scroll_floating_filetype = { "lsp-signature-help", "lsp-hover" }
-
-                for _, opts in ipairs(aux.get_all_win_buf_ft()) do
-                    if vim.tbl_contains(scroll_floating_filetype, opts.buf_ft) then
-                        local win_height = vim.api.nvim_win_get_height(opts.win_id)
-                        local cursor_line = vim.api.nvim_win_get_cursor(opts.win_id)[1]
-                        local buf_total_line = vim.api.nvim_buf_line_count(opts.buf_id)
-                        ---@diagnostic disable-next-line: redundant-parameter
-                        local win_first_line = vim.fn.line("w0", opts.win_id)
-
-                        if buf_total_line <= win_height or cursor_line == 1 then
-                            vim.api.nvim_echo({ { "Can't scroll up", "MoreMsg" } }, false, {})
-                            return
-                        end
-
-                        vim.opt.scrolloff = 0
-                        if cursor_line > win_first_line then
-                            vim.api.nvim_win_set_cursor(opts.win_id, { win_first_line - 5, 0 })
-                        elseif cursor_line - 5 < 1 then
-                            vim.api.nvim_win_set_cursor(opts.win_id, { 1, 0 })
-                        else
-                            vim.api.nvim_win_set_cursor(opts.win_id, { cursor_line - 5, 0 })
-                        end
-                        vim.opt.scrolloff = M.opt_scrolloff
-
-                        return
-                    end
-                end
-
-                local map = "<c-b>"
-                local key = vim.api.nvim_replace_termcodes(map, true, false, true)
-                vim.api.nvim_feedkeys(key, "n", true)
-            end,
-            options = { silent = true, buffer = bufnr },
-            description = "Scroll up floating window",
+            lhs = "<c-f>",
+            rhs = aux_lsp.scroll_to_down,
+            options = { silent = true },
+            description = "Scroll down floating window",
         },
     })
 end

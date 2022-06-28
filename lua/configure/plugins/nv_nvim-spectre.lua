@@ -1,33 +1,31 @@
 -- https://github.com/nvim-pack/nvim-spectre
 
-local aux = require("utils.api.aux")
-local mapping = require("core.mapping")
+local api = require("utils.api")
+local aux_public = require("utils.aux.public")
 
-local M = {}
+local M = {
+    safe_requires = {
+        { "spectre" },
+    },
+}
 
 function M.before()
-    M.register_global_key()
+    M.register_key()
 end
 
 function M.load()
-    local ok, m = pcall(require, "spectre")
-    if not ok then
-        return
-    end
-
-    M.spectre = m
     M.spectre.setup()
 end
 
 function M.after() end
 
-function M.register_global_key()
-    mapping.register({
+function M.register_key()
+    api.map.bulk_register({
         {
             mode = { "n" },
             lhs = "<leader>rp",
             rhs = function()
-                aux.toggle_sidebar("spectre_panel")
+                aux_public.toggle_sidebar("spectre_panel")
                 require("spectre").open()
             end,
             options = { silent = true },
@@ -37,7 +35,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>rf",
             rhs = function()
-                aux.toggle_sidebar("spectre_panel")
+                aux_public.toggle_sidebar("spectre_panel")
                 require("spectre").open_file_search()
             end,
             options = { silent = true },
@@ -47,7 +45,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>rwf",
             rhs = function()
-                aux.toggle_sidebar("spectre_panel")
+                aux_public.toggle_sidebar("spectre_panel")
                 require("spectre").open_visual({
                     select_word = true,
                     ---@diagnostic disable-next-line: missing-parameter
@@ -61,7 +59,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>rwp",
             rhs = function()
-                aux.toggle_sidebar("spectre_panel")
+                aux_public.toggle_sidebar("spectre_panel")
                 require("spectre").open_visual({ select_word = true })
             end,
             options = { silent = true },
