@@ -31,7 +31,7 @@ function M.get_active_lsp()
     for _, client in ipairs(active_clients) do
         local filetypes = client.config.filetypes
         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and not vim.tbl_contains(ignore_lsp, client.name) then
-            return client.name
+            return string.format("%%#LspStatusActive# %%*%s", client.name)
         end
     end
 
@@ -97,7 +97,7 @@ function M.load()
                 },
                 {
                     M.get_active_lsp,
-                }
+                },
             },
             lualine_y = {
                 {
@@ -125,6 +125,12 @@ function M.load()
     })
 end
 
-function M.after() end
+function M.after()
+    api.hl.set("LspStatusActive", {
+        fg = api.hl.get("Function", "fg"),
+        bg = api.hl.get("lualine_a_inactive", "bg"),
+        bold = false,
+    })
+end
 
 return M

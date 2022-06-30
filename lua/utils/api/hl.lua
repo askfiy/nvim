@@ -30,7 +30,13 @@ function hl.get(name, style)
     end
 
     if style then
-        return result[style]
+        if style == "fg" then
+            return result["foreground"]
+        elseif style == "bg" then
+            return result["background"]
+        else
+            return result[style]
+        end
     end
 
     return result
