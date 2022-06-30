@@ -309,6 +309,7 @@ Some plugins default key descriptions are stored in the [nv_which-key.lua](./lua
 -  "n" [     : Go to Prev
 -  "n" ]     : Go to next
 -  "n" <esc> : Exit Multiple cursors mode
+-  "n" <c-l> : Suggestions for choosing copilot
 
 -  "n" ys{range}{char} : Add Surround
 -  "n" cs{char}{char}  : Changne Surround
@@ -344,4 +345,5 @@ Some plugins default key descriptions are stored in the [nv_which-key.lua](./lua
 - LspInfo         : View LSP server running status
 - LspInstallInfo  : View LSP server download status
 - TSUpdate all    : Update tree-sitter parser
+- Copilot setup   : login copilot
 ```
