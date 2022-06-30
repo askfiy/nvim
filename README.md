@@ -6,6 +6,10 @@
 
 This is a configuration based on neovim 0.8, it has good extensibility, and at the same time it is very beautiful, I have done a lot of highlight customization to the catppuccin theme.
 
+- Can be used directly without complicated configuration
+- Reasonable key bindings
+- Has the functions of most IDEs
+
 ## screenshot
 
 ![](https://images-1302522496.cos.ap-nanjing.myqcloud.com/img/20220628175433.png)
@@ -101,9 +105,48 @@ Open [options.lua](./lua/core/options.lua) to customize your configuration.
 
 Open [icons.lua](./lua/utils/icons.lua) change custom icons.
 
-## key
+## add LSP configuration
+
+If you want to add a new LSP configuration, open the [nv_nvim-lsp-installer.lua](./lua/configure/plugins/nv_nvim-lsp-installer.lua) file and add the name of the LSP server in installer_servers.
+
+If you need to configure the added LSP, you can create a new lua file with the same name in the [lua/configure/lsp](./lua/configure/lsp) directory and write the configuration.
+
+```
+local M = {
+    ...
+    installer_servers = {
+        "new lsp name"
+    },
+}
+```
+
+## add DAP configuration
+
+If you want to add a new DAP configuration, you only need to create a new lua file in the [./lua/configure/dap](./lua/configure/dap) directory, and write the DAP configuration in it, the following is Python DAP configuration file:
+
+```
+return {
+    adapters = {
+        -- add the name of the adapters
+        python = {
+            ...
+        },
+    },
+    configurations = {
+        -- add the name of the configuration
+        python = {
+            ...
+    }
+}
+```
+
+## key binds
 
 The following are commonly used keys and descriptions, leader key is space.
+
+If you want to modify some keys, you can find them in the plugin's configuration file and modify them.
+
+Some plugins default key descriptions are stored in the [nv_which-key.lua](./lua/configure/plugins/nv_which-key.lua) file, you may need to modify them.
 
 ```
 -  "i" jj                 :  Escape editor insert mode
@@ -290,4 +333,15 @@ The following are commonly used keys and descriptions, leader key is space.
 -  "n", "v" sl  :  Jump to line
 -  "n", "v" sf  :  Jump to search char on buffer
 -  "n", "v" sc  :  Jump to search char on current line
+```
+
+## some commands
+
+```
+- PackerSync      : Update plugin
+- MarkdownPreview : Preview markdown file
+- VsnipOpen       : Open a user-defined snippet
+- LspInfo         : View LSP server running status
+- LspInstallInfo  : View LSP server download status
+- TSUpdate all    : Update tree-sitter parser
 ```
