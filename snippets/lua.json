@@ -1,41 +1,40 @@
 {
   "pretty_print": {
     "prefix": "print",
-    "body": ["vim.pretty_print($1)"],
+    "body": [
+      "vim.pretty_print($1)"
+    ],
     "description": "vim.pretty_print"
   },
   "lua_module": {
     "prefix": "lua_module",
     "body": [
-      "local M = {}",
       "",
-      "function M.before() end",
+      "local api = require(\"utils.api\")",
+      "",
+      "local M = {",
+      "\tsafe_requires = {",
+      "\t\t{\"$1\", $2}",
+      "\t},",
+      "}",
+      "",
+      "function M.before()",
+      "\tM.register_key()",
+      "end",
       "",
       "function M.load()",
-      "\tlocal ok, m = pcall(require, \"${1:m}\")",
-      "\tif not ok then",
-      "\t\treturn",
-      "\tend",
+      "\t$3",
+      "end",
+      "function M.after()",
       "",
-      "\tM.$1${2} = m",
       "end",
       "",
-      "function M.after() end",
+      "function M.register_key()",
+      "\tapi.map.bulk_register({",
       "",
-      "return M"
+      "\t})",
+      "end"
     ],
-    "description": "lua module config"
-  },
-  "viml_module": {
-    "prefix": "viml_module",
-    "body": [
-      "local M = {}",
-      "",
-      "function M.entrance()",
-      "end",
-      "",
-      "return M"
-    ],
-    "description": "viml module config"
+    "description": "plugin configuration"
   }
 }
