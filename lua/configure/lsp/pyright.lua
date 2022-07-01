@@ -41,8 +41,9 @@ return {
         -- If you want to disable pyright from diagnosing unused parameters, open the function below
         ["textDocument/publishDiagnostics"] = vim.lsp.with(filter_publish_diagnostics, {
             filter_keywrod = {
-                '"kwargs" is not accessed',
+                '"self" is not accessed',
                 '"args" is not accessed',
+                '"kwargs" is not accessed',
             },
         }),
     },
