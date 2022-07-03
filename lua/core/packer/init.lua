@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     callback = function()
         -- multiple reloads will increase memory usage, so stop some LSP servers before reloading
         -- but this may cause some error messages
-        local active_clients, ignore_lsp = aux_lsp.get_active_clients()
+        local active_clients, ignore_lsp = aux_lsp.get_active_lsp_clients()
         for _, client in pairs(active_clients) do
             if not vim.tbl_contains(ignore_lsp, client.name) then
                 pcall(vim.lsp.stop_client, client, true)

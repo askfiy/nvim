@@ -22,7 +22,7 @@ function M.get_active_lsp()
     local message = ""
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 
-    local active_clients, ignore_lsp = aux_lsp.get_active_clients()
+    local active_clients, ignore_lsp = aux_lsp.get_active_lsp_clients()
 
     if next(active_clients) == nil then
         return message

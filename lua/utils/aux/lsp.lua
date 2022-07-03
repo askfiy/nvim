@@ -42,9 +42,14 @@ local aux_lsp = {
     icons = api.get_icons("diagnostic", true),
 }
 
-function aux_lsp.get_active_clients()
+function aux_lsp.get_active_lsp_clients()
     local active_clients = vim.lsp.get_active_clients()
-    local ignore_lsp = { "copilot", "null-ls" }
+    local ignore_lsp = { "copilot", "null-ls"}
+    local buf_ft = vim.bo.filetype
+
+    if buf_ft ~= "markdown" then
+        table.insert(ignore_lsp, "tailwindcss")
+    end
 
     return active_clients, ignore_lsp
 end
