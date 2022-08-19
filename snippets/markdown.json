@@ -1,0 +1,22 @@
+{
+  "code block": {
+    "prefix": "code",
+    "body": ["```$1\n```"],
+    "description": "create code block"
+  },
+  "< symbol": {
+    "prefix": "<",
+    "body": ["&lt;"],
+    "description": "<"
+  },
+  "> symbol": {
+    "prefix": ">",
+    "body": ["&gt;"],
+    "description": ">"
+  },
+  "| symbol": {
+    "prefix": "|",
+    "body": ["&#124;"],
+    "description": "&#124;"
+  }
+}
