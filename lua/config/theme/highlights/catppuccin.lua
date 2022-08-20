@@ -29,6 +29,11 @@ function M.global_highlight()
         ["IndentBlanklineContextChar"] = { fg = colors.blue },
         ["IndentBlanklineChar"] = { fg = colors.black4 },
 
+        -- illuminate
+        ["IlluminatedWordText"] = { bg = colors.black4 },
+        ["IlluminatedWordRead"] = { bg = colors.black4 },
+        ["IlluminatedWordWrite"] = { bg = colors.black4 },
+
         -- vim-visual-multi
         ["VM_Extend_hl"] = { fg = colors.black2, bg = colors.mauve },
         ["VM_Cursor_hl"] = { fg = colors.black2, bg = colors.mauve },
