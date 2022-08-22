@@ -19,7 +19,7 @@ options.snippets_directory = api.path.join(vim.fn.stdpath("config"), "snippets")
 options.database_connect = {
     {
         name = "pg",
-        url = "postgres://postgres:123456@localhost:5430/ktbl",
+        url = "postgres://postgres:123456@localhost:5430/jg037",
     },
     {
         name = "dev",
