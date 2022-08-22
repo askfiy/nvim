@@ -99,4 +99,5 @@ You can change anything you don't like, and if you don't know how to change it, 
 - VsnipOpen       : Open a user-defined snippet
 - MarkdownPreview : Preview markdown file
 - TSUpdate all    : Update tree-sitter parser
+- MakeDirectory   : Create directory if it doesn't exist
 ```
