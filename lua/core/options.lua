@@ -10,8 +10,8 @@ options.float_border = true
 
 -- Painful questions
 options.show_winbar = false
---[[ options.download_source = "https://github.com/" ]]
-options.download_source = "https://hub.fastgit.xyz/"
+options.download_source = "https://github.com/"
+--[[ options.download_source = "https://hub.fastgit.xyz/" ]]
 
 options.lint_directory = api.path.join(vim.fn.stdpath("config"), "lint")
 options.snippets_directory = api.path.join(vim.fn.stdpath("config"), "snippets")

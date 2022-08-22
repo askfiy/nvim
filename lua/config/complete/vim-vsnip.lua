@@ -34,7 +34,10 @@ function M.register_key()
         {
             mode = { "i", "s" },
             lhs = "<s-tab>",
-            rhs = "vsnip#jumpable(-1)?'<Plug>(vsnip-jump-prev)':'<s-tab>'",
+            -- TODO: Mapping modification
+            rhs = function()
+                return vim.fn["vsnip#jumpable"](-1) and "<Plug>(vsnip-jump-prev)" or "<s-tab>"
+            end,
             options = { silent = true, expr = true },
             description = "Jump to the prev fragment placeholder",
         },
