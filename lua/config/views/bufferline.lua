@@ -21,7 +21,6 @@ function M.load()
             show_close_icon = true,
             -- ordinal
             numbers = "none",
-            indicator_icon = "▎",
             buffer_close_icon = "",
             modified_icon = "●",
             close_icon = "",
@@ -29,6 +28,7 @@ function M.load()
             right_trunc_marker = "",
             diagnostics = "nvim_lsp",
             separator_style = "thin",
+            indicator = { icon = "▎", style = "icon" },
             ---@diagnostic disable-next-line: unused-local
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
                 local message
@@ -94,22 +94,7 @@ function M.load()
     })
 end
 
-function M.after()
-    vim.api.nvim_create_user_command("BufferDelete", function()
-        ---@diagnostic disable-next-line: missing-parameter
-        local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
-        local modified = vim.api.nvim_buf_get_option(0, "modified")
-
-        if file_exists == 0 and modified then
-            vim.notify("The file is not saved", "WARN", { title = "Buffer" })
-            return
-        end
-
-        local force = not vim.bo.buflisted or vim.bo.buftype == "nofile"
-
-        vim.cmd(force and "bd!" or string.format("bp | bd! %s", vim.api.nvim_get_current_buf()))
-    end, {})
-end
+function M.after() end
 
 function M.register_key()
     api.map.bulk_register({

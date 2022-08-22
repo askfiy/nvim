@@ -4,14 +4,10 @@ local options = {}
 
 options.transparent = false
 options.float_border = true
+options.show_winbar = true
 
--- The use of winbar is temporarily deprecated,
--- it may cause errors due to the version
-
--- Painful questions
-options.show_winbar = false
 options.download_source = "https://github.com/"
---[[ options.download_source = "https://hub.fastgit.xyz/" ]]
+-- options.download_source = "https://hub.fastgit.xyz/"
 
 options.lint_directory = api.path.join(vim.fn.stdpath("config"), "lint")
 options.snippets_directory = api.path.join(vim.fn.stdpath("config"), "snippets")

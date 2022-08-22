@@ -1,4 +1,5 @@
 -- https://github.com/numToStr/Comment.nvim
+-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 
 local M = {
     requires = {
@@ -25,6 +26,12 @@ function M.load()
             eol = "gca",
         },
         pre_hook = function(ctx)
+            -- FIX: Lua does not distinguish between line and block comments
+            -- Caused by nvim-ts-context-commentstring
+            if vim.bo.filetype == "lua" then
+                return
+            end
+
             local location = nil
             if ctx.ctype == M.comment_utils.ctype.block then
                 location = require("ts_context_commentstring.utils").get_cursor_location()

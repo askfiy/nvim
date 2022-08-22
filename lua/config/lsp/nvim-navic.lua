@@ -12,24 +12,9 @@ local M = {
 
 function M.before()
     M.ignore_filetype = {
-        "dapui_hover",
-        "markdown",
-        "NvimTree",
-        "aerial",
-        "undotree",
-        "spectre_panel",
-        "dbui",
-        "toggleterm",
-        "notify",
-        "startuptime",
-        "packer",
-        "lsp-installer",
-        "help",
-        "terminal",
-        "lspinfo",
-        "TelescopePrompt",
-        "TelescopeResults",
         "",
+        "dap-repl",
+        "markdown",
     }
 end
 
@@ -46,18 +31,11 @@ function M.after()
         return
     end
 
-    vim.api.nvim_create_autocmd({ "FileType" }, {
-        pattern = M.ignore_filetype,
-        callback = function()
-            vim.opt_local.winbar = ""
-        end,
-    })
-
     vim.api.nvim_create_autocmd(
         { "DirChanged", "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufNewFile" },
         {
             callback = function()
-                if vim.tbl_contains(M.ignore_filetype, vim.bo.filetype) then
+                if not vim.bo.buflisted or vim.tbl_contains(M.ignore_filetype, vim.bo.filetype) then
                     vim.opt_local.winbar = ""
                     return
                 end

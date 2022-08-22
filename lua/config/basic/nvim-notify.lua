@@ -19,6 +19,8 @@ function M.before()
         "could not find file",
         "Debug adapter disconnected",
         "No stopped threads. Cannot move",
+        -- TODO-command
+        "Invalid buffer id: %d*",
     }
 
     M.ignore_message = {
