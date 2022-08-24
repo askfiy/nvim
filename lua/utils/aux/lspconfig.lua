@@ -246,6 +246,11 @@ function aux_lspconfig.focus_float_window()
 
             return
         end
+
+        local map = "<c-]>"
+        local key = vim.api.nvim_replace_termcodes(map, true, false, true)
+        ---@diagnostic disable-next-line: param-type-mismatch
+        vim.api.nvim_feedkeys(key, "n", true)
     end
 end
 

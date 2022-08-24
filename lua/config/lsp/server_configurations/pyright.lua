@@ -1,4 +1,5 @@
 -- https://github.com/microsoft/pyright
+-- BUG: https://github.com/neovim/nvim-lspconfig/issues/1851
 
 local util = require("lspconfig.util")
 
@@ -70,6 +71,7 @@ return {
                     reportUnusedExpression = "warning",
                     reportConstantRedefinition = "error",
                     reportIncompatibleMethodOverride = "error",
+                    reportMissingImports = "error",
                     reportUndefinedVariable = "error",
                     reportAssertAlwaysTrue = "error",
                 },
