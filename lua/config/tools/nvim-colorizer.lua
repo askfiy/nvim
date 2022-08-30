@@ -9,17 +9,7 @@ local M = {
 function M.before() end
 
 function M.load()
-    local opts = {
-        css = true,
-    }
-
-    M.colorizer.setup({
-        "*",
-        css = opts,
-        javascript = opts,
-        typescript = opts,
-        vue = opts,
-    })
+    M.colorizer.setup()
 end
 
 function M.after()

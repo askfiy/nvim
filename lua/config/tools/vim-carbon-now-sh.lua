@@ -24,7 +24,7 @@ function M.register_key()
         {
             mode = { "n" },
             lhs = "<leader>ci",
-            rhs = "ggVG:CarbonNowSh<cr>",
+            rhs = "mmggVG:CarbonNowSh<cr>`m",
             options = { silent = true },
             description = "Code screenshot",
         },

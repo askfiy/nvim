@@ -115,6 +115,10 @@ function aux_lspconfig.get_capabilities()
 end
 
 -- goto diagnostic
+aux_lspconfig.diagnostic_open_float = function()
+    vim.diagnostic.open_float({ border = options.float_border and "rounded" or "none" })
+end
+
 aux_lspconfig.goto_next_diagnostic = function()
     vim.diagnostic.goto_next({ float = { border = options.float_border and "rounded" or "none" } })
 end
@@ -219,7 +223,7 @@ function aux_lspconfig.focus_float_window()
     local prev_win = {}
 
     return function()
-        if not vim.tbl_isempty(prev_win) then
+        if not vim.tbl_isempty(prev_win) and vim.api.nvim_win_is_valid(prev_win.id) then
             vim.fn.win_gotoid(prev_win.id)
             vim.api.nvim_win_set_cursor(prev_win.id, prev_win.cursor)
             if prev_win.mode == "i" then

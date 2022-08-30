@@ -99,7 +99,7 @@ api.map.bulk_register({
         description = "Look down history",
     },
     {
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         lhs = "k",
         rhs = function()
             return vim.v.count > 0 and "k" or "gk"
@@ -108,7 +108,7 @@ api.map.bulk_register({
         description = "Move up one line",
     },
     {
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         lhs = "j",
         rhs = function()
             return vim.v.count > 0 and "j" or "gj"
@@ -117,7 +117,7 @@ api.map.bulk_register({
         description = "Move down one line",
     },
     {
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         lhs = "H",
         rhs = function()
             return vim.v.count > 0 and "^" or "g^"
@@ -126,7 +126,7 @@ api.map.bulk_register({
         description = "Move to the first character at the beginning of the line",
     },
     {
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         lhs = "L",
         rhs = function()
             return vim.v.count > 0 and "$" or "g$"

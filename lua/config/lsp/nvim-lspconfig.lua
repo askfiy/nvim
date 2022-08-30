@@ -113,12 +113,19 @@ function M.register_key()
         },
         {
             mode = { "n" },
-            lhs = "go",
+            lhs = "gO",
             rhs = function()
                 require("telescope.builtin").diagnostics()
             end,
             options = { silent = true },
             description = "Show Workspace Diagnostics",
+        },
+        {
+            mode = { "n" },
+            lhs = "go",
+            rhs = aux_lspconfig.diagnostic_open_float,
+            options = { silent = true },
+            description = "Show Current Diagnostics",
         },
         {
             mode = { "n" },

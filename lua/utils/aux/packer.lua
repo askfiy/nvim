@@ -3,7 +3,20 @@
 local api = require("utils.api")
 local options = require("core.options")
 
-local aux_packer = {}
+local aux_packer = {
+    disable_kind = {
+        -- "basic",
+        -- "complete",
+        -- "dap",
+        -- "editor",
+        -- "find",
+        -- "lanaguage",
+        -- "lsp",
+        -- "theme",
+        -- "tools",
+        -- "views",
+    },
+}
 
 function aux_packer.entry(plugins)
     Packer_bootstrap = (function()
@@ -88,8 +101,9 @@ function aux_packer.entry(plugins)
                             )
                         end
                     end
-
-                    use(plugin_opts)
+                    if not vim.tbl_contains(aux_packer.disable_kind, plugin_kind_name) then
+                        use(plugin_opts)
+                    end
                 end
             end
             if Packer_bootstrap then
