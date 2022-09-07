@@ -7,18 +7,6 @@ local M = {
 function M.before() end
 
 function M.load()
-    -- FIX: https://github.com/folke/which-key.nvim/issues/273
-    local show = M.which_key.show
-
-    M.which_key.show = function(keys, opts)
-        if vim.bo.filetype == "TelescopePrompt" then
-            local map = "<c-r>"
-            local key = vim.api.nvim_replace_termcodes(map, true, false, true)
-            vim.api.nvim_feedkeys(key, "i", true)
-        end
-        show(keys, opts)
-    end
-
     M.which_key.setup({
         plugins = {
             spelling = {

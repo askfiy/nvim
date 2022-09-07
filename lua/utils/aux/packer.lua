@@ -4,6 +4,7 @@ local api = require("utils.api")
 local options = require("core.options")
 
 local aux_packer = {
+    -- The following options can be useful when debugging plugin errors
     disable_kind = {
         -- "basic",
         -- "complete",
