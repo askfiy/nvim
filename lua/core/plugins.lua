@@ -93,7 +93,6 @@ plugins.tools = {
     { "askfiy/nvim-picgo", module = "nvim-picgo" },
     { "kristijanhusak/vim-carbon-now-sh", cmd = { "CarbonNowSh" } },
     { "lewis6991/gitsigns.nvim", event = { "BufRead", "BufNewFile" } },
-    { "lewis6991/spellsitter.nvim", after = { "nvim-treesitter" } },
     { "dstein64/vim-startuptime", cmd = { "StartupTime" } },
     { "folke/which-key.nvim", event = { "BufRead", "BufNewFile" } },
 }

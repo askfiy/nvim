@@ -46,6 +46,8 @@ return {
                 '"self" is not accessed',
                 '"args" is not accessed',
                 '"kwargs" is not accessed',
+                '"__init__once" is not accessed',
+                'Function "__init__once" is not accessed',
             },
         }),
     },
