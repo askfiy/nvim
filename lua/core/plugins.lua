@@ -13,7 +13,7 @@ plugins.basic = {
 }
 
 plugins.theme = {
-    { "askfiy/catppuccin" },
+    { "askfiy/starlight" },
 }
 
 plugins.lsp = {
