@@ -13,9 +13,13 @@ local M = {
 function M.before() end
 
 function M.load()
+    -- add zsh filetype to shfmt
+    table.insert(M.null_ls.builtins.formatting.shfmt.filetypes, "zsh")
+
     M.null_ls.setup({
         sources = {
             M.null_ls.builtins.formatting.gofmt,
+            M.null_ls.builtins.formatting.shfmt,
             M.null_ls.builtins.formatting.prettier,
             M.null_ls.builtins.formatting.autopep8,
             M.null_ls.builtins.formatting.sql_formatter,

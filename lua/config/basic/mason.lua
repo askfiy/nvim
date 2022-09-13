@@ -33,7 +33,7 @@ M.installer_resources = {
         "pylint",
     },
     formatter = {
-        -- "gofmt",
+        "shfmt",
         "autopep8",
         "prettier",
         "sql-formatter",
