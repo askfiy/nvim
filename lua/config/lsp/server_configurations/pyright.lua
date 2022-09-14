@@ -1,5 +1,4 @@
 -- https://github.com/microsoft/pyright
--- BUG: https://github.com/neovim/nvim-lspconfig/issues/1851
 
 local util = require("lspconfig.util")
 
@@ -15,20 +14,31 @@ local root_files = {
     "run.py",
 }
 
-local filter_publish_diagnostics = function(a, params, client_id, c, config)
-    local new_index = 1
+local ignore_diagnostic_message = {
+    '"self" is not accessed',
+    '"args" is not accessed',
+    '"kwargs" is not accessed',
+}
+
+local filter_publish_diagnostics = function(a, params, client_info, extra_message, config)
     ---@diagnostic disable-next-line: unused-local
-    for index, diagnostic in ipairs(params.diagnostics) do
-        if not vim.tbl_contains(c.filter_keywrod, diagnostic.message) then
+    local client = vim.lsp.get_client_by_id(client_info.client_id)
+
+    local new_index = 1
+
+    for _, diagnostic in ipairs(params.diagnostics) do
+        if not vim.tbl_contains(extra_message.ignore_diagnostic_message, diagnostic.message) then
             params.diagnostics[new_index] = diagnostic
             new_index = new_index + 1
         end
     end
+
     for i = new_index, #params.diagnostics do
         params.diagnostics[i] = nil
     end
+
     ---@diagnostic disable-next-line: redundant-parameter
-    vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+    vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_info, extra_message, config)
 end
 
 return {
@@ -42,19 +52,26 @@ return {
         -- ["textDocument/publishDiagnostics"] = function(...) end,
         -- If you want to disable pyright from diagnosing unused parameters, open the function below
         ["textDocument/publishDiagnostics"] = vim.lsp.with(filter_publish_diagnostics, {
-            filter_keywrod = {
-                '"self" is not accessed',
-                '"args" is not accessed',
-                '"kwargs" is not accessed',
-                '"__init__once" is not accessed',
-                'Function "__init__once" is not accessed',
-            },
+            ignore_diagnostic_message = ignore_diagnostic_message,
         }),
     },
+    on_init = function(client, _)
+        -- BUG: https://github.com/neovim/nvim-lspconfig/issues/1851
+        vim.api.nvim_create_autocmd(
+            { "DirChanged", "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufNewFile" },
+            {
+                pattern = { "*.py", "NvimTree_*" },
+                callback = function()
+                    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                end,
+            }
+        )
+    end,
     settings = {
         python = {
             analysis = {
                 typeCheckingMode = "off", -- off, basic, strict
+                autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
                 autoImportCompletions = true,
                 diagnosticMode = "workspace",

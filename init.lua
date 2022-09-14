@@ -8,5 +8,3 @@ require("core.mapping")
 
 require("core.plugins")
 require("core.after")
-
-vim.opt.runtimepath:append("~/project/neovim_project/starlight")
