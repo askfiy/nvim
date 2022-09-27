@@ -12,7 +12,9 @@ local M = {
     },
 }
 
-function M.before() end
+function M.before()
+    M.register_key()
+end
 
 function M.load()
     aux_lspconfig.entry()
@@ -32,7 +34,6 @@ function M.load()
         settings.handlers = aux_lspconfig.get_headlers(settings)
 
         settings.on_attach = function(client, bufnr)
-            M.register_key()
             M.aerial.on_attach(client, bufnr)
             M.nvim_navic.attach(client, bufnr)
             client.server_capabilities.documentFormattingProvider = false

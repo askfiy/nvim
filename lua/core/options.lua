@@ -20,7 +20,11 @@ options.auto_remove_new_lines_comment = true
 
 options.database_connect = {
     {
-        name = "pg",
+        name = "haining",
+        url = "postgres://postgres:123456@localhost:5430/haining",
+    },
+    {
+        name = "JG037",
         url = "postgres://postgres:123456@localhost:5430/jg037",
     },
     {

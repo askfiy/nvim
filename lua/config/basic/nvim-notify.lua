@@ -21,6 +21,10 @@ function M.before()
         "No stopped threads. Cannot move",
         -- TODO-command
         "Invalid buffer id: %d*",
+        -- LSP
+        "method textDocument/codeAction is not supported by any of the servers registered for the current buffer",
+        "method textDocument/signatureHelp is not supported by any of the servers registered for the current buffer",
+        "method textDocument/documentSymbol is not supported by any of the servers registered for the current buffer",
     }
 
     M.ignore_message = {
@@ -32,8 +36,6 @@ function M.before()
         "LSP%[id=%d*%] client has shut down during progress update",
         "LSP%[id=%d*%] client has shut down while creating progress report",
         "LSP%[%d*%] client has shut down after sending a workspace/configuration request",
-        "method textDocument/signatureHelp is not supported by any of the servers registered for the current buffer",
-        "method textDocument/documentSymbol is not supported by any of the servers registered for the current buffer",
     }
 end
 

@@ -5,7 +5,7 @@ local plugins = {}
 plugins.basic = {
     { "wbthomason/packer.nvim" },
     { "rcarriga/nvim-notify" },
-    { "tpope/vim-repeat", fn = "repate#set" },
+    { "tpope/vim-repeat" },
     { "nvim-lua/plenary.nvim", module = "plenary" },
     { "williamboman/mason.nvim", after = { "nvim-notify" } },
     { "nvim-treesitter/nvim-treesitter", module = "nvim-treesitter", run = { ":TSUpdate" } },
@@ -72,8 +72,9 @@ plugins.editor = {
 
 plugins.lanaguage = {
     { "folke/lua-dev.nvim" },
-    { "davidgranstrom/nvim-markdown-preview", ft = { "markdown" }, cmd = { "MarkdownPreview" } },
-    { "Vimjas/vim-python-pep8-indent", ft = "py", event = { "InsertEnter" } },
+    { "davidgranstrom/nvim-markdown-preview", ft = { "markdown" } },
+    { "Vimjas/vim-python-pep8-indent", ft = { "python" }, event = { "InsertEnter" } },
+    { "AckslD/swenv.nvim" },
 }
 
 plugins.find = {
