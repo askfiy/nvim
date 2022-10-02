@@ -15,19 +15,15 @@ end
 function M.load()
     M.translate.setup({
         default = {
-            command = "translate_shell",
+            command = "google",
             output = "floating",
             parse_before = "trim",
         },
         replace_symbols = {
-            translate_shell = {
-                ["="] = "{@E@}",
-                ["#"] = "{@S@}",
-                ["/"] = "{@C@}",
-            },
-            deepl_free = {},
-            deepl_pro = {},
             google = {},
+            deepl_pro = {},
+            deepl_free = {},
+            translate_shell = {},
         },
     })
 end
@@ -138,4 +134,3 @@ function M.register_key()
 end
 
 return M
-

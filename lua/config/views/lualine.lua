@@ -5,11 +5,15 @@ local M = {
         "lualine",
         "swenv.api",
     },
+    pyversion = vim.fn.system("python --version"):match("%d.*%d"),
 }
 
 local function get_venv()
     local res = M.swenv_api.get_current_venv()
-    return string.format("virtualenv: %s", res and res.name or "none")
+    if res then
+        return string.format("(virtualenv: '%s')", res.name)
+    end
+    return string.format("(version: '%s')", M.pyversion)
 end
 
 function M.before() end

@@ -53,8 +53,8 @@ plugins.editor = {
     { "windwp/nvim-autopairs", event = { "InsertEnter" } },
     { "ur4ltz/surround.nvim", event = { "BufRead", "BufNewFile" } },
     { "RRethy/vim-illuminate", event = { "BufRead", "BufNewFile" } },
+    { "p00f/nvim-ts-rainbow" },
     { "lukas-reineke/indent-blankline.nvim", after = { "nvim-treesitter" } },
-    { "p00f/nvim-ts-rainbow", after = { "nvim-treesitter" } },
     { "windwp/nvim-ts-autotag", after = { "nvim-treesitter" } },
     { "JoosepAlviste/nvim-ts-context-commentstring", after = { "nvim-treesitter" } },
     {

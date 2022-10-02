@@ -18,5 +18,10 @@
     "prefix": "|",
     "body": ["&#124;"],
     "description": "&#124;"
+  },
+  "row": {
+    "prefix": "row",
+    "body": ["|$1|$2|$3|"],
+    "description": "one row"
   }
 }

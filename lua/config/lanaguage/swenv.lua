@@ -17,6 +17,7 @@ function M.load()
         venvs_path = vim.fn.expand("~/.virtualenvs"),
         post_set_venv = function()
             vim.cmd([[LspRestart]])
+            vim.diagnostic.reset()
         end,
     })
 end

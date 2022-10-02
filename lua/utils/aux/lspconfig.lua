@@ -94,16 +94,7 @@ function aux_lspconfig.diagnostic_quick_set()
 end
 
 function aux_lspconfig.lspconfig_ui_quick_set()
-    -- lspconfig float window set border
-    local win = require("lspconfig.ui.windows")
-    local _default_opts = win.default_opts
-
-    ---@diagnostic disable-next-line: redefined-local
-    win.default_opts = function(opts)
-        local default_opts = _default_opts(opts)
-        default_opts.border = options.float_border and "double" or "none"
-        return default_opts
-    end
+    require("lspconfig.ui.windows").default_options.border = options.float_border and "double" or "none"
 end
 
 function aux_lspconfig.get_headlers(settings)

@@ -5,3 +5,9 @@ agv
 agv
 virtualenv/!
 virtualenv
+CONFIG
+#vim
+#vim/!
+#vim
+nvim/!
+nvim

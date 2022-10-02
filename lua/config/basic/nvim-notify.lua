@@ -28,14 +28,15 @@ function M.before()
     }
 
     M.ignore_message = {
-        -- navic
-        'nvim%-navic: Server ".*" does not support documentSymbols.',
         -- LSP
         "%[LSP%]%[.+%] timeout",
         "LSP%[id=%d*%] client has shut down after sending Log",
         "LSP%[id=%d*%] client has shut down during progress update",
         "LSP%[id=%d*%] client has shut down while creating progress report",
         "LSP%[%d*%] client has shut down after sending a workspace/configuration request",
+        -- navic
+        'nvim%-navic: Server ".*" does not support documentSymbols.',
+        "nvim%-navic: Failed to attach to jsonls for current buffer. Already attached to jsonls",
     }
 end
 
