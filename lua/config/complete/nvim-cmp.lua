@@ -65,7 +65,6 @@ function M.load()
             { name = "nvim_lsp" },
             { name = "path" },
             { name = "buffer" },
-            { name = "cmdline" },
             { name = "cmp_tabnine" },
             { name = "vim-dadbod-completion" },
         }),

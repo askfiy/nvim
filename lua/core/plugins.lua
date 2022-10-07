@@ -44,7 +44,6 @@ plugins.dap = {
     { "theHamsta/nvim-dap-virtual-text", after = { "nvim-dap" } },
     { "rcarriga/nvim-dap-ui", after = { "nvim-dap" } },
 }
-
 plugins.editor = {
     { "AndrewRadev/switch.vim" },
     { "jbyuki/venn.nvim", module = "venn" },
