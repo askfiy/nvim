@@ -25,7 +25,7 @@ local M = {
     },
     -- complete the floating window settings of the menu
     complete_window_settings = {
-        fixed = true,
+        fixed = false,
         min_width = 20,
         max_width = 20,
     },

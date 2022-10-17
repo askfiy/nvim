@@ -16,6 +16,17 @@ local function get_venv()
     return string.format("(version: '%s')", M.pyversion)
 end
 
+local function diff_source()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+        return {
+            added = gitsigns.added,
+            modified = gitsigns.changed,
+            removed = gitsigns.removed,
+        }
+    end
+end
+
 function M.before() end
 
 function M.load()
@@ -39,7 +50,7 @@ function M.load()
             },
             lualine_b = {
                 "branch",
-                "diff",
+                { "diff", source = diff_source },
                 "diagnostics",
             },
             lualine_c = {

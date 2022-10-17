@@ -143,14 +143,14 @@ function M.register_key()
         {
             mode = { "n" },
             lhs = "<leader>bh",
-            rhs = "<cmd>BufferLineCloseLeft<cr>",
+            rhs = ":BufferLineCloseLeft<cr>",
             options = { silent = true },
             description = "Close all left buffers",
         },
         {
             mode = { "n" },
             lhs = "<leader>bl",
-            rhs = "<cmd>BufferLineCloseRight<cr>",
+            rhs = ":BufferLineCloseRight<cr>",
             options = { silent = true },
             description = "Close all right buffers",
         },

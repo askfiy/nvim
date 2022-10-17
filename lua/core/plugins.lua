@@ -17,7 +17,7 @@ plugins.theme = {
 }
 
 plugins.lsp = {
-    { "williamboman/mason-lspconfig.nvim", after = { "mason.nvim" } },
+    { "williamboman/mason-lspconfig.nvim" },
     { "SmiteshP/nvim-navic", after = { "mason-lspconfig.nvim" } },
     { "stevearc/aerial.nvim", after = { "nvim-navic" } },
     { "neovim/nvim-lspconfig", after = { "aerial.nvim" } },
