@@ -15,9 +15,7 @@ local root_files = {
 }
 
 local ignore_diagnostic_message = {
-    '"self" is not accessed',
-    '"args" is not accessed',
-    '"kwargs" is not accessed',
+    '^".*" is not accessed',
 }
 
 local filter_publish_diagnostics = function(a, params, client_info, extra_message, config)
@@ -26,15 +24,23 @@ local filter_publish_diagnostics = function(a, params, client_info, extra_messag
 
     local new_index = 1
 
-    for _, diagnostic in ipairs(params.diagnostics) do
-        if not vim.tbl_contains(extra_message.ignore_diagnostic_message, diagnostic.message) then
-            params.diagnostics[new_index] = diagnostic
-            new_index = new_index + 1
+    if not vim.tbl_isempty(extra_message.ignore_diagnostic_message) then
+        for _, diagnostic in ipairs(params.diagnostics) do
+            local tag = false
+            for _, rule in ipairs(extra_message.ignore_diagnostic_message) do
+                if not diagnostic.message:match(rule) then
+                    tag = true
+                    break
+                end
+            end
+            if tag then
+                params.diagnostics[new_index] = diagnostic
+                new_index = new_index + 1
+            end
         end
-    end
-
-    for i = new_index, #params.diagnostics do
-        params.diagnostics[i] = nil
+        for i = new_index, #params.diagnostics do
+            params.diagnostics[i] = nil
+        end
     end
 
     ---@diagnostic disable-next-line: redundant-parameter
