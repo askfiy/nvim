@@ -11,38 +11,32 @@ local root_files = {
     "pyrightconfig.json",
     -- customize
     "manage.py",
-    "run.py",
 }
 
 local ignore_diagnostic_message = {
-    '^".*" is not accessed',
+    '"self" is not accessed',
+    '"args" is not accessed',
+    '"kwargs" is not accessed',
 }
 
 local filter_publish_diagnostics = function(a, params, client_info, extra_message, config)
     ---@diagnostic disable-next-line: unused-local
     local client = vim.lsp.get_client_by_id(client_info.client_id)
 
-    local new_index = 1
+    if extra_message.ignore_diagnostic_message then
+        local new_index = 1
 
-    if not vim.tbl_isempty(extra_message.ignore_diagnostic_message) then
         for _, diagnostic in ipairs(params.diagnostics) do
-            local tag = false
-            for _, rule in ipairs(extra_message.ignore_diagnostic_message) do
-                if not diagnostic.message:match(rule) then
-                    tag = true
-                    break
-                end
-            end
-            if tag then
+            if not vim.tbl_contains(extra_message.ignore_diagnostic_message, diagnostic.message) then
                 params.diagnostics[new_index] = diagnostic
                 new_index = new_index + 1
             end
         end
+
         for i = new_index, #params.diagnostics do
             params.diagnostics[i] = nil
         end
     end
-
     ---@diagnostic disable-next-line: redundant-parameter
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_info, extra_message, config)
 end
