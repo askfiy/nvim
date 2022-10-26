@@ -37,6 +37,7 @@ local filter_publish_diagnostics = function(a, params, client_info, extra_messag
             params.diagnostics[i] = nil
         end
     end
+
     ---@diagnostic disable-next-line: redundant-parameter
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_info, extra_message, config)
 end

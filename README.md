@@ -70,6 +70,9 @@ $ npm i -g picgo
 
 -- if you want to store dd and yy data persistently
 $ yay -S sqlite3
+
+-- if you want to generate code screenshots
+$ yay -S silicon
 ```
 
 ## Use

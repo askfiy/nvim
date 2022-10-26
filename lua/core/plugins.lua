@@ -17,7 +17,7 @@ plugins.theme = {
 }
 
 plugins.lsp = {
-    { "williamboman/mason-lspconfig.nvim" },
+    { "williamboman/mason-lspconfig.nvim", after = { "mason.nvim" } },
     { "SmiteshP/nvim-navic", after = { "mason-lspconfig.nvim" } },
     { "stevearc/aerial.nvim", after = { "nvim-navic" } },
     { "neovim/nvim-lspconfig", after = { "aerial.nvim", "neodev.nvim" } },
@@ -76,11 +76,11 @@ plugins.lanaguage = {
 
 plugins.find = {
     { "tami5/sqlite.lua" },
+    { "nvim-telescope/telescope.nvim" },
     { "AckslD/nvim-neoclip.lua", after = { "sqlite.lua" } },
     { "kevinhwang91/nvim-hlslens", module = "hlslens" },
     { "phaazon/hop.nvim", cmd = { "HopWord", "HopLine", "HopChar1", "HopChar1CurrentLine" } },
     { "folke/todo-comments.nvim", event = { "BufRead", "BufNewFile" } },
-    { "nvim-telescope/telescope.nvim", module = { "telescope" } },
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make", module = { "telescope._extensions.fzf" } },
 }
 
