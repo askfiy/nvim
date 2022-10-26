@@ -106,6 +106,14 @@ function M.register_key()
             description = "Close current buffer",
         },
         {
+
+            mode = { "n" },
+            lhs = "<leader>bq",
+            rhs = "<cmd>BufferLinePickClose<cr>",
+            options = { silent = true },
+            description = "Close target buffer",
+        },
+        {
             mode = { "n" },
             lhs = "<c-h>",
             rhs = "<cmd>BufferLineCyclePrev<cr>",
@@ -143,14 +151,14 @@ function M.register_key()
         {
             mode = { "n" },
             lhs = "<leader>bh",
-            rhs = ":BufferLineCloseLeft<cr>",
+            rhs = "<cmd>BufferLineCloseLeft<cr>",
             options = { silent = true },
             description = "Close all left buffers",
         },
         {
             mode = { "n" },
             lhs = "<leader>bl",
-            rhs = ":BufferLineCloseRight<cr>",
+            rhs = "<cmd>BufferLineCloseRight<cr>",
             options = { silent = true },
             description = "Close all right buffers",
         },
