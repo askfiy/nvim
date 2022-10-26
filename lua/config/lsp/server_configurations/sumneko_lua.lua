@@ -2,22 +2,21 @@
 
 local util = require("lspconfig.util")
 
+---@diagnostic disable-next-line: missing-parameter
 local runtime_path = vim.split(package.path, ";")
 
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-
-local lua_dev = require("lua-dev")
 
 local root_files = {
     ".luarc.json",
     ".luacheckrc",
     ".stylua.toml",
     "selene.toml",
-    "README.md"
+    "README.md",
 }
 
-return vim.tbl_deep_extend("keep", lua_dev.setup(), {
+return {
     cmd = { "lua-language-server" },
     filetypes = { "lua" },
     single_file_support = true,
@@ -44,6 +43,9 @@ return vim.tbl_deep_extend("keep", lua_dev.setup(), {
             telemetry = {
                 enable = false,
             },
+            completion = {
+                callSnippet = "Replace",
+            },
         },
     },
-})
+}

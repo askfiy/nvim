@@ -20,7 +20,7 @@ plugins.lsp = {
     { "williamboman/mason-lspconfig.nvim" },
     { "SmiteshP/nvim-navic", after = { "mason-lspconfig.nvim" } },
     { "stevearc/aerial.nvim", after = { "nvim-navic" } },
-    { "neovim/nvim-lspconfig", after = { "aerial.nvim" } },
+    { "neovim/nvim-lspconfig", after = { "aerial.nvim", "neodev.nvim" } },
     { "j-hui/fidget.nvim", after = { "nvim-lspconfig" } },
     { "kosayoda/nvim-lightbulb", after = { "nvim-lspconfig" } },
     { "jose-elias-alvarez/null-ls.nvim", after = { "nvim-lspconfig" } },
@@ -68,7 +68,7 @@ plugins.editor = {
 }
 
 plugins.lanaguage = {
-    { "folke/lua-dev.nvim" },
+    { "folke/neodev.nvim" },
     { "davidgranstrom/nvim-markdown-preview", ft = { "markdown" } },
     { "Vimjas/vim-python-pep8-indent", ft = { "python" }, event = { "InsertEnter" } },
     { "AckslD/swenv.nvim" },
