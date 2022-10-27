@@ -5,7 +5,6 @@ local aux_lspconfig = require("utils.aux.lspconfig")
 
 local M = {
     requires = {
-        "aerial",
         "lspconfig",
         "nvim-navic",
         "mason-lspconfig",
@@ -34,7 +33,6 @@ function M.load()
         settings.handlers = aux_lspconfig.get_headlers(settings)
 
         settings.on_attach = function(client, bufnr)
-            M.aerial.on_attach(client, bufnr)
             M.nvim_navic.attach(client, bufnr)
             client.server_capabilities.documentFormattingProvider = false
         end

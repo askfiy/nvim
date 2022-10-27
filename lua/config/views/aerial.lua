@@ -15,7 +15,6 @@ function M.before() end
 function M.load()
     M.aerial.setup({
         icons = icons,
-        min_width = 30,
         show_guides = true,
         backends = { "lsp", "treesitter", "markdown" },
         update_events = "TextChanged,InsertLeave",
@@ -23,6 +22,10 @@ function M.load()
         on_attach = function(bufnr)
             M.register_key()
         end,
+        layout = {
+            min_width = 30,
+            max_width = { 40, 0.2 },
+        },
         lsp = {
             diagnostics_trigger_update = false,
             update_when_errors = true,

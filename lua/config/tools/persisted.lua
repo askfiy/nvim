@@ -18,6 +18,7 @@ function M.load()
         use_git_branche = true,
         command = "VimLeavePre",
         autosave = true,
+        branch_separator = "_",
         after_save = function()
             vim.cmd("nohlsearch")
         end,

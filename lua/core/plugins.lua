@@ -19,8 +19,7 @@ plugins.theme = {
 plugins.lsp = {
     { "williamboman/mason-lspconfig.nvim", after = { "mason.nvim" } },
     { "SmiteshP/nvim-navic", after = { "mason-lspconfig.nvim" } },
-    { "stevearc/aerial.nvim", after = { "nvim-navic" } },
-    { "neovim/nvim-lspconfig", after = { "aerial.nvim", "neodev.nvim" } },
+    { "neovim/nvim-lspconfig", after = { "nvim-navic", "neodev.nvim" } },
     { "j-hui/fidget.nvim", after = { "nvim-lspconfig" } },
     { "kosayoda/nvim-lightbulb", after = { "nvim-lspconfig" } },
     { "jose-elias-alvarez/null-ls.nvim", after = { "nvim-lspconfig" } },
@@ -45,18 +44,17 @@ plugins.dap = {
     { "rcarriga/nvim-dap-ui", after = { "nvim-dap" } },
 }
 plugins.editor = {
+    { "p00f/nvim-ts-rainbow" },
     { "AndrewRadev/switch.vim" },
     { "jbyuki/venn.nvim", module = "venn" },
     { "windwp/nvim-autopairs", event = { "InsertEnter" } },
     { "ur4ltz/surround.nvim", event = { "BufRead", "BufNewFile" } },
     { "RRethy/vim-illuminate", event = { "BufRead", "BufNewFile" } },
-    { "p00f/nvim-ts-rainbow" },
     { "lukas-reineke/indent-blankline.nvim", after = { "nvim-treesitter" } },
     { "windwp/nvim-ts-autotag", after = { "nvim-treesitter" } },
     { "JoosepAlviste/nvim-ts-context-commentstring", after = { "nvim-treesitter" } },
     {
         "numToStr/Comment.nvim",
-        keys = { "gb", "gc" },
         module = { "Comment" },
         after = { "nvim-ts-context-commentstring" },
     },
@@ -97,6 +95,7 @@ plugins.tools = {
 
 plugins.views = {
     { "nvim-lualine/lualine.nvim", after = { "nvim-web-devicons" } },
+    { "stevearc/aerial.nvim", after = {"lualine.nvim"} },
     { "nvim-pack/nvim-spectre", module = "spectre" },
     { "mbbill/undotree", event = { "BufRead", "BufNewFile" } },
     { "kyazdani42/nvim-tree.lua", cmd = { "NvimTreeToggle", "NvimTreeFindFile" } },
