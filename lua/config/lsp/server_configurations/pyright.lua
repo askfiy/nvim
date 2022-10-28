@@ -1,6 +1,7 @@
 -- https://github.com/microsoft/pyright
 
 local util = require("lspconfig.util")
+local aux = require("utils.aux")
 
 local root_files = {
     "pyproject.toml",
@@ -58,15 +59,7 @@ return {
     },
     on_init = function(client, _)
         -- BUG: https://github.com/neovim/nvim-lspconfig/issues/1851
-        vim.api.nvim_create_autocmd(
-            { "DirChanged", "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufNewFile" },
-            {
-                pattern = { "*.py", "NvimTree_*" },
-                callback = function()
-                    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-                end,
-            }
-        )
+        aux.didChangeConfiguration(client, "*.py")
     end,
     settings = {
         python = {

@@ -30,7 +30,7 @@ options.database_connect = {
     },
     {
         name = "HN3C",
-        url = "postgres://postgres:123456@172.16.6.90:5432/SC01",
+        url = "postgres://postgres:123456@172.16.6.90:5432/HN3C",
     },
     {
         name = "dev",
