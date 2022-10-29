@@ -84,22 +84,13 @@ function M.register_key()
         },
         {
             mode = { "n" },
-            lhs = "gI",
+            lhs = "gi",
             rhs = function()
                 require("telescope.builtin").lsp_implementations()
             end,
             options = { silent = true },
 
             description = "Go to implementations",
-        },
-        {
-            mode = { "n" },
-            lhs = "gD",
-            rhs = function()
-                require("telescope.builtin").lsp_type_definitions()
-            end,
-            options = { silent = true },
-            description = "Go to type definitions",
         },
         {
             mode = { "n" },
@@ -112,12 +103,12 @@ function M.register_key()
         },
         {
             mode = { "n" },
-            lhs = "gO",
+            lhs = "gD",
             rhs = function()
-                require("telescope.builtin").diagnostics()
+                require("telescope.builtin").lsp_type_definitions()
             end,
             options = { silent = true },
-            description = "Show Workspace Diagnostics",
+            description = "Go to type definitions",
         },
         {
             mode = { "n" },
@@ -125,6 +116,15 @@ function M.register_key()
             rhs = aux_lspconfig.diagnostic_open_float,
             options = { silent = true },
             description = "Show Current Diagnostics",
+        },
+        {
+            mode = { "n" },
+            lhs = "gO",
+            rhs = function()
+                require("telescope.builtin").diagnostics()
+            end,
+            options = { silent = true },
+            description = "Show Workspace Diagnostics",
         },
         {
             mode = { "n" },

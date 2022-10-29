@@ -1,7 +1,6 @@
 -- https://github.com/golang/tools/tree/master/gopls
 
 local util = require("lspconfig.util")
-local aux = require("utils.aux")
 
 local root_files = {
     "go.work",
