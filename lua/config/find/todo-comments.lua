@@ -22,7 +22,11 @@ function M.load()
             TODO = { icon = icons.Todo, color = "#B5E8E0" },
             PERF = { icon = icons.Pref, color = "#F8BD96" },
             WARN = { icon = icons.Warn, color = "#FAE3B0" },
-            HACK = { icon = icons.Hack, color = "#DDB6F2" },
+            HACK = {
+                icon = icons.Hack,
+                color = "#DDB6F2",
+                alt = { "DEP" },
+            },
             FIX = {
                 icon = icons.Fixme,
                 color = "#DDB6F2",

@@ -11,3 +11,8 @@ CONFIG
 #vim
 nvim/!
 nvim
+modbus
+gzrobot
+config
+api
+DEP

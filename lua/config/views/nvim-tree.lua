@@ -22,6 +22,9 @@ function M.load()
         update_cwd = true,
         ignore_ft_on_setup = { "dashboard" },
         reload_on_bufenter = true,
+        notify = {
+            threshold = vim.log.levels.WARN,
+        },
         update_focused_file = {
             enable = true,
             update_cwd = false,
@@ -109,24 +112,7 @@ function M.load()
     })
 end
 
-function M.after()
-    -- FIX: https://github.com/kyazdani42/nvim-tree.lua/issues/1502
-    local utils = require("nvim-tree.utils")
-
-    ---@diagnostic disable-next-line: unused-local
-    local function notify_level(level)
-        return function(msg)
-            vim.schedule(function()
-                vim.api.nvim_echo({ { msg, "WarningMsg" } }, false, {})
-            end)
-        end
-    end
-
-    utils.notify.warn = notify_level(vim.log.levels.WARN)
-    utils.notify.error = notify_level(vim.log.levels.ERROR)
-    utils.notify.info = notify_level(vim.log.levels.INFO)
-    utils.notify.debug = notify_level(vim.log.levels.DEBUG)
-end
+function M.after() end
 
 function M.register_key()
     api.map.bulk_register({
