@@ -62,7 +62,9 @@ function M.register_key()
         {
             mode = { "n" },
             lhs = "<leader>cf",
-            rhs = vim.lsp.buf.format,
+            rhs = function()
+                vim.lsp.buf.format({ async = true })
+            end,
             options = { silent = true },
             description = "Format buffer",
         },
