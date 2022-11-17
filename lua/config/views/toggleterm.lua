@@ -125,6 +125,7 @@ function M.wrapper_command()
         local count = vim.api.nvim_eval("v:count1")
         public.terminal_offset_run_command(string.format("exe %d.'ToggleTerm'", count))
     end
+
     M.toggleterm.toggle_all_term = function()
         public.terminal_offset_run_command("ToggleTermToggleAll")
     end

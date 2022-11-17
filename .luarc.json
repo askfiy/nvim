@@ -1,10 +1,46 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
     "Lua.diagnostics.disable": [
-        "param-type-mismatch"
+        "param-type-mismatch",
+        "unused-local"
     ],
     "Lua.diagnostics.globals": [
         "vim",
         "name"
+    ],
+    "Lua.workspace.library": [
+        "/home/askfiy/.config/nvim",
+        "/etc/xdg/nvim",
+        "/home/askfiy/.local/share/nvim/site",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/start/packer.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/start/sqlite.lua",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/start/vim-repeat",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-neoclip.lua",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-navic",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/mason-lspconfig.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/mason.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/Comment.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-ts-context-commentstring",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-ts-autotag",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-treesitter",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/telescope-fzf-native.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/plenary.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-notify",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/switch.vim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/translate.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/swenv.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/persisted.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/bufferline.nvim",
+        "/home/askfiy/.local/share/nvim/site/pack/packer/opt/starlight",
+        "/usr/share/nvim/runtime",
+        "/usr/lib/nvim",
+        "/usr/share/vim/vimfiles",
+        "${3rd}/luassert/library"
     ]
 }

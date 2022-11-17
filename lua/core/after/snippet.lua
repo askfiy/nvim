@@ -5,6 +5,7 @@
 
 local api = require("utils.api")
 
+-- FIX: https://github.com/neovim/neovim/issues/12544
 local function load_snippet(filetype, snippet)
     local temporary_vsnip_filetypes = vim.g.vsnip_filetypes
     if temporary_vsnip_filetypes[filetype] then

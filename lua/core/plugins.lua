@@ -36,6 +36,7 @@ plugins.complete = {
     { "hrsh7th/cmp-cmdline", after = { "nvim-cmp" } },
     { "kristijanhusak/vim-dadbod-completion", after = { "nvim-cmp" } },
     { "tzachar/cmp-tabnine", run = "./install.sh", after = { "nvim-cmp" } },
+    { "github/copilot.vim", ft = { "dap-repl" }, event = { "InsertEnter" } },
 }
 
 plugins.dap = {
@@ -95,7 +96,7 @@ plugins.tools = {
 
 plugins.views = {
     { "nvim-lualine/lualine.nvim", after = { "nvim-web-devicons" } },
-    { "stevearc/aerial.nvim", after = {"lualine.nvim"} },
+    { "stevearc/aerial.nvim", after = { "lualine.nvim" } },
     { "nvim-pack/nvim-spectre", module = "spectre" },
     { "mbbill/undotree", event = { "BufRead", "BufNewFile" } },
     { "kyazdani42/nvim-tree.lua", cmd = { "NvimTreeToggle", "NvimTreeFindFile" } },
