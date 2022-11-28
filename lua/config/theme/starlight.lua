@@ -13,7 +13,7 @@ function M.before() end
 function M.load()
     M.starlight.setup({
         preset = true,
-        transparent = false,
+        transparent = options.transparent,
         style = {
             comments = { italic = true },
             functions = { italic = true },

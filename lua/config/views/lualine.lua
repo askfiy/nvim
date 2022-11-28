@@ -3,20 +3,11 @@
 local M = {
     requires = {
         "lualine",
-        "swenv.api",
     },
-    pyversion = vim.fn.system("python --version"):match("%d.*%d"),
 }
 
-local function get_venv()
-    local res = M.swenv_api.get_current_venv()
-    if res then
-        return string.format("(virtualenv: '%s')", res.name)
-    end
-    return string.format("(version: '%s')", M.pyversion)
-end
-
 local function diff_source()
+    ---@diagnostic disable-next-line: undefined-field
     local gitsigns = vim.b.gitsigns_status_dict
     if gitsigns then
         return {
@@ -32,7 +23,7 @@ function M.before() end
 function M.load()
     M.lualine.setup({
         options = {
-            theme = "auto",
+            theme = "starlight",
             icons_enabled = true,
             component_separators = { left = "", right = "" },
             section_separators = { left = "", right = "" },
@@ -60,12 +51,6 @@ function M.load()
                 "encoding",
                 "fileformat",
                 "filetype",
-                {
-                    get_venv,
-                    cond = function()
-                        return vim.bo.filetype == "python"
-                    end,
-                },
             },
             lualine_y = {
                 "progress",
