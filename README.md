@@ -1,24 +1,37 @@
 # README
 
-![](https://img.shields.io/badge/neovim-0.8-green?style=plastic&logo=Neovim) ![](https://img.shields.io/badge/Lua-Jit-green?style=plastic&logo=Lua)
+<h3 align="center">
+Excellent Neovim Configuration
+</h3>
+
+<h4 align="center" style="font-size:0.7rem;font-weight:600;">
+For Linux
+</h4>
+
+<h4 align="center">
+<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" style="max-width: 100%;" width="400">
+</h4>
+
+<h3 align="center">
+<img src="https://images-1302522496.cos.ap-nanjing.myqcloud.com/img/2022-12-01_15-59.png" width=80%/>
+</h3>
+
+<h3 align="center">
+<img src="https://img.shields.io/badge/neovim-0.8.1-green?style=for-the-badge&logo=neovim&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
+<img src="https://img.shields.io/badge/platform-linux-green?style=for-the-badge&logo=flickr&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
+<img src="https://img.shields.io/github/stars/askfiy/nvim?style=for-the-badge&logo=github&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
+<img src="https://img.shields.io/github/issues/askfiy/nvim?style=for-the-badge&logo=gitbook&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
+</h3>
 
 ## Introduction
 
-Based on the configuration of the `Nvim development prerelease` version, it aims to make an out-of-the-box and full-featured code editor.
+Based on the configuration of the `Nvim 0.8.1` version, it aims to make an out-of-the-box and full-featured code editor.
 
 advantage:
 
 - Fast boot (60ms to complete the boot, the test environment is i5-12500H + 16G DDR5)
 - Customizability (completely transparent configuration, build your own IDE in your own way)
 - Extensibility (customization via various community-driven plugins with many pre-made features)
-
-screenshot:
-
-![2022-08-17_19-16](https://user-images.githubusercontent.com/81478335/185186186-eca55520-ab6e-4fd0-963f-45276e94eba2.png)
-
-![2022-08-17_19-20](https://user-images.githubusercontent.com/81478335/185186222-50ed0c6f-3eba-4d1c-9b03-c08919e77734.png)
-
-![2022-08-17_19-23](https://user-images.githubusercontent.com/81478335/185186232-3465dce9-e4f5-42e8-a9ad-005d8f92f86b.png)
 
 ## Install
 
