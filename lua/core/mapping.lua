@@ -80,7 +80,7 @@ api.map.bulk_register({
     {
         mode = { "n" },
         lhs = "<leader>cs",
-        rhs = ":set spell!<cr>",
+        rhs = "<cmd>set spell!<cr>",
         options = { silent = true },
         description = "Enable or disable spell checking",
     },
