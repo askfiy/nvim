@@ -28,7 +28,7 @@ function M.load()
             "notify",
             "startuptime",
             "packer",
-            "lsp-installer",
+            "mason",
             "help",
             "terminal",
             "lspinfo",

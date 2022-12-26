@@ -16,7 +16,7 @@ function M.load()
             "undotree",
             "spectre_panel",
             "dbui",
-            "lsp-installer",
+            "mason",
         },
         -- only show in current window
         current_only = true,

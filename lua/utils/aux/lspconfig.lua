@@ -214,13 +214,15 @@ function aux_lspconfig.focus_float_window()
     local prev_win = {}
 
     return function()
-        if not vim.tbl_isempty(prev_win) and vim.api.nvim_win_is_valid(prev_win.id) then
-            vim.fn.win_gotoid(prev_win.id)
-            vim.api.nvim_win_set_cursor(prev_win.id, prev_win.cursor)
-            if prev_win.mode == "i" then
-                vim.cmd([[startinsert]])
+        if not vim.tbl_isempty(prev_win) then
+            if vim.api.nvim_win_is_valid(prev_win.id) then
+                vim.fn.win_gotoid(prev_win.id)
+                vim.api.nvim_win_set_cursor(prev_win.id, prev_win.cursor)
+                if prev_win.mode == "i" then
+                    vim.cmd([[startinsert]])
+                end
+                prev_win = {}
             end
-            prev_win = {}
             return
         end
 

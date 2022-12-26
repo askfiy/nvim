@@ -17,7 +17,7 @@ function M.before()
         "notify",
         "startuptime",
         "packer",
-        "lsp-installer",
+        "mason",
         "help",
         "terminal",
         "lspinfo",

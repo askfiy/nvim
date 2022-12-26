@@ -33,6 +33,10 @@ options.database_connect = {
         url = "postgres://postgres:123456@172.16.6.90:5432/HN3C",
     },
     {
+        name = "HN3C-ANTS",
+        url = "postgres://postgres:123456@172.16.6.91:5432/HN3C15.6_01",
+    },
+    {
         name = "dev",
         url = "mysql://askfiy@192.168.0.120/db1",
     },

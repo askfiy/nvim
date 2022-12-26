@@ -13,7 +13,7 @@ For Linux
 </h4>
 
 <h3 align="center">
-<img src="https://images-1302522496.cos.ap-nanjing.myqcloud.com/img/2022-12-01_15-59.png" width=80%/>
+<img src="./resource/2022-12-01_15-59.png" width=80%/>
 </h3>
 
 <h3 align="center">
