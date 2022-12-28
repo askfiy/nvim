@@ -35,6 +35,8 @@ function M.load()
         settings.on_attach = function(client, bufnr)
             M.nvim_navic.attach(client, bufnr)
             client.server_capabilities.documentFormattingProvider = false
+            -- close semantic tokens
+            client.server_capabilities.semanticTokensProvider = nil
         end
 
         M.lspconfig[server_name].setup(settings)
