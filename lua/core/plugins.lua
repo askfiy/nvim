@@ -46,7 +46,7 @@ plugins.dap = {
     { "rcarriga/nvim-dap-ui", after = { "nvim-dap" } },
 }
 plugins.editor = {
-    { "p00f/nvim-ts-rainbow" },
+    { "mrjones2014/nvim-ts-rainbow" },
     { "AndrewRadev/switch.vim" },
     { "jbyuki/venn.nvim", module = "venn" },
     { "windwp/nvim-autopairs", event = { "InsertEnter" } },
