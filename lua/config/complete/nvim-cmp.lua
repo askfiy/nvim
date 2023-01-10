@@ -14,7 +14,7 @@
 --    ~/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/install.sh
 
 local public = require("utils.public")
-local aux_cmp = require("utils.aux.nvim-cmp")
+local aid_cmp = require("utils.aid.nvim-cmp")
 local options = require("core.options")
 local icons = public.get_icons("lsp_kind", false)
 
@@ -116,13 +116,13 @@ function M.load()
                 M.cmp.config.compare.offset,
                 M.cmp.config.compare.exact,
                 M.cmp.config.compare.score,
-                aux_cmp.under_compare,
+                aid_cmp.under_compare,
                 M.cmp.config.compare.kind,
                 M.cmp.config.compare.sort_text,
                 M.cmp.config.compare.length,
                 M.cmp.config.compare.order,
-                -- aux_cmp.source_compare,
-                -- aux_cmp.kind_compare,
+                -- aid_cmp.source_compare,
+                -- aid_cmp.kind_compare,
             },
         },
         -- define the style of menu completion options

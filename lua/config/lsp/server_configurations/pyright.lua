@@ -1,7 +1,7 @@
 -- https://github.com/microsoft/pyright
 
 local util = require("lspconfig.util")
-local aux = require("utils.aux")
+local aid = require("utils.aid")
 
 local root_files = {
     "pyproject.toml",
@@ -59,7 +59,7 @@ return {
     },
     on_init = function(client, _)
         -- BUG: https://github.com/neovim/nvim-lspconfig/issues/1851
-        aux.didChangeConfiguration(client, "*.py")
+        aid.didChangeConfiguration(client, "*.py")
     end,
     settings = {
         python = {

@@ -3,7 +3,7 @@
 local api = require("utils.api")
 local options = require("core.options")
 
-local aux_packer = {
+local aid_packer = {
     -- The following options can be useful when debugging plugin errors
     disable_kind = {
         -- "basic",
@@ -11,7 +11,7 @@ local aux_packer = {
         -- "dap",
         -- "editor",
         -- "find",
-        -- "lanaguage",
+        -- "language",
         -- "lsp",
         -- "theme",
         -- "tools",
@@ -19,7 +19,7 @@ local aux_packer = {
     },
 }
 
-function aux_packer.entry(plugins)
+function aid_packer.entry(plugins)
     Packer_bootstrap = (function()
         local packer_install_path = api.path.join(vim.fn.stdpath("data"), "site/pack/packer/start/packer.nvim")
 
@@ -102,7 +102,7 @@ function aux_packer.entry(plugins)
                             )
                         end
                     end
-                    if not vim.tbl_contains(aux_packer.disable_kind, plugin_kind_name) then
+                    if not vim.tbl_contains(aid_packer.disable_kind, plugin_kind_name) then
                         use(plugin_opts)
                     end
                 end
@@ -121,4 +121,4 @@ function aux_packer.entry(plugins)
     })
 end
 
-return aux_packer
+return aid_packer

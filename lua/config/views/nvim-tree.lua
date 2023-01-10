@@ -1,4 +1,4 @@
--- https://github.com/kyazdani42/nvim-tree.lua
+-- https://github.com/nvim-tree/nvim-tree.lua
 
 local api = require("utils.api")
 local public = require("utils.public")

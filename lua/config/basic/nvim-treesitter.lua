@@ -6,6 +6,7 @@ local M = {
     requires = {
         "nvim-treesitter.configs",
         "nvim-treesitter.parsers",
+        "nvim-treesitter.install"
     },
 }
 
@@ -23,6 +24,7 @@ function M.before() end
 
 function M.load()
     M.download_source_settings()
+    M.nvim_treesitter_install.prefer_git = true
 
     M.nvim_treesitter_configs.setup({
         ensure_installed = "all",

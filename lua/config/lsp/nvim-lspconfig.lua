@@ -1,7 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig
 
 local api = require("utils.api")
-local aux_lspconfig = require("utils.aux.lspconfig")
+local aid_lspconfig = require("utils.aid.lspconfig")
 
 local M = {
     requires = {
@@ -16,7 +16,7 @@ function M.before()
 end
 
 function M.load()
-    aux_lspconfig.entry()
+    aid_lspconfig.entry()
 
     local configurations_dir_path = "config/lsp/server_configurations/"
 
@@ -29,8 +29,8 @@ function M.load()
             settings = {}
         end
 
-        settings.capabilities = aux_lspconfig.get_capabilities()
-        settings.handlers = aux_lspconfig.get_headlers(settings)
+        settings.capabilities = aid_lspconfig.get_capabilities()
+        settings.handlers = aid_lspconfig.get_headlers(settings)
 
         settings.on_attach = function(client, bufnr)
             M.nvim_navic.attach(client, bufnr)
@@ -117,7 +117,7 @@ function M.register_key()
         {
             mode = { "n" },
             lhs = "go",
-            rhs = aux_lspconfig.diagnostic_open_float,
+            rhs = aid_lspconfig.diagnostic_open_float,
             options = { silent = true },
             description = "Show Current Diagnostics",
         },
@@ -133,42 +133,42 @@ function M.register_key()
         {
             mode = { "n" },
             lhs = "[g",
-            rhs = aux_lspconfig.goto_prev_diagnostic,
+            rhs = aid_lspconfig.goto_prev_diagnostic,
             options = { silent = true },
             description = "Jump to prev diagnostic",
         },
         {
             mode = { "n" },
             lhs = "]g",
-            rhs = aux_lspconfig.goto_next_diagnostic,
+            rhs = aid_lspconfig.goto_next_diagnostic,
             options = { silent = true },
             description = "Jump to next diagnostic",
         },
         {
             mode = { "i" },
             lhs = "<c-j>",
-            rhs = aux_lspconfig.sigature_help,
+            rhs = aid_lspconfig.sigature_help,
             options = { silent = true },
             description = "Toggle signature help",
         },
         {
             mode = { "i", "n" },
             lhs = "<c-b>",
-            rhs = aux_lspconfig.scroll_to_up,
+            rhs = aid_lspconfig.scroll_to_up,
             options = { silent = true },
             description = "Scroll up floating window",
         },
         {
             mode = { "i", "n" },
             lhs = "<c-f>",
-            rhs = aux_lspconfig.scroll_to_down,
+            rhs = aid_lspconfig.scroll_to_down,
             options = { silent = true },
             description = "Scroll down floating window",
         },
         {
             mode = { "i", "n" },
             lhs = "<c-]>",
-            rhs = aux_lspconfig.focus_float_window(),
+            rhs = aid_lspconfig.focus_float_window(),
             options = { silent = true },
             description = "Focus floating window",
         },

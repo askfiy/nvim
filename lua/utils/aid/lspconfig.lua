@@ -3,9 +3,9 @@ local options = require("core.options")
 local setting = require("core.setting")
 local icons = public.get_icons("diagnostic", true)
 
-local aux_lspconfig = {}
+local aid_lspconfig = {}
 
-function aux_lspconfig.lsp_hover(_, result, ctx, config)
+function aid_lspconfig.lsp_hover(_, result, ctx, config)
     -- add file type for LSP hover
     local bufnr, winner = vim.lsp.handlers.hover(_, result, ctx, config)
 
@@ -15,7 +15,7 @@ function aux_lspconfig.lsp_hover(_, result, ctx, config)
     end
 end
 
-function aux_lspconfig.lsp_signature_help(_, result, ctx, config)
+function aid_lspconfig.lsp_signature_help(_, result, ctx, config)
     -- add file type for LSP signature help
     local bufnr, winner = vim.lsp.handlers.signature_help(_, result, ctx, config)
 
@@ -43,21 +43,21 @@ function aux_lspconfig.lsp_signature_help(_, result, ctx, config)
     end
 end
 
-function aux_lspconfig.basic_quick_set()
-    aux_lspconfig.lsp_handlers = {
-        ["textDocument/hover"] = vim.lsp.with(aux_lspconfig.lsp_hover, {
+function aid_lspconfig.basic_quick_set()
+    aid_lspconfig.lsp_handlers = {
+        ["textDocument/hover"] = vim.lsp.with(aid_lspconfig.lsp_hover, {
             border = options.float_border and "rounded" or "none",
             filetype = "lsp-hover",
         }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(aux_lspconfig.lsp_signature_help, {
+        ["textDocument/signatureHelp"] = vim.lsp.with(aid_lspconfig.lsp_signature_help, {
             border = options.float_border and "rounded" or "none",
             filetype = "lsp-signature-help",
         }),
     }
 
-    aux_lspconfig.capabilities = vim.lsp.protocol.make_client_capabilities()
+    aid_lspconfig.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-    aux_lspconfig.capabilities.textDocument.completion.completionItem = {
+    aid_lspconfig.capabilities.textDocument.completion.completionItem = {
         documentationFormat = { "markdown", "plaintext" },
         snippetSupport = true,
         preselectSupport = true,
@@ -76,7 +76,7 @@ function aux_lspconfig.basic_quick_set()
     }
 end
 
-function aux_lspconfig.diagnostic_quick_set()
+function aid_lspconfig.diagnostic_quick_set()
     -- set diagnostic style
     vim.diagnostic.config({
         signs = true,
@@ -93,32 +93,32 @@ function aux_lspconfig.diagnostic_quick_set()
     end
 end
 
-function aux_lspconfig.lspconfig_ui_quick_set()
+function aid_lspconfig.lspconfig_ui_quick_set()
     require("lspconfig.ui.windows").default_options.border = options.float_border and "double" or "none"
 end
 
-function aux_lspconfig.get_headlers(settings)
-    return vim.tbl_deep_extend("force", aux_lspconfig.lsp_handlers, settings.handlers or {})
+function aid_lspconfig.get_headlers(settings)
+    return vim.tbl_deep_extend("force", aid_lspconfig.lsp_handlers, settings.handlers or {})
 end
 
-function aux_lspconfig.get_capabilities()
-    return aux_lspconfig.capabilities
+function aid_lspconfig.get_capabilities()
+    return aid_lspconfig.capabilities
 end
 
 -- goto diagnostic
-aux_lspconfig.diagnostic_open_float = function()
+aid_lspconfig.diagnostic_open_float = function()
     vim.diagnostic.open_float({ border = options.float_border and "rounded" or "none" })
 end
 
-aux_lspconfig.goto_next_diagnostic = function()
+aid_lspconfig.goto_next_diagnostic = function()
     vim.diagnostic.goto_next({ float = { border = options.float_border and "rounded" or "none" } })
 end
 
-aux_lspconfig.goto_prev_diagnostic = function()
+aid_lspconfig.goto_prev_diagnostic = function()
     vim.diagnostic.goto_prev({ float = { border = options.float_border and "rounded" or "none" } })
 end
 
-function aux_lspconfig.sigature_help()
+function aid_lspconfig.sigature_help()
     -- When the signature is visible, pressing <c-j> again will close the window
     for _, opts in ipairs(public.get_all_win_buf_ft()) do
         if opts.buf_ft == "lsp-signature-help" then
@@ -129,7 +129,7 @@ function aux_lspconfig.sigature_help()
     vim.lsp.buf.signature_help()
 end
 
-function aux_lspconfig.scroll_to_up()
+function aid_lspconfig.scroll_to_up()
     local scroll_floating_filetype = { "lsp-signature-help", "lsp-hover" }
 
     for _, opts in ipairs(public.get_all_win_buf_ft()) do
@@ -169,7 +169,7 @@ function aux_lspconfig.scroll_to_up()
     vim.api.nvim_feedkeys(key, "n", true)
 end
 
-function aux_lspconfig.scroll_to_down()
+function aid_lspconfig.scroll_to_down()
     local scroll_floating_filetype = { "lsp-signature-help", "lsp-hover" }
 
     for _, opts in ipairs(public.get_all_win_buf_ft()) do
@@ -210,7 +210,7 @@ function aux_lspconfig.scroll_to_down()
     vim.api.nvim_feedkeys(key, "n", true)
 end
 
-function aux_lspconfig.focus_float_window()
+function aid_lspconfig.focus_float_window()
     local prev_win = {}
 
     return function()
@@ -251,10 +251,10 @@ function aux_lspconfig.focus_float_window()
     end
 end
 
-function aux_lspconfig.entry()
-    aux_lspconfig.basic_quick_set()
-    aux_lspconfig.diagnostic_quick_set()
-    aux_lspconfig.lspconfig_ui_quick_set()
+function aid_lspconfig.entry()
+    aid_lspconfig.basic_quick_set()
+    aid_lspconfig.diagnostic_quick_set()
+    aid_lspconfig.lspconfig_ui_quick_set()
 end
 
-return aux_lspconfig
+return aid_lspconfig

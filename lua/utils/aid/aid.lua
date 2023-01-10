@@ -1,6 +1,6 @@
-local aux = {}
+local aid = {}
 
-function aux.didChangeConfiguration(client, filetype)
+function aid.didChangeConfiguration(client, filetype)
     vim.api.nvim_create_autocmd(
         { "DirChanged", "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufNewFile" },
         {
@@ -12,4 +12,4 @@ function aux.didChangeConfiguration(client, filetype)
     )
 end
 
-return aux
+return aid

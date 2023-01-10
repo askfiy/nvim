@@ -1,4 +1,4 @@
-local aux_packer = require("utils.aux.packer")
+local aid_packer = require("utils.aid.packer")
 
 local plugins = {}
 
@@ -67,13 +67,13 @@ plugins.editor = {
     },
 }
 
-plugins.lanaguage = {
+plugins.language = {
     { "davidgranstrom/nvim-markdown-preview", ft = { "markdown" } },
     { "Vimjas/vim-python-pep8-indent", ft = { "python" }, event = { "InsertEnter" } },
 }
 
 plugins.find = {
-    { "tami5/sqlite.lua" },
+    { "kkharji/sqlite.lua" },
     { "kevinhwang91/nvim-hlslens" },
     { "nvim-telescope/telescope.nvim" },
     { "AckslD/nvim-neoclip.lua", after = { "sqlite.lua" } },
@@ -98,7 +98,7 @@ plugins.views = {
     { "stevearc/aerial.nvim", after = { "lualine.nvim" } },
     { "nvim-pack/nvim-spectre", module = "spectre" },
     { "mbbill/undotree", event = { "BufRead", "BufNewFile" } },
-    { "kyazdani42/nvim-tree.lua", cmd = { "NvimTreeToggle", "NvimTreeFindFile" } },
+    { "nvim-tree/nvim-tree.lua", cmd = { "NvimTreeToggle", "NvimTreeFindFile" } },
     { "akinsho/bufferline.nvim", events = { "BufNewFile", "BufRead", "TabEnter" } },
     { "tpope/vim-dadbod", fn = { "db#resolve" } },
     { "kristijanhusak/vim-dadbod-ui", cmd = { "DBUIToggle" } },
@@ -106,6 +106,6 @@ plugins.views = {
     { "akinsho/toggleterm.nvim", module = "toggleterm" },
 }
 
-aux_packer.entry(plugins)
+aid_packer.entry(plugins)
 
 return plugins
