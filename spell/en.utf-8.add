@@ -17,3 +17,13 @@ config
 api
 DEP
 Golang
+#nt32
+#nt32/!
+#int8
+#int8/!
+#int8
+uint8/!
+#nt32
+#nt32/!
+#nt32
+int32/!
