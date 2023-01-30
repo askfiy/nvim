@@ -1,30 +1,36 @@
-local map = {}
+local M = {}
 
-function map.register(key_map)
-    key_map.options.desc = key_map.description
+function M.register(map)
+    map.options.desc = map.description
 
-    if not key_map.options.force then
-        vim.keymap.set(key_map.mode, key_map.lhs, key_map.rhs, key_map.options)
-    else
-        key_map.options.force = nil
-        if type(key_map.mode) == "string" then
-            vim.api.nvim_set_keymap(key_map.mode, key_map.lhs, key_map.rhs, key_map.options)
-        else
-            for _, mode in ipairs(key_map.mode) do
-                vim.api.nvim_set_keymap(mode, key_map.lhs, key_map.rhs, key_map.options)
-            end
-        end
+    if type(map.rhs) == "function" or map.options.buffer then
+        vim.keymap.set(
+            map.mode,
+            map.lhs,
+            map.rhs,
+            map.options
+        )
+        return
+    end
+
+    for _, mode in ipairs(map.mode) do
+        vim.api.nvim_set_keymap(
+            mode,
+            map.lhs,
+            map.rhs,
+            map.options
+        )
     end
 end
 
-function map.unregister(mode, lhs, opts)
+function M.unregister(mode, lhs, opts)
     vim.keymap.del(mode, lhs, opts)
 end
 
-function map.bulk_register(group_keymap)
-    for _, key_map in pairs(group_keymap) do
-        map.register(key_map)
+function M.bulk_register(maps)
+    for _, map in pairs(maps) do
+        M.register(map)
     end
 end
 
-return map
+return M

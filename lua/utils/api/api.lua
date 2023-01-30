@@ -1,7 +1,7 @@
-local api = {}
+local M = {}
 
-function api.safe_require(M)
-    if not M.requires then
+function M.require_all_package(module)
+    if not module.requires then
         return
     end
 
@@ -10,8 +10,8 @@ function api.safe_require(M)
         ["%-"] = "_",
     }
 
-    for _, use_name in ipairs(M.requires) do
-        local require_name = use_name
+    for _, require_name in ipairs(module.requires) do
+        local use_name = require_name
 
         for char, replace in pairs(replace_char) do
             if use_name:match(char) then
@@ -19,8 +19,8 @@ function api.safe_require(M)
             end
         end
 
-        M[string.lower(use_name)] = require(require_name)
+        module[string.lower(use_name)] = require(require_name)
     end
 end
 
-return api
+return M

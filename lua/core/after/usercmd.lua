@@ -1,9 +1,14 @@
+---@diagnostic disable: param-type-mismatch
+
+local api = require("utils.api")
+local options = require("core.options")
+
 vim.api.nvim_create_user_command("MakeDirectory", function()
     ---@diagnostic disable-next-line: missing-parameter
-    local path = vim.fn.expand("%")
-    local dir = vim.fn.fnamemodify(path, ":p:h")
-    if vim.fn.isdirectory(dir) == 0 then
-        vim.fn.mkdir(dir, "p")
+    local directory = vim.fn.fnamemodify(vim.fn.expand("%"), ":p:h")
+
+    if vim.fn.isdirectory(directory) == 0 then
+        vim.fn.mkdir(directory, "p")
     else
         vim.notify("Directory already exists", "WARN", { title = "Nvim" })
     end
@@ -26,3 +31,15 @@ vim.api.nvim_create_user_command("BufferDelete", function()
 
     vim.cmd(force and "bd!" or string.format("bp | bd! %s", vim.api.nvim_get_current_buf()))
 end, { desc = "Delete the current Buffer while maintaining the window layout" })
+
+vim.api.nvim_create_user_command("OpenUserSnippetFile", function()
+    local snippet_file_name = vim.bo.filetype .. ".json"
+    local snippet_file_path = api.path.join(options.snippets_conf_directory, snippet_file_name)
+    vim.cmd(string.format(":e %s", snippet_file_path))
+end, { desc = "Open user snippet file from current filetype" })
+
+vim.api.nvim_create_user_command("OpenUserSnippetPackage", function()
+    local snippet_file_name = "package.json"
+    local snippet_file_path = api.path.join(options.snippets_conf_directory, snippet_file_name)
+    vim.cmd(string.format(":e %s", snippet_file_path))
+end, { desc = "Open user snippet package.json file" })

@@ -1,6 +1,6 @@
 local api = require("utils.api")
 
-local mapping = {}
+local M = {}
 
 api.map.bulk_register({
     {
@@ -178,4 +178,4 @@ api.map.bulk_register({
     },
 })
 
-return mapping
+return M

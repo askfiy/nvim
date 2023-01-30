@@ -1,7 +1,9 @@
-local api = require("utils.api.api")
+local M = require("utils.api.api")
 
-api.path = require("utils.api.path")
+M.map = require("utils.api.map")
 
-api.map = require("utils.api.map")
+M.path = require("utils.api.path")
 
-return api
+M.file = require("utils.api.file")
+
+return M

@@ -1,49 +1,20 @@
 local api = require("utils.api")
 
-local options = {}
-
-options.transparent = true
-options.float_border = true
-options.show_winbar = true
-
-options.download_source = "https://github.com/"
--- options.download_source = "https://hub.fastgit.xyz/"
-
-options.lint_directory = api.path.join(vim.fn.stdpath("config"), "lint")
-options.snippets_directory = api.path.join(vim.fn.stdpath("config"), "snippets")
-
--- auto command manager
-options.auto_save = true
-options.auto_reload = false
-options.auto_switch_input = true
-options.auto_restore_cursor_position = true
-options.auto_remove_new_lines_comment = true
-
-options.database_connect = {
-    {
-        name = "HAINING-AGV",
-        url = "postgres://postgres:123456@localhost:5430/HAINING-AGV",
-    },
-    {
-        name = "JG037",
-        url = "postgres://postgres:123456@localhost:5430/jg037",
-    },
-    {
-        name = "HN3C",
-        url = "postgres://postgres:123456@172.16.6.90:5432/HN3C",
-    },
-    {
-        name = "HN3C-ANTS",
-        url = "postgres://postgres:123456@172.16.6.91:5432/HN3C15.6_01",
-    },
-    {
-        name = "dev",
-        url = "mysql://askfiy@192.168.0.120/db1",
-    },
-    {
-        name = "local",
-        url = "mysql://root@localhost:3306/test",
-    },
+local M = {
+    -- ui settings
+    show_winbar = true,
+    transparent = true,
+    float_border = true,
+    -- edit settings
+    auto_save = true,
+    auto_reload = false,
+    auto_switch_input = true,
+    auto_restore_cursor_position = true,
+    auto_remove_new_lines_comment = true,
+    -- directory settings
+    storage_directory = api.path.join(vim.fn.stdpath("data"), "store"),
+    mason_install_directory = api.path.join(vim.fn.stdpath("data"), "mason"),
+    snippets_conf_directory = api.path.join(vim.fn.stdpath("config"), "snippets"),
 }
 
-return options
+return M

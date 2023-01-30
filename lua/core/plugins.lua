@@ -1,111 +1,285 @@
-local aid_packer = require("utils.aid.packer")
+local aid_lazy = require("utils.aid.lazy")
 
-local plugins = {}
+local M = {}
 
-plugins.basic = {
-    { "wbthomason/packer.nvim" },
-    { "rcarriga/nvim-notify" },
-    { "tpope/vim-repeat" },
-    { "nvim-lua/plenary.nvim", module = "plenary" },
-    { "williamboman/mason.nvim", after = { "nvim-notify" } },
-    { "nvim-treesitter/nvim-treesitter", module = "nvim-treesitter", run = { ":TSUpdate" } },
-    { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+M.theme = {
+    {
+        "askfiy/starlight",
+        priority = 100,
+    },
 }
 
-plugins.theme = {
-    { "askfiy/starlight" },
+M.basic = {
+    {
+        "rcarriga/nvim-notify",
+        priority = 90,
+    },
+    {
+        "williamboman/mason.nvim",
+        event = { "VimEnter" },
+    },
+    {
+        "nvim-tree/nvim-web-devicons",
+        event = { "VimEnter" },
+    },
+    {
+        "nvim-lua/plenary.nvim",
+        lazy = true,
+    },
 }
 
-plugins.lsp = {
-    { "williamboman/mason-lspconfig.nvim", after = { "mason.nvim" } },
-    { "folke/neodev.nvim", after = { "mason-lspconfig.nvim" } },
-    { "SmiteshP/nvim-navic", after = { "neodev.nvim" } },
-    { "neovim/nvim-lspconfig", after = { "nvim-navic" } },
-    { "j-hui/fidget.nvim", after = { "nvim-lspconfig" } },
-    { "kosayoda/nvim-lightbulb", after = { "nvim-lspconfig" } },
-    { "jose-elias-alvarez/null-ls.nvim", after = { "nvim-lspconfig" } },
+M.lsp = {
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            { "williamboman/mason-lspconfig.nvim" },
+        },
+    },
+    -- in nvim-lspconfig config file require neodev
+    {
+        "folke/neodev.nvim",
+        lazy = true,
+    },
+    -- in nvim-lspconfig config file require nvim-navic
+    {
+        "SmiteshP/nvim-navic",
+        lazy = true,
+    },
+    {
+        "j-hui/fidget.nvim",
+        event = { "UIEnter" },
+    },
+    {
+        "kosayoda/nvim-lightbulb",
+        event = { "UIEnter" },
+    },
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        event = { "UIEnter" },
+    },
 }
 
-plugins.complete = {
-    { "rafamadriz/friendly-snippets", event = { "InsertEnter", "CmdlineEnter" } },
-    { "hrsh7th/vim-vsnip", after = { "friendly-snippets" } },
-    { "hrsh7th/nvim-cmp", after = { "vim-vsnip" } },
-    { "hrsh7th/cmp-vsnip", after = { "nvim-cmp" } },
-    { "hrsh7th/cmp-nvim-lsp", after = { "nvim-cmp" } },
-    { "hrsh7th/cmp-buffer", after = { "nvim-cmp" } },
-    { "hrsh7th/cmp-path", after = { "nvim-cmp" } },
-    { "hrsh7th/cmp-cmdline", after = { "nvim-cmp" } },
-    { "kristijanhusak/vim-dadbod-completion", after = { "nvim-cmp" } },
-    { "tzachar/cmp-tabnine", run = "./install.sh", after = { "nvim-cmp" } },
-    { "github/copilot.vim", ft = { "dap-repl" }, event = { "InsertEnter" } },
+M.complete = {
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-cmdline" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "kristijanhusak/vim-dadbod-completion" },
+            { "tzachar/cmp-tabnine", build = "./install.sh" },
+        },
+        event = { "InsertEnter", "CmdlineEnter" },
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        -- in nvim-cmp config file require luasnip
+        lazy = true,
+        dependencies = {
+            { "rafamadriz/friendly-snippets" },
+        },
+    },
 }
 
-plugins.dap = {
-    { "mfussenegger/nvim-dap", module = "dap" },
-    { "theHamsta/nvim-dap-virtual-text", after = { "nvim-dap" } },
-    { "rcarriga/nvim-dap-ui", after = { "nvim-dap" } },
+M.dap = {
+    {
+        "mfussenegger/nvim-dap",
+        lazy = true,
+    },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        event = { "UIEnter" },
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        event = { "UIEnter" },
+    },
+    -- neovim lua debug,
+    {
+        "jbyuki/one-small-step-for-vimkind",
+        ft = { "lua" },
+    },
+    -- javascript debug,
+    {
+        "mxsdev/nvim-dap-vscode-js",
+        ft = { "javascript", "typescript" },
+    },
 }
-plugins.editor = {
-    { "mrjones2014/nvim-ts-rainbow" },
-    { "AndrewRadev/switch.vim" },
-    { "jbyuki/venn.nvim", module = "venn" },
-    { "windwp/nvim-autopairs", event = { "InsertEnter" } },
-    { "ur4ltz/surround.nvim", event = { "BufRead", "BufNewFile" } },
-    { "RRethy/vim-illuminate", event = { "BufRead", "BufNewFile" } },
-    { "lukas-reineke/indent-blankline.nvim", after = { "nvim-treesitter" } },
-    { "windwp/nvim-ts-autotag", after = { "nvim-treesitter" } },
-    { "JoosepAlviste/nvim-ts-context-commentstring", after = { "nvim-treesitter" } },
+
+M.editor = {
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        dependencies = {
+            { "mrjones2014/nvim-ts-rainbow" },
+            { "windwp/nvim-ts-autotag" },
+            { "JoosepAlviste/nvim-ts-context-commentstring" },
+        },
+        event = { "UIEnter" },
+    },
+    {
+        "RRethy/vim-illuminate",
+        event = { "UIEnter" },
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = { "UIEnter" },
+    },
     {
         "numToStr/Comment.nvim",
-        module = { "Comment" },
-        after = { "nvim-ts-context-commentstring" },
+        dependencies = {
+            { "JoosepAlviste/nvim-ts-context-commentstring" },
+        },
+        event = { "VeryLazy" },
+    },
+    {
+        "ur4ltz/surround.nvim",
+        dependencies = {
+            { "tpope/vim-repeat" },
+        },
+        event = { "VeryLazy" },
+    },
+    {
+        "AndrewRadev/switch.vim",
+        event = { "VeryLazy" },
     },
     {
         "mg979/vim-visual-multi",
-        fn = { "vm#commands#add_cursor_up", "vm#commands#add_cursor_down" },
-        keys = { "<c-n>" },
+        event = { "VeryLazy" },
+    },
+    {
+        "windwp/nvim-autopairs",
+        event = { "InsertEnter" },
+    },
+    {
+        "jbyuki/venn.nvim",
+        lazy = true,
     },
 }
 
-plugins.language = {
-    { "davidgranstrom/nvim-markdown-preview", ft = { "markdown" } },
-    { "Vimjas/vim-python-pep8-indent", ft = { "python" }, event = { "InsertEnter" } },
+M.find = {
+    {
+        "kevinhwang91/nvim-hlslens",
+        lazy = true,
+    },
+    {
+        "folke/todo-comments.nvim",
+        event = { "UIEnter" },
+    },
+    {
+        "AckslD/nvim-neoclip.lua",
+        dependencies = {
+            "kkharji/sqlite.lua",
+        },
+        event = { "VeryLazy" },
+    },
+    {
+        "phaazon/hop.nvim",
+        cmd = {
+            "HopWord",
+            "HopLine",
+            "HopChar1",
+            "HopChar1CurrentLine",
+        },
+    },
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+            },
+        },
+        lazy = true,
+    },
 }
 
-plugins.find = {
-    { "kkharji/sqlite.lua" },
-    { "kevinhwang91/nvim-hlslens" },
-    { "nvim-telescope/telescope.nvim" },
-    { "AckslD/nvim-neoclip.lua", after = { "sqlite.lua" } },
-    { "phaazon/hop.nvim", cmd = { "HopWord", "HopLine", "HopChar1", "HopChar1CurrentLine" } },
-    { "folke/todo-comments.nvim", event = { "BufRead", "BufNewFile" } },
-    { "nvim-telescope/telescope-fzf-native.nvim", run = "make", module = { "telescope._extensions.fzf" } },
+M.language = {
+    {
+        "davidgranstrom/nvim-markdown-preview",
+        ft = { "markdown" },
+    },
+    {
+        "Vimjas/vim-python-pep8-indent",
+        ft = { "python" },
+    },
 }
 
-plugins.tools = {
-    { "uga-rosa/translate.nvim" },
-    { "olimorris/persisted.nvim" },
-    { "norcalli/nvim-colorizer.lua" },
-    { "askfiy/nvim-picgo", module = "nvim-picgo" },
-    { "kristijanhusak/vim-carbon-now-sh", cmd = { "CarbonNowSh" } },
-    { "lewis6991/gitsigns.nvim", event = { "BufRead", "BufNewFile" } },
-    { "dstein64/vim-startuptime", cmd = { "StartupTime" } },
-    { "folke/which-key.nvim", event = { "BufRead", "BufNewFile" } },
+M.tools = {
+    {
+        "norcalli/nvim-colorizer.lua",
+        event = { "UIEnter" },
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = { "UIEnter" },
+    },
+    {
+        "uga-rosa/translate.nvim",
+        event = { "VeryLazy" },
+    },
+    {
+        "olimorris/persisted.nvim",
+        event = { "VeryLazy" },
+    },
+    {
+        "folke/which-key.nvim",
+        event = { "VeryLazy" },
+    },
+    {
+        "askfiy/nvim-picgo",
+        lazy = true,
+    },
+    {
+        "kristijanhusak/vim-carbon-now-sh",
+        cmd = { "CarbonNowSh" },
+    },
 }
 
-plugins.views = {
-    { "nvim-lualine/lualine.nvim", after = { "nvim-web-devicons" } },
-    { "stevearc/aerial.nvim", after = { "lualine.nvim" } },
-    { "nvim-pack/nvim-spectre", module = "spectre" },
-    { "mbbill/undotree", event = { "BufRead", "BufNewFile" } },
-    { "nvim-tree/nvim-tree.lua", cmd = { "NvimTreeToggle", "NvimTreeFindFile" } },
-    { "akinsho/bufferline.nvim", events = { "BufNewFile", "BufRead", "TabEnter" } },
-    { "tpope/vim-dadbod", fn = { "db#resolve" } },
-    { "kristijanhusak/vim-dadbod-ui", cmd = { "DBUIToggle" } },
-    { "dstein64/nvim-scrollview", event = { "BufRead", "BufNewFile" } },
-    { "akinsho/toggleterm.nvim", module = "toggleterm" },
+M.views = {
+    {
+        "akinsho/bufferline.nvim",
+        event = { "UIEnter" },
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        event = { "UIEnter" },
+    },
+    {
+        "mbbill/undotree",
+        event = { "UIEnter" },
+    },
+    {
+        "stevearc/aerial.nvim",
+        event = { "UIEnter" },
+    },
+    {
+        "dstein64/nvim-scrollview",
+        event = { "UIEnter" },
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        lazy = true,
+    },
+    {
+        "nvim-pack/nvim-spectre",
+        lazy = true,
+    },
+    {
+        "akinsho/toggleterm.nvim",
+        lazy = true,
+    },
+    {
+        "kristijanhusak/vim-dadbod-ui",
+        dependencies = {
+            { "tpope/vim-dadbod" },
+        },
+        cmd = { "DBUIToggle" },
+    },
 }
 
-aid_packer.entry(plugins)
+aid_lazy.entry(M)
 
-return plugins
+return M

@@ -1,0 +1,54 @@
+{
+  "database_config": [
+    {
+      "name": "mysql",
+      "url": "mysql://username:password@192.168.0.120/database"
+    },
+    {
+      "name": "postgresql",
+      "url": "postgres://username:password@localhost:5432/database"
+    }
+  ],
+  "plugins_disable_filetype": {
+    "NvimTree": {
+      "vim-illuminate": true,
+      "nvim-scrollview": true
+    },
+    "aerial": {
+      "vim-illuminate": true,
+      "nvim-scrollview": true
+    },
+    "undotree": {
+      "vim-illuminate": true,
+      "nvim-scrollview": true,
+      "indent-blankline": true
+    },
+    "dbui": {
+      "vim-illuminate": true,
+      "nvim-scrollview": true
+    },
+    "spectre_panel": {
+      "vim-illuminate": true,
+      "nvim-scrollview": true
+    },
+    "toggleterm": {
+      "vim-illuminate": true
+    },
+    "notify": {
+      "vim-illuminate": true
+    },
+    "lazy": {
+      "vim-illuminate": true
+    },
+    "help": {
+      "vim-illuminate": true,
+      "indent-blankline": true
+    },
+    "lspinfo": {
+      "vim-illuminate": true
+    },
+    "TelescopePrompt": {
+      "vim-illuminate": true
+    }
+  }
+}

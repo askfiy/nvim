@@ -1,19 +1,13 @@
-local icons = {}
+local M = {}
 
-icons.platform = {
-    unix = "",
-    dos = "",
-    mac = "",
-}
-
-icons.diagnostic = {
+M.diagnostic = {
     Error = "",
     Warn = "",
     Info = "ﬤ",
     Hint = "",
 }
 
-icons.tag_level = {
+M.tag_level = {
     Fixme = "ﰡ",
     Hack = "ﰠ",
     Warn = "",
@@ -22,7 +16,7 @@ icons.tag_level = {
     Perf = "ﮉ",
 }
 
-icons.lsp_kind = {
+M.lsp_kind = {
     -- lsp type
     String = "",
     Number = "",
@@ -60,4 +54,4 @@ icons.lsp_kind = {
     TypeParameter = "",
 }
 
-return icons
+return M

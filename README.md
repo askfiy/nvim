@@ -9,12 +9,8 @@ For Linux
 </h4>
 
 <h4 align="center">
-<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" style="max-width: 100%;" width="400">
+<img src="https://user-images.githubusercontent.com/81478335/215634088-19ab697f-01c7-4d48-9f4d-87b5cc3cc755.png" style="max-width: 100%;" width="600">
 </h4>
-
-<h3 align="center">
-<img src="./resource/2022-12-01_15-59.png" width=80%/>
-</h3>
 
 <h3 align="center">
 <img src="https://img.shields.io/badge/neovim-0.8.1-green?style=for-the-badge&logo=neovim&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
@@ -25,11 +21,11 @@ For Linux
 
 ## Introduction
 
-Based on the configuration of the `Nvim 0.8.1` version, it aims to make an out-of-the-box and full-featured code editor.
+Based on the configuration of the `Nvim prerelease` version, it aims to make an out-of-the-box and full-featured code editor.
 
 advantage:
 
-- Fast boot (60ms to complete the boot, the test environment is i5-12500H + 16G DDR5)
+- Fast boot (40ms to complete the boot, the test environment is i5-12500H + 16G DDR5)
 - Customizability (completely transparent configuration, build your own IDE in your own way)
 - Extensibility (customization via various community-driven plugins with many pre-made features)
 
@@ -65,13 +61,7 @@ $ yay -s trash-cli
 -- if you want to link the mysql in nvim
 $ yay -s percona-server-clients
 
--- if you use python pylint diagnostic code and write django
-$ pip3 install pylint-django
-
--- if you use python pyright diagnostic code and write django
-$ pip3 install django-stubs
-
--- if you want use tabline in nvim
+-- if you want use tabnine in nvim
 $ yay -s unzip curl
 
 -- if you want preview markdown to browser in nvim
@@ -95,22 +85,23 @@ Open the [mapping.lua](./lua/core/mapping.lua) file to set the base keys.
 
 Open the [lua/utils/public/icons.lua](./lua/utils/public/icons.lua) file to change the icons to your liking.
 
-Open the [mason.lua](./lua/config/basic/mason.lua) file and add the `LSP`, `DAP`, `Linter`, `Formatter` and other external tools you need .
+Open the [mason.lua](./lua/conf/basic/mason.lua) file and add the `LSP`, `DAP`, `Linter`, `Formatter` and other external tools you need .
 
-If you want to customize the startup configuration of a certain `LSP`, you should configure it in [lua/config/lsp/server_configurations](./lua/config/lsp/server_configurations) directory.
+If you want to customize the startup configuration of a certain `LSP`, you should configure it in [lua/conf/lsp/server_configurations](./lua/conf/lsp/server_configurations) directory.
 
-If you want to customize the startup configuration of a `DAP`, you should do this in [lua/config/dap/dap_configurations](./lua/config/dap/dap_configurations) directory to create configuration files.
+If you want to customize the startup configuration of a `DAP`, you should do this in [lua/conf/dap/dap_configurations](./lua/conf/dap/dap_configurations) directory to create configuration files.
 
 You can change anything you don't like, and if you don't know how to change it, you can file an ISSUE.
 
 ## Some command
 
 ```
-- PackerSync      : Update plugin
+- Lazy sync       : Update plugin
 - LspInfo         : View LSP server running status
 - Mason           : External program management
-- VsnipOpen       : Open a user-defined snippet
 - MarkdownPreview : Preview markdown file
 - TSUpdate all    : Update tree-sitter parser
 - MakeDirectory   : Create directory if it doesn't exist
+- OpenUserSnippetFile    : Open user snippet file from current filetype
+- OpenUserSnippetPackage : Open user snippet package.json file
 ```

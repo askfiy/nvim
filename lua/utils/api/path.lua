@@ -1,25 +1,21 @@
-local path = {}
+---@diagnostic disable: param-type-mismatch
 
-function path.join(...)
+local M = {}
+
+function M.join(...)
     return table.concat(vim.tbl_flatten({ ... }), "/")
 end
 
-function path.exists(p)
+function M.exists(p)
     return vim.fn.filereadable(p) == 1
 end
 
-function path.get_importable_subfiles(dir)
-    local sub_dir = dir:gsub("%.", "/")
-    local root_dir = path.join(vim.fn.stdpath("config"), "lua", sub_dir)
-
-    ---@diagnostic disable-next-line: param-type-mismatch
-    local file_tbl = vim.fn.globpath(root_dir, "*.lua", false, true)
-
-    for i, v in ipairs(file_tbl) do
-        file_tbl[i] = string.format("%s/%s", sub_dir, vim.fn.fnamemodify(v, ":t:r"))
-    end
-
-    return file_tbl
+function M.listdir(p)
+    return vim.fn.globpath(p, "*", false, true)
 end
 
-return path
+function M.listdir_by_filetype(p, filetype)
+    return vim.fn.globpath(p, string.format("*.%s", filetype), false, true)
+end
+
+return M

@@ -1,15 +1,14 @@
-local setting = {}
+local M = {}
 
-setting.g = {
+M.g = {
     mapleader = " ",
 }
 
-setting.opt = {
+M.opt = {
     ruler = false,
     showmode = false,
     swapfile = false,
     signcolumn = "yes:1",
-    --[[ signcolumn = "number", ]]
     completeopt = "menuone,noselect",
     pumheight = 10,
     updatetime = 500,
@@ -43,11 +42,10 @@ setting.opt = {
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
 -- vim.opt.listchars:append("tab:↹ ")
-
 vim.opt.shortmess:append("sI")
 vim.opt.whichwrap:append("<>[]hl")
 
-for prefix, tbl in pairs(setting) do
+for prefix, tbl in pairs(M) do
     for key, value in pairs(tbl) do
         vim[prefix][key] = value
     end
@@ -78,4 +76,4 @@ for _, builtin_plugin in ipairs(disable_builtin_plugins) do
     vim.g["loaded_" .. builtin_plugin] = 1
 end
 
-return setting
+return M

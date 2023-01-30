@@ -1,6 +1,5 @@
-local public = require("utils.public.public")
+local M = require("utils.public.public")
 
-public.icons = require("utils.public.icons")
+M.icons = require("utils.public.icons")
 
-return public
-
+return M

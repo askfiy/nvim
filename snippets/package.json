@@ -1,0 +1,25 @@
+{
+  "name": "askify-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "path": "./python.json",
+        "language": [
+          "python"
+        ]
+      },
+      {
+        "path": "./go.json",
+        "language": [
+          "go"
+        ]
+      },
+      {
+        "path": "./lua.json",
+        "language": [
+          "lua"
+        ]
+      }
+    ]
+  }
+}

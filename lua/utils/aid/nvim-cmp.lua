@@ -1,4 +1,4 @@
-local aid_cmp = {
+local M = {
     -- priority when sorting by source (disabled by default)
     soruce_priority = {
         ["vsnip"] = 7,
@@ -39,8 +39,12 @@ local aid_cmp = {
     },
 }
 
+function M.receive_cmp(cmp)
+    M.cmp = cmp
+end
+
 -- sort by name, lower priority if name starts with underscore
-function aid_cmp.under_compare(entry1, entry2)
+function M.under_compare(entry1, entry2)
     -- decrease priority if suggestion starts with _
     local _, entry1_under = entry1.completion_item.label:find("^_+")
     local _, entry2_under = entry2.completion_item.label:find("^_+")
@@ -52,29 +56,85 @@ function aid_cmp.under_compare(entry1, entry2)
 end
 
 -- sort according to the specified order
-function aid_cmp.kind_compare(entry1, entry2)
+function M.kind_compare(entry1, entry2)
     -- sort by kind priority (disabled by default)
-    local entry1_kind = aid_cmp.cmp.lsp.CompletionItemKind[entry1:get_kind()]
-    local entry2_kind = aid_cmp.cmp.lsp.CompletionItemKind[entry2:get_kind()]
+    local entry1_kind = M.cmp.lsp.CompletionItemKind[entry1:get_kind()]
+    local entry2_kind = M.cmp.lsp.CompletionItemKind[entry2:get_kind()]
 
-    local kind_priority1 = aid_cmp.kind_priority[entry1_kind] or 0
-    local kind_priority2 = aid_cmp.kind_priority[entry2_kind] or 0
+    local kind_priority1 = M.kind_priority[entry1_kind] or 0
+    local kind_priority2 = M.kind_priority[entry2_kind] or 0
 
     -- desc
     return kind_priority2 < kind_priority1
 end
 
 -- sort by specified completion source
-function aid_cmp.source_compare(entry1, entry2)
+function M.source_compare(entry1, entry2)
     -- sort by source priority (disabled by default)
     local source1 = entry1.source.name
     local source2 = entry2.source.name
 
-    local source_priority1 = aid_cmp.soruce_priority[source1] or 0
-    local source_priority2 = aid_cmp.soruce_priority[source2] or 0
+    local source_priority1 = M.soruce_priority[source1] or 0
+    local source_priority2 = M.soruce_priority[source2] or 0
 
     -- desc
     return source_priority2 < source_priority1
 end
 
-return aid_cmp
+function M.confirm()
+    return M.cmp.mapping(M.cmp.mapping.confirm(), { "i", "s", "c" })
+end
+
+function M.confirm_select()
+    return M.cmp.mapping(M.cmp.mapping.confirm({ select = true }), { "i", "s", "c" })
+end
+
+function M.select_prev_item()
+    return M.cmp.mapping(M.cmp.mapping.select_prev_item(), { "i", "s", "c" })
+end
+
+function M.select_next_item()
+    return M.cmp.mapping(M.cmp.mapping.select_next_item(), { "i", "s", "c" })
+end
+
+function M.scroll_docs(n)
+    return M.cmp.mapping(M.cmp.mapping.scroll_docs(n), { "i", "s", "c" })
+end
+
+function M.select_prev_n_item(n)
+    return M.cmp.mapping(function(fallback)
+        if M.cmp.visible() then
+            ---@diagnostic disable-next-line: unused-local
+            for i = 1, n, 1 do
+                M.cmp.select_prev_item({ behavior = M.cmp.SelectBehavior.Select })
+            end
+        else
+            fallback()
+        end
+    end, { "i", "s", "c" })
+end
+
+function M.select_next_n_item(n)
+    return M.cmp.mapping(function(fallback)
+        if M.cmp.visible() then
+            ---@diagnostic disable-next-line: unused-local
+            for i = 1, n, 1 do
+                M.cmp.select_next_item({ behavior = M.cmp.SelectBehavior.Select })
+            end
+        else
+            fallback()
+        end
+    end, { "i", "s", "c" })
+end
+
+function M.toggle_complete_menu()
+    return M.cmp.mapping(function()
+        if M.cmp.visible() then
+            M.cmp.abort()
+        else
+            M.cmp.complete()
+        end
+    end, { "i", "s", "c" })
+end
+
+return M

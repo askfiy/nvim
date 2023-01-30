@@ -1,9 +1,12 @@
-local aid = require("utils.aid.aid")
+local M = {
+    _import_modules = {
+        "cfg",
+        "lsp",
+    },
+}
 
-aid.packer = require("utils.aid.packer")
+for _, name in ipairs(M._import_modules) do
+    M = vim.tbl_deep_extend("force", M, require(string.format("utils.aid.pkg.%s", name)) or {})
+end
 
-aid.lspconfig = require("utils.aid.lspconfig")
-
-aid.nvim_cmp = require("utils.aid.nvim-cmp")
-
-return aid
+return M
