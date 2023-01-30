@@ -54,7 +54,7 @@ function M.load()
                 },
             },
         },
-        -- filter blank lines
+        -- filter empty lines
         filter = function(data)
             return not M.all(data.event.regcontents, M.is_whitespace)
         end,
