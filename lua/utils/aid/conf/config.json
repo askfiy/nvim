@@ -40,6 +40,9 @@
     "lazy": {
       "vim-illuminate": true
     },
+    "mason": {
+      "vim-illuminate": true
+    },
     "help": {
       "vim-illuminate": true,
       "indent-blankline": true
