@@ -14,7 +14,13 @@ function M.before()
 end
 
 function M.load()
-    M.spectre.setup()
+    M.spectre.setup({
+        highlight = {
+            ui = "@string",
+            search = "@string.regex",
+            replace = "@text.emphasis",
+        },
+    })
 end
 
 function M.after() end
