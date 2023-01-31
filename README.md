@@ -13,7 +13,7 @@ For Linux
 </h4>
 
 <h3 align="center">
-<img src="https://img.shields.io/badge/neovim-0.8.1-green?style=for-the-badge&logo=neovim&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
+<img src="https://img.shields.io/badge/neovim-green?style=for-the-badge&logo=neovim&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
 <img src="https://img.shields.io/badge/platform-linux-green?style=for-the-badge&logo=flickr&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
 <img src="https://img.shields.io/github/stars/askfiy/nvim?style=for-the-badge&logo=github&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
 <img src="https://img.shields.io/github/issues/askfiy/nvim?style=for-the-badge&logo=gitbook&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41" />
