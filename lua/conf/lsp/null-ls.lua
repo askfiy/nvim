@@ -23,7 +23,11 @@ function M.load()
             M.null_ls.builtins.formatting.shfmt,
             M.null_ls.builtins.formatting.prettier,
             M.null_ls.builtins.formatting.autopep8,
-            M.null_ls.builtins.formatting.sql_formatter,
+            M.null_ls.builtins.formatting.sql_formatter.with({
+                extra_args = {
+                    ("-l=%s"):format(options.sql_language),
+                },
+            }),
             M.null_ls.builtins.formatting.stylua.with({
                 extra_args = {
                     "--indent-type=Spaces",
