@@ -15,7 +15,7 @@ function M.listdir(p)
 end
 
 function M.listdir_by_filetype(p, filetype)
-    return vim.fn.globpath(p, string.format("*.%s", filetype), false, true)
+    return vim.fn.globpath(p, ("*.%s"):format(filetype), false, true)
 end
 
 return M

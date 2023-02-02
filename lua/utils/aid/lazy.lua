@@ -46,7 +46,7 @@ function M.load(plugins)
 
     for plugin_kind_name, plugin_kind_tbl in pairs(plugins) do
         for _, plugin_opts in ipairs(plugin_kind_tbl) do
-            local require_file_name = string.lower(plugin_opts.name or string.match(plugin_opts[1], "/([%w%-_]+).?"))
+            local require_file_name = (plugin_opts.name or plugin_opts[1]:match("/([%w%-_]+).?")):lower()
 
             local require_file_path = api.path.join(M.plugin_config_root_directory, plugin_kind_name, require_file_name)
 
@@ -54,34 +54,21 @@ function M.load(plugins)
 
             if ok then
                 if module._viml then
-                    plugin_opts.init = load(string.format(
-                        [[
+                    plugin_opts.init = load(([[
                         require("%s").before()
                         require("%s").load()
                         require("%s").after()
-                    ]],
-                        require_file_path,
-                        require_file_path,
-                        require_file_path
-                    ))
+                    ]]):format(require_file_path, require_file_path, require_file_path))
                 else
-                    plugin_opts.init = load(string.format(
-                        [[
+                    plugin_opts.init = load(([[
                         require("%s").before()
-                    ]],
-                        require_file_path
-                    ))
+                    ]]):format(require_file_path))
 
-                    plugin_opts.config = load(string.format(
-                        [[
+                    plugin_opts.config = load(([[
                         require("utils.api").require_all_package(require("%s"))
                         require("%s").load()
                         require("%s").after()
-                    ]],
-                        require_file_path,
-                        require_file_path,
-                        require_file_path
-                    ))
+                    ]]):format(require_file_path, require_file_path, require_file_path))
                 end
             end
             table.insert(requires_moduls, plugin_opts)

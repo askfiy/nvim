@@ -70,7 +70,7 @@ function M.after()
 
             if not M.mason_registry.is_installed(name) then
                 if not M.mason_registry.has_package(name) then
-                    vim.notify(string.format("Invalid package name : %s", name), "ERROR", { title = "Mason" })
+                    vim.notify(("Invalid package name : %s"):format(name), "ERROR", { title = "Mason" })
                 else
                     local params = #version ~= 0 and { version = version } or nil
                     M.mason_registry.get_package(name):install(params)
@@ -82,7 +82,7 @@ function M.after()
 
     if not vim.tbl_isempty(installed_packages) then
         vim.notify(
-            string.format("Start install package : \n - %s", table.concat(installed_packages, "\n - ")),
+            ("Start install package : \n - %s"):format(table.concat(installed_packages, "\n - ")),
             "INFO",
             { title = "Mason" }
         )

@@ -28,6 +28,7 @@ M.opt = {
     filetype = "plugin",
     foldmethod = "indent",
     foldlevel = 100,
+    foldlevelstart = 99,
     foldcolumn = "0",
     clipboard = "unnamedplus",
     smartindent = true,

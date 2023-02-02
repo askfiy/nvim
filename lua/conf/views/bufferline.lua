@@ -33,13 +33,13 @@ function M.load()
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
                 local message
                 if diagnostics_dict.error then
-                    message = string.format("%s%s", icons.Error, diagnostics_dict.error)
+                    message = ("%s%s"):format(icons.Error, diagnostics_dict.error)
                 elseif diagnostics_dict.warning then
-                    message = string.format("%s%s", icons.Warn, diagnostics_dict.warning)
+                    message = ("%s%s"):format(icons.Warn, diagnostics_dict.warning)
                 elseif diagnostics_dict.info then
-                    message = string.format("%s%s", icons.Info, diagnostics_dict.info)
+                    message = ("%s%s"):format(icons.Info, diagnostics_dict.info)
                 elseif diagnostics_dict.hint then
-                    message = string.format("%s%s", icons.Hint, diagnostics_dict.hint)
+                    message = ("%s%s"):format(icons.Hint, diagnostics_dict.hint)
                 else
                     message = ""
                 end

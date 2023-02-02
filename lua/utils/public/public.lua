@@ -5,7 +5,7 @@ function M.get_icons_group(icon_group_name, has_suffix_space)
 
     if has_suffix_space then
         for icon_tag, icon_code in pairs(icons) do
-            icons[icon_tag] = string.format("%s ", icon_code)
+            icons[icon_tag] = ("%s "):format(icon_code)
         end
     end
 

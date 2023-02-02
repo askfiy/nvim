@@ -32,7 +32,7 @@ function M.get_importable_subfiles(dir)
 
     ---@diagnostic disable-next-line: param-type-mismatch
     for index, file_path in ipairs(files_table) do
-        files_table[index] = string.format("%s/%s", dir, vim.fn.fnamemodify(file_path, ":t:r"))
+        files_table[index] = ("%s/%s"):format(dir, vim.fn.fnamemodify(file_path, ":t:r"))
     end
 
     return files_table

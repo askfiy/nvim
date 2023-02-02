@@ -15,11 +15,11 @@ function M.require_all_package(module)
 
         for char, replace in pairs(replace_char) do
             if use_name:match(char) then
-                use_name = string.lower(use_name:gsub(char, replace))
+                use_name = (use_name:gsub(char, replace)):lower()
             end
         end
 
-        module[string.lower(use_name)] = require(require_name)
+        module[use_name:lower()] = require(require_name)
     end
 end
 

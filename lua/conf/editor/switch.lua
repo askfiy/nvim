@@ -65,7 +65,7 @@ function M.load()
     local put_words = vim.deepcopy(M.word_antisense_switch)
 
     for _, value in ipairs(M.word_antisense_switch) do
-        local upper_words = { string.upper(value[1]), string.upper(value[2]) }
+        local upper_words = { (value[1]):upper(), value[2]:upper() }
         local title_words = { M.str_title(value[1]), M.str_title(value[2]) }
         table.insert(put_words, upper_words)
         table.insert(put_words, title_words)

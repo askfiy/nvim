@@ -59,6 +59,11 @@ function M.basic_quick_set()
 
     M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
+    M.capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+    }
+
     M.capabilities.textDocument.completion.completionItem = {
         documentationFormat = { "markdown", "plaintext" },
         snippetSupport = true,
@@ -89,7 +94,7 @@ function M.diagnostic_quick_set()
     })
 
     for _type, icon in pairs(icons) do
-        local hl = string.format("DiagnosticSign%s", _type)
+        local hl = ("DiagnosticSign%s"):format(_type)
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
 end
@@ -209,7 +214,6 @@ function M.scroll_docs_to_down(map)
         vim.api.nvim_feedkeys(key, "n", true)
     end
 end
-
 
 function M.begin()
     M.basic_quick_set()

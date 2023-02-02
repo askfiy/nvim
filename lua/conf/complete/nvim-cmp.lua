@@ -110,8 +110,8 @@ function M.load()
                 local kind = vim_item.kind
                 local source = entry.source.name
 
-                vim_item.kind = string.format("%s %s", icons[kind], kind)
-                vim_item.menu = string.format("<%s>", string.upper(source))
+                vim_item.kind = ("%s %s"):format(icons[kind], kind)
+                vim_item.menu = ("<%s>"):format(source:upper())
                 vim_item.dup = M.duplicate_keywords[source] or 0
 
                 -- determine if it is a fixed window size
@@ -122,10 +122,10 @@ function M.load()
                     local truncated_label = vim.fn.strcharpart(label, 0, max_width)
 
                     if truncated_label ~= label then
-                        vim_item.abbr = string.format("%s %s", truncated_label, "…")
-                    elseif string.len(label) < min_width then
-                        local padding = string.rep(" ", min_width - string.len(label))
-                        vim_item.abbr = string.format("%s %s", label, padding)
+                        vim_item.abbr = ("%s %s"):format(truncated_label, "…")
+                    elseif label:len() < min_width then
+                        local padding = (" "):rep(min_width - label:len())
+                        vim_item.abbr = ("%s %s"):format(label, padding)
                     end
                 end
 
