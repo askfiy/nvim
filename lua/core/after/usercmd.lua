@@ -34,12 +34,18 @@ end, { desc = "Delete the current Buffer while maintaining the window layout" })
 
 vim.api.nvim_create_user_command("OpenUserSnippetFile", function()
     local snippet_file_name = vim.bo.filetype .. ".json"
-    local snippet_file_path = api.path.join(options.snippets_conf_directory, snippet_file_name)
+    local snippet_file_path = api.path.join(options.global_config_directory, "snippets", snippet_file_name)
     vim.cmd(string.format(":e %s", snippet_file_path))
 end, { desc = "Open user snippet file from current filetype" })
 
 vim.api.nvim_create_user_command("OpenUserSnippetPackage", function()
     local snippet_file_name = "package.json"
-    local snippet_file_path = api.path.join(options.snippets_conf_directory, snippet_file_name)
+    local snippet_file_path = api.path.join(options.global_config_directory, "snippets", snippet_file_name)
     vim.cmd(string.format(":e %s", snippet_file_path))
 end, { desc = "Open user snippet package.json file" })
+
+vim.api.nvim_create_user_command("OpenUserDatabaseFile", function()
+    local file_name = "database.json"
+    local snippet_file_path = api.path.join(options.global_config_directory, file_name)
+    vim.cmd(string.format(":e %s", snippet_file_path))
+end, { desc = "Open user defined database config file" })

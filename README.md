@@ -104,4 +104,5 @@ You can change anything you don't like, and if you don't know how to change it, 
 - MakeDirectory   : Create directory if it doesn't exist
 - OpenUserSnippetFile    : Open user snippet file from current filetype
 - OpenUserSnippetPackage : Open user snippet package.json file
+- OpenUserDatabaseFile   : Open user defined database config file
 ```

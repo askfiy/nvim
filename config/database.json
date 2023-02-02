@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mysql",
+    "url": "mysql://username:password@192.168.0.120/database"
+  },
+  {
+    "name": "postgresql",
+    "url": "postgres://username:password@localhost:5432/database"
+  }
+]

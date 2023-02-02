@@ -1,7 +1,5 @@
 -- https://github.com/lukas-reineke/indent-blankline.nvim
 
-local aid = require("utils.aid")
-
 local M = {
     requires = {
         "indent_blankline",
@@ -9,7 +7,10 @@ local M = {
 }
 
 function M.before()
-    vim.g.indent_blankline_filetype_exclude = aid.get_plugins_filetype_conf_by_name("indent-blankline")
+    vim.g.indent_blankline_filetype_exclude = {
+        "help",
+        "undotree",
+    }
 end
 
 function M.load()

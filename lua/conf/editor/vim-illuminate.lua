@@ -1,7 +1,5 @@
 -- https://github.com/RRethy/vim-illuminate
 
-local aid = require("utils.aid")
-
 local M = {
     requires = {
         "illuminate",
@@ -20,7 +18,20 @@ function M.load()
             "regex",
             "treesitter",
         },
-        filetypes_denylist = aid.get_plugins_filetype_conf_by_name("vim-illuminate"),
+        filetypes_denylist = {
+            "NvimTree",
+            "aerial",
+            "undotree",
+            "dbui",
+            "spectre_panel",
+            "help",
+            "lazy",
+            "mason",
+            "notify",
+            "lspinfo",
+            "toggleterm",
+            "TelescopePrompt",
+        },
     })
 end
 

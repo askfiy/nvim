@@ -1,7 +1,5 @@
 -- https://github.com/dstein64/nvim-scrollview
 
-local aid = require("utils.aid")
-
 local M = {
     requires = {
         "scrollview",
@@ -20,7 +18,13 @@ function M.load()
         base = "right",
         column = 1,
         character = "",
-        excluded_filetypes = aid.get_plugins_filetype_conf_by_name("nvim-scrollview"),
+        excluded_filetypes = {
+            "NvimTree",
+            "aerial",
+            "undotree",
+            "dbui",
+            "spectre_panel",
+        },
     })
 end
 

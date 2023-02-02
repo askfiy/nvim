@@ -6,4 +6,6 @@ M.path = require("utils.api.path")
 
 M.file = require("utils.api.file")
 
+M.json = require("utils.api.json")
+
 return M

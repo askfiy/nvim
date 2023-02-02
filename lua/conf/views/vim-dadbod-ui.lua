@@ -2,8 +2,8 @@
 -- https://github.com/tpope/vim-dadbod
 
 local api = require("utils.api")
-local aid = require("utils.aid")
 local public = require("utils.public")
+local options = require("core.options")
 
 local M = {
     _viml = true,
@@ -14,7 +14,7 @@ function M.before()
 end
 
 function M.load()
-    vim.g.dbs = aid.get_database_conf()
+    vim.g.dbs = api.json.load(api.path.join(options.global_config_directory, "database.json"))
     vim.g.db_ui_winwidth = 30
     vim.g.db_ui_auto_execute_table_helpers = true
     vim.g.db_ui_execute_on_save = false

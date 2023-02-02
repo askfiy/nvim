@@ -3,6 +3,12 @@
   "contributes": {
     "snippets": [
       {
+        "path": "./json.json",
+        "language": [
+          "json"
+        ]
+      },
+      {
         "path": "./python.json",
         "language": [
           "python"
@@ -18,6 +24,12 @@
         "path": "./lua.json",
         "language": [
           "lua"
+        ]
+      },
+      {
+        "path": "./markdown.json",
+        "language": [
+          "markdown"
         ]
       }
     ]

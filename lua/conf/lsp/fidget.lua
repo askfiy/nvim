@@ -13,11 +13,6 @@ function M.load()
         window = {
             blend = 0,
         },
-        sources = {
-            pyright = {
-                ignore = true,
-            },
-        },
     })
 end
 

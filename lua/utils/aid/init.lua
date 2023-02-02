@@ -1,12 +1,15 @@
-local M = {
-    _import_modules = {
-        "cfg",
-        "lsp",
-    },
-}
+local M = {}
 
-for _, name in ipairs(M._import_modules) do
-    M = vim.tbl_deep_extend("force", M, require(string.format("utils.aid.pkg.%s", name)) or {})
+function M.didChangeConfiguration(client, filetype)
+    vim.api.nvim_create_autocmd(
+        { "DirChanged", "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufNewFile" },
+        {
+            pattern = { filetype, "NvimTree_*" },
+            callback = function()
+                client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+            end,
+        }
+    )
 end
 
 return M
