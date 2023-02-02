@@ -16,7 +16,7 @@ function M.before() end
 function M.load()
     M.ufo.setup({
         open_fold_hl_timeout = 0,
-        close_fold_kinds = { "comment", "imports", "region" },
+        close_fold_kinds = {},
         ---@diagnostic disable-next-line: unused-local
         provider_selector = function(bufnr, filetype, buftype)
             return M.filetype_fold_config[filetype] or { "lsp", "indent" }
