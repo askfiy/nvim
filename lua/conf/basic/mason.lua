@@ -42,6 +42,7 @@ function M.before()
             "prettier",
             "sql-formatter",
             "stylua",
+            "fixjson",
         },
     }
 end

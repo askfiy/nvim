@@ -9,13 +9,20 @@ local M = {
     requires = {
         "null-ls",
     },
+    formatting_filetype_extends = {
+        shfmt = { "zsh" },
+        fixjson = { "json5" },
+    },
 }
 
 function M.before() end
 
 function M.load()
-    -- add zsh filetype to shfmt
-    table.insert(M.null_ls.builtins.formatting.shfmt.filetypes, "zsh")
+    for package_name, filetype_tables in pairs(M.formatting_filetype_extends) do
+        vim.tbl_map(function(filetype)
+            table.insert(M.null_ls.builtins.formatting[package_name].filetypes, filetype)
+        end, filetype_tables)
+    end
 
     M.null_ls.setup({
         sources = {
@@ -23,6 +30,7 @@ function M.load()
             M.null_ls.builtins.formatting.shfmt,
             M.null_ls.builtins.formatting.prettier,
             M.null_ls.builtins.formatting.autopep8,
+            M.null_ls.builtins.formatting.fixjson,
             M.null_ls.builtins.formatting.sql_formatter.with({
                 extra_args = {
                     ("-l=%s"):format(options.sql_language),
