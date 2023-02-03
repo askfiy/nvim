@@ -1,14 +1,18 @@
 [
   {
     "name": "mysql",
-    "url": "mysql://username:password@localhost:3306/db"
+    "url": "mysql://username:password@localhost:3306/db?protocol=tcp"
   },
   {
     "name": "postgresql",
     "url": "postgres://username:password@localhost:5432/db"
   },
   {
-    "name": "qirui",
+    "name": "postgresql-dev",
     "url": "postgres://postgres:123456@localhost:5430/111"
+  },
+  {
+    "name": "mysql-dev",
+    "url": "mysql://root@localhost:3306/mysql?protocol=tcp"
   }
 ]
