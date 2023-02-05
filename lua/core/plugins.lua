@@ -169,6 +169,7 @@ M.editor = {
 M.find = {
     {
         "kevinhwang91/nvim-hlslens",
+        event = { "CmdlineEnter" },
         lazy = true,
     },
     {
