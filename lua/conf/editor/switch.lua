@@ -3,7 +3,6 @@
 local api = require("utils.api")
 
 local M = {
-    _viml = true,
     word_antisense_switch = {
         { "true", "false" },
         { "on", "off" },

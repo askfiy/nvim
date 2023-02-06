@@ -116,6 +116,7 @@ M.editor = {
             { "mrjones2014/nvim-ts-rainbow" },
             { "windwp/nvim-ts-autotag" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
+            { "nvim-lua/plenary.nvim" },
         },
         event = { "UIEnter" },
     },
@@ -195,6 +196,7 @@ M.find = {
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
+            { "nvim-lua/plenary.nvim" },
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build = "make",

@@ -5,8 +5,6 @@ local public = require("utils.public")
 
 local M = {}
 
-M._viml = true
-
 function M.before()
     M.register_key()
 end

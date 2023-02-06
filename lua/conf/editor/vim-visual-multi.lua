@@ -2,9 +2,7 @@
 
 local api = require("utils.api")
 
-local M = {
-    _viml = true,
-}
+local M = {}
 
 function M.before()
     M.register_key()

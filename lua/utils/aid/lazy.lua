@@ -53,24 +53,17 @@ function M.load(plugins)
             local ok, module = pcall(require, require_file_path)
 
             if ok then
-                if module._viml then
-                    plugin_opts.init = load(([[
-                        require("%s").before()
-                        require("%s").load()
-                        require("%s").after()
-                    ]]):format(require_file_path, require_file_path, require_file_path))
-                else
-                    plugin_opts.init = load(([[
-                        require("%s").before()
-                    ]]):format(require_file_path))
+                plugin_opts.init = function()
+                    module.before()
+                end
 
-                    plugin_opts.config = load(([[
-                        require("utils.api").require_all_package(require("%s"))
-                        require("%s").load()
-                        require("%s").after()
-                    ]]):format(require_file_path, require_file_path, require_file_path))
+                plugin_opts.config = function()
+                    api.require_all_package(module)
+                    module.load()
+                    module.after()
                 end
             end
+
             table.insert(requires_moduls, plugin_opts)
         end
     end
