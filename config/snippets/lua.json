@@ -1,7 +1,11 @@
 {
   "pprint": {
-    "prefix": "pprint",
-    "body": ["vim.pretty_print($1)"],
+    "prefix": [
+      "pprint"
+    ],
+    "body": [
+      "vim.pretty_print($1)"
+    ],
     "description": "pretty print"
   }
 }

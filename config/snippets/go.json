@@ -1,1 +1,15 @@
-{}
+{
+  "quick generated basic code": {
+    "prefix": [
+      "quick"
+    ],
+    "body": [
+      "package main\n",
+      "import (\n\t\"fmt\"\n)\n",
+      "func main() {",
+      "\tfmt.Printf(\"hi Golang\\n${1}\")",
+      "}"
+    ],
+    "description": "package main code"
+  }
+}

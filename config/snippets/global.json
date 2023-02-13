@@ -1,0 +1,38 @@
+{
+  "TODO": {
+    "prefix": [
+      "todo"
+    ],
+    "body": [
+      "$LINE_COMMENT TODO: $1 - askify $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND -"
+    ],
+    "description": "generate todo tag"
+  },
+  "WARN": {
+    "prefix": [
+      "warn"
+    ],
+    "body": [
+      "$LINE_COMMENT WARN: $1 - askify $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND -"
+    ],
+    "description": "generate warn tag"
+  },
+  "ERROR": {
+    "prefix": [
+      "ERROR"
+    ],
+    "body": [
+      "$LINE_COMMENT ERROR: $1 - askify $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND -"
+    ],
+    "description": "generate error tag"
+  },
+  "FIX": {
+    "prefix": [
+      "FIX"
+    ],
+    "body": [
+      "$LINE_COMMENT FIX: $1 - askify $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND -"
+    ],
+    "description": "generate fix tag"
+  }
+}

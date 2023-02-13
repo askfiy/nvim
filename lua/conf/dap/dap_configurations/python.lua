@@ -16,6 +16,7 @@ return {
                 name = "Launch file",
                 program = "${file}",
                 pythonPath = "python3",
+                justMyCode = false,
             },
             {
                 type = "python",

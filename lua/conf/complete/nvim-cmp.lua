@@ -92,10 +92,12 @@ function M.load()
         sorting = {
             priority_weight = 2,
             comparators = {
+                aid_cmp.under_compare,
                 M.cmp.config.compare.offset,
                 M.cmp.config.compare.exact,
                 M.cmp.config.compare.score,
-                aid_cmp.under_compare,
+                M.cmp.config.compare.recently_used,
+                M.cmp.config.compare.locality,
                 M.cmp.config.compare.kind,
                 M.cmp.config.compare.sort_text,
                 M.cmp.config.compare.length,
@@ -106,7 +108,10 @@ function M.load()
         },
         -- define the style of menu completion options
         formatting = {
+            -- sort menu
+            fields = { "abbr", "kind", "menu" },
             format = function(entry, vim_item)
+                local abbr = vim_item.abbr
                 local kind = vim_item.kind
                 local source = entry.source.name
 
@@ -116,16 +121,15 @@ function M.load()
 
                 -- determine if it is a fixed window size
                 if M.complete_window_settings.fixed and vim.fn.mode() == "i" then
-                    local label = vim_item.abbr
                     local min_width = M.complete_window_settings.min_width
                     local max_width = M.complete_window_settings.max_width
-                    local truncated_label = vim.fn.strcharpart(label, 0, max_width)
+                    local truncated_abbr = vim.fn.strcharpart(abbr, 0, max_width)
 
-                    if truncated_label ~= label then
-                        vim_item.abbr = ("%s %s"):format(truncated_label, "…")
-                    elseif label:len() < min_width then
-                        local padding = (" "):rep(min_width - label:len())
-                        vim_item.abbr = ("%s %s"):format(label, padding)
+                    if truncated_abbr ~= abbr then
+                        vim_item.abbr = ("%s %s"):format(truncated_abbr, "…")
+                    elseif abbr:len() < min_width then
+                        local padding = (" "):rep(min_width - abbr:len())
+                        vim_item.abbr = ("%s %s"):format(abbr, padding)
                     end
                 end
 
@@ -137,6 +141,10 @@ function M.load()
             or {
                 completion = M.cmp.config.window.bordered({
                     winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+                    -- menu position offset
+                    col_offset = 0,
+                    -- content offset
+                    side_padding = 0,
                 }),
                 documentation = M.cmp.config.window.bordered({
                     winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",

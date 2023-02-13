@@ -1,7 +1,47 @@
 {
-  "code": {
-    "prefix": "code",
-    "body": ["```$1", "```"],
+  "code block": {
+    "prefix": [
+      "code"
+    ],
+    "body": [
+      "```$1\n```"
+    ],
     "description": "create code block"
+  },
+  "< symbol": {
+    "prefix": [
+      "<"
+    ],
+    "body": [
+      "&lt;"
+    ],
+    "description": "replace < to &lt;"
+  },
+  "> symbol": {
+    "prefix": [
+      ">"
+    ],
+    "body": [
+      "&gt;"
+    ],
+    "description": "replace > to &gt;"
+  },
+  "| symbol": {
+    "prefix": [
+      "|"
+    ],
+    "body": [
+      "&#124;"
+    ],
+    "description": "rpleace | to &#124;"
+  },
+  "row": {
+    "prefix": [
+      "row"
+    ],
+    "body": [
+      "|$1|$2|$3|"
+    ],
+    "description": "generate table row"
   }
 }
