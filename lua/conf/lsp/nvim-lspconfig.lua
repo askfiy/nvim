@@ -20,8 +20,11 @@ end
 function M.load()
     aid_nvim_lspconfig.begin()
 
+    -- lspconfig_to_mason or mason_to_lspconfig
+    local mappings = M.mason_lspconfig.get_mappings()
+
     for _, server_name in ipairs(M.mason_lspconfig.get_installed_servers()) do
-        local require_path = api.path.join(M.server_configurations_dir_path, server_name)
+        local require_path = api.path.join(M.server_configurations_dir_path, mappings.lspconfig_to_mason[server_name])
 
         local ok, settings = pcall(require, require_path)
         if not ok then
