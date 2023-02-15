@@ -7,5 +7,14 @@
       "vim.pretty_print($1)"
     ],
     "description": "pretty print"
+  },
+  "notify": {
+    "prefix": [
+      "notify"
+    ],
+    "body": [
+      "vim.notify($1)"
+    ],
+    "description": "notify"
   }
 }

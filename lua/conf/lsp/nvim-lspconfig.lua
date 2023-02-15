@@ -10,6 +10,10 @@ local M = {
         "nvim-navic",
         "mason-lspconfig",
     },
+    disabled_servers = {
+        "pyright",
+        -- "pylance"
+    },
     server_configurations_dir_path = api.path.join("conf", "lsp", "server_configurations"),
 }
 
@@ -23,25 +27,42 @@ function M.load()
     -- lspconfig_to_mason or mason_to_lspconfig
     local mappings = M.mason_lspconfig.get_mappings()
 
-    for _, server_name in ipairs(M.mason_lspconfig.get_installed_servers()) do
-        local require_path = api.path.join(M.server_configurations_dir_path, mappings.lspconfig_to_mason[server_name])
+    -- load build-in servers and expands servers
+    local servers = vim.tbl_deep_extend(
+        "force",
+        M.mason_lspconfig.get_installed_servers(),
+        aid_nvim_lspconfig.get_expands_servers()
+    )
 
-        local ok, settings = pcall(require, require_path)
-        if not ok then
-            settings = {}
+    for _, server_name in ipairs(servers) do
+        local require_path =
+            api.path.join(M.server_configurations_dir_path, mappings.lspconfig_to_mason[server_name] or server_name)
+
+        local ok, configuration = pcall(require, require_path)
+
+        -- set default configuration
+        configuration = vim.tbl_deep_extend("force", {
+            ---@diagnostic disable-next-line: unused-local
+            on_attach = function(client, bufnr) end,
+        }, ok and configuration or {})
+
+        if not vim.tbl_contains(M.disabled_servers, server_name) then
+            local private_on_attach = configuration.on_attach
+
+            configuration.capabilities = aid_nvim_lspconfig.get_capabilities()
+            configuration.handlers = aid_nvim_lspconfig.get_headlers(configuration)
+
+            configuration.on_attach = function(client, bufnr)
+                M.nvim_navic.attach(client, bufnr)
+                client.server_capabilities.documentFormattingProvider = false
+                -- close semantic tokens
+                client.server_capabilities.semanticTokensProvider = nil
+                -- run private_on_attach
+                private_on_attach(client, bufnr)
+            end
+
+            M.lspconfig[server_name].setup(configuration)
         end
-
-        settings.capabilities = aid_nvim_lspconfig.get_capabilities()
-        settings.handlers = aid_nvim_lspconfig.get_headlers(settings)
-
-        settings.on_attach = function(client, bufnr)
-            M.nvim_navic.attach(client, bufnr)
-            client.server_capabilities.documentFormattingProvider = false
-            -- close semantic tokens
-            client.server_capabilities.semanticTokensProvider = nil
-        end
-
-        M.lspconfig[server_name].setup(settings)
     end
 end
 

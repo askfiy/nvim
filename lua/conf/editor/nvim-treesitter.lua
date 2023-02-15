@@ -13,16 +13,7 @@ function M.load()
     M.nvim_treesitter_install.prefer_git = true
     M.nvim_treesitter_configs.setup({
         ensure_installed = "all",
-        ignore_install = {
-            "c_sharp",
-            "haskell",
-            "latex",
-            "ocaml_interface",
-            "php",
-            "ruby",
-            "tsx",
-            "tlaplus"
-        },
+        ignore_install = {},
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,

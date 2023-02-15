@@ -1,4 +1,4 @@
--- https://github.com/microsoft/pyright
+-- https://github.com/microsoft/pylance-release
 
 local util = require("lspconfig.util")
 local aid_nvim_lsptools = require("utils.aid.nvim-lsptools")
@@ -23,13 +23,13 @@ local ignore_diagnostic_message = {
 return {
     filetypes = { "python" },
     single_file_support = true,
-    cmd = { "pyright-langserver", "--stdio" },
+    -- cmd = { "pylance-langserver", "--stdio" },
     ---@diagnostic disable-next-line: deprecated
     root_dir = util.root_pattern(unpack(root_files)),
     handlers = {
-        -- If you want to disable pyright's diagnostic prompt, open the code below
+        -- If you want to disable pylance's diagnostic prompt, open the code below
         -- ["textDocument/publishDiagnostics"] = function(...) end,
-        -- If you want to disable pyright from diagnosing unused parameters, open the function below
+        -- If you want to disable pylance from diagnosing unused parameters, open the function below
         ["textDocument/publishDiagnostics"] = vim.lsp.with(aid_nvim_lsptools.filter_publish_diagnostics, {
             ignore_diagnostic_message = ignore_diagnostic_message,
         }),
@@ -64,6 +64,12 @@ return {
                     reportMissingImports = "error",
                     reportUndefinedVariable = "error",
                     reportAssertAlwaysTrue = "error",
+                },
+                -- pylance
+                inlayHints = {
+                    variableTypes = true,
+                    functionReturnTypes = true,
+                    pytestParameters = true,
                 },
             },
         },

@@ -14,7 +14,7 @@
 
 local public = require("utils.public")
 local options = require("core.options")
-local aid_cmp = require("utils.aid.nvim-cmp")
+local aid_nvim_cmp = require("utils.aid.nvim-cmp")
 local icons = public.get_icons_group("lsp_kind", false)
 
 local M = {
@@ -48,7 +48,7 @@ end
 
 function M.load()
     -- send cmp to aid_cmp module
-    aid_cmp.receive_cmp(M.cmp)
+    aid_nvim_cmp.receive_cmp(M.cmp)
 
     M.cmp.setup({
         -- uncheck auto-select (gopls)
@@ -78,21 +78,21 @@ function M.load()
         -- if you don't want to auto-complete when selecting, then fill in the following content in the item selection
         -- { behavior = M.cmp.SelectBehavior.Select }
         mapping = {
-            ["<cr>"] = aid_cmp.confirm(),
-            ["<c-p>"] = aid_cmp.select_prev_item(),
-            ["<c-n>"] = aid_cmp.select_next_item(),
-            ["<c-b>"] = aid_cmp.scroll_docs(-5),
-            ["<c-f>"] = aid_cmp.scroll_docs(5),
-            ["<tab>"] = aid_cmp.confirm_select(),
-            ["<c-u>"] = aid_cmp.select_prev_n_item(5),
-            ["<c-d>"] = aid_cmp.select_next_n_item(5),
-            ["<c-k>"] = aid_cmp.toggle_complete_menu(),
+            ["<cr>"] = aid_nvim_cmp.confirm(),
+            ["<c-p>"] = aid_nvim_cmp.select_prev_item(),
+            ["<c-n>"] = aid_nvim_cmp.select_next_item(),
+            ["<c-b>"] = aid_nvim_cmp.scroll_docs(-5),
+            ["<c-f>"] = aid_nvim_cmp.scroll_docs(5),
+            ["<tab>"] = aid_nvim_cmp.confirm_select(),
+            ["<c-u>"] = aid_nvim_cmp.select_prev_n_item(5),
+            ["<c-d>"] = aid_nvim_cmp.select_next_n_item(5),
+            ["<c-k>"] = aid_nvim_cmp.toggle_complete_menu(),
         },
         -- define sorting rules
         sorting = {
             priority_weight = 2,
             comparators = {
-                aid_cmp.under_compare,
+                aid_nvim_cmp.under_compare,
                 M.cmp.config.compare.offset,
                 M.cmp.config.compare.exact,
                 M.cmp.config.compare.score,

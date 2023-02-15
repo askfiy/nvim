@@ -15,7 +15,7 @@ end
 
 function M.load()
     -- join full path
-    local require_files_table = M.get_importable_subfiles(M.adapter_configurations_dir_path)
+    local require_files_table = api.get_importable_subfiles(M.adapter_configurations_dir_path)
 
     ---@diagnostic disable-next-line: param-type-mismatch
     for _, require_file in ipairs(require_files_table) do
@@ -26,17 +26,6 @@ function M.load()
 end
 
 function M.after() end
-
-function M.get_importable_subfiles(dir)
-    local files_table = api.path.listdir_by_filetype(api.path.join(vim.fn.stdpath("config"), "lua", dir), "lua")
-
-    ---@diagnostic disable-next-line: param-type-mismatch
-    for index, file_path in ipairs(files_table) do
-        files_table[index] = ("%s/%s"):format(dir, vim.fn.fnamemodify(file_path, ":t:r"))
-    end
-
-    return files_table
-end
 
 function M.register_key()
     api.map.bulk_register({

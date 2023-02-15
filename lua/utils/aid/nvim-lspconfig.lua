@@ -1,3 +1,4 @@
+local api = require("utils.api")
 local public = require("utils.public")
 local options = require("core.options")
 local setting = require("core.setting")
@@ -7,6 +8,12 @@ local M = {
     filetype = {
         hover = "lsp-hover",
         signatureHelp = "lsp-signature-help",
+    },
+    expands = {
+        servers = {
+            -- pylance
+        },
+        configurations_dir_path = api.path.join("conf", "lsp", "expands_nvim_lspconfig"),
     },
 }
 
@@ -215,10 +222,27 @@ function M.scroll_docs_to_down(map)
     end
 end
 
+-- expands_servers
+function M.load_expands_servers()
+    local lspconfig_configs = require("lspconfig.configs")
+
+    ---@diagnostic disable-next-line: param-type-mismatch
+    for _, require_file in ipairs(api.get_importable_subfiles(M.expands.configurations_dir_path)) do
+        local server_name = vim.fn.fnamemodify(require_file, ":t:r")
+        lspconfig_configs[server_name] = require(require_file)
+        table.insert(M.expands.servers, server_name)
+    end
+end
+
+function M.get_expands_servers()
+    return M.expands.servers
+end
+
 function M.begin()
     M.basic_quick_set()
     M.diagnostic_quick_set()
     M.lspconfig_ui_quick_set()
+    M.load_expands_servers()
 end
 
 return M
