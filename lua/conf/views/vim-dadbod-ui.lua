@@ -25,8 +25,10 @@ function M.register_key()
             mode = { "n" },
             lhs = "<leader>4",
             rhs = function()
+                local aerial_info = public.get_aerial_info()
                 public.toggle_sidebar("dbui")
                 vim.cmd("DBUIToggle")
+                public.reset_aerial_width(aerial_info)
             end,
             options = { silent = true },
             description = "Open Database Explorer",

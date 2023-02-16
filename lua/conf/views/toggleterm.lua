@@ -1,3 +1,5 @@
+-- https://github.com/akinsho/toggleterm.nvim
+
 local api = require("utils.api")
 local public = require("utils.public")
 local options = require("core.options")

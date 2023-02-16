@@ -87,6 +87,28 @@ function M.terminal_offset_run_command(command)
         end,
     }
 
+    local aerial_info = M.get_aerial_info()
+
+    local all_window_buffer_filetype = M.get_all_window_buffer_filetype()
+    for _, opts in ipairs(all_window_buffer_filetype) do
+        if vim.tbl_contains(vim.tbl_keys(offset_filetype), opts.buffer_filetype) then
+            offset_filetype[opts.buffer_filetype](opts.window_id)
+
+            M.reset_aerial_width(aerial_info)
+
+            return
+        end
+    end
+
+    vim.cmd(command)
+end
+
+-- Fix the width problem of aerial:
+-- Achievement conditions:
+-- Turn on toggleterm, aerial, and then continue to open/close nvimtree or dbui
+-- will affect the width calculation of aerial
+-- Or this will happen when toggleterm is opened and closed continuously (on the premise that nvimtree or dbui has been opened)
+function M.get_aerial_info()
     local all_window_buffer_filetype = M.get_all_window_buffer_filetype()
 
     local aerial_info = {
@@ -103,20 +125,13 @@ function M.terminal_offset_run_command(command)
         end
     end
 
-    for _, opts in ipairs(all_window_buffer_filetype) do
-        if vim.tbl_contains(vim.tbl_keys(offset_filetype), opts.buffer_filetype) then
-            offset_filetype[opts.buffer_filetype](opts.window_id)
+    return aerial_info
+end
 
-            -- Resize aerial width
-            if aerial_info.exists then
-                vim.api.nvim_win_set_width(aerial_info.window_id, aerial_info.width)
-            end
-
-            return
-        end
+function M.reset_aerial_width(aerial_info)
+    if aerial_info.exists then
+        vim.api.nvim_win_set_width(aerial_info.window_id, aerial_info.width)
     end
-
-    vim.cmd(command)
 end
 
 return M
