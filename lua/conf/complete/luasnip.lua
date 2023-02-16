@@ -19,6 +19,7 @@ end
 function M.load()
     M.luasnip.setup({
         history = false,
+        update_events = "TextChanged,TextChangedI",
         delete_check_events = "TextChanged",
     })
 

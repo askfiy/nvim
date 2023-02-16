@@ -15,7 +15,7 @@ local M = {
     mason_install_directory = api.path.join(vim.fn.stdpath("data"), "mason"),
     global_config_directory = api.path.join(vim.fn.stdpath("config"), "config"),
     -- formatter
-    sql_language = "postgresql",
+    sql_langkind = "postgresql",
 }
 
 return M

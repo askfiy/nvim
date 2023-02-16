@@ -1,3 +1,5 @@
+-- https://github.com/microsoft/pylance-release
+
 local util = require("lspconfig.util")
 
 local get_script_path = function()

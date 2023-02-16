@@ -28,9 +28,9 @@ local M = {
 function M.before()
     -- complete the floating window settings of the menu
     M.complete_window_settings = {
-        fixed = false,
-        min_width = 20,
-        max_width = 20,
+        fixed = true,
+        min_width = 15,
+        max_width = 15,
     }
     -- whether to allow the following completion sources to have the same keywords as other completion sources
     M.duplicate_keywords = {
@@ -92,31 +92,37 @@ function M.load()
         sorting = {
             priority_weight = 2,
             comparators = {
-                aid_nvim_cmp.under_compare,
                 M.cmp.config.compare.offset,
                 M.cmp.config.compare.exact,
+                -- M.cmp.config.compare.scopes,
                 M.cmp.config.compare.score,
                 M.cmp.config.compare.recently_used,
                 M.cmp.config.compare.locality,
                 M.cmp.config.compare.kind,
-                M.cmp.config.compare.sort_text,
+                -- M.cmp.config.compare.sort_text,
                 M.cmp.config.compare.length,
                 M.cmp.config.compare.order,
-                -- aid_cmp.source_compare,
-                -- aid_cmp.kind_compare,
+                -- aid_nvim_cmp.under_compare,
+                -- aid_nvim_cmp.source_compare,
+                -- aid_nvim_cmp.kind_compare,
             },
         },
         -- define the style of menu completion options
         formatting = {
             -- sort menu
-            fields = { "abbr", "kind", "menu" },
+            fields = { "kind", "abbr", "menu" },
             format = function(entry, vim_item)
                 local abbr = vim_item.abbr
                 local kind = vim_item.kind
                 local source = entry.source.name
 
-                vim_item.kind = ("%s %s"):format(icons[kind], kind)
-                vim_item.menu = ("<%s>"):format(source:upper())
+                -- vim_item.kind = ("%s %s"):format(icons[kind], kind)
+                -- vim_item.menu = ("<%s>"):format(source:upper())
+
+                -- icon_prefix
+                vim_item.kind = (" %s "):format(icons[kind])
+                vim_item.menu = ("<%s>"):format(kind)
+
                 vim_item.dup = M.duplicate_keywords[source] or 0
 
                 -- determine if it is a fixed window size
@@ -142,7 +148,7 @@ function M.load()
                 completion = M.cmp.config.window.bordered({
                     winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
                     -- menu position offset
-                    col_offset = 0,
+                    col_offset = -4,
                     -- content offset
                     side_padding = 0,
                 }),

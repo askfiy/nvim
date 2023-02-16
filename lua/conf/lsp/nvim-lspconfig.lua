@@ -11,8 +11,8 @@ local M = {
         "mason-lspconfig",
     },
     disabled_servers = {
-        -- "pyright",
-        "pylance"
+        "pyright",
+        -- "pylance"
     },
     server_configurations_dir_path = api.path.join("conf", "lsp", "server_configurations"),
 }
