@@ -102,6 +102,8 @@ You can change anything you don't like, and if you don't know how to change it, 
 - MarkdownPreview : Preview markdown file
 - TSUpdate all    : Update tree-sitter parser
 - MakeDirectory   : Create directory if it doesn't exist
+- StartAutoReload : Start Automatically flush the buffer
+- StopAutoReload  : Stop Automatically flush the buffer
 - OpenUserSnippetFile    : Open user snippet file from current filetype
 - OpenUserSnippetPackage : Open user snippet package.json file
 - OpenUserDatabaseFile   : Open user defined database config file

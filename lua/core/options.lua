@@ -7,7 +7,6 @@ local M = {
     float_border = true,
     -- edit settings
     auto_save = true,
-    auto_reload = false,
     auto_switch_input = true,
     auto_restore_cursor_position = true,
     auto_remove_new_lines_comment = true,

@@ -9,18 +9,6 @@ if options.auto_save then
     })
 end
 
--- auto reload log file
-if options.auto_reload then
-    vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-        pattern = { "*" },
-        callback = function()
-            if vim.fn.mode() ~= "c" then
-                vim.cmd([[checktime]])
-            end
-        end,
-    })
-end
-
 -- switch input method
 if options.auto_switch_input then
     vim.api.nvim_create_autocmd({ "InsertLeave" }, {

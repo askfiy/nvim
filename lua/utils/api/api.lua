@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-field
+
 local M = {}
 
 function M.require_all_package(module)
@@ -38,6 +40,32 @@ function M.get_importable_subfiles(dir)
     end
 
     return require_path
+end
+
+-- Creating a simple setTimeout wrapper
+function M.setTimeout(timeout, callback)
+    local timer = vim.loop.new_timer()
+    timer:start(timeout, 0, function()
+        timer:stop()
+        timer:close()
+        callback()
+    end)
+    return timer
+end
+
+-- Creating a simple setInterval wrapper
+function M.setInterval(interval, callback)
+    local timer = vim.loop.new_timer()
+    timer:start(interval, interval, function()
+        callback()
+    end)
+    return timer
+end
+
+-- And clearInterval
+function M.clearInterval(timer)
+    timer:stop()
+    timer:close()
 end
 
 return M
