@@ -28,3 +28,8 @@ uint8/!
 #nt32
 int32/!
 RESTAPI
+#ursorLineNr
+#ursorLineNr
+CursorLineNr/!
+#ursorLine
+CursorLine/!

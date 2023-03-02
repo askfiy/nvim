@@ -7,6 +7,7 @@ local icons = public.get_icons_group("diagnostic", true)
 local M = {
     requires = {
         "bufferline",
+        "visual_studio_code"
     },
 }
 
@@ -23,11 +24,13 @@ function M.load()
             numbers = "none",
             buffer_close_icon = "",
             modified_icon = "●",
-            close_icon = "",
+            close_icon = "",
             left_trunc_marker = "",
             right_trunc_marker = "",
             diagnostics = "nvim_lsp",
             separator_style = "thin",
+            -- separator_style = { "▏", "▕" },
+            -- separator_style = { "", "" },
             indicator = { icon = "▎", style = "icon" },
             ---@diagnostic disable-next-line: unused-local
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -45,6 +48,9 @@ function M.load()
                 end
                 return message
             end,
+            custom_areas = {
+                right = M.visual_studio_code.get_bufferline_right(),
+            },
             offsets = {
                 {
                     filetype = "NvimTree",

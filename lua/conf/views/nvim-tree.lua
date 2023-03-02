@@ -32,7 +32,7 @@ function M.load()
         view = {
             side = "left",
             width = 30,
-            hide_root_folder = false,
+            hide_root_folder = true,
             signcolumn = "yes",
             mappings = {
                 list = {

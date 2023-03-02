@@ -16,11 +16,17 @@ function M.filter_publish_diagnostics(a, params, client_info, extra_message, con
     ---@diagnostic disable-next-line: unused-local
     local client = vim.lsp.get_client_by_id(client_info.client_id)
 
-    if extra_message.ignore_diagnostic_message then
+    local ignore_hint_diagnostic = extra_message.ignore_hint_diagnostic
+    local ignore_diagnostic_message = extra_message.ignore_diagnostic_message
+
+    if ignore_diagnostic_message then
         local new_index = 1
 
         for _, diagnostic in ipairs(params.diagnostics) do
-            if not vim.tbl_contains(extra_message.ignore_diagnostic_message, diagnostic.message) then
+            if
+                not (ignore_hint_diagnostic and not diagnostic.code) -- disable hint
+                or vim.tbl_contains(ignore_diagnostic_message, diagnostic.message) -- disable message
+            then
                 params.diagnostics[new_index] = diagnostic
                 new_index = new_index + 1
             end

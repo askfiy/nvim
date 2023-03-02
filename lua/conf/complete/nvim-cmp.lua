@@ -28,7 +28,7 @@ local M = {
 function M.before()
     -- complete the floating window settings of the menu
     M.complete_window_settings = {
-        fixed = true,
+        fixed = false,
         min_width = 15,
         max_width = 15,
     }
@@ -51,6 +51,10 @@ function M.load()
     aid_nvim_cmp.receive_cmp(M.cmp)
 
     M.cmp.setup({
+        view = {
+            -- "custom", "wildmenu" or "native"
+            entries = "custom",
+        },
         -- uncheck auto-select (gopls)
         preselect = M.cmp_types.cmp.PreselectMode.None,
         -- Insert or Replace
@@ -146,14 +150,14 @@ function M.load()
         window = not options.float_border and {}
             or {
                 completion = M.cmp.config.window.bordered({
-                    winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+                    winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:Search",
                     -- menu position offset
                     col_offset = -4,
                     -- content offset
                     side_padding = 0,
                 }),
                 documentation = M.cmp.config.window.bordered({
-                    winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+                    winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:Search",
                 }),
             },
     })

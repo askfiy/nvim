@@ -18,10 +18,11 @@ function M.load()
     M.todo_comments.setup({
         keywords = {
             -- alt = alias
-            NOTE = { icon = icons.Note, color = "#96CDFB" },
-            TODO = { icon = icons.Todo, color = "#B5E8E0" },
-            PERF = { icon = icons.Pref, color = "#F8BD96" },
-            WARN = { icon = icons.Warn, color = "#FAE3B0" },
+            NOTE = { icon = icons.Note, color = "#D9D9D9" },
+            TODO = { icon = icons.Todo, color = "#D9D9D9" },
+            PERF = { icon = icons.Pref, color = "#CCA700" },
+            WARN = { icon = icons.Warn, color = "#CCA700" },
+            ERROR = { icon = icons.Warn, color = "#F14C4C" },
             HACK = {
                 icon = icons.Hack,
                 color = "#DDB6F2",
@@ -32,6 +33,11 @@ function M.load()
                 color = "#DDB6F2",
                 alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
             },
+        },
+        gui_style = {
+            fg = "NONE",
+            bg = "NONE",
+            gui = "NONE",
         },
     })
 end

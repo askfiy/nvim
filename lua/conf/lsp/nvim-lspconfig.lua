@@ -11,8 +11,8 @@ local M = {
         "mason-lspconfig",
     },
     disabled_servers = {
-        -- "pyright",
-        "pylance"
+        "pyright",
+        -- "pylance"
     },
     server_configurations_dir_path = api.path.join("conf", "lsp", "server_configurations"),
 }
@@ -56,7 +56,14 @@ function M.load()
                 M.nvim_navic.attach(client, bufnr)
                 client.server_capabilities.documentFormattingProvider = false
                 -- close semantic tokens
-                client.server_capabilities.semanticTokensProvider = nil
+                client.server_capabilities.semanticTokensProvider = {
+                    legend = {
+                        tokenTypes = {},
+                        tokenModifiers = {},
+                    },
+                    full = false,
+                    range = false,
+                }
                 -- run private_on_attach
                 private_on_attach(client, bufnr)
             end
@@ -155,14 +162,14 @@ function M.register_key()
         },
         {
             mode = { "n" },
-            lhs = "[g",
+            lhs = "[d",
             rhs = aid_nvim_lspconfig.goto_prev_diagnostic,
             options = { silent = true },
             description = "Jump to prev diagnostic",
         },
         {
             mode = { "n" },
-            lhs = "]g",
+            lhs = "]d",
             rhs = aid_nvim_lspconfig.goto_next_diagnostic,
             options = { silent = true },
             description = "Jump to next diagnostic",

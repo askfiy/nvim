@@ -3,8 +3,8 @@ local api = require("utils.api")
 local M = {
     -- ui settings
     show_winbar = true,
-    transparent = true,
-    float_border = true,
+    transparent = false,
+    float_border = false,
     -- edit settings
     auto_save = true,
     auto_switch_input = true,

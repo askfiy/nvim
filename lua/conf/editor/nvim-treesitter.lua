@@ -21,7 +21,8 @@ function M.load()
             "php",
             "ruby",
             "tsx",
-            "tlaplus"
+            "tlaplus",
+            "qmldir"
         },
         highlight = {
             enable = true,

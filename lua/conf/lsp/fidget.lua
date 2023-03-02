@@ -23,7 +23,6 @@ function M.load()
             spinner = "meter",
             commenced = commenced,
             completed = completed,
-            done = "",
         },
         fmt = {
             task = function(task_name, message, percentage)

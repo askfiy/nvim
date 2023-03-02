@@ -31,6 +31,7 @@ return {
         -- ["textDocument/publishDiagnostics"] = function(...) end,
         -- If you want to disable pylance from diagnosing unused parameters, open the function below
         ["textDocument/publishDiagnostics"] = vim.lsp.with(aid_nvim_lsptools.filter_publish_diagnostics, {
+            ignore_hint_diagnostic = false,
             ignore_diagnostic_message = ignore_diagnostic_message,
         }),
     },

@@ -46,24 +46,27 @@ function M.load(plugins)
 
     for plugin_kind_name, plugin_kind_tbl in pairs(plugins) do
         for _, plugin_opts in ipairs(plugin_kind_tbl) do
-            local require_file_name = (plugin_opts.name or plugin_opts[1]:match("/([%w%-_]+).?")):lower()
+            if not plugin_opts.dir then
+                local require_file_name = (plugin_opts.name or plugin_opts[1]:match("/([%w%-_]+).?")):lower()
 
-            local require_file_path = api.path.join(M.plugin_config_root_directory, plugin_kind_name, require_file_name)
+                local require_file_path = api.path.join(M.plugin_config_root_directory, plugin_kind_name, require_file_name)
 
-            local ok, module = pcall(require, require_file_path)
+                local ok, module = pcall(require, require_file_path)
 
-            if ok then
-                plugin_opts.init = function()
-                    module.before()
-                end
+                if ok then
+                    plugin_opts.init = plugin_opts.init
+                        or function()
+                            module.before()
+                        end
 
-                plugin_opts.config = function()
-                    api.require_all_package(module)
-                    module.load()
-                    module.after()
+                    plugin_opts.config = plugin_opts.config
+                        or function()
+                            api.require_all_package(module)
+                            module.load()
+                            module.after()
+                        end
                 end
             end
-
             table.insert(requires_moduls, plugin_opts)
         end
     end

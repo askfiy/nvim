@@ -8,6 +8,7 @@ M.opt = {
     ruler = false,
     showmode = false,
     swapfile = false,
+    cmdheight = 1,
     signcolumn = "yes:1",
     completeopt = "menuone,noselect",
     pumheight = 10,
@@ -40,9 +41,10 @@ M.opt = {
     sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,globals",
 }
 
--- vim.opt.listchars:append("space:⋅")
--- vim.opt.listchars:append("eol:↴")
--- vim.opt.listchars:append("tab:↹ ")
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("tab:↹ ")
+
 vim.opt.shortmess:append("sI")
 vim.opt.whichwrap:append("<>[]hl")
 

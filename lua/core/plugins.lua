@@ -1,11 +1,14 @@
+-- https://github.com/folke/lazy.nvim
+
 local aid_lazy = require("utils.aid.lazy")
 
 local M = {}
 
 M.theme = {
     {
-        "askfiy/starlight",
+        "askfiy/visual_studio_code",
         priority = 100,
+        cond = true,
     },
 }
 
