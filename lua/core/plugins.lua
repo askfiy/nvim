@@ -43,22 +43,21 @@ M.lsp = {
         "folke/neodev.nvim",
         lazy = true,
     },
-    -- in nvim-lspconfig config file require nvim-navic
-    {
-        "SmiteshP/nvim-navic",
-        lazy = true,
-    },
-    {
-        "j-hui/fidget.nvim",
-        event = { "UIEnter" },
-    },
-    {
-        "kosayoda/nvim-lightbulb",
-        event = { "UIEnter" },
-    },
     {
         "jose-elias-alvarez/null-ls.nvim",
         event = { "UIEnter" },
+    },
+    {
+        "SmiteshP/nvim-navic",
+        event = { "LspAttach" },
+    },
+    {
+        "j-hui/fidget.nvim",
+        event = { "LspAttach" },
+    },
+    {
+        "kosayoda/nvim-lightbulb",
+        event = { "LspAttach" },
     },
 }
 
@@ -98,11 +97,6 @@ M.dap = {
     {
         "rcarriga/nvim-dap-ui",
         event = { "UIEnter" },
-    },
-    -- neovim lua debug,
-    {
-        "jbyuki/one-small-step-for-vimkind",
-        ft = { "lua" },
     },
     -- javascript debug,
     {
@@ -222,7 +216,7 @@ M.language = {
 
 M.tools = {
     {
-        "norcalli/nvim-colorizer.lua",
+        "NvChad/nvim-colorizer.lua",
         event = { "UIEnter" },
     },
     {
