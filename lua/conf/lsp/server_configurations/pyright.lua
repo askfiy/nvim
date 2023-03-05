@@ -12,6 +12,7 @@ local root_files = {
     "pyrightconfig.json",
     -- customize
     "manage.py",
+    "server.py",
 }
 
 local ignore_diagnostic_message = {
@@ -31,7 +32,7 @@ return {
         -- ["textDocument/publishDiagnostics"] = function(...) end,
         -- If you want to disable pyright from diagnosing unused parameters, open the function below
         ["textDocument/publishDiagnostics"] = vim.lsp.with(aid_nvim_lsptools.filter_publish_diagnostics, {
-            ignore_hint_diagnostic = false,
+            ignore_diagnostic_level = {},
             ignore_diagnostic_message = ignore_diagnostic_message,
         }),
     },
@@ -42,7 +43,7 @@ return {
     settings = {
         python = {
             analysis = {
-                typeCheckingMode = "basic", -- off, basic, strict
+                typeCheckingMode = "off", -- off, basic, strict
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
                 autoImportCompletions = true,

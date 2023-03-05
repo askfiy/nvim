@@ -11,8 +11,8 @@ local M = {
         "mason-lspconfig",
     },
     disabled_servers = {
-        "pyright",
-        -- "pylance"
+        -- "pyright",
+        "pylance"
     },
     server_configurations_dir_path = api.path.join("conf", "lsp", "server_configurations"),
 }
@@ -162,14 +162,14 @@ function M.register_key()
         },
         {
             mode = { "n" },
-            lhs = "[d",
+            lhs = "[g",
             rhs = aid_nvim_lspconfig.goto_prev_diagnostic,
             options = { silent = true },
             description = "Jump to prev diagnostic",
         },
         {
             mode = { "n" },
-            lhs = "]d",
+            lhs = "]g",
             rhs = aid_nvim_lspconfig.goto_next_diagnostic,
             options = { silent = true },
             description = "Jump to next diagnostic",
