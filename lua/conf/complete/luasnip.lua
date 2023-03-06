@@ -21,7 +21,7 @@ function M.load()
         history = true,
         region_check_events = "CursorMoved",
         delete_check_events = "TextChangedI",
-        updateevents = "TextChanged,TextChangedI,InsertLeave",
+        update_events = "TextChanged,TextChangedI,InsertLeave",
         enable_autosnippets = true,
         store_selection_keys = "<Tab>",
     })

@@ -4,11 +4,11 @@ local api = require("utils.api")
 
 local M = {}
 
-function M.before() end
-
-function M.load()
+function M.before()
     M.register_key()
 end
+
+function M.load() end
 
 function M.after() end
 
