@@ -3,8 +3,8 @@ local M = {}
 M.diagnostic = {
     Error = "",
     Warn = "",
-    Info = "ﬤ",
-    Hint = "",
+    Info = "",
+    Hint = "ﬤ",
 }
 
 M.tag_level = {

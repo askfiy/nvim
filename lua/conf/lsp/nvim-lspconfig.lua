@@ -1,6 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig
 
 local api = require("utils.api")
+local aid_nvim_lsptools = require("utils.aid.nvim-lsptools")
 local aid_nvim_lspconfig = require("utils.aid.nvim-lspconfig")
 
 local M = {
@@ -43,27 +44,27 @@ function M.load()
         -- set default configuration
         configuration = vim.tbl_deep_extend("force", {
             ---@diagnostic disable-next-line: unused-local
+            on_init = function(client, bufnr) end,
+            ---@diagnostic disable-next-line: unused-local
             on_attach = function(client, bufnr) end,
         }, ok and configuration or {})
 
         if not vim.tbl_contains(M.disabled_servers, server_name) then
+            local private_on_init = configuration.on_init
             local private_on_attach = configuration.on_attach
 
             configuration.capabilities = aid_nvim_lspconfig.get_capabilities()
             configuration.handlers = aid_nvim_lspconfig.get_headlers(configuration)
 
+            configuration.on_init = function(client, bufnr)
+                private_on_init(client, bufnr)
+            end
+
             configuration.on_attach = function(client, bufnr)
                 M.nvim_navic.attach(client, bufnr)
-                client.server_capabilities.documentFormattingProvider = false
-                -- close semantic tokens
-                client.server_capabilities.semanticTokensProvider = {
-                    legend = {
-                        tokenTypes = {},
-                        tokenModifiers = {},
-                    },
-                    full = false,
-                    range = false,
-                }
+                aid_nvim_lsptools.close_document_format(client)
+                aid_nvim_lsptools.close_semantic_tokens(client)
+                aid_nvim_lsptools.did_change_configuration(client)
                 -- run private_on_attach
                 private_on_attach(client, bufnr)
             end

@@ -1,15 +1,27 @@
 local M = {}
 
-function M.didChangeConfiguration(client, filetype)
-    vim.api.nvim_create_autocmd(
-        { "DirChanged", "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufNewFile" },
-        {
-            pattern = { filetype, "NvimTree_*" },
-            callback = function()
-                client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-            end,
-        }
-    )
+function M.close_document_format(client)
+    client.server_capabilities.documentFormattingProvider = false
+end
+
+function M.did_change_configuration(client)
+    vim.api.nvim_create_autocmd({ "DirChanged", "CursorHold" }, {
+        pattern = { "*" },
+        callback = function()
+            client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+        end,
+    })
+end
+
+function M.close_semantic_tokens(client)
+    client.server_capabilities.semanticTokensProvider = {
+        legend = {
+            tokenTypes = {},
+            tokenModifiers = {},
+        },
+        full = false,
+        range = false,
+    }
 end
 
 function M.filter_publish_diagnostics(a, params, client_info, extra_message, config)

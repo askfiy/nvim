@@ -36,10 +36,6 @@ return {
             ignore_diagnostic_message = ignore_diagnostic_message,
         }),
     },
-    on_init = function(client, _)
-        -- BUG: https://github.com/neovim/nvim-lspconfig/issues/1851
-        aid_nvim_lsptools.didChangeConfiguration(client, "*.py")
-    end,
     settings = {
         python = {
             analysis = {
