@@ -1,15 +1,32 @@
 {
-  "head file": {
+  "header comment": {
     "prefix": [
       "head"
     ],
     "body": [
       "#!/usr/bin/env python3",
       "# -*- coding: utf-8 -*-",
-      "# author: askfiy",
-      "# date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
+      "# @Author : askfiy",
+      "# @Date   : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "# @Editor : Neovim"
     ],
-    "description": "Python head file"
+    "description": "Python header comment"
+  },
+  "forve_running": {
+    "prefix": [
+      "runing"
+    ],
+    "body": [
+      "def forve_runing(fn):",
+      "   @functools.wraps(fn)",
+      "   async def inner(*args, **kwargs):",
+      "       result = await fn(*args, **kwargs)",
+      "       while list(filter(lambda t: t != asyncio.current_task(), asyncio.all_tasks())):",
+      "           await asyncio.sleep(1)",
+      "       return result",
+      "   return inner"
+    ],
+    "description": ""
   },
   "no params function decorator": {
     "prefix": [

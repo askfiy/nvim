@@ -14,5 +14,9 @@
   {
     "name": "mysql-dev",
     "url": "mysql://root@localhost:3306/mysql?protocol=tcp"
+  },
+  {
+    "name": "ykhm",
+    "url": "postgres://postgres:123456@10.10.100.37:5432/ykhm15.7_02"
   }
 ]

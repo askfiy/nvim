@@ -1,13 +1,13 @@
 {
-  "head file": {
+  "prefix comment": {
     "prefix": [
-      "head"
+      "prefix"
     ],
     "body": [
       "$LINE_COMMENT author: askfiy",
       "$LINE_COMMENT date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
     ],
-    "description": "Python head file"
+    "description": "file prefix comment"
   },
   "NOTE": {
     "prefix": [

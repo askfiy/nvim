@@ -19,6 +19,8 @@ local ignore_diagnostic_message = {
     '"self" is not accessed',
     '"args" is not accessed',
     '"kwargs" is not accessed',
+    '"i" is not accessed',
+    'Variable "i" is not accessed',
 }
 
 return {
@@ -36,6 +38,10 @@ return {
             ignore_diagnostic_message = ignore_diagnostic_message,
         }),
     },
+    ---@diagnostic disable-next-line: unused-local
+    on_attach = function(client, bufnr)
+        aid_nvim_lsptools.did_change_configuration(client)
+    end,
     settings = {
         python = {
             analysis = {

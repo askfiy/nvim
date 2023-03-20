@@ -22,7 +22,7 @@ function M.load()
             "ruby",
             "tsx",
             "tlaplus",
-            "qmldir"
+            "qmldir",
         },
         highlight = {
             enable = true,
@@ -48,6 +48,7 @@ function M.load()
             extended_mode = true,
             -- Do not enable for files with more than 1000 lines, int
             max_file_lines = 1000,
+            disable = { "html" },
         },
         -- nvim-ts-autotag
         autotag = {

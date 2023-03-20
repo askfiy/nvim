@@ -19,6 +19,7 @@ M.opt = {
     numberwidth = 2,
     number = true,
     relativenumber = true,
+    splitright = true,
     scrolloff = 21,
     mouse = "a",
     list = true,
@@ -45,6 +46,7 @@ vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↴")
 vim.opt.listchars:append("tab:↹ ")
 
+vim.opt.diffopt:append("vertical")
 vim.opt.shortmess:append("sI")
 vim.opt.whichwrap:append("<>[]hl")
 

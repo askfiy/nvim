@@ -64,7 +64,6 @@ function M.load()
                 M.nvim_navic.attach(client, bufnr)
                 aid_nvim_lsptools.close_document_format(client)
                 aid_nvim_lsptools.close_semantic_tokens(client)
-                aid_nvim_lsptools.did_change_configuration(client)
                 -- run private_on_attach
                 private_on_attach(client, bufnr)
             end

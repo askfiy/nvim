@@ -59,6 +59,10 @@ M.lsp = {
         "kosayoda/nvim-lightbulb",
         event = { "LspAttach" },
     },
+    {
+        "askfiy/lsp_extra_dim",
+        event = { "LspAttach" },
+    },
 }
 
 M.complete = {
