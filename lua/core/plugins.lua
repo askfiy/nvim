@@ -114,7 +114,7 @@ M.editor = {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         dependencies = {
-            { "mrjones2014/nvim-ts-rainbow" },
+            { "HiPhish/nvim-ts-rainbow2" },
             { "windwp/nvim-ts-autotag" },
             { "JoosepAlviste/nvim-ts-context-commentstring" },
             { "nvim-lua/plenary.nvim" },
@@ -221,7 +221,6 @@ M.language = {
 M.tools = {
     {
         "NvChad/nvim-colorizer.lua",
-        event = { "UIEnter" },
     },
     {
         "lewis6991/gitsigns.nvim",

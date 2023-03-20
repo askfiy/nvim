@@ -1,7 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig
 
 local api = require("utils.api")
-local aid_nvim_lsptools = require("utils.aid.nvim-lsptools")
+local aid_nvim_lsputils = require("utils.aid.nvim-lsputils")
 local aid_nvim_lspconfig = require("utils.aid.nvim-lspconfig")
 
 local M = {
@@ -62,8 +62,8 @@ function M.load()
 
             configuration.on_attach = function(client, bufnr)
                 M.nvim_navic.attach(client, bufnr)
-                aid_nvim_lsptools.close_document_format(client)
-                aid_nvim_lsptools.close_semantic_tokens(client)
+                aid_nvim_lsputils.close_document_format(client)
+                aid_nvim_lsputils.close_semantic_tokens(client)
                 -- run private_on_attach
                 private_on_attach(client, bufnr)
             end

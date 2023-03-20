@@ -45,10 +45,7 @@ function M.load()
         -- nvim-ts-rainbow
         rainbow = {
             enable = true,
-            extended_mode = true,
-            -- Do not enable for files with more than 1000 lines, int
-            max_file_lines = 1000,
-            disable = { "html" },
+            disable = { "jsx", "html" },
         },
         -- nvim-ts-autotag
         autotag = {

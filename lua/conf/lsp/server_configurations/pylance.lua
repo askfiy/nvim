@@ -1,7 +1,7 @@
 -- https://github.com/microsoft/pylance-release
 
 local util = require("lspconfig.util")
-local aid_nvim_lsptools = require("utils.aid.nvim-lsptools")
+local aid_nvim_lsputils = require("utils.aid.nvim-lsputils")
 
 local root_files = {
     "pyproject.toml",
@@ -33,14 +33,19 @@ return {
         -- If you want to disable pylance's diagnostic prompt, open the code below
         -- ["textDocument/publishDiagnostics"] = function(...) end,
         -- If you want to disable pylance from diagnosing unused parameters, open the function below
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(aid_nvim_lsptools.filter_publish_diagnostics, {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(aid_nvim_lsputils.filter_publish_diagnostics, {
             ignore_diagnostic_level = {},
             ignore_diagnostic_message = ignore_diagnostic_message,
         }),
     },
     ---@diagnostic disable-next-line: unused-local
     on_attach = function(client, bufnr)
-        aid_nvim_lsptools.did_change_configuration(client)
+        -- aid_nvim_lsputils.did_change_configuration(client)
+        vim.api.nvim_buf_create_user_command(bufnr, "LspChange", function()
+            client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+        end, {
+            desc = "send didChangeConfiguration to Langserver",
+        })
     end,
     settings = {
         python = {
