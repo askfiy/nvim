@@ -16,6 +16,7 @@ function M.before()
     M.installer_tools = {
         lsp = {
             "gopls",
+            "clangd",
             "pyright",
             "css-lsp",
             "json-lsp",
@@ -32,6 +33,7 @@ function M.before()
             "delve",
             "debugpy",
             "js-debug-adapter@v1.74.1",
+            "cpptools",
         },
         linter = {
             "pylint",
@@ -40,6 +42,7 @@ function M.before()
             "shfmt",
             "autopep8",
             "prettier",
+            "clang-format",
             "sql-formatter",
             "stylua",
             "fixjson",

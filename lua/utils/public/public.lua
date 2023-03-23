@@ -51,7 +51,9 @@ function M.terminal_offset_run_command(command)
         NvimTree = function(window_id)
             vim.cmd("NvimTreeToggle")
             vim.cmd(command)
-            require("nvim-tree").toggle(false, true)
+            require("nvim-tree.api").tree.toggle({
+                focus = false,
+            })
         end,
 
         ---@diagnostic disable-next-line: unused-local

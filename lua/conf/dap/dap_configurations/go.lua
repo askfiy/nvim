@@ -1,3 +1,5 @@
+---@diagnostic disable: need-check-nil
+
 -- yay -S delve
 
 return {

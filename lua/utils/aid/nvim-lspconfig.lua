@@ -110,12 +110,21 @@ function M.lspconfig_ui_quick_set()
     require("lspconfig.ui.windows").default_options.border = options.float_border and "double" or "none"
 end
 
-function M.get_headlers(settings)
-    return vim.tbl_deep_extend("force", M.lsp_handlers, settings.handlers or {})
+function M.get_configuration(ok, configuration)
+    return vim.tbl_deep_extend("force", {
+        ---@diagnostic disable-next-line: unused-local
+        on_init = function(client, bufnr) end,
+        ---@diagnostic disable-next-line: unused-local
+        on_attach = function(client, bufnr) end,
+    }, ok and configuration or {})
 end
 
-function M.get_capabilities()
-    return M.capabilities
+function M.get_headlers(configuration)
+    return vim.tbl_deep_extend("force", M.lsp_handlers, configuration.handlers or {})
+end
+
+function M.get_capabilities(configuration)
+    return vim.tbl_deep_extend("force", M.capabilities, configuration.capabilities or {})
 end
 
 function M.diagnostic_open_float()
