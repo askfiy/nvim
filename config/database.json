@@ -18,5 +18,9 @@
   {
     "name": "ykhm",
     "url": "postgres://postgres:123456@10.10.100.37:5432/ykhm15.7_02"
+  },
+  {
+    "name": "jsjk",
+    "url": "postgres://postgres:123@10.10.100.211:5432/jianshan"
   }
 ]

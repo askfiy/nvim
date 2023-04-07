@@ -56,29 +56,4 @@ for prefix, tbl in pairs(M) do
     end
 end
 
-local disable_builtin_plugins = {
-    -- "netrw",
-    -- "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "2html_plugin",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logipat",
-    "matchit",
-    "tar",
-    "tarPlugin",
-    "rrhelper",
-    "spellfile_plugin",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin",
-}
-
-for _, builtin_plugin in ipairs(disable_builtin_plugins) do
-    vim.g["loaded_" .. builtin_plugin] = 1
-end
-
 return M

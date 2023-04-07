@@ -57,7 +57,7 @@ function M.load()
             configuration.on_attach = function(client, bufnr)
                 M.nvim_navic.attach(client, bufnr)
                 aid_nvim_lsputils.close_document_format(client)
-                aid_nvim_lsputils.close_semantic_tokens(client)
+                pcall(aid_nvim_lsputils.close_semantic_tokens, client)
                 -- run private_on_attach
                 private_on_attach(client, bufnr)
             end

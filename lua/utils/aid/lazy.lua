@@ -20,6 +20,28 @@ function M.get_opts()
         ui = {
             border = options.float_border and "double" or "none",
         },
+        performance = {
+            disabled_plugins = {
+                -- "netrw",
+                -- "netrwPlugin",
+                "netrwSettings",
+                "netrwFileHandlers",
+                "2html_plugin",
+                "getscript",
+                "getscriptPlugin",
+                "gzip",
+                "logipat",
+                "matchit",
+                "tar",
+                "tarPlugin",
+                "rrhelper",
+                "spellfile_plugin",
+                "vimball",
+                "vimballPlugin",
+                "zip",
+                "zipPlugin",
+            },
+        },
     }
 end
 
@@ -49,7 +71,8 @@ function M.load(plugins)
             if not plugin_opts.dir then
                 local require_file_name = (plugin_opts.name or plugin_opts[1]:match("/([%w%-_]+).?")):lower()
 
-                local require_file_path = api.path.join(M.plugin_config_root_directory, plugin_kind_name, require_file_name)
+                local require_file_path =
+                    api.path.join(M.plugin_config_root_directory, plugin_kind_name, require_file_name)
 
                 local ok, module = pcall(require, require_file_path)
 
