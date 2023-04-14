@@ -159,7 +159,7 @@ function M.scroll_docs_to_up(map)
                 ---@diagnostic disable-next-line: redundant-parameter
                 local win_first_line = vim.fn.line("w0", opts.window_id)
 
-                if buffer_total_line <= window_height or cursor_line == 1 then
+                if buffer_total_line + 1 <= window_height or cursor_line == 1 then
                     vim.api.nvim_echo({ { "Can't scroll up", "MoreMsg" } }, false, {})
                     return
                 end
@@ -200,7 +200,7 @@ function M.scroll_docs_to_down(map)
                 ---@diagnostic disable-next-line: redundant-parameter
                 local window_last_line = vim.fn.line("w$", opts.window_id)
 
-                if buffer_total_line <= window_height or cursor_line == buffer_total_line then
+                if buffer_total_line + 1 <= window_height or cursor_line == buffer_total_line then
                     vim.api.nvim_echo({ { "Can't scroll down", "MoreMsg" } }, false, {})
                     return
                 end

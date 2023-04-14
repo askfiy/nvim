@@ -13,6 +13,7 @@ local root_files = {
     -- customize
     "manage.py",
     "server.py",
+    "main.py",
 }
 
 local ignore_diagnostic_message = {
