@@ -42,9 +42,9 @@ M.opt = {
     sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,globals",
 }
 
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
-vim.opt.listchars:append("tab:↹ ")
+-- vim.opt.listchars:append("space:⋅")
+-- vim.opt.listchars:append("eol:↴")
+-- vim.opt.listchars:append("tab:↹ ")
 
 vim.opt.diffopt:append("vertical")
 vim.opt.shortmess:append("sI")

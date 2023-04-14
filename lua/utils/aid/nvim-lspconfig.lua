@@ -17,7 +17,26 @@ local M = {
     },
 }
 
+function M.lsp_hover_filter(contents)
+    local cts = ""
+
+    -- signatures
+    if type(contents) == "string" then
+        cts = string.gsub(contents or "", "&nbsp;", " ")
+
+    -- hover
+    else
+        cts = string.gsub((contents or {}).value or "", "&nbsp;", " ")
+    end
+
+    cts = string.gsub(cts, "\\\n", "\n")
+    cts = string.gsub(cts, "\\_", "_")
+    return ("---\n%s\n---"):format(cts)
+end
+
 function M.lsp_hover(_, result, ctx, config)
+    result.contents = M.lsp_hover_filter(result.contents)
+
     local bufnr, winner = vim.lsp.handlers.hover(_, result, ctx, config)
 
     if bufnr and winner then
@@ -27,6 +46,13 @@ function M.lsp_hover(_, result, ctx, config)
 end
 
 function M.lsp_signature_help(_, result, ctx, config)
+    if result.signatures[1].documentation.value then
+        result.signatures[1].documentation.value = M.lsp_hover_filter(result.signatures[1].documentation.value)
+    else
+        result.signatures[1].documentation = M.lsp_hover_filter(result.signatures[1].documentation)
+    end
+
+    -- vim.pretty_print(result.signatures.documentation.value)
     local bufnr, winner = vim.lsp.handlers.signature_help(_, result, ctx, config)
 
     local current_cursor_line = vim.api.nvim_win_get_cursor(0)[1]
