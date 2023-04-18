@@ -15,9 +15,15 @@ local M = {
         },
         configurations_dir_path = api.path.join("conf", "lsp", "expands_nvim_lspconfig"),
     },
+    lsp_replace_message_char = {
+        ["\\\\n"] = "\n",
+        ["\\_"] = "_",
+        ["\\%["] = "[",
+        ["\\%]"] = "]",
+    },
 }
 
-function M.lsp_hover_filter(contents)
+function M.lsp_message_filter(contents)
     local cts = ""
 
     -- signatures
@@ -29,13 +35,15 @@ function M.lsp_hover_filter(contents)
         cts = string.gsub((contents or {}).value or "", "&nbsp;", " ")
     end
 
-    cts = string.gsub(cts, "\\\n", "\n")
-    cts = string.gsub(cts, "\\_", "_")
+    for before_char, after_char in pairs(M.lsp_replace_message_char) do
+        cts = cts:gsub(before_char, after_char)
+    end
+
     return ("---\n%s\n---"):format(cts)
 end
 
 function M.lsp_hover(_, result, ctx, config)
-    result.contents = M.lsp_hover_filter(result.contents)
+    result.contents = M.lsp_message_filter(result.contents)
 
     local bufnr, winner = vim.lsp.handlers.hover(_, result, ctx, config)
 
@@ -47,9 +55,9 @@ end
 
 function M.lsp_signature_help(_, result, ctx, config)
     if result.signatures[1].documentation.value then
-        result.signatures[1].documentation.value = M.lsp_hover_filter(result.signatures[1].documentation.value)
+        result.signatures[1].documentation.value = M.lsp_message_filter(result.signatures[1].documentation.value)
     else
-        result.signatures[1].documentation = M.lsp_hover_filter(result.signatures[1].documentation)
+        result.signatures[1].documentation = M.lsp_message_filter(result.signatures[1].documentation)
     end
 
     -- vim.pretty_print(result.signatures.documentation.value)

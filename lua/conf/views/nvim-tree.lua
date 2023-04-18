@@ -20,7 +20,6 @@ function M.load()
         hijack_netrw = false,
         hijack_cursor = true,
         update_cwd = true,
-        ignore_ft_on_setup = { "dashboard" },
         reload_on_bufenter = true,
         notify = {
             threshold = vim.log.levels.WARN,
@@ -32,7 +31,6 @@ function M.load()
         view = {
             side = "left",
             width = 30,
-            hide_root_folder = true,
             signcolumn = "yes",
             mappings = {
                 list = {
@@ -76,6 +74,7 @@ function M.load()
         renderer = {
             add_trailing = true,
             highlight_git = true,
+            root_folder_label = false,
             highlight_opened_files = "none",
             icons = {
                 show = {
