@@ -23,8 +23,11 @@ local M = {
     },
 }
 
-function M.lsp_message_filter(contents)
+function M.lsp_message_filter(config)
     local cts = ""
+
+    local contents = config.contents
+    local extra_line = config.extra_line
 
     -- signatures
     if type(contents) == "string" then
@@ -39,11 +42,20 @@ function M.lsp_message_filter(contents)
         cts = cts:gsub(before_char, after_char)
     end
 
+    if not extra_line then
+        return cts
+    end
+
     return ("---\n%s\n---"):format(cts)
 end
 
 function M.lsp_hover(_, result, ctx, config)
-    result.contents = M.lsp_message_filter(result.contents)
+    if result then
+        result.contents = M.lsp_message_filter({
+            contents = result.contents,
+            extra_line = true,
+        })
+    end
 
     local bufnr, winner = vim.lsp.handlers.hover(_, result, ctx, config)
 
@@ -54,10 +66,19 @@ function M.lsp_hover(_, result, ctx, config)
 end
 
 function M.lsp_signature_help(_, result, ctx, config)
-    if result.signatures[1].documentation.value then
-        result.signatures[1].documentation.value = M.lsp_message_filter(result.signatures[1].documentation.value)
-    else
-        result.signatures[1].documentation = M.lsp_message_filter(result.signatures[1].documentation)
+    if result then
+        local documentation = result.signatures[1].documentation
+        local signatures_label = result.signatures[1].label
+
+        if documentation then
+            if documentation.value then
+                documentation.value = M.lsp_message_filter({ contents = documentation.value, extra_line = true })
+            else
+                documentation = M.lsp_message_filter({ contents = documentation, extra_line = true })
+            end
+        else
+            signatures_label = M.lsp_message_filter({ contents = signatures_label, extra_line = false })
+        end
     end
 
     -- vim.pretty_print(result.signatures.documentation.value)
