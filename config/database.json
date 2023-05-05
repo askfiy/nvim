@@ -26,5 +26,9 @@
   {
     "name": "jsjk",
     "url": "postgres://postgres:123@10.10.100.211:5432/jianshan"
+  },
+  {
+    "name": "qztj",
+    "url": "postgres://postgres:123@10.10.100.211:5432/quzhoutianji"
   }
 ]

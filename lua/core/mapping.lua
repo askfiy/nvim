@@ -176,6 +176,33 @@ api.map.bulk_register({
         options = {},
         description = "Move cursor right in insert mode",
     },
+    {
+        mode = { "n" },
+        lhs = "dd",
+        rhs = function()
+            if vim.api.nvim_get_current_line():match("^%s*$") then
+                return '"_dd'
+            else
+                return "dd"
+            end
+        end,
+        options = { expr = true },
+        description = "Delete empty lines without writing to registers",
+    },
+    {
+        mode = { "n" },
+        lhs = "i",
+        rhs = function()
+            local cond = #vim.fn.getline(".") == 0
+            if cond then
+                return '"_cc'
+            else
+                return "i"
+            end
+        end,
+        options = { expr = true },
+        description = "When you press i, automatically indent to the appropriate position",
+    },
 })
 
 return M

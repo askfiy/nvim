@@ -73,8 +73,7 @@ function M.load(plugins)
 
                 local require_file_path =
                     api.path.join(M.plugin_config_root_directory, plugin_kind_name, require_file_name)
-
-                local ok, module = pcall(require, require_file_path)
+local ok, module = pcall(require, require_file_path)
 
                 if ok then
                     plugin_opts.init = plugin_opts.init

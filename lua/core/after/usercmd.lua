@@ -58,6 +58,12 @@ vim.api.nvim_create_user_command("OpenUserSnippetFile", function(ctx)
     vim.cmd((":e %s"):format(snippet_file_path))
 end, { desc = "Open user snippet file from current filetype" })
 
+vim.api.nvim_create_user_command("OpenGlobalSnippetFile", function(ctx)
+    local snippet_file_name = "global.json"
+    local snippet_file_path = api.path.join(options.global_config_directory, "snippets", snippet_file_name)
+    vim.cmd((":e %s"):format(snippet_file_path))
+end, { desc = "Open global snippet file from current filetype" })
+
 vim.api.nvim_create_user_command("OpenUserSnippetPackage", function(ctx)
     local snippet_file_name = "package.json"
     local snippet_file_path = api.path.join(options.global_config_directory, "snippets", snippet_file_name)

@@ -19,8 +19,8 @@ end
 function M.load()
     M.luasnip.setup({
         history = true,
-        region_check_events = "CursorMoved",
-        delete_check_events = "TextChangedI",
+        region_check_events = "InsertEnter",
+        delete_check_events = "TextChanged,InsertLeave",
         update_events = "TextChanged,TextChangedI,InsertLeave",
         enable_autosnippets = true,
         store_selection_keys = "<Tab>",

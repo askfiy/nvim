@@ -1,5 +1,5 @@
 {
-  "prefix comment": {
+  "PREFIX COMMENT": {
     "prefix": [
       "prefix"
     ],
@@ -8,6 +8,15 @@
       "$LINE_COMMENT date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
     ],
     "description": "file prefix comment"
+  },
+  "IGNORE-DIAGNOSTIC": {
+    "prefix": [
+      "ignore"
+    ],
+    "body": [
+      "$LINE_COMMENT ignore-diagnostic"
+    ],
+    "description": "ignore langserver diagnostic"
   },
   "NOTE": {
     "prefix": [

@@ -4,7 +4,7 @@
       "pprint"
     ],
     "body": [
-      "vim.pretty_print($1)"
+      "vim.print($1)"
     ],
     "description": "pretty print"
   },

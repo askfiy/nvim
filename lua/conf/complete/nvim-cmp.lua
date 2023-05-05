@@ -5,7 +5,7 @@
 -- https://github.com/hrsh7th/cmp-nvim-lsp
 -- https://github.com/saadparwaiz1/cmp_luasnip
 -- https://github.com/kristijanhusak/vim-dadbod-completion
--- https://github.com/tzachar/cmp-tabnin
+-- https://github.com/tzachar/cmp-tabnine
 
 -- WARN: manually install tabnine when there is an error in tabnine
 --    TabNine is not executable

@@ -74,6 +74,8 @@ return {
                     reportMissingImports = "error",
                     reportUndefinedVariable = "error",
                     reportAssertAlwaysTrue = "error",
+                    reportGeneralTypeIssues = "none",
+                    reportOptionalMemberAccess = "none",
                 },
             },
         },
