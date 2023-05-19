@@ -1,10 +1,18 @@
+local api = require("utils.api")
+
 local options = require("core.options")
 
 -- auto save buffer
 if options.auto_save then
     vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
         pattern = { "*" },
-        command = "silent! wall",
+        callback = function ()
+            local directory = vim.fn.fnamemodify(vim.fn.expand("%"), ":p:h")
+            if vim.fn.isdirectory(directory) == 0 then
+                vim.fn.mkdir(directory, "p")
+            end
+            vim.cmd("silent! wall")
+        end,
         nested = true,
     })
 end

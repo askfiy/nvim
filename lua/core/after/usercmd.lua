@@ -4,17 +4,6 @@ local api = require("utils.api")
 local options = require("core.options")
 local timer = nil
 
-vim.api.nvim_create_user_command("MakeDirectory", function(ctx)
-    ---@diagnostic disable-next-line: missing-parameter
-    local directory = vim.fn.fnamemodify(vim.fn.expand("%"), ":p:h")
-
-    if vim.fn.isdirectory(directory) == 0 then
-        vim.fn.mkdir(directory, "p")
-    else
-        vim.notify("Directory already exists", "WARN", { title = "Nvim" })
-    end
-end, { desc = "Create directory if it doesn't exist" })
-
 vim.api.nvim_create_user_command("BufferDelete", function(ctx)
     ---@diagnostic disable-next-line: missing-parameter
     local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))

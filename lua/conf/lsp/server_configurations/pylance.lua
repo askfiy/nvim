@@ -22,6 +22,7 @@ local ignore_diagnostic_message = {
     '"kwargs" is not accessed',
     '"i" is not accessed',
     'Variable "i" is not accessed',
+    '"get" is not a known member of "None"'
 }
 
 return {
@@ -74,8 +75,6 @@ return {
                     reportMissingImports = "error",
                     reportUndefinedVariable = "error",
                     reportAssertAlwaysTrue = "error",
-                    reportGeneralTypeIssues = "none",
-                    reportOptionalMemberAccess = "none",
                 },
                 -- pylance
                 inlayHints = {
