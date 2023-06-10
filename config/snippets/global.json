@@ -11,7 +11,7 @@
   },
   "IGNORE-DIAGNOSTIC": {
     "prefix": [
-      "ignore"
+      "dign"
     ],
     "body": [
       "$LINE_COMMENT ignore-diagnostic"

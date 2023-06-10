@@ -8,6 +8,7 @@ if options.auto_save then
         pattern = { "*" },
         callback = function()
             local disable_file_types = {
+                "",
                 "toggleterm",
                 "translate",
             }

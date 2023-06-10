@@ -25,6 +25,8 @@ function M.load()
             "dbui",
             "spectre_panel",
         },
+        -- disable all sign icon
+        signs_on_startup = {},
     })
 end
 

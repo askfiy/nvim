@@ -43,5 +43,14 @@
       "    return wrapper"
     ],
     "description": "Python decorator without parameters"
+  },
+  "ignore pylance diagnostic": {
+    "prefix": [
+      "ignore"
+    ],
+    "body": [
+      "$LINE_COMMENT type: ignore"
+    ],
+    "description": "ignore langserver diagnostic"
   }
 }

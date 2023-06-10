@@ -53,6 +53,7 @@ M.lsp = {
     },
     {
         "j-hui/fidget.nvim",
+        tag =  "legacy" ,
         event = { "LspAttach" },
     },
     {
