@@ -13,6 +13,24 @@ function M.load()
         disable_diagnostic_style = {
             "parameter",
         },
+        hooks = {
+            lsp_filter = function(diagnostics, create_mark)
+                return vim.tbl_filter(function(diagnostic)
+                    -- python
+                    if diagnostic.message:find(".*is not accessed.*") ~= nil then
+                        create_mark(diagnostic)
+                        return false
+                    end
+
+                    -- lua
+                    if diagnostic.code == "unused-function" then
+                        return false
+                    end
+
+                    return true
+                end, diagnostics)
+            end,
+        },
     })
 end
 
