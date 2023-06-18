@@ -6,9 +6,10 @@
     "body": [
       "#!/usr/bin/env python3",
       "# -*- coding: utf-8 -*-",
-      "# @Author : askfiy",
-      "# @Date   : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
-      "# @Editor : Neovim"
+      "# @Author  : askfiy",
+      "# @Date    : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "# @Editor  : Neovim",
+      "# @Version : Python 3.11.3"
     ],
     "description": "Python header comment"
   },

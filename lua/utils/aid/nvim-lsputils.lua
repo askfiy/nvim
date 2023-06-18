@@ -14,7 +14,14 @@ function M.did_change_configuration(client)
 end
 
 function M.close_semantic_tokens(client)
-    client.server_capabilities.semanticTokensProvider = nil
+    client.server_capabilities.semanticTokensProvider = {
+        legend = {
+            tokenTypes = {},
+            tokenModifiers = {},
+        },
+        full = false,
+        range = false,
+    }
 end
 
 function M.filter_publish_diagnostics(a, params, client_info, extra_message, config)
