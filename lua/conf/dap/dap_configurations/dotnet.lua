@@ -14,6 +14,7 @@ return {
             name = "launch-netcoredbg",
             request = "launch",
             program = function()
+                ---@diagnostic disable-next-line: redundant-parameter
                 return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
             end,
         },

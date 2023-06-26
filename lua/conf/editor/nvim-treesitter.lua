@@ -23,6 +23,8 @@ function M.load()
             "tsx",
             "tlaplus",
             "qmldir",
+            "t32",
+            "norg"
         },
         highlight = {
             enable = true,

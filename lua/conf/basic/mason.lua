@@ -23,6 +23,7 @@ function M.before()
             "html-lsp",
             "emmet-ls",
             "vetur-vls",
+            "rust-analyzer",
             "vim-language-server",
             "lua-language-server",
             "bash-language-server",

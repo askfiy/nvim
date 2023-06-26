@@ -1,6 +1,7 @@
 ---@diagnostic disable: redundant-parameter
 
 -- https://github.com/Microsoft/vscode-cpptools
+local api = require("utils.api")
 
 return {
     adapters = {
@@ -12,20 +13,20 @@ return {
         },
     },
     configurations = {
-        cpp = {
+        rust = {
             {
-                name = "Launch file",
+                name = "Rust debug",
                 type = "cppdbg",
                 request = "launch",
                 program = function()
-                    local source_path = vim.fn.expand("%:p")
-                    local execute_path = vim.fn.expand("%:p:r")
-                    local command = ("gcc -fdiagnostics-color=always -g %s -o %s"):format(source_path, execute_path)
-                    vim.fn.jobstart(command)
+                    local project_root_dir = vim.fn.expand("%:p:h:h")
+                    local execute_file_name = vim.fn.expand("%:p:h:h:t")
+                    local execute_path = api.path.join(project_root_dir, "target", "debug", execute_file_name)
+                    vim.fn.jobstart("cargo build")
                     return execute_path
                 end,
                 cwd = "${workspaceFolder}",
-                stopAtEntry = true,
+                stopOnEntry = true,
             },
         },
     },
