@@ -3,14 +3,7 @@
 -- https://github.com/Microsoft/vscode-cpptools
 
 return {
-    adapters = {
-        cppdbg = {
-            id = "cppdbg",
-            type = "executable",
-            -- Linux
-            command = "OpenDebugAD7",
-        },
-    },
+    -- adapter = cpp.lua -> adapter
     configurations = {
         c = {
             {

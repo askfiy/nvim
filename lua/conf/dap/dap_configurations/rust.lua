@@ -4,14 +4,7 @@
 local api = require("utils.api")
 
 return {
-    adapters = {
-        cppdbg = {
-            id = "cppdbg",
-            type = "executable",
-            -- Linux
-            command = "OpenDebugAD7",
-        },
-    },
+    -- adapter = cpp.lua -> adapter
     configurations = {
         rust = {
             {

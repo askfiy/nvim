@@ -11,6 +11,10 @@ local M = {
         "nvim-navic",
         "mason-lspconfig",
     },
+    extra_servers = {
+        -- lsp server not downloaded by mason
+        "rust_analyzer",
+    },
     disabled_servers = {
         -- "pyright",
         "pylance",
@@ -34,6 +38,8 @@ function M.load()
         M.mason_lspconfig.get_installed_servers(),
         aid_nvim_lspconfig.get_expands_servers()
     )
+
+    servers = vim.tbl_deep_extend("force", servers, M.extra_servers)
 
     for _, server_name in ipairs(servers) do
         if not vim.tbl_contains(M.disabled_servers, server_name) then
