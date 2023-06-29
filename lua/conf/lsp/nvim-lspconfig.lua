@@ -11,13 +11,13 @@ local M = {
         "nvim-navic",
         "mason-lspconfig",
     },
-    extra_servers = {
-        -- lsp server not downloaded by mason
-        "rust_analyzer",
-    },
     disabled_servers = {
-        -- "pyright",
+        "pyright",
+        -- "pylance",
+    },
+    extra_servers = {
         "pylance",
+        "rust-analyzer",
     },
     server_configurations_dir_path = api.path.join("conf", "lsp", "server_configurations"),
 }
@@ -33,13 +33,7 @@ function M.load()
     local mappings = M.mason_lspconfig.get_mappings()
 
     -- load build-in servers and expands servers
-    local servers = vim.tbl_deep_extend(
-        "force",
-        M.mason_lspconfig.get_installed_servers(),
-        aid_nvim_lspconfig.get_expands_servers()
-    )
-
-    servers = vim.tbl_deep_extend("force", servers, M.extra_servers)
+    local servers = vim.tbl_deep_extend("keep", M.get_extra_servers(), M.mason_lspconfig.get_installed_servers())
 
     for _, server_name in ipairs(servers) do
         if not vim.tbl_contains(M.disabled_servers, server_name) then
@@ -196,6 +190,13 @@ function M.register_key()
             description = "Scroll down floating window",
         },
     })
+end
+
+function M.get_extra_servers()
+    local mappings = M.mason_lspconfig.get_mappings().mason_to_lspconfig
+    return vim.tbl_map(function(server_name)
+        return mappings[server_name] or server_name
+    end, M.extra_servers)
 end
 
 return M

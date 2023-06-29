@@ -10,9 +10,6 @@ local M = {
         signatureHelp = "lsp-signature-help",
     },
     expands = {
-        servers = {
-            -- pylance
-        },
         configurations_dir_path = api.path.join("conf", "lsp", "expands_nvim_lspconfig"),
     },
     lsp_replace_message_char = {
@@ -288,18 +285,14 @@ end
 
 -- expands_servers
 function M.load_expands_servers()
+    -- import extra lspconfig to lspconfig
     local lspconfig_configs = require("lspconfig.configs")
 
     ---@diagnostic disable-next-line: param-type-mismatch
     for _, require_file in ipairs(api.get_importable_subfiles(M.expands.configurations_dir_path)) do
         local server_name = vim.fn.fnamemodify(require_file, ":t:r")
         lspconfig_configs[server_name] = require(require_file)
-        table.insert(M.expands.servers, server_name)
     end
-end
-
-function M.get_expands_servers()
-    return M.expands.servers
 end
 
 function M.begin()
