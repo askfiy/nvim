@@ -12,8 +12,8 @@ local M = {
         "mason-lspconfig",
     },
     disabled_servers = {
-        "pyright",
-        -- "pylance",
+        -- "pyright",
+        "pylance",
     },
     extra_servers = {
         "pylance",

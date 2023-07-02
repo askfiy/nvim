@@ -15,15 +15,39 @@ end
 function M.load()
     M.translate.setup({
         default = {
-            command = "google",
+            command = "translate_shell",
             output = "floating",
-            parse_before = "trim",
+            parse_before = "no_handle",
+            parse_after = "bing",
+        },
+        parse_after = {
+            bing = {
+                cmd = function(lines)
+                    -- Fold multiple rows into one
+                    lines = vim.fn.join(lines, "\n")
+                    -- Replace \\n to \n
+                    lines = lines:gsub("\\n", "\n")
+                    -- Split into tables by \n
+                    lines = vim.fn.split(lines, "\n")
+                    return lines
+                end,
+            },
         },
         replace_symbols = {
             google = {},
             deepl_pro = {},
             deepl_free = {},
             translate_shell = {},
+        },
+        preset = {
+            command = {
+                translate_shell = {
+                    args = {
+                        "-e",
+                        "bing",
+                    },
+                },
+            },
         },
     })
 end
