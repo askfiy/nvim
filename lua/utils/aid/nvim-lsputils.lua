@@ -1,7 +1,6 @@
 local M = {}
 
 function M.close_document_format(client)
-    client.server_capabilities.documentFormattingProvider = false
 end
 
 function M.did_change_configuration(client)
@@ -13,9 +12,6 @@ function M.did_change_configuration(client)
     })
 end
 
-function M.close_semantic_tokens(client)
-    client.server_capabilities.semanticTokensProvider = nil
-end
 
 function M.filter_publish_diagnostics(a, params, client_info, extra_message, config)
     ---@diagnostic disable-next-line: unused-local

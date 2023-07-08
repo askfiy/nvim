@@ -1,7 +1,6 @@
 -- https://github.com/neovim/nvim-lspconfig
 
 local api = require("utils.api")
-local aid_nvim_lsputils = require("utils.aid.nvim-lsputils")
 local aid_nvim_lspconfig = require("utils.aid.nvim-lspconfig")
 
 local M = {
@@ -56,8 +55,7 @@ function M.load()
 
             configuration.on_attach = function(client, bufnr)
                 M.nvim_navic.attach(client, bufnr)
-                aid_nvim_lsputils.close_document_format(client)
-                pcall(aid_nvim_lsputils.close_semantic_tokens, client)
+                aid_nvim_lspconfig.public_after_attach(client, bufnr)
                 -- run private_on_attach
                 private_on_attach(client, bufnr)
             end
@@ -91,6 +89,13 @@ function M.register_key()
             rhs = function()
                 vim.lsp.buf.format({ async = true })
             end,
+            options = { silent = true },
+            description = "Format buffer",
+        },
+        {
+            mode = { "n" },
+            lhs = "<leader>cl",
+            rhs = aid_nvim_lspconfig.toggle_inlay_hint,
             options = { silent = true },
             description = "Format buffer",
         },

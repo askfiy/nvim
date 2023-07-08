@@ -16,6 +16,8 @@ local M = {
     global_config_directory = api.path.join(vim.fn.stdpath("config"), "config"),
     -- formatter
     sql_langkind = "postgresql",
+    -- lsp
+    inlay_hint = false
 }
 
 return M

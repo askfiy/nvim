@@ -30,7 +30,7 @@ function M.lsp_message_filter(config)
     if type(contents) == "string" then
         cts = string.gsub(contents or "", "&nbsp;", " ")
 
-    -- hover
+        -- hover
     else
         cts = string.gsub((contents or {}).value or "", "&nbsp;", " ")
     end
@@ -281,6 +281,17 @@ function M.scroll_docs_to_down(map)
         ---@diagnostic disable-next-line: param-type-mismatch
         vim.api.nvim_feedkeys(key, "n", true)
     end
+end
+
+function M.toggle_inlay_hint()
+    options.inlay_hint = not options.inlay_hint
+    vim.lsp.inlay_hint(0, options.inlay_hint)
+end
+
+function M.public_after_attach(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.semanticTokensProvider = nil
+    vim.lsp.inlay_hint(bufnr, options.inlay_hint)
 end
 
 -- expands_servers
