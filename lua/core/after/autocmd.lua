@@ -1,5 +1,3 @@
-local api = require("utils.api")
-
 local options = require("core.options")
 
 -- auto save buffer

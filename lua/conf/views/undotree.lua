@@ -16,8 +16,8 @@ function M.load()
     -- vim.g.undotree_WindowLayout = 2
 
     -- custom window
-    vim.g.undotree_CustomUndotreeCmd = "topleft vertical 30 new"
-    vim.g.undotree_CustomDiffpanelCmd = "belowright 10 new"
+    -- vim.g.undotree_CustomUndotreeCmd = "topleft vertical 30 new"
+    -- vim.g.undotree_CustomDiffpanelCmd = "belowright 10 new"
 
     -- auto focus default 0
     vim.g.undotree_SetFocusWhenToggle = 1
@@ -41,6 +41,7 @@ function M.register_key()
             lhs = "<leader>3",
             rhs = function()
                 public.toggle_sidebar("undotree")
+                ---@diagnostic disable-next-line: param-type-mismatch
                 local ok, _ = pcall(vim.cmd, "UndotreeToggle")
                 if not ok then
                     vim.api.nvim_echo({ { "Can't open undotree", "ErrorMsg" } }, false, {})

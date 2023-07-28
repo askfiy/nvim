@@ -33,6 +33,11 @@ function M.load()
                 color = "#DDB6F2",
                 alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
             },
+            TEST = {
+                icon = icons.Test,
+                color = "#73C991",
+                alt = { "TESTING", "PASSED", "FAILED" },
+            },
         },
         gui_style = {
             fg = "NONE",

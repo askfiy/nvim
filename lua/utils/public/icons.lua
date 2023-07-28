@@ -2,18 +2,19 @@ local M = {}
 
 M.diagnostic = {
     Error = "",
-    Warn = "",
-    Info = "",
-    Hint = "ﬤ",
+    Warn = "",
+    Info = "󰋽",
+    Hint = "󰋽",
 }
 
 M.tag_level = {
     Fixme = "ﰡ",
     Hack = "ﰠ",
     Warn = "",
-    Note = "ﮉ",
-    Todo = "ﮉ",
+    Note = "󱞁",
+    Todo = "",
     Perf = "ﮉ",
+    Test = "󱜯"
 }
 
 M.lsp_kind = {
@@ -31,7 +32,7 @@ M.lsp_kind = {
     Function = "",
     Constructor = "",
     Namespace = "",
-    Field = "ﰠ",
+    Field = "",
     Variable = "ﳋ",
     Class = "",
     Interface = "",
@@ -41,14 +42,14 @@ M.lsp_kind = {
     Value = "",
     Enum = "",
     Keyword = "",
-    Snippet = "",
+    Snippet = "󰅴",
     Color = "",
     File = "",
     Reference = "",
     Folder = "",
     EnumMember = "",
     Constant = "",
-    Struct = "﬌",
+    Struct = "﬌",
     Event = "",
     Operator = "",
     TypeParameter = "",

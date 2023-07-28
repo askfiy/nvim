@@ -21,6 +21,7 @@ M.opt = {
     relativenumber = true,
     splitright = true,
     scrolloff = 21,
+    smoothscroll = true,
     mouse = "a",
     list = true,
     spell = true,

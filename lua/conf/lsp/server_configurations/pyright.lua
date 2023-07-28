@@ -17,12 +17,12 @@ local root_files = {
 }
 
 local ignore_diagnostic_message = {
-    '"self" is not accessed',
-    '"args" is not accessed',
-    '"kwargs" is not accessed',
+    '"e" is not accessed',
+    'Variable "e" is not accessed',
     '"i" is not accessed',
     'Variable "i" is not accessed',
-    '"get" is not a known member of "None"'
+    '"j" is not accessed',
+    'Variable "j" is not accessed',
 }
 
 return {

@@ -59,7 +59,8 @@ function M.register_key()
             rhs = "<cmd>AerialToggle! right<cr>",
             options = { silent = true },
             description = "Open Outilne Explorer",
-        }, {
+        },
+        {
             mode = { "n" },
             lhs = "{",
             rhs = "<cmd>AerialPrev<cr>",

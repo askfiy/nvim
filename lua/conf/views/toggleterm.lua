@@ -3,6 +3,7 @@
 local api = require("utils.api")
 local public = require("utils.public")
 local options = require("core.options")
+local aid_toggleterm = require("utils.aid.toggleterm")
 
 local M = {
     requires = {
@@ -34,8 +35,18 @@ function M.load()
                 return vim.o.columns * 0.25
             end
         end,
-        on_open = function()
+        on_open = function(term)
             vim.wo.spell = false
+
+            api.map.register({
+                mode = { "t" },
+                lhs = "<esc>",
+                rhs = "<c-\\><c-n>",
+                options = { silent = true, buffer = term.bufnr },
+                description = "Escape terminal insert mode",
+            })
+
+            aid_toggleterm.gf_goto_err_file(term)
         end,
         highlights = {
             Normal = {
@@ -75,10 +86,9 @@ function M.create_terminal()
                 lhs = "<esc>",
                 rhs = "<c-\\><c-n><cmd>close<cr>",
                 options = { silent = true, buffer = term.bufnr },
-                discope = "Escape float terminal",
+                description = "Escape float terminal",
             })
         end,
-        on_close = M.close_callback,
     })
 
     M.terminals.lazygit = M.terms:new({
@@ -96,10 +106,9 @@ function M.create_terminal()
                 lhs = "q",
                 rhs = "<cmd>close<cr>",
                 options = { silent = true, buffer = term.bufnr },
-                discope = "Escape lazygit terminal",
+                description = "Escape lazygit terminal",
             })
         end,
-        on_close = M.close_callback,
     })
 end
 
@@ -133,17 +142,7 @@ end
 
 function M.open_callback()
     vim.cmd("startinsert")
-    api.map.unregister({ "t" }, "<esc>")
-end
-
-function M.close_callback()
-    api.map.register({
-        mode = { "t" },
-        lhs = "<esc>",
-        rhs = "<c-\\><c-n>",
-        options = { silent = true },
-        discope = "Escape terminal insert mode",
-    })
+    -- api.map.unregister({ "t" }, "<esc>")
 end
 
 function M.register_key()

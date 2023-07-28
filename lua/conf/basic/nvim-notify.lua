@@ -12,6 +12,10 @@ local M = {
     special_message = {
         -- navic
         { 'nvim%-navic: Server ".*" does not support documentSymbols.', echo = false },
+        {
+            "method textDocument/inlayHint is not supported by any of the servers registered for the current buffer",
+            echo = false,
+        },
     },
 }
 
