@@ -97,7 +97,7 @@ function M.register_key()
             lhs = "<leader>cl",
             rhs = aid_nvim_lspconfig.toggle_inlay_hint,
             options = { silent = true },
-            description = "Format buffer",
+            description = "Toggle inlay hint",
         },
         {
             mode = { "n" },

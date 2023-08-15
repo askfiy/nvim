@@ -21,6 +21,7 @@ function M.load()
         hijack_cursor = true,
         update_cwd = true,
         reload_on_bufenter = true,
+        on_attach = M.register_tree_keys,
         notify = {
             threshold = vim.log.levels.WARN,
         },
@@ -32,11 +33,6 @@ function M.load()
             side = "left",
             width = 30,
             signcolumn = "yes",
-            mappings = {
-                list = {
-                    { key = "?", action = "toggle_help" },
-                },
-            },
         },
         diagnostics = {
             enable = true,
@@ -126,6 +122,30 @@ function M.register_key()
             end,
             options = { silent = true },
             description = "Open File Explorer",
+        },
+    })
+end
+
+function M.register_tree_keys(bufnr)
+    require("nvim-tree.api").config.mappings.default_on_attach(bufnr)
+
+    api.map.unregister("n", "g?", { buffer = bufnr })
+    api.map.unregister("n", "<c-x>", { buffer = bufnr })
+
+    api.map.bulk_register({
+        {
+            mode = { "n" },
+            lhs = "?",
+            rhs = require("nvim-tree.api").tree.toggle_help,
+            options = { silent = true, buffer = bufnr, nowait = true },
+            description = "Toggle help document",
+        },
+        {
+            mode = { "n" },
+            lhs = "<c-s>",
+            rhs = require("nvim-tree.api").node.open.horizontal,
+            options = { silent = true, buffer = bufnr, nowait = true },
+            description = "Open: Horizontal Spli",
         },
     })
 end

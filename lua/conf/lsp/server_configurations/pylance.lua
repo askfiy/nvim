@@ -80,6 +80,7 @@ return {
                 inlayHints = {
                     variableTypes = true,
                     functionReturnTypes = true,
+                    callArgumentNames = true,
                     pytestParameters = true,
                 },
             },

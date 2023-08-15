@@ -18,5 +18,17 @@
   {
     "name": "qztj_ants",
     "url": "postgres://postgres:123456@10.10.100.37:5432/tianji_ants"
+  },
+  {
+    "name": "晶科一期",
+    "url": "postgres://postgres:123@10.10.100.211:5432/jingke1"
+  },
+  {
+    "name": "新加坡西子",
+    "url": "postgres://postgres:123@10.10.100.38:5432/xjpxz"
+  },
+  {
+    "name": "新加坡西子（测试）",
+    "url": "postgres://postgres:123456@192.168.1.106:5432/xjpxz2"
   }
 ]
