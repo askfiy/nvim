@@ -53,6 +53,7 @@ M.lsp_kind = {
     Event = "",
     Operator = "",
     TypeParameter = "",
+    Default = "",
 }
 
 return M

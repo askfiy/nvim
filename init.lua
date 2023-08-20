@@ -6,8 +6,9 @@ require("core.after")
 
 if vim.g.neovide then
     -- Put anything you want to happen only in Neovide here
+    -- vim.o.guifont = "Rec Mono Duotone:h9"
+    vim.o.guifont = "GoMono Nerd Font:h9"
 
-    vim.o.guifont = "Rec Mono Linear:#h-slight:h14"
     vim.opt.linespace = 0
     vim.g.neovide_refresh_rate_idle = 5
     vim.g.neovide_refresh_rate = 60

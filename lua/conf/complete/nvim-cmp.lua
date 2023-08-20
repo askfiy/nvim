@@ -125,16 +125,20 @@ function M.load()
                 -- vim_item.menu = ("<%s>"):format(source:upper())
 
                 -- icon_prefix
-                vim_item.kind = (" %s "):format(icons[kind])
+                vim_item.kind = (" %s "):format(icons[kind] or icons["Default"])
                 vim_item.menu = ("<%s>"):format(kind)
 
                 vim_item.dup = M.duplicate_keywords[source] or 0
 
                 -- determine if it is a fixed window size
-                if M.complete_window_settings.fixed and vim.fn.mode() == "i" then
+                if
+                    M.complete_window_settings.fixed
+                    and vim.fn.mode() == "i"
+                then
                     local min_width = M.complete_window_settings.min_width
                     local max_width = M.complete_window_settings.max_width
-                    local truncated_abbr = vim.fn.strcharpart(abbr, 0, max_width)
+                    local truncated_abbr =
+                        vim.fn.strcharpart(abbr, 0, max_width)
 
                     if truncated_abbr ~= abbr then
                         vim_item.abbr = ("%s %s"):format(truncated_abbr, "…")

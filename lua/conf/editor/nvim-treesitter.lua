@@ -24,7 +24,7 @@ function M.load()
             "tlaplus",
             "qmldir",
             "t32",
-            "norg"
+            "norg",
         },
         highlight = {
             enable = true,

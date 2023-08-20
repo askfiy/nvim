@@ -20,7 +20,10 @@ function M.before() end
 function M.load()
     for package_name, filetype_tables in pairs(M.formatting_filetype_extends) do
         vim.tbl_map(function(filetype)
-            table.insert(M.null_ls.builtins.formatting[package_name].filetypes, filetype)
+            table.insert(
+                M.null_ls.builtins.formatting[package_name].filetypes,
+                filetype
+            )
         end, filetype_tables)
     end
 
@@ -50,16 +53,17 @@ function M.load()
                 extra_args = {
                     "--indent-type=Spaces",
                     "--indent-width=4",
+                    "--column-width=80",
                 },
             }),
 
             -- M.null_ls.builtins.diagnostics.pylint.with({
             --     extra_args = {
-            --         "-f",
-            --         "json",
-            --         "--load-plugins=pylint_django",
-            --         "--disable=django-not-configured",
-            --         "--rcfile=" .. api.path.join(options.lint_directory, "pylint.conf"),
+            --         "--rcfile="
+            --             .. api.path.join(
+            --                 options.global_config_directory,
+            --                 "pylintrc"
+            --             ),
             --     },
             -- }),
         },
